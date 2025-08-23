@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HawkFranklin Research | AI R&D Partnership</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-left-color: #3b82f6;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .research-pill {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="inline-block research-pill px-6 py-2 rounded-full mb-6">
+                <span class="font-semibold">Deep Tech AI Research & Development</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Your Strategic AI Partner</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">
+                HawkFranklin Research integrates cutting-edge AI into healthcare and medical technology products
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#contact" class="bg-white text-blue-900 font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-envelope mr-2"></i> Contact Us
+                </a>
+                <a href="#research" class="bg-transparent border-2 border-white text-white font-bold px-6 py-3 rounded-lg hover:bg-white/10 transition-colors">
+                    <i class="fas fa-flask mr-2"></i> Our Research
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who We Are -->
+    <div class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Who We Are</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="relative">
+                    <div class="bg-blue-50 p-8 rounded-2xl shadow-lg border border-blue-100">
+                        <div class="absolute -top-4 -left-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg floating">
+                            <i class="fas fa-lightbulb mr-2"></i> Innovation
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">The AI Research Partner You've Been Missing</h3>
+                        <p class="text-gray-700 mb-6">
+                            HawkFranklin Research is a deep tech company specializing in AI integration for healthcare and medical technology. We become your dedicated research and development team, bridging the gap between academic AI research and practical industry applications.
+                        </p>
+                        <div class="bg-white p-4 rounded-lg border border-blue-200">
+                            <p class="text-blue-800 font-medium">
+                                "We transform AI research into production-ready solutions with clinical-grade reliability."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-robot text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">AI Specialization</h4>
+                                <p class="text-gray-600">Core expertise in computer vision, predictive modeling, and AI system integration</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-project-diagram text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Full Implementation</h4>
+                                <p class="text-gray-600">From prototype to production, we handle the complete AI lifecycle</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-handshake text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Partnership Model</h4>
+                                <p class="text-gray-600">We align with your business goals, not just deliver projects</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Our Focus Areas -->
+            <div class="bg-gray-50 rounded-2xl p-8 mb-16">
+                <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">Our AI Focus Areas</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-xl text-center shadow-sm">
+                        <i class="fas fa-heartbeat text-3xl text-blue-600 mb-3"></i>
+                        <h4 class="font-semibold">Medical Imaging</h4>
+                        <p class="text-sm text-gray-600 mt-1">Radiology & pathology AI solutions</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl text-center shadow-sm">
+                        <i class="fas fa-microscope text-3xl text-blue-600 mb-3"></i>
+                        <h4 class="font-semibold">Diagnostic Devices</h4>
+                        <p class="text-sm text-gray-600 mt-1">AI-enhanced medical devices</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl text-center shadow-sm">
+                        <i class="fas fa-chart-line text-3xl text-blue-600 mb-3"></i>
+                        <h4 class="font-semibold">Predictive Analytics</h4>
+                        <p class="text-sm text-gray-600 mt-1">Clinical decision support systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Approach -->
+    <div class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Research Approach</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto"></div>
+                <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
+                    Structured methodology for developing clinically viable AI solutions
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-search text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Problem Analysis</h3>
+                    <p class="text-gray-700">
+                        Deep dive into clinical workflows to identify optimal AI integration points
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-cogs text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Technical Feasibility</h3>
+                    <p class="text-gray-700">
+                        Rigorous evaluation of AI approaches against clinical requirements
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-rocket text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Implementation</h3>
+                    <p class="text-gray-700">
+                        Full-stack development with focus on reliability and regulatory compliance
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-blue-700 text-white p-8">
+                        <h3 class="text-2xl font-bold mb-4">Partnership Model</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                                <span>Minimum 2-year commitment for research continuity</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                                <span>Structured exit options with IP protection</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                                <span>Quarterly milestones with clear deliverables</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">What You Get</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-code text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Complete Solution Ownership</h4>
+                                    <p class="text-gray-600 text-sm">All AI models and training pipelines delivered</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-users-cog text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Dedicated Team</h4>
+                                    <p class="text-gray-600 text-sm">Researchers embedded in your development process</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-chart-line text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Research Leadership</h4>
+                                    <p class="text-gray-600 text-sm">We evaluate and implement the latest AI research for your needs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Directions -->
+    <div id="research" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Research Directions</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto"></div>
+                <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
+                    Pioneering AI methodologies to tackle complex healthcare challenges
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-blue-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">In-Context Learning for GNNs</h3>
+                    </div>
+                    <p class="text-gray-700">
+                        Novel approaches enabling Graph Neural Networks to perform in-context learning, allowing adaptation to new graph structures with minimal examples. Inspired by Large Language Models, this is crucial for dynamic medical data scenarios.
+                    </p>
+                </div>
+                
+                <div class="bg-blue-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-table"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Tabular Foundation Models</h3>
+                    </div>
+                    <p class="text-gray-700">
+                        Developing robust foundation models specifically engineered for tabular data. By pre-training on diverse datasets, these models achieve superior zero-shot or few-shot performance in clinical prediction tasks.
+                    </p>
+                </div>
+                
+                <div class="bg-blue-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Survival Foundation Models</h3>
+                    </div>
+                    <p class="text-gray-700">
+                        Advancing specialized foundation models for survival analysis. These integrate multi-modal patient data to deliver more accurate prognostic predictions, contributing to personalized medicine strategies.
+                    </p>
+                </div>
+                
+                <div class="bg-blue-50 p-8 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Medical Vision Models</h3>
+                    </div>
+                    <p class="text-gray-700">
+                        Developing specialized computer vision architectures for radiology and pathology applications, with focus on interpretability and clinical workflow integration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Partner With Us -->
+    <div class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Partner With HawkFranklin?</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-shield-alt text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Risk Mitigation</h3>
+                    <p class="text-gray-700">
+                        Structured approach with clear milestones and exit options to protect your investment
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-brain text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Research Leadership</h3>
+                    <p class="text-gray-700">
+                        We continuously evaluate and implement the latest AI advancements for your benefit
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-project-diagram text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Complete Oversight</h3>
+                    <p class="text-gray-700">
+                        We manage all aspects of AI R&D so you can focus on your core business
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-blue-50 rounded-2xl p-8 text-center">
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">The HawkFranklin Advantage</h3>
+                <p class="text-gray-700 max-w-3xl mx-auto">
+                    Unlike traditional consulting, we become your long-term AI research partner, providing continuity and deep institutional knowledge of your technical challenges.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vision -->
+    <div class="py-16 px-4 sm:px-6 lg:px-8 bg-blue-800 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Our Vision</h2>
+                <div class="h-1 w-20 bg-yellow-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-xl mb-6">
+                        To create AI systems that fundamentally transform medical technology through rigorous research and responsible implementation.
+                    </p>
+                    <div class="bg-blue-700 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-3 text-yellow-400">Ethical AI Development</h3>
+                        <p>
+                            We prioritize clinical safety, data privacy, and transparent AI systems that earn user trust.
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI and Healthcare" class="rounded-lg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div id="contact" class="gradient-bg text-white py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Integrate AI Into Your Products?</h2>
+            <p class="text-xl mb-8">
+                Contact HawkFranklin Research today to discuss how we can become your dedicated AI R&D team
+            </p>
+            <a href="mailto:vatsal1@hawk-franklin-research.com" class="inline-block bg-white text-blue-900 font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                <i class="fas fa-envelope mr-2"></i> Get Started
+            </a>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">HawkFranklin Research</h3>
+                    <p class="text-gray-400">
+                        Turning frontier AI into clinical-grade products for healthcare and medical technology.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#research" class="text-gray-400 hover:text-white transition-colors">Research</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3"></i>
+                            <span>consult@hawk-franklin-research.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>Thane, Maharashtra, India</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 HawkFranklin Research. All rights reserved.</p>
+                <p class="mt-2 text-sm">Named in honor of Stephen Hawking and Rosalind Franklin, symbolizing excellence in physics and life sciences.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

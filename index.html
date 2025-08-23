@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HawkFranklin Research | Deep‑Tech AI for Clinical Intelligence</title>
+  <meta name="description" content="HFR is a deep‑tech research company turning frontier AI into clinical‑grade products. Starting in healthcare and medical devices, expanding to genomics and computational biology." />
+  <link rel="icon" href="assets/img/Hawk_only_logo_may_circle.drawio.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter','ui-sans-serif','system-ui','sans-serif'],
+            display: ['Lexend','Inter','ui-sans-serif','system-ui']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="assets/css/site.css" rel="stylesheet" />
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img src="assets/img/Hawk_only_logo_may_circle.drawio.png" alt="HFR" class="h-12 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="/" class="nav-link">Home</a>
+        <a href="aclis.html" class="nav-link">ACLIS</a>
+        <a href="research.html" class="nav-link">Research</a>
+        <a href="publications.html" class="nav-link">Publications</a>
+        <a href="vision.html" class="nav-link">Vision & Ethics</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="careers.html" class="nav-link">Careers</a>
+      </nav>
+      <div class="hidden md:block">
+        <a href="contact.html" class="btn-primary">Request Demo</a>
+      </div>
+      <button id="menuBtn" class="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200">
+        <span class="sr-only">Open menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M3.75 6.75h16.5v1.5H3.75zM3.75 11.25h16.5v1.5H3.75zM3.75 15.75h16.5v1.5H3.75z"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
+      <div class="px-4 py-3 grid gap-3 text-sm">
+        <a href="/" class="block">Home</a>
+        <a href="aclis.html" class="block">ACLIS</a>
+        <a href="research.html" class="block">Research</a>
+        <a href="publications.html" class="block">Publications</a>
+        <a href="vision.html" class="block">Vision & Ethics</a>
+        <a href="about.html" class="block">About</a>
+        <a href="careers.html" class="block">Careers</a>
+        <a href="contact.html" class="btn-primary w-full text-center">Request Demo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-indigo-900 to-slate-800"></div>
+    <div class="absolute inset-0 opacity-30" aria-hidden="true">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+        <g opacity=".4" stroke="url(#g)" stroke-width="0.6">
+          <path d="M0 300h800M0 200h800M0 400h800M400 0v600M300 0v600M500 0v600"/>
+        </g>
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#60a5fa" />
+            <stop offset="1" stop-color="#34d399" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 text-white">
+      <div class="max-w-3xl">
+        <p class="inline-block text-xs tracking-wider uppercase text-indigo-200 mb-4">Deep‑Tech Research → Product</p>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"><span class="gradient-text">Turning frontier AI into clinical intelligence.</span></h1>
+        <p class="mt-6 text-lg md:text-xl text-indigo-100 max-w-2xl">We build clinical‑grade AI systems. Starting in healthcare and medical devices, expanding to genomics and computational biology.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a class="btn-contrast" href="contact.html">Request an ACLIS Demo</a>
+          <a class="btn-ghost" href="vision.html">Read our Vision</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we build -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <p class="kicker">The HFR Approach</p>
+        <h2 class="h2">From research breakthroughs to usable systems</h2>
+        <p class="mt-3 text-slate-600">We combine original research with engineering to produce systems clinicians can trust and hospitals can govern.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="card">
+          <h3 class="h3">Universal Integration</h3>
+          <p>Connect models, agents, devices, and data streams into one clinical surface.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Clinical AI Protocol</h3>
+          <p>Physician‑ and hospital‑defined rules for access, thresholds, alerts, and audit.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Agentic Intelligence</h3>
+          <p>Outcome‑aware orchestration that improves safely with use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACLIS spotlight -->
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 md:grid-cols-2 items-center">
+      <div>
+        <p class="kicker text-indigo-300">Flagship</p>
+        <h2 class="h2">ACLIS — Adaptive Clinically Intelligent System</h2>
+        <p class="mt-4 text-slate-300">ACLIS unifies AI agents, foundation models, medical devices, and physician expertise into one adaptive clinical brain. Built for safety, auditability, and seamless adoption.</p>
+        <div class="mt-6 flex gap-3">
+          <a class="btn-contrast" href="aclis.html">Learn about ACLIS</a>
+          <a class="btn-ghost !text-indigo-200" href="contact.html">Talk to the Research Team</a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="rounded-xl border border-white/10 bg-white/5 p-6">
+          <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="pill">
+              <div class="text-lg font-semibold">Devices</div>
+              <div class="text-xs opacity-80">Wrap native UIs</div>
+            </div>
+            <div class="pill">
+              <div class="text-lg font-semibold">Models</div>
+              <div class="text-xs opacity-80">Foundation & tabular</div>
+            </div>
+            <div class="pill">
+              <div class="text-lg font-semibold">Agents</div>
+              <div class="text-xs opacity-80">Orchestrated safely</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research programs -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <p class="kicker">Research</p>
+        <h2 class="h2">Programs powering our products</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="card">
+          <h3 class="h3">Tabular Foundation Models</h3>
+          <p>In‑context learning for clinical tabular data; survival and risk prediction; zero/low‑shot adaptation.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Survival Foundation Models</h3>
+          <p>Cross‑modal, multi‑objective survival modeling with clinical realism.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">In‑Context GNNs</h3>
+          <p>Transfer principles of LLM in‑context learning to graphs; few‑shot reasoning over biomedical networks.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Multi‑omics Translation</h3>
+          <p>Translate across omic modalities; align to phenotypes and clinical endpoints.</p>
+        </div>
+      </div>
+      <div class="mt-8">
+        <a class="btn-primary" href="research.html">Explore Research</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety / Governance -->
+  <section class="py-16 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <p class="kicker">Safety & Governance</p>
+        <h2 class="h2">Built for the clinical reality</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="card">
+          <h3 class="h3">Safety by design</h3>
+          <p>Layered guardrails, physician oversight, and incident response patterns.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Privacy & residency</h3>
+          <p>On‑prem or private cloud deployment; strict access controls and auditability.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Interoperability</h3>
+          <p>Vendor‑neutral, standards‑friendly; integrates with devices and clinical IT.</p>
+        </div>
+      </div>
+      <div class="mt-8">
+        <a class="btn-secondary" href="vision.html">Read Vision & Ethics</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications & Capsules -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-2 items-start">
+        <div>
+          <p class="kicker">Publications</p>
+          <h2 class="h2">Communicating science at multiple levels</h2>
+          <p class="mt-3 text-slate-600">We publish peer‑reviewed work and concise Research Capsules for broader audiences: Delta (secondary school), Omega (undergrad), Sigma (graduate+).</p>
+          <div class="mt-6 flex gap-3">
+            <a class="btn-primary" href="publications.html">Browse Publications</a>
+            <a class="btn-ghost" href="publications.html#lab-notes">Read Lab Notes</a>
+          </div>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white p-6">
+          <ul class="space-y-4 text-sm">
+            <li><span class="font-semibold">Research Capsule — Delta:</span> AI devices in clinics: a student guide.</li>
+            <li><span class="font-semibold">Preprint:</span> In‑context learning for tabular survival analysis.</li>
+            <li><span class="font-semibold">Tech Report:</span> Wrapping native device UIs safely in ACLIS.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid gap-8 md:grid-cols-4">
+        <div>
+          <img src="assets/img/HawkFranklin_for_latex.drawio.png" alt="HFR" class="h-8 w-auto mb-4" />
+          <p class="text-sm text-slate-600">Advancing science through AI research and product engineering.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Explore</h4>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+            <li><a href="aclis.html" class="hover:text-slate-800">ACLIS</a></li>
+            <li><a href="research.html" class="hover:text-slate-800">Research</a></li>
+            <li><a href="publications.html" class="hover:text-slate-800">Publications</a></li>
+            <li><a href="vision.html" class="hover:text-slate-800">Vision & Ethics</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold">Company</h4>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+            <li><a href="about.html" class="hover:text-slate-800">About</a></li>
+            <li><a href="careers.html" class="hover:text-slate-800">Careers</a></li>
+            <li><a href="contact.html" class="hover:text-slate-800">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold">Contact</h4>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+            <li><a href="mailto:consult@hawk-franklin-research.com" class="hover:text-slate-800">consult@hawk-franklin-research.com</a></li>
+            <li>India • Thane, Maharashtra</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© <span id="year"></span> HawkFranklin Research. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="https://www.linkedin.com/company/hawk-franklin-research" class="hover:text-slate-700">LinkedIn</a>
+          <a href="https://github.com/HawkFranklin-Research" class="hover:text-slate-700">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

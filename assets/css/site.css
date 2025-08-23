@@ -1,0 +1,93 @@
+/* Minimal site styles (works with Tailwind CDN utilities) */
+:root {
+  --indigo: #4f46e5;
+  --indigo-600: #4f46e5;
+  --slate-900: #0f172a;
+  --white: #ffffff;
+}
+
+.btn-primary {
+  background: var(--indigo);
+  color: var(--white);
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  display: inline-block;
+}
+.btn-secondary {
+  background: #e2e8f0;
+  color: #0f172a;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  display: inline-block;
+}
+.btn-contrast {
+  background: #ffffff;
+  color: var(--slate-900);
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  display: inline-block;
+}
+.btn-ghost {
+  background: transparent;
+  color: #0f172a;
+  padding: 0.625rem 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+  font-weight: 700;
+}
+.h2 {
+  font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
+  line-height: 1.2;
+  font-weight: 800;
+}
+.h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.04);
+}
+.pill {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #60a5fa, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.nav-link {
+  color: #0f172a;
+}
+.nav-link:hover { color: #111827; }
+.nav-active {
+  color: var(--indigo-600) !important;
+  font-weight: 700;
+}
+
+.label { font-size: 0.875rem; color: #334155; display: block; margin-bottom: 0.25rem; }
+.input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}

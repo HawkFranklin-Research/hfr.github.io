@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Scholarly Landscape of Trust, Risk, and Regulation for Generative AI in Healthcare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .progress-bar {
+            height: 5px;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
+        .pillar-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: #3b82f6;
+        }
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 1rem;
+            width: 2px;
+            height: 100%;
+            background-color: #e5e7eb;
+        }
+        .timeline-item:last-child:after {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-blue-800 mb-2">The Scholarly Landscape of Trust, Risk, and Regulation for Generative AI in Healthcare</h1>
+                    <h2 class="text-xl md:text-2xl text-gray-600">A Review of NeurIPS, ICML, and ICLR (2021-2024)</h2>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center space-x-2">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                        <i class="fas fa-shield-alt mr-1"></i> Trustworthy AI
+                    </span>
+                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                        <i class="fas fa-heartbeat mr-1"></i> Healthcare
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-600">Slide Progress</span>
+                <span id="slide-counter" class="text-sm font-medium text-gray-600">1/14</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div id="progress-bar" class="progress-bar rounded-full" style="width: 7.14%"></div>
+            </div>
+        </div>
+
+        <!-- Slides Container -->
+        <div class="bg-white rounded-lg shadow-xl overflow-hidden mb-8">
+            <!-- Slide 1: Introduction -->
+            <div class="slide active p-8">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-6">
+                        <h3 class="text-2xl font-bold text-blue-700 mb-4">Introduction: GenAI in Healthcare</h3>
+                        <p class="text-gray-700 mb-4">
+                            The integration of Generative AI into healthcare represents a technological inflection point with the potential to revolutionize clinical practice, biomedical research, and patient care. This high-stakes domain demands unprecedented levels of scrutiny regarding trustworthiness, safety, and policy compliance.
+                        </p>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 mb-4">
+                            <p class="text-blue-800">
+                                <i class="fas fa-lightbulb text-blue-500 mr-2"></i> The emergence of specialized academic venues like the GenAI4Health workshop at NeurIPS underscores the research community's recognition of these challenges.
+                            </p>
+                        </div>
+                        <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                            Explore Findings <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="AI in Healthcare" class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Institutionalization of Ethics -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Institutionalization of Ethics in AI Conferences</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-blue-500">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800 flex items-center">
+                            <i class="fas fa-calendar-alt text-blue-500 mr-2"></i> Timeline of Key Developments
+                        </h4>
+                        <div class="timeline-item">
+                            <h5 class="font-medium text-gray-800">2021</h5>
+                            <p class="text-sm text-gray-600">NeurIPS introduces Datasets and Benchmarks track</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h5 class="font-medium text-gray-800">2022</h5>
+                            <p class="text-sm text-gray-600">NeurIPS and ICML appoint dedicated Ethics Review Chairs</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h5 class="font-medium text-gray-800">2023</h5>
+                            <p class="text-sm text-gray-600">Expansion of impact statement requirements</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h5 class="font-medium text-gray-800">2024</h5>
+                            <p class="text-sm text-gray-600">ICML introduces "Position Paper" track for policy discussions</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-green-500">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800 flex items-center">
+                            <i class="fas fa-balance-scale text-green-500 mr-2"></i> Structural Changes
+                        </h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Dedicated Ethics Review Chairs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Requirement for impact statements</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Formation of ethics review committees</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Specialized tracks (Datasets, Benchmarks, Position Papers)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-circle text-yellow-500 text-xl mt-1 mr-3"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-yellow-700">
+                                <strong>Key Insight:</strong> These structural changes create "pull" factors that shape the research agenda, moving ethics from a peripheral concern to a core component of AI research.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 3: Pillars of Trustworthy AI -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">The Six Pillars of Trustworthy AI</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="pillar-card bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-user-shield text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Human Agency & Oversight</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Maintaining meaningful human control, with emerging research on human-AI co-evolution and RLHF for alignment.
+                        </p>
+                    </div>
+                    <div class="pillar-card bg-white rounded-lg shadow-md p-6 border-t-4 border-red-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-scale-balanced text-red-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Fairness & Non-Discrimination</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Algorithms for group fairness, certified fairness guarantees, and bias mitigation in medical applications.
+                        </p>
+                    </div>
+                    <div class="pillar-card bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-eye text-green-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Transparency & Explainability</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Model-agnostic explanations (SHAP, LIME), interpretable ML, and causal inference methods.
+                        </p>
+                    </div>
+                    <div class="pillar-card bg-white rounded-lg shadow-md p-6 border-t-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-shield-halved text-purple-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Robustness & Accuracy</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Adversarial defenses, OOD generalization, and uncertainty quantification for clinical reliability.
+                        </p>
+                    </div>
+                    <div class="pillar-card bg-white rounded-lg shadow-md p-6 border-t-4 border-indigo-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-lock text-indigo-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Privacy & Security</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Differential privacy, federated learning, and secure multi-party computation for health data.
+                        </p>
+                    </div>
+                    <div class="pillar-card bg-white rounded-lg shadow-md p-6 border-t-4 border-orange-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-gavel text-orange-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Accountability</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">
+                            Audit trails, model monitoring, and governance frameworks across the AI lifecycle.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 4: Foundational Frameworks -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Key Foundational Frameworks</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Paper Title & Venue</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Core Thesis</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Key Contributions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 whitespace-normal font-medium text-gray-900">Establishing and evaluating trustworthy AI: overview and research challenges</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Trustworthy AI can be systematically deconstructed into six interdependent requirements.</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Provides unified framework for six pillars; discusses implementation and evaluation challenges.</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 whitespace-normal font-medium text-gray-900">Capturing the Potential of Generative AI's Use in Health and Medicine (NAM Special Publication)</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Successful implementation requires careful consideration of risks and collaboration.</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Balances potential benefits with risks; calls for collaborative governance framework.</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 whitespace-normal font-medium text-gray-900">AMIA Position Paper on AIML-Driven Decision Support</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Current policy landscape is inadequate for adaptive, learning-based CDS.</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Introduces "Adaptive CDS" concept; advocates for new governance bodies.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                    <p class="text-blue-800 flex items-start">
+                        <i class="fas fa-info-circle text-blue-500 mr-2 mt-1"></i>
+                        <span>These foundational papers establish the conceptual framework for trustworthy AI in healthcare, bridging technical and policy perspectives.</span>
+                    </p>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 5: Benchmarking Trust -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Benchmarking Trust in Healthcare AI</h3>
+                <div class="flex flex-col md:flex-row mb-8">
+                    <div class="md:w-1/2 mb-6 md:mb-0 md:pr-6">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800">The CARES Benchmark</h4>
+                        <p class="text-gray-600 mb-4">
+                            CARES (Comprehensive Benchmark of Trustworthiness in Medical Vision Language Models) evaluates Med-LVLMs across five dimensions:
+                        </p>
+                        <ul class="space-y-2 text-gray-600 mb-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                <span><strong>Trustfulness:</strong> Factuality and uncertainty awareness</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                <span><strong>Fairness:</strong> Performance disparities across demographics</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                <span><strong>Safety:</strong> Jailbreaking and toxicity vulnerabilities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                <span><strong>Privacy:</strong> Information leakage risks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                <span><strong>Robustness:</strong> Performance under distribution shifts</span>
+                            </li>
+                        </ul>
+                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                            <p class="text-red-800">
+                                <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                                Findings: Current Med-LVLMs exhibit significant trustworthiness concerns across all dimensions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="bg-white p-5 rounded-lg shadow-sm h-full">
+                            <h4 class="font-bold text-lg mb-3 text-gray-800">Evaluation Paradigm Shift</h4>
+                            <div class="chart-container">
+                                <canvas id="evaluationParadigmChart"></canvas>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-2">
+                                The evolution from performance-centric to process-centric evaluation in medical AI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 6: Human-in-the-Loop -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Human-in-the-Loop Approaches</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-user-md text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Pathologist-in-the-Loop Framework</h4>
+                        </div>
+                        <p class="text-gray-600 mb-3">
+                            "Aligning Synthetic Medical Images with Clinical Knowledge using Human Feedback" (NeurIPS 2023) introduces RLHF to finetune diffusion models:
+                        </p>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-600 text-sm pl-2">
+                            <li>Expert pathologist provides feedback on clinical plausibility</li>
+                            <li>Train reward model from human feedback</li>
+                            <li>Reward model guides diffusion model generation</li>
+                        </ol>
+                        <div class="bg-green-50 p-3 rounded-lg mt-4">
+                            <p class="text-green-800">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Result: Dramatic improvement in quality, utility, and expert-rated plausibility of synthetic medical images.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-brain text-purple-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Construct Validity Critique</h4>
+                        </div>
+                        <p class="text-gray-600 mb-3">
+                            A position paper from GenAI4Health challenges medical LLM benchmarks:
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-purple-500 mt-1 mr-2"></i>
+                                <span>High performance on medical exams ≠ clinical competence</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-purple-500 mt-1 mr-2"></i>
+                                <span>Exams designed for humans may not assess LLMs appropriately</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-purple-500 mt-1 mr-2"></i>
+                                <span>Need for process-oriented evaluation beyond output metrics</span>
+                            </li>
+                        </ul>
+                        <div class="bg-yellow-50 p-3 rounded-lg mt-4">
+                            <p class="text-yellow-800">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                                Implication: Pushes field toward interactive, process-centric evaluation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 7: Risk Management -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Risk Management Case Studies</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-red-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-people-arrows text-red-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Demographic Bias</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">
+                            CARES benchmark findings:
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-red-500 mt-1 mr-2"></i>
+                                <span>Performance drops for elderly patients</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-red-500 mt-1 mr-2"></i>
+                                <span>Racial disparities in accuracy</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-red-500 mt-1 mr-2"></i>
+                                <span>Imbalanced training data as root cause</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-yellow-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-biohazard text-yellow-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Safety Vulnerabilities</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">
+                            Key failure modes identified:
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-yellow-500 mt-1 mr-2"></i>
+                                <span>Jailbreaking prompts bypass safety filters</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-yellow-500 mt-1 mr-2"></i>
+                                <span>Overcautiousness limiting utility</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-yellow-500 mt-1 mr-2"></i>
+                                <span>Confident but incorrect OOD responses</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-lock text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Privacy Risks</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">
+                            Privacy-enhancing technologies (PETs):
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Differentially private training</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Information leakage defenses</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Privacy-utility tradeoff management</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                    <p class="text-gray-700">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        <strong>Key Insight:</strong> These case studies reveal that technical solutions alone are insufficient - robust risk management requires interdisciplinary approaches combining technical, clinical, and policy perspectives.
+                    </p>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 8: Regulatory Landscape -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Regulatory Landscape for AI in Health</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-flag-eu text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">European Union</h4>
+                        </div>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                <span><strong>EU AI Act:</strong> Risk-based framework with stringent requirements for high-risk healthcare AI</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                <span><strong>Medical Device Regulation (MDR):</strong> Rule 11 specifically addresses Software as a Medical Device (SaMD)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                <span>Complex interplay between general AI Act and sector-specific MDR</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-flag-usa text-red-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">United States</h4>
+                        </div>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-red-500 mr-2 mt-1"></i>
+                                <span><strong>FDA:</strong> AI/ML SaMD Action Plan, Predetermined Change Control Plans (PCCPs)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-red-500 mr-2 mt-1"></i>
+                                <span><strong>HIPAA:</strong> Strict rules for protected health information (PHI)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-red-500 mr-2 mt-1"></i>
+                                <span><strong>FTC:</strong> Enforcement against unfair/deceptive practices in consumer health apps</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 text-xl mt-1 mr-3"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-yellow-700">
+                                <strong>Challenge:</strong> Regulatory frameworks struggle to keep pace with exponential AI advancement (e.g., EU AI Act proposed pre-ChatGPT, amended late in process).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 9: Regulatory Mapping -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Mapping Regulations to Technical Research</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Regulatory Concept</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Source</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Technical Research Areas</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 whitespace-normal font-medium text-gray-900">High-Risk AI System Requirements</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">EU AI Act (Art. 6)</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Adversarial Robustness, OOD Generalization, Uncertainty Quantification</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 whitespace-normal font-medium text-gray-900">Predetermined Change Control Plans</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">US FDA Draft Guidance</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Continual Learning, Lifelong Learning, Model Update Verification</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 whitespace-normal font-medium text-gray-900">Data Privacy & Security</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">HIPAA (US), GDPR/AI Act (EU)</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Differential Privacy, Federated Learning, Homomorphic Encryption</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 whitespace-normal font-medium text-gray-900">Transparency & Explainability</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">EU AI Act, AMIA Position Paper</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Explainable AI (XAI), Interpretable ML, Causal Inference</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4 whitespace-normal font-medium text-gray-900">Bias Mitigation & Fairness</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">EU AI Act, Blueprint for AI Bill of Rights (US)</td>
+                                <td class="py-4 px-4 whitespace-normal text-gray-600">Algorithmic Fairness, Bias Detection/Mitigation, Fairness Auditing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                    <p class="text-blue-800">
+                        <i class="fas fa-lightbulb text-blue-500 mr-2"></i>
+                        This mapping illustrates how technical research directly supports compliance efforts, bridging the gap between abstract legal requirements and concrete implementations.
+                    </p>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 10: Policy Case Studies -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Policy and Compliance Case Studies</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-500">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800">Classifying GenAI under EU MDR</h4>
+                        <p class="text-gray-600 mb-3">
+                            Position paper analyzes how GenAI tools should be classified under the EU's Medical Device Regulation (Rule 11):
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm mb-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Classification determines regulatory pathway (Class IIa, IIb, III)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Risk of under-regulation (safety) vs over-regulation (innovation)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Provides framework for developers and regulators</span>
+                            </li>
+                        </ul>
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <p class="text-blue-800 text-sm">
+                                <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                                Key question: Should synthetic data generators be classified as medical devices?
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-purple-500">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800">Open vs. Closed LLMs in Healthcare</h4>
+                        <p class="text-gray-600 mb-3">
+                            Debate between open-source (LLaMA) and closed models (GPT-4) for healthcare:
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="bg-green-50 p-3 rounded-lg">
+                                <p class="text-green-800 text-sm font-medium">
+                                    <i class="fas fa-lock-open text-green-500 mr-2"></i>
+                                    Open Models: Transparency, adaptability, auditability
+                                </p>
+                            </div>
+                            <div class="bg-red-50 p-3 rounded-lg">
+                                <p class="text-red-800 text-sm font-medium">
+                                    <i class="fas fa-lock text-red-500 mr-2"></i>
+                                    Closed Models: Performance, centralized support
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded-lg">
+                            <p class="text-purple-800 text-sm">
+                                <i class="fas fa-chart-line text-purple-500 mr-2"></i>
+                                Trend: Growing interest in open models for specialized medical adaptation
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 11: Fairness vs Anti-Discrimination -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">The Fairness vs. Anti-Discrimination Disconnect</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800">Technical Fairness Paradigm</h4>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 mr-2 mt-1"></i>
+                                <span>Consequentialist: Focused on statistical parity in outcomes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 mr-2 mt-1"></i>
+                                <span>Metrics: Equalized odds, demographic parity, etc.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 mr-2 mt-1"></i>
+                                <span>Context-blind: Same metrics applied across domains</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 mr-2 mt-1"></i>
+                                <span>Output-focused: Evaluates final decisions/predictions</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="font-bold text-lg mb-3 text-gray-800">Legal Anti-Discrimination Paradigm</h4>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Procedural: Focused on individual rights and fair processes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Doctrines: Disparate treatment, disparate impact</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Context-aware: Considers domain-specific norms</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Process-focused: Examines decision-making pathways</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-triangle text-red-500 text-xl mt-1 mr-3"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-red-700">
+                                <strong>Critical Gap:</strong> A system can be "fair" by technical metrics while still being legally discriminatory. This is particularly dangerous in healthcare where subtle biases in language or emphasis can influence clinical decisions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 12: Research Gaps -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Identified Research Gaps</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-search text-purple-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Legally-Grounded Discrimination Testing</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">
+                            Current fairness metrics fail to align with legal anti-discrimination principles. Need for:
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-purple-500 mt-1 mr-2"></i>
+                                <span>Adversarial legal reviews based on case law</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-purple-500 mt-1 mr-2"></i>
+                                <span>Procedural auditing frameworks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-purple-500 mt-1 mr-2"></i>
+                                <span>Representational harm detection</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-eye text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Post-Market Surveillance</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">
+                            EU AI Act and FDA emphasize monitoring but lack technical specifications:
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Real-time model drift detection</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Safe update validation protocols</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-blue-500 mt-1 mr-2"></i>
+                                <span>Adverse event reporting systems</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-code-branch text-green-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Open-Source Governance</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">
+                            Models for safely leveraging open-source LLMs:
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-green-500 mt-1 mr-2"></i>
+                                <span>Consortium-based validation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-green-500 mt-1 mr-2"></i>
+                                <span>Shared responsibility models</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-green-500 mt-1 mr-2"></i>
+                                <span>Public-private partnerships</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-orange-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-user-md text-orange-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Human Oversight Standardization</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">
+                            "Human-in-the-loop" needs concrete implementation:
+                        </p>
+                        <ul class="space-y-2 text-gray-600 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-orange-500 mt-1 mr-2"></i>
+                                <span>Taxonomy of oversight levels</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-orange-500 mt-1 mr-2"></i>
+                                <span>Technical requirements per level</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-orange-500 mt-1 mr-2"></i>
+                                <span>Clinician competency frameworks</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 13: Conclusion -->
+            <div class="slide p-8">
+                <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg p-8 mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Conclusion</h3>
+                    <p class="mb-4">
+                        This review reveals a field in rapid maturation, grappling with the profound responsibilities of deploying Generative AI in healthcare. The discourse has evolved from abstract principles to concrete evaluation tools and process-centric alignment.
+                    </p>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-300 mr-2"></i>
+                        <span>Institutional changes in AI conferences have embedded ethics as a core research concern</span>
+                    </div>
+                    <div class="flex items-center mt-2">
+                        <i class="fas fa-check-circle text-green-300 mr-2"></i>
+                        <span>Technical research is increasingly engaging with regulatory frameworks</span>
+                    </div>
+                    <div class="flex items-center mt-2">
+                        <i class="fas fa-check-circle text-green-300 mr-2"></i>
+                        <span>Critical gaps remain, particularly around fairness testing and governance</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <h4 class="font-bold text-lg mb-4 text-gray-800">Recommendations for GenAI4Health 2025</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-flask text-blue-500 mr-2"></i> Research Priorities
+                            </h5>
+                            <p class="text-gray-600 text-sm">
+                                Focus on legally-grounded discrimination testing frameworks and robust post-market surveillance mechanisms for adaptive AI systems in clinical settings.
+                            </p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-users text-purple-500 mr-2"></i> Community Building
+                            </h5>
+                            <p class="text-gray-600 text-sm">
+                                Strengthen interdisciplinary collaboration between AI researchers, clinicians, legal scholars, and policymakers to address complex socio-technical challenges.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 14: References -->
+            <div class="slide p-8">
+                <h3 class="text-2xl font-bold text-blue-700 mb-6">Selected References</h3>
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li>[1] Establishing and evaluating trustworthy AI: overview and research challenges</li>
+                        <li>[2] Capturing the Potential of Generative AI's Use in Health and Medicine (NAM Special Publication)</li>
+                        <li>[3] AMIA Position Paper on AIML-Driven Decision Support</li>
+                        <li>[4] CARES: A Comprehensive Benchmark of Trustworthiness in Medical Vision Language Models (NeurIPS 2024)</li>
+                        <li>[5] Aligning Synthetic Medical Images with Clinical Knowledge using Human Feedback (NeurIPS 2023)</li>
+                        <li>[6] Classifying GenAI under the European Union's Medical Device Regulation (GenAI4Health 2024)</li>
+                        <li>[7] Position: Open and Closed Large Language Models in Healthcare (GenAI4Health 2024)</li>
+                        <li>[8] Towards Effective Discrimination Testing for Generative AI (ICLR 2024)</li>
+                    </ul>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="text-blue-600 hover:text-blue-800 font-medium py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button onclick="restartPresentation()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-redo mr-2"></i> Restart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="flex justify-center space-x-2 mt-6">
+            <button onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-blue-600 focus:outline-none"></button>
+            <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(3)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(4)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(5)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(6)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(7)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(8)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(9)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(10)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(11)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(12)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(13)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+            <button onclick="goToSlide(14)" class="w-3 h-3 rounded-full bg-gray-300 focus:outline-none"></button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>© 2024 Trustworthy AI in Healthcare Research Review. Data from NeurIPS, ICML, ICLR (2021-2024).</p>
+            <p class="mt-2">Designed for academic and research presentation purposes.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Slide management
+        let currentSlide = 1;
+        const totalSlides = 14;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.flex.justify-center button');
+            
+            if (n > totalSlides) { currentSlide = 1; }
+            if (n < 1) { currentSlide = totalSlides; }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            document.querySelector(`.slide:nth-child(${currentSlide})`).classList.add('active');
+            
+            dots.forEach((dot, index) => {
+                dot.classList.remove('bg-blue-600');
+                dot.classList.add('bg-gray-300');
+                if (index === currentSlide - 1) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-blue-600');
+                }
+            });
+            
+            // Update progress
+            const progressPercentage = (currentSlide / totalSlides) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+            document.getElementById('slide-counter').textContent = `${currentSlide}/${totalSlides}`;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            showSlide(currentSlide);
+        }
+
+        function restartPresentation() {
+            currentSlide = 1;
+            showSlide(currentSlide);
+        }
+
+        // Initialize charts when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Evaluation Paradigm Chart
+            const evaluationParadigmCtx = document.getElementById('evaluationParadigmChart').getContext('2d');
+            const evaluationParadigmChart = new Chart(evaluationParadigmCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Stage 1: Performance-Centric', 'Stage 2: Trust-Centric', 'Stage 3: Process-Centric'],
+                    datasets: [{
+                        label: 'Evaluation Sophistication',
+                        data: [30, 70, 95],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Evaluation Maturity (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + '% maturity';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Initialize first slide
+            showSlide(currentSlide);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>

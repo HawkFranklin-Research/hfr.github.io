@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HawkFranklin Research - AI R&D Partnership</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6">
+                <span class="font-semibold">Deep-Tech AI Research & Development</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Your Private AI R&D Department</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">
+                HawkFranklin Research builds and integrates frontier AI into products for healthcare and medical technology.
+            </p>
+        </div>
+    </div>
+
+    <!-- Who We Are Section -->
+    <div class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-800">Your Strategic AI Partner</h2>
+                <p class="mt-3 text-lg text-slate-600 max-w-3xl mx-auto">You focus on your core science. We build and manage your entire AI research and development wing, turning complex challenges into market-ready solutions.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="bg-blue-50 p-8 rounded-2xl shadow-lg border border-blue-100 floating">
+                        <div class="absolute -top-4 -left-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+                            <i class="fas fa-lightbulb mr-2"></i> Innovation
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">The AI Research Partner You Need</h3>
+                        <p class="text-gray-700 mb-6">
+                            We are a deep-tech company specializing in the development and integration of artificial intelligence. We function as a dedicated R&D team for our partners, handling the complete AI lifecycle from ideation to deployment.
+                        </p>
+                        <div class="bg-white p-4 rounded-lg border border-blue-200">
+                            <p class="text-blue-800 font-medium">
+                                "We bridge the gap between frontier AI research and practical applications in healthcare and medical technology."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-brain text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Core AI Expertise</h4>
+                                <p class="text-gray-600">Our strength lies in core AI research and applying it to solve real-world problems.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-microscope text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Specialized Domains</h4>
+                                <p class="text-gray-600">We have focused expertise in AI-based vision models for fields like pathology and radiology.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-handshake text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">True Partnership Model</h4>
+                                <p class="text-gray-600">We align with your business goals to deliver solutions, not just projects. Our background includes consulting, development, and mentoring.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Products & Innovations -->
+    <div class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Key Products and Innovations</h2>
+                <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-slate-800 p-8 rounded-xl card-hover-effect">
+                    <div class="text-red-400 mb-4">
+                        <i class="fas fa-sitemap text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">ACLIS</h3>
+                    <p class="text-slate-300">Our flagship Adaptive Clinically Intelligent System, a unified platform for orchestrating AI agents, models, and medical devices under physician governance.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl card-hover-effect">
+                    <div class="text-blue-400 mb-4">
+                        <i class="fas fa-robot text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Machine Learning Copilot Agent (MLCA)</h3>
+                    <p class="text-slate-300">An LLM-powered framework that automates classical ML workflows for research, from data processing to reproducible reporting in cancer genomics.</p>
+                </div>
+                 <div class="bg-slate-800 p-8 rounded-xl card-hover-effect">
+                    <div class="text-green-400 mb-4">
+                        <i class="fas fa-spa text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">DermAssist</h3>
+                    <p class="text-slate-300">A dermatology-focused vision model that supports clinicians in lesion triage and provides diagnostic assistance for skin conditions.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl card-hover-effect">
+                    <div class="text-purple-400 mb-4">
+                        <i class="fas fa-x-ray text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">RadioAssist</h3>
+                    <p class="text-slate-300">A radiology copilot designed to automate and enhance imaging interpretation across X-ray, CT, and MRI pipelines for workflow support.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl card-hover-effect">
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-vials text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">PathoLens (Pathology Copilot)</h3>
+                    <p class="text-slate-300">An AI system for whole-slide imaging that assists pathologists with quality assurance, triage, and pattern spotting in digital pathology.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl card-hover-effect">
+                    <div class="text-teal-400 mb-4">
+                         <i class="fas fa-certificate text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Core Research & IP</h3>
+                    <p class="text-slate-300">Our products are built on a foundation of deep research, including our work on Graph Attention Networks for multi-omics and copyrighted IP in RAG-LLMs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engagement Model -->
+    <div class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-800">Our Partnership Blueprint</h2>
+                <p class="mt-3 text-lg text-slate-600 max-w-3xl mx-auto">A structured partnership designed for deep collaboration, research continuity, and tangible results.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-slate-700">
+                <div class="flex items-start space-x-4">
+                    <i class="fa-solid fa-check-circle text-2xl text-green-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Total R&D Ownership</h4>
+                        <p>We manage the entire AI lifecycle, from ideation and prototyping to deployment and team hand-off.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <i class="fa-solid fa-check-circle text-2xl text-green-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800">IP & Code Delivered</h4>
+                        <p>You receive the working AI prototype and full codebase upon signing, ensuring immediate value and security.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <i class="fa-solid fa-check-circle text-2xl text-green-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Transparent Estimations</h4>
+                        <p>We provide clear, separate quotations for project-specific costs like manpower and infrastructure.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <i class="fa-solid fa-check-circle text-2xl text-green-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Cutting-Edge Research</h4>
+                        <p>Your projects benefit from our continuous integration of the latest tools and academic breakthroughs.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <i class="fa-solid fa-check-circle text-2xl text-green-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Structured Flexibility</h4>
+                        <p>Our model includes clear, pre-defined exit windows to balance long-term commitment with your business needs.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <i class="fa-solid fa-check-circle text-2xl text-green-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Seamless Transition</h4>
+                        <p>Post-engagement, we help establish your in-house team to ensure long-term project success and continuity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <div class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-slate-800 mb-6">Our Vision</h2>
+            <div class="bg-white p-8 rounded-xl shadow-md border border-slate-200">
+                <p class="text-xl text-slate-700">
+                    "To create AI systems that fundamentally transform how scientific research is conducted and medical care is delivered, while maintaining rigorous ethical standards and prioritizing real-world impact over theoretical benchmarks."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="gradient-bg text-white py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Build the Future of Scientific AI?</h2>
+            <p class="text-xl mb-8">
+                Contact HawkFranklin Research today to discuss how we can become your dedicated AI R&D partner.
+            </p>
+            <a href="mailto:vatsal1@hawk-franklin-research.com" class="inline-block bg-white text-blue-900 font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors shadow-lg">
+                <i class="fas fa-envelope mr-2"></i> Let's Collaborate
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

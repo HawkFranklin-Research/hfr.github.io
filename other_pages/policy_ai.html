@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical AI Policy Protocol (CAPP) Review</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .progress-bar {
+            height: 5px;
+            transition: width 0.3s ease;
+        }
+        .policy-card {
+            transition: all 0.3s ease;
+        }
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 24px;
+            height: calc(100% - 24px);
+            width: 2px;
+            background-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-robot text-blue-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800">CAPP Review</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="prev-btn" class="p-2 rounded-full hover:bg-gray-100">
+                        <i class="fas fa-chevron-left text-gray-600"></i>
+                    </button>
+                    <span id="slide-counter" class="text-sm font-medium text-gray-600">1/12</span>
+                    <button id="next-btn" class="p-2 rounded-full hover:bg-gray-100">
+                        <i class="fas fa-chevron-right text-gray-600"></i>
+                    </button>
+                    <button id="fullscreen-btn" class="p-2 rounded-full hover:bg-gray-100">
+                        <i class="fas fa-expand text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="h-1 w-full bg-gray-200">
+                <div id="progress-bar" class="progress-bar bg-blue-500" style="width: 8.33%"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slide Deck Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12 h-full flex flex-col justify-center items-center text-center bg-gradient-to-br from-blue-50 to-indigo-50">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Policies, Regulatory Frameworks and Real-World Evidence for Clinical AI</h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl">A Review for the Clinical AI Policy Protocol (CAPP)</p>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full flex items-center">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        <span>Patient Safety</span>
+                    </div>
+                    <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full flex items-center">
+                        <i class="fas fa-balance-scale mr-2"></i>
+                        <span>Regulatory Compliance</span>
+                    </div>
+                    <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full flex items-center">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        <span>Real-World Evidence</span>
+                    </div>
+                </div>
+                <div class="mt-12 text-sm text-gray-500">
+                    <p>Scroll or use navigation buttons to proceed through the slides</p>
+                    <i class="fas fa-arrow-down mt-2 animate-bounce"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Introduction -->
+        <div class="slide bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4">1</span>
+                    Introduction and Scope
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">AI Transforming Healthcare</h3>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>Large Language Models (LLMs) for clinical decision support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>Vision-Language Models (VLMs) for image interpretation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>Automated documentation and patient interaction</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Concerns</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white p-3 rounded-lg shadow-sm flex items-center">
+                                    <i class="fas fa-user-shield text-purple-500 mr-3"></i>
+                                    <span>Patient Safety</span>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm flex items-center">
+                                    <i class="fas fa-gavel text-purple-500 mr-3"></i>
+                                    <span>Fairness</span>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm flex items-center">
+                                    <i class="fas fa-lock text-purple-500 mr-3"></i>
+                                    <span>Privacy</span>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm flex items-center">
+                                    <i class="fas fa-eye text-purple-500 mr-3"></i>
+                                    <span>Oversight</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 h-full">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Review Objectives</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-search text-xs"></i>
+                                    </div>
+                                    <p>Synthesize key regulatory documents, standards, and peer-reviewed literature across jurisdictions</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-cogs text-xs"></i>
+                                    </div>
+                                    <p>Provide cohesive background for Clinical AI Policy Protocol (CAPP)</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-globe text-xs"></i>
+                                    </div>
+                                    <p>Focus on global and U.S. policies, international standards, evaluation frameworks, and real-world deployments</p>
+                                </div>
+                            </div>
+                            <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-gray-700 mb-2">CAPP Concept</h4>
+                                <p class="text-sm text-gray-600">A control plane that mediates access between AI models and clinical systems by enforcing authorization, consent and auditing rules</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Regulatory Frameworks Overview -->
+        <div class="slide bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4">2</span>
+                    Regulatory and Policy Frameworks
+                </h2>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Global Regulatory Landscape</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="policy-card bg-white border border-gray-200 rounded-lg p-6 hover:border-blue-300">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-red-100 text-red-800 p-2 rounded-full mr-3">
+                                    <i class="fas fa-flag-usa"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800">United States</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-red-500 mt-1.5 mr-2"></i>
+                                    <span>Good Machine Learning Practice (GMLP)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-red-500 mt-1.5 mr-2"></i>
+                                    <span>Predetermined Change Control Plan (PCCP)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-red-500 mt-1.5 mr-2"></i>
+                                    <span>HIPAA Technical Safeguards</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="policy-card bg-white border border-gray-200 rounded-lg p-6 hover:border-blue-300">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-100 text-blue-800 p-2 rounded-full mr-3">
+                                    <i class="fas fa-flag-eu"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800">European Union</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-blue-500 mt-1.5 mr-2"></i>
+                                    <span>AI Act (First comprehensive framework)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-blue-500 mt-1.5 mr-2"></i>
+                                    <span>High-risk classification for medical AI</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-blue-500 mt-1.5 mr-2"></i>
+                                    <span>Extraterritorial reach</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="policy-card bg-white border border-gray-200 rounded-lg p-6 hover:border-blue-300">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-100 text-green-800 p-2 rounded-full mr-3">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800">International</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                    <span>ISO 14971:2019 (Risk Management)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                    <span>NIST AI Risk Management Framework</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                    <span>WHO Guidance</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Comparative Analysis</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Framework</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jurisdiction</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Key Objectives</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">AI Modalities</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-3 text-sm text-gray-700">GMLP</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">US/Canada/UK</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">10 principles for safe/effective AI medical devices</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">General AI/ML (including generative)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-sm text-gray-700">EU AI Act</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">EU</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">Risk management, data governance, transparency</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">AI medical devices (SaMD, LLM, VLM)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-sm text-gray-700">ISO 14971</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">International</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">Risk management across lifecycle</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">All medical devices (including software)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-sm text-gray-700">WHO LMM Guidance</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">Global</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">40+ recommendations for ethical use</td>
+                                    <td class="px-4 py-3 text-sm text-gray-700">Large multi-modal models</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: US Regulatory Framework -->
+        <div class="slide bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4">2.1</span>
+                    United States Regulatory Framework
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <div class="bg-red-50 p-6 rounded-lg mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-star text-red-500 mr-2"></i>
+                                Good Machine Learning Practice (GMLP)
+                            </h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1">1. Multidisciplinary Teams</h4>
+                                    <p class="text-xs text-gray-500">Involve diverse expertise across lifecycle</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1">2. Software Engineering</h4>
+                                    <p class="text-xs text-gray-500">Implement good practices & security</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1">3. Representative Data</h4>
+                                    <p class="text-xs text-gray-500">Ensure datasets match patient populations</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1">4. Separate Datasets</h4>
+                                    <p class="text-xs text-gray-500">Distinct training and test sets</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1">5. Reference Data</h4>
+                                    <p class="text-xs text-gray-500">Use best available methods</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1">6. Tailored Design</h4>
+                                    <p class="text-xs text-gray-500">Match model to data & intended use</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">HIPAA Technical Safeguards</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-red-100 text-red-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-user-lock text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Access Control</h4>
+                                        <p class="text-sm text-gray-500">Only authorized persons may access ePHI</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-red-100 text-red-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-clipboard-list text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Audit Controls</h4>
+                                        <p class="text-sm text-gray-500">Record and examine system activity</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-red-100 text-red-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-shield-alt text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Integrity Controls</h4>
+                                        <p class="text-sm text-gray-500">Protect ePHI from improper alteration</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-white border border-red-200 rounded-lg p-6 mb-6 shadow-sm">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-project-diagram text-red-500 mr-2"></i>
+                                Predetermined Change Control Plan (PCCP)
+                            </h3>
+                            <p class="text-gray-600 mb-4">Addresses modifications to AI/ML-enabled device software without requiring new submissions</p>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">1</div>
+                                    <p class="text-sm text-gray-700">Planned modifications to the device</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">2</div>
+                                    <p class="text-sm text-gray-700">Methodologies for developing, validating and implementing changes</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">3</div>
+                                    <p class="text-sm text-gray-700">Assessment of the modifications' impact</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-red-50 p-3 rounded-lg">
+                                <p class="text-xs text-red-700">Allows regulators to review plans during marketing submission for future updates</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">NIST AI Risk Management Framework</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1 flex items-center">
+                                        <i class="fas fa-landmark text-blue-500 mr-2"></i>
+                                        Govern
+                                    </h4>
+                                    <p class="text-xs text-gray-500">Establish risk management culture and policies</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1 flex items-center">
+                                        <i class="fas fa-map-marked-alt text-blue-500 mr-2"></i>
+                                        Map
+                                    </h4>
+                                    <p class="text-xs text-gray-500">Understand context and potential impacts</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1 flex items-center">
+                                        <i class="fas fa-ruler text-blue-500 mr-2"></i>
+                                        Measure
+                                    </h4>
+                                    <p class="text-xs text-gray-500">Assess risks with qualitative/quantitative tools</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-1 flex items-center">
+                                        <i class="fas fa-tasks text-blue-500 mr-2"></i>
+                                        Manage
+                                    </h4>
+                                    <p class="text-xs text-gray-500">Prioritize risks and implement mitigation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: EU AI Act -->
+        <div class="slide bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4">2.2</span>
+                    European Union AI Act
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-flag-europe text-blue-500 mr-2"></i>
+                                World's First Comprehensive AI Regulation
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-ban text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Prohibited AI</h4>
+                                        <p class="text-sm text-gray-500">Unacceptable risk applications (e.g., social scoring)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-exclamation-triangle text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">High-Risk AI</h4>
+                                        <p class="text-sm text-gray-500">Medical devices fall here - strict requirements</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-brain text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">General-Purpose AI</h4>
+                                        <p class="text-sm text-gray-500">Foundation models with transparency requirements</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-check-circle text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Low/No Risk</h4>
+                                        <p class="text-sm text-gray-500">Minimal requirements (e.g., spam filters)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white border border-blue-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Extraterritorial Reach</h3>
+                            <p class="text-gray-600 mb-4">Applies to providers or users outside the EU if AI outputs are used within the EU</p>
+                            <div class="flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-globe-europe text-2xl"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">Global Impact</p>
+                                </div>
+                                <div class="mx-8 text-blue-500">
+                                    <i class="fas fa-arrow-right text-2xl"></i>
+                                </div>
+                                <div class="text-center">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                                        <i class="fas fa-user-tie text-2xl"></i>
+                                    </div>
+                                    <p class="text-sm font-medium">EU Representative Required</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">High-Risk AI Requirements</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-shield-alt text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Robust Risk Management</h4>
+                                        <p class="text-sm text-gray-500">Identify and mitigate risks throughout lifecycle</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-database text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Data Governance</h4>
+                                        <p class="text-sm text-gray-500">Ensure training data quality and relevance</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-eye text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Transparency</h4>
+                                        <p class="text-sm text-gray-500">Provide clear information to users</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-users text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Human Oversight</h4>
+                                        <p class="text-sm text-gray-500">Ensure appropriate human control</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-file-alt text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Technical Documentation</h4>
+                                        <p class="text-sm text-gray-500">Comprehensive records of development and testing</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-chart-line text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Post-Market Monitoring</h4>
+                                        <p class="text-sm text-gray-500">Continuous evaluation after deployment</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-100 p-4 rounded-lg flex items-start">
+                            <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mr-3">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Interaction with Other Regulations</h4>
+                                <p class="text-sm text-gray-700">The AI Act interacts with Medical Device Regulation (MDR) and General Data Protection Regulation (GDPR)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: WHO Guidance -->
+        <div class="slide bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4">2.4</span>
+                    WHO Guidance on AI for Health
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <div class="bg-green-50 p-6 rounded-lg mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-hand-holding-medical text-green-500 mr-2"></i>
+                                Ethics and Governance of LMMs (2024)
+                            </h3>
+                            <p class="text-gray-600 mb-4">Guidance for large multi-modal models (LMMs) with 40+ recommendations</p>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-landmark text-green-500 mr-2"></i>
+                                        For Governments
+                                    </h4>
+                                    <ul class="text-sm text-gray-600 space-y-2 pl-6">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                            <span>Invest in public data infrastructure with ethical access</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                            <span>Use laws to ensure LMMs meet ethical standards</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                            <span>Assign regulatory agencies for approval</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                            <span>Mandate post-release auditing and impact assessments</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-code text-green-500 mr-2"></i>
+                                        For Developers
+                                    </h4>
+                                    <ul class="text-sm text-gray-600 space-y-2 pl-6">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                            <span>Engage diverse stakeholders</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                            <span>Define tasks narrowly</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-circle text-xs text-green-500 mt-1.5 mr-2"></i>
+                                            <span>Ensure accuracy and anticipate secondary outcomes</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">WHO Considerations for AI Regulation (2023)</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div class="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-file-alt text-xs"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-700">Transparency and documentation across product lifecycle</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-shield-alt text-xs"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-700">Comprehensive risk management addressing intended use, continuous learning and cybersecurity</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-check-circle text-xs"></i>
+                                    </div>
+                                    <p class="text-sm text-gray-700">External validation of data</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-green-50 p-3 rounded-lg">
+                                <p class="text-xs text-green-700">Emphasizes collaboration among regulators, patients, healthcare professionals and industry</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-white border border-green-200 rounded-lg p-6 mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-globe text-green-500 mr-2"></i>
+                                Global Initiative on AI for Health (GI-AI4H)
+                            </h3>
+                            <p class="text-gray-600 mb-4">Launched in 2023 to harmonize governance standards across UN member states</p>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-handshake text-green-500 mr-2"></i>
+                                        Ethics
+                                    </h4>
+                                    <p class="text-xs text-gray-600">Guard against risks, promote human rights, create training programs</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-gavel text-green-500 mr-2"></i>
+                                        Regulation
+                                    </h4>
+                                    <p class="text-xs text-gray-600">Harmonize fragmented global policies</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-rocket text-green-500 mr-2"></i>
+                                        Implementation
+                                    </h4>
+                                    <p class="text-xs text-gray-600">Culturally adapted deployments, especially in LMICs</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-medium text-sm text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-cogs text-green-500 mr-2"></i>
+                                        Operations
+                                    </h4>
+                                    <p class="text-xs text-gray-600">Support member states with local capacity building</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Six Foundational Principles (2021)</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
+                                    <p class="text-xs font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-user-shield text-purple-500 mr-1"></i>
+                                        Protect Autonomy
+                                    </p>
+                                </div>
+                                <div class="bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
+                                    <p class="text-xs font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-heart text-purple-500 mr-1"></i>
+                                        Promote Well-being
+                                    </p>
+                                </div>
+                                <div class="bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
+                                    <p class="text-xs font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-eye text-purple-500 mr-1"></i>
+                                        Ensure Transparency
+                                    </p>
+                                </div>
+                                <div class="bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
+                                    <p class="text-xs font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-balance-scale text-purple-500 mr-1"></i>
+                                        Foster Responsibility
+                                    </p>
+                                </div>
+                                <div class="bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
+                                    <p class="text-xs font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-users text-purple-500 mr-1"></i>
+                                        Ensure Inclusiveness
+                                    </p>
+                                </div>
+                                <div class="bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
+                                    <p class="text-xs font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-leaf text-purple-500 mr-1"></i>
+                                        Promote Sustainability
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-purple-50 p-3 rounded-lg">
+                                <p class="text-xs text-purple-700">Forms the ethical foundation for all WHO AI guidance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Implementation Frameworks -->
+        <div class="slide bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4">3</span>
+                    Implementation and Evaluation Frameworks
+                </h2>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Key Frameworks for Clinical AI</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="policy-card bg-white border border-blue-200 rounded-lg p-6 hover:border-blue-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-sitemap text-blue-500 mr-2"></i>
+                                SALIENT Framework
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-3">Integrated framework with stages and cross-stage elements including governance and policy</p>
+                            <div class="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full inline-block">Derived from meta-analysis of 83 clinical AI reports</div>
+                        </div>
+                        <div class="policy-card bg-white border border-purple-200 rounded-lg p-6 hover:border-purple-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-clipboard-check text-purple-500 mr-2"></i>
+                                DECIDE-AI
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-3">17 AI-specific and 10 generic items for early-stage clinical evaluation</p>
+                            <div class="text-xs text-purple-600 bg-purple-50 px-2 py-1 rounded-full inline-block">Bridges the "AI chasm"</div>
+                        </div>
+                        <div class="policy-card bg-white border border-green-200 rounded-lg p-6 hover:border-green-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-flask text-green-500 mr-2"></i>
+                                SPIRIT-AI
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-3">Adds 15 items to trial protocol guidelines for AI interventions</p>
+                            <div class="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full inline-block">Complements CONSORT-AI</div>
+                        </div>
+                        <div class="policy-card bg-white border border-yellow-200 rounded-lg p-6 hover:border-yellow-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-exchange-alt text-yellow-500 mr-2"></i>
+                                TEHAI
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-3">Translational evaluation focusing on capability, utility and adoption</p>
+                            <div class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded-full inline-block">Emphasizes safety and context</div>
+                        </div>
+                        <div class="policy-card bg-white border border-red-200 rounded-lg p-6 hover:border-red-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-hands-helping text-red-500 mr-2"></i>
+                                FAIR-AI
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-3">Practical evaluation framework for health systems (2025)</p>
+                            <div class="text-xs text-red-600 bg-red-50 px-2 py-1 rounded-full inline-block">Living document</div>
+                        </div>
+                        <div class="policy-card bg-white border border-indigo-200 rounded-lg p-6 hover:border-indigo-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-clinic-medical text-indigo-500 mr-2"></i>
+                                Clinical Trials Framework
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-3">4-phase framework derived from clinical trials methodology</p>
+                            <div class="text-xs text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full inline-block">Safety → Efficacy → Effectiveness → Monitoring</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">SALIENT Framework Components</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2">Stages</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Development</span>
+                                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Procurement</span>
+                                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Testing</span>
+                                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Deployment</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2">Cross-Stage Elements</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Governance</span>
+                                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Policy</span>
+                                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Regulation</span>
+                                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Ethics</span>
+                                        <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Auditability</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-blue-50 p-3 rounded-lg">
+                                <p class="text-xs text-blue-700">Provides actionable checklists for each stage and emphasizes policy coordination across the AI lifecycle</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Clinical Trials-Informed Framework</h3>
+                            <div class="relative">
+                                <div class="timeline-item relative pl-8 pb-8">
+                                    <div class="absolute left-0 top-0 bg-indigo-500 text-white rounded-full w-6 h-6 flex items-center justify-center z-10">
+                                        1
+                                    </div>
+                                    <h4 class="font-medium text-gray-800">Phase 1 – Safety</h4>
+                                    <p class="text-sm text-gray-600">Retrospective or silent-mode evaluation to assess safety and fairness</p>
+                                </div>
+                                <div class="timeline-item relative pl-8 pb-8">
+                                    <div class="absolute left-0 top-0 bg-indigo-500 text-white rounded-full w-6 h-6 flex items-center justify-center z-10">
+                                        2
+                                    </div>
+                                    <h4 class="font-medium text-gray-800">Phase 2 – Efficacy</h4>
+                                    <p class="text-sm text-gray-600">Prospective studies in live clinical environments (background operation)</p>
+                                </div>
+                                <div class="timeline-item relative pl-8 pb-8">
+                                    <div class="absolute left-0 top-0 bg-indigo-500 text-white rounded-full w-6 h-6 flex items-center justify-center z-10">
+                                        3
+                                    </div>
+                                    <h4 class="font-medium text-gray-800">Phase 3 – Effectiveness</h4>
+                                    <p class="text-sm text-gray-600">Broader deployment comparing AI with standard care</p>
+                                </div>
+                                <div class="timeline-item relative pl-8">
+                                    <div class="absolute left-0 top-0 bg-indigo-500 text-white rounded-full w-6 h-6 flex items-center justify-center z-10">
+                                        4
+                                    </div>
+                                    <h4 class="font-medium text-gray-800">Phase 4 – Monitoring</h4>
+                                    <p class="text-sm text-gray-600">Continuous post-deployment monitoring for model drift and bias</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Real-World Evidence -->
+        <div class="slide bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4">4</span>
+                    Real-World Deployments and Clinical Evidence
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <div class="bg-orange-50 p-6 rounded-lg mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-clinic-medical text-orange-500 mr-2"></i>
+                                Penda Health & GPT-4 Beta Study (Kenya)
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-orange-100 text-orange-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-robot text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">AI Consult Tool</h4>
+                                        <p class="text-sm text-gray-600">Powered by OpenAI's GPT-4o, runs in background during consultations</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-orange-100 text-orange-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-chart-line text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Results</h4>
+                                        <p class="text-sm text-gray-600">Reduced diagnostic errors by 16% and treatment errors by 13% in ~40,000 patients</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-orange-100 text-orange-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-map-marked-alt text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Local Adaptation</h4>
+                                        <p class="text-sm text-gray-600">Incorporated local disease prevalence and guidelines to build clinician trust</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-orange-100 p-3 rounded-lg flex items-start">
+                                <div class="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mr-3">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                                <p class="text-xs text-orange-800">Approved by Kenyan regulators - one of the earliest large-scale evaluations of generative AI in real clinics</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Other Early Deployments</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-gray-100 text-gray-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-file-medical text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Ambient Documentation Systems</h4>
+                                        <p class="text-sm text-gray-600">Generative AI for drafting notes and summarizing patient visits (silent mode evaluation)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-gray-100 text-gray-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-file-invoice-dollar text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Cohere Health & Insurance Prior Authorization</h4>
+                                        <p class="text-sm text-gray-600">Generative AI assisting in insurance prior authorization with strict policy controls</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-gray-100 text-gray-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-first-aid text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Hippocratic AI</h4>
+                                        <p class="text-sm text-gray-600">Start-up building safety-focused LLMs for healthcare with ongoing pilot programs</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-eye text-blue-500 mr-2"></i>
+                                Autonomous AI for Diabetic Retinopathy Screening
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-award text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">FDA Authorization</h4>
+                                        <p class="text-sm text-gray-600">Received FDA authorization and Medicare reimbursement</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-clipboard-list text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Cluster-Randomized Trial</h4>
+                                        <p class="text-sm text-gray-600">Evaluated across 105 clinic days</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-tachometer-alt text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Results</h4>
+                                        <p class="text-sm text-gray-600">40% increase in completed specialist-level eye exams per hour compared to usual care</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-blue-100 p-3 rounded-lg">
+                                <p class="text-xs text-blue-700">Demonstrates that autonomous AI can increase throughput while maintaining quality</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Lessons from Real-World Deployments</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div class="bg-gray-200 text-gray-800 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">1</div>
+                                    <p class="text-sm text-gray-700">Local adaptation and integration with existing guidelines builds clinician trust</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-gray-200 text-gray-800 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">2</div>
+                                    <p class="text-sm text-gray-700">Silent mode evaluation (background operation) is valuable for initial safety assessment</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-gray-200 text-gray-800 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">3</div>
+                                    <p class="text-sm text-gray-700">Regulatory approval pathways exist but require robust evidence</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-gray-200 text-gray-800 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">4</div>
+                                    <p class="text-sm text-gray-700">Productivity gains are measurable but must not compromise quality</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Policy Themes -->
+        <div class="slide bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center mr-4">5</span>
+                    Policy Themes and AI Modalities
+                </h2>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Key Regulatory Themes</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="policy-card bg-white border border-blue-200 rounded-lg p-6 hover:border-blue-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-shield-alt text-blue-500 mr-2"></i>
+                                Risk Management
+                            </h4>
+                            <p class="text-sm text-gray-600">ISO 14971 and FDA PCCP provide structured processes for hazard identification, risk control, and lifecycle monitoring</p>
+                        </div>
+                        <div class="policy-card bg-white border border-purple-200 rounded-lg p-6 hover:border-purple-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-hand-holding-heart text-purple-500 mr-2"></i>
+                                Ethics & Human Rights
+                            </h4>
+                            <p class="text-sm text-gray-600">WHO's guidelines emphasize autonomy, human welfare, transparency, inclusiveness and sustainability</p>
+                        </div>
+                        <div class="policy-card bg-white border border-green-200 rounded-lg p-6 hover:border-green-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-eye text-green-500 mr-2"></i>
+                                Transparency
+                            </h4>
+                            <p class="text-sm text-gray-600">HIPAA audit controls, EU AI Act and WHO demand comprehensive logs, impact assessments and traceability</p>
+                        </div>
+                        <div class="policy-card bg-white border border-yellow-200 rounded-lg p-6 hover:border-yellow-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-chart-line text-yellow-500 mr-2"></i>
+                                Continuous Monitoring
+                            </h4>
+                            <p class="text-sm text-gray-600">GMLP, NIST AI RMF and clinical frameworks converge on ongoing performance assessment and drift detection</p>
+                        </div>
+                        <div class="policy-card bg-white border border-red-200 rounded-lg p-6 hover:border-red-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-users text-red-500 mr-2"></i>
+                                Stakeholder Engagement
+                            </h4>
+                            <p class="text-sm text-gray-600">Guidelines call for multi-disciplinary teams, diverse input and human-AI team assessments</p>
+                        </div>
+                        <div class="policy-card bg-white border border-indigo-200 rounded-lg p-6 hover:border-indigo-400">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-globe-americas text-indigo-500 mr-2"></i>
+                                Global Coordination
+                            </h4>
+                            <p class="text-sm text-gray-600">WHO GI-AI4H seeks to harmonize standards across jurisdictions with emphasis on LMIC engagement</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">Alignment with CAPP</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-key text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Authorization & Authentication</h4>
+                                        <p class="text-sm text-gray-600">HIPAA and EU AI Act demand strict access controls - CAPP's OAuth-based design enforces these</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-user-check text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Consent-Aware Minimization</h4>
+                                        <p class="text-sm text-gray-600">WHO calls for transparency in data use - CAPP integrates with FHIR Consent resources</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1 mr-3">
+                                        <i class="fas fa-clipboard-list text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-700">Audit & Documentation</h4>
+                                        <p class="text-sm text-gray-600">Regulations necessitate comprehensive trails - CAPP uses FHIR AuditEvent</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">CAPP Operationalizes Policy Requirements</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div class="bg-gray-200 text-gray-800 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">1</div>
+                                    <p class="text-sm text-gray-700">Externalizes policy decisions from model weights</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-gray-200 text-gray-800 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">2</div>
+                                    <p class="text-sm text-gray-700">Aligns with international regulations (HIPAA, EU AI Act, WHO)</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-gray-200 text-gray-800 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">3</div>
+                                    <p class="text-sm text-gray-700">Facilitates compliance with diverse ethical frameworks</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-gray-200 text-gray-800 rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-1 mr-3 text-xs">4</div>
+                                    <p class="text-sm text-gray-700">Provides transparent control plane for policy enforcement</p>
+                                </div>
+                                <div class="flex items-start">
+
+</body>
+</html>

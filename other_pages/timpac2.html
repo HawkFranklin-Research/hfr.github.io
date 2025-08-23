@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermAssist - AI Dermatology Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+        }
+        .disease-card {
+            transition: all 0.3s ease;
+        }
+        .disease-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .infographic-item {
+            position: relative;
+        }
+        .infographic-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233b82f6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 5l7 7-7 7M5 5l7 7-7 7' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        @media (max-width: 768px) {
+            .infographic-item:not(:last-child):after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Header -->
+    <header class="gradient-bg py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="w-16 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+                        <!-- Placeholder for DermAssist logo -->
+                        <i class="fas fa-stethoscope text-3xl text-blue-500"></i>
+                    </div>
+                    <h1 class="text-3xl font-bold text-blue-800">DermAssist</h1>
+                </div>
+                <div class="flex space-x-8">
+                    <div class="w-32 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <!-- Placeholder for HawkFranklin logo -->
+                        <span class="text-gray-500 font-medium">HawkFranklin</span>
+                    </div>
+                    <div class="w-32 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <!-- Placeholder for Timpac logo -->
+                        <span class="text-gray-500 font-medium">Timpac</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold text-blue-900 mb-6">AI-Powered Dermatology Assistant</h2>
+                    <p class="text-xl text-gray-700 mb-8">DermAssist is a clinical vision AI that supports lesion triage and dermatological diagnosis, providing clinicians with intelligent assistance for skin condition assessment.</p>
+                    <div class="flex space-x-4">
+                        <a href="#demo" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                            See Demo
+                        </a>
+                        <a href="#technology" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition duration-300">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-lg">
+                        <div class="absolute -top-6 -left-6 w-64 h-64 bg-blue-200 rounded-2xl opacity-50"></div>
+                        <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-blue-300 rounded-2xl opacity-50"></div>
+                        <div class="relative bg-white p-4 rounded-2xl shadow-xl">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-semibold text-gray-800">Skin Lesion Analysis</h3>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">AI Assessment</span>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Skin lesion" class="w-full h-48 object-cover rounded-lg mb-4">
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="font-medium">Eczema</span>
+                                        <span>78%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-600 h-2 rounded-full" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="font-medium">Psoriasis</span>
+                                        <span>65%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-400 h-2 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="font-medium">Contact Dermatitis</span>
+                                        <span>42%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-300 h-2 rounded-full" style="width: 42%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infographic Section (Extract this for slides) -->
+    <section id="technology" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">How DermAssist Works</h2>
+            
+            <div class="bg-blue-50 rounded-2xl p-8 mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+                    <!-- Infographic Item 1 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-camera text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Image Upload</h3>
+                        <p class="text-gray-600">Clinicians upload skin lesion images through an intuitive interface</p>
+                    </div>
+                    
+                    <!-- Infographic Item 2 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-brain text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">AI Processing</h3>
+                        <p class="text-gray-600">CNN/Transformer pipelines analyze the image using dermatology datasets</p>
+                    </div>
+                    
+                    <!-- Infographic Item 3 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-bar text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Probability Assessment</h3>
+                        <p class="text-gray-600">System calculates likelihood scores for various conditions</p>
+                    </div>
+                    
+                    <!-- Infographic Item 4 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-user-md text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Clinical Decision Support</h3>
+                        <p class="text-gray-600">Presents findings to assist (not replace) clinician diagnosis</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-xl text-blue-800 mb-4">Key Features</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Multi-label predictions for complex dermatological conditions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Pluggable classifier backend (LogReg, MLP, etc.)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Top-K probability visualization for differential diagnosis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>API integration for seamless workflow incorporation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Sample image library for testing and demonstration</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-xl text-blue-800 mb-4">Technical Specifications</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-microchip text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Model Architecture:</strong> Hybrid CNN/Transformer pipelines</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-database text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Training Data:</strong> ISIC, dermoscopy images, and proprietary datasets</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-code text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Framework:</strong> PyTorch/TensorFlow with scikit-learn classifiers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-laptop-code text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Interface:</strong> Gradio UI with FastAPI backend</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Compliance:</strong> Research/demo only (not a diagnostic device)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conditions Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">Supported Conditions</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <!-- Condition Card 1 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-allergies text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Eczema</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Chronic condition causing inflamed, itchy, cracked, and rough skin</p>
+                </div>
+                
+                <!-- Condition Card 2 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-bug text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Psoriasis</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Autoimmune disease that causes raised, red, scaly patches</p>
+                </div>
+                
+                <!-- Condition Card 3 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-radiation-alt text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Tinea</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Fungal skin infection causing ring-shaped rashes</p>
+                </div>
+                
+                <!-- Condition Card 4 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-burn text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Contact Dermatitis</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Skin irritation from contact with allergens or irritants</p>
+                </div>
+                
+                <!-- Condition Card 5 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-virus text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Herpes Zoster</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Viral infection causing painful skin rash with blisters</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">Experience DermAssist</h2>
+            
+            <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 max-w-4xl mx-auto">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
+                        <h3 class="text-xl font-bold mb-4">Try with Sample Images</h3>
+                        <div class="grid grid-cols-3 gap-3 mb-6">
+                            <div class="h-24 bg-gray-200 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sample 1" class="w-full h-full object-cover">
+                            </div>
+                            <div class="h-24 bg-gray-200 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sample 2" class="w-full h-full object-cover">
+                            </div>
+                            <div class="h-24 bg-gray-200 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sample 3" class="w-full h-full object-cover">
+                            </div>
+                            <div class="h-24 bg-gray-200 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sample 4" class="w-full h-full object-cover">
+                            </div>
+                            <div class="h-24 bg-gray-200 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sample 5" class="w-full h-full object-cover">
+                            </div>
+                            <div class="h-24 bg-gray-200 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sample 6" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Or upload your own image</label>
+                            <div class="flex items-center justify-center w-full">
+                                <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
+                                        <p class="text-sm text-gray-500">Click to upload or drag and drop</p>
+                                    </div>
+                                    <input type="file" class="hidden" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Select Classifier Model</label>
+                            <select class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 border">
+                                <option>Logistic Regression (Default)</option>
+                                <option>Multi-layer Perceptron</option>
+                                <option>Demo Classifier</option>
+                            </select>
+                        </div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium">
+                            Analyze Image
+                        </button>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <h3 class="text-xl font-bold mb-4">Analysis Results</h3>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium">Eczema</span>
+                                <span class="text-blue-600 font-bold">78%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium">Psoriasis</span>
+                                <span class="text-blue-500 font-bold">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium">Contact Dermatitis</span>
+                                <span class="text-blue-400 font-bold">42%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-400 h-2 rounded-full" style="width: 42%"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <h4 class="font-medium mb-2">Clinical Notes</h4>
+                            <p class="text-sm text-gray-600">The lesion shows characteristics consistent with eczematous dermatitis, including erythema and scaling. Consider patch testing for allergic contact dermatitis if condition persists despite treatment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-stethoscope text-2xl text-blue-400"></i>
+                        <span class="text-xl font-bold">DermAssist</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">AI-powered dermatology clinical decision support</p>
+                </div>
+                <div class="flex space-x-6">
+                    <div class="text-center">
+                        <h4 class="font-bold mb-2">Developed By</h4>
+                        <div class="flex space-x-4">
+                            <div class="w-24 h-12 bg-gray-700 rounded flex items-center justify-center">
+                                <!-- HawkFranklin logo placeholder -->
+                                <span class="text-xs">HawkFranklin</span>
+                            </div>
+                            <div class="w-24 h-12 bg-gray-700 rounded flex items-center justify-center">
+                                <!-- Timpac logo placeholder -->
+                                <span class="text-xs">Timpac</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>DermAssist is for research and clinical support purposes only. Not intended as a diagnostic device.</p>
+                <p class="mt-2">© 2023 DermAssist AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

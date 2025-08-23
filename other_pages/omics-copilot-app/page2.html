@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omics Copilot - Bioinformatics AI Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f4ff 50%, #d9edff 100%);
+        }
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #0c1a2d 0%, #0f172a 50%, #1e293b 100%);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-left-color: #3b82f6;
+        }
+        .omics-card {
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .dark .omics-card {
+            background: #1e293b;
+        }
+        .omics-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .infographic-item {
+            position: relative;
+        }
+        .infographic-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233b82f6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 5l7 7-7 7M5 5l7 7-7 7' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        @media (max-width: 768px) {
+            .infographic-item:not(:last-child):after {
+                display: none;
+            }
+        }
+        .tech-stack-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .dna-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.5 6c-2 0-4 1.5-4 4s2 4 4 4 4-1.5 4-4-2-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-7-4c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5S14.5 8.5 14.5 6zm4.5 2.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z' fill='%233b82f6' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .dark .dna-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.5 6c-2 0-4 1.5-4 4s2 4 4 4 4-1.5 4-4-2-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-7-4c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5S14.5 8.5 14.5 6zm4.5 2.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z' fill='%2360a5fa' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .terminal-window {
+            background: #1e293b;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .terminal-header {
+            background: #0f172a;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+        }
+        .terminal-body {
+            font-family: 'Courier New', monospace;
+            color: #e2e8f0;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        .terminal-prompt {
+            color: #60a5fa;
+        }
+        .terminal-command {
+            color: #ffffff;
+        }
+        .terminal-output {
+            color: #a5b4fc;
+        }
+        .terminal-error {
+            color: #f87171;
+        }
+        .terminal-success {
+            color: #4ade80;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 dark:text-gray-200 bg-white dark:bg-slate-900">
+    <!-- Header -->
+    <header class="gradient-bg py-6 dna-pattern">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="w-16 h-16 bg-white dark:bg-slate-800 rounded-lg shadow-md flex items-center justify-center">
+                        <i class="fas fa-dna text-3xl text-blue-500 dark:text-blue-400"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-blue-800 dark:text-blue-200">Omics Copilot</h1>
+                        <p class="text-sm text-blue-600 dark:text-blue-300">Bioinformatics AI Assistant</p>
+                    </div>
+                </div>
+                <div class="flex space-x-4">
+                    <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
+                        <i class="fas fa-file-alt mr-2"></i> Nature Methods 2025
+                    </span>
+                    <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
+                        <i class="fas fa-code-branch mr-2"></i> v2.1.0
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 gradient-bg dna-pattern">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold text-blue-900 dark:text-white mb-6">Your AI-Powered Bioinformatics Assistant</h2>
+                    <p class="text-xl text-gray-700 dark:text-gray-300 mb-8">
+                        Omics Copilot is an interactive bioinformatics agent that streamlines multi-omics analysis, 
+                        connects to your systems, and automates complex workflows through natural language.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#demo" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center">
+                            <i class="fas fa-play-circle mr-2"></i> Live Demo
+                        </a>
+                        <a href="#features" class="border-2 border-blue-600 text-blue-600 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center">
+                            <i class="fas fa-flask mr-2"></i> Explore Features
+                        </a>
+                        <a href="#install" class="bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-blue-600 dark:text-blue-300 px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center">
+                            <i class="fas fa-download mr-2"></i> Install NPM
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-lg">
+                        <div class="absolute -top-6 -left-6 w-64 h-64 bg-blue-200 dark:bg-blue-900/30 rounded-2xl opacity-50"></div>
+                        <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-blue-300 dark:bg-blue-800/30 rounded-2xl opacity-50"></div>
+                        <div class="terminal-window relative">
+                            <div class="terminal-header flex items-center">
+                                <div class="flex space-x-2 mr-4">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="text-sm">omics-copilot --host=server.cluster.edu</div>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="mb-2"><span class="terminal-prompt">$</span> <span class="terminal-command">install_packages --omics=multi</span></div>
+                                <div class="terminal-output mb-4">
+                                    Installing required packages: Seurat, DESeq2, Scanpy, PyDESeq2<br>
+                                    Connecting to cluster...<br>
+                                    ✓ All dependencies installed successfully
+                                </div>
+                                <div class="mb-2"><span class="terminal-prompt">$</span> <span class="terminal-command">analyze --input=./data/tcga_rnaseq --output=./results</span></div>
+                                <div class="terminal-output mb-4">
+                                    Detected RNA-seq data (TCGA format)<br>
+                                    Running quality control, normalization, and DE analysis...<br>
+                                    ✓ Identified 342 differentially expressed genes (FDR < 0.05)
+                                </div>
+                                <div class="mb-2"><span class="terminal-prompt">$</span> <span class="terminal-command">visualize --type=volcano --gene=TP53,KRAS,EGFR</span></div>
+                                <div class="terminal-success">
+                                    Generated volcano plot: results/volcano_plot.pdf<br>
+                                    ✓ Analysis complete in 4m23s
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features" class="py-16 bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 dark:text-white mb-12">Revolutionary Omics Analysis</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-plug text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">System Integration</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Directly connect to your servers, clusters, or local machines. Install packages, manage environments, and execute workflows seamlessly.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-dna text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Multi-Omics Analysis</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        From genomics to proteomics, handle diverse data types with specialized pipelines for each modality and their integration.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-robot text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Agentic Workflows</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Our AI agent plans, executes, and iterates on complex bioinformatics tasks with minimal human intervention.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Privacy-First</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Run locally or on your infrastructure. Your data never leaves your control unless you choose to share it.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Interactive Visualization</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Generate publication-quality plots, heatmaps, and interactive visualizations with simple commands.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-file-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Automated Reporting</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Get detailed, reproducible reports with methods, results, and visualizations ready for publication.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Omics Applications -->
+    <section class="py-16 bg-gray-50 dark:bg-slate-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 dark:text-white mb-12">Specialized Omics Workflows</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Genomics -->
+                <div class="omics-card p-6 rounded-xl shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Genomics</h3>
+                    <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Variant calling & annotation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>GWAS & population genetics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Structural variant analysis</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Transcriptomics -->
+                <div class="omics-card p-6 rounded-xl shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Transcriptomics</h3>
+                    <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Bulk & single-cell RNA-seq</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Differential expression</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Alternative splicing</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Proteomics -->
+                <div class="omics-card p-6 rounded-xl shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Proteomics</h3>
+                    <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Mass spec data analysis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Protein-protein interaction</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Post-translational mods</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Multi-Omics -->
+                <div class="omics-card p-6 rounded-xl shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Multi-Omics</h3>
+                    <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Data integration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Network analysis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Biomarker discovery</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 dark:text-white mb-12">How Omics Copilot Works</h2>
+            
+            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8 mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+                    <!-- Step 1 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-terminal text-3xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">1. Connect</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Link to your system via CLI or GUI</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-comment-dots text-3xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">2. Command</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Describe your analysis in natural language</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-cogs text-3xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">3. Execute</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Agent installs packages and runs analysis</p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-chart-pie text-3xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">4. Results</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Get interactive visualizations and reports</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-gray-200 dark:border-slate-700">
+                    <h3 class="font-bold text-xl text-blue-800 dark:text-blue-200 mb-4">Key Advantages</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Reduces analysis time from days to hours</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Eliminates repetitive coding tasks</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Standardizes analysis pipelines</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Provides expert-level methodology</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Ensures reproducibility</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-gray-200 dark:border-slate-700">
+                    <h3 class="font-bold text-xl text-blue-800 dark:text-blue-200 mb-4">Technical Specifications</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-microchip text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Core Architecture:</strong> Multi-agent system with LLM orchestration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-database text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Supported Data:</strong> FASTQ, BAM, VCF, CSV, HDF5, mzML</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-code text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Bioinformatics Tools:</strong> 100+ packages pre-configured</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-laptop-code text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Interfaces:</strong> CLI, Jupyter, Web, VS Code</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Security:</strong> Local execution with sandboxing</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-16 bg-gray-50 dark:bg-slate-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 dark:text-white mb-12">Interactive Demo</h2>
+            
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-gray-200 dark:border-slate-700 max-w-4xl mx-auto">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="lg:w-1/2">
+                        <h3 class="text-xl font-bold mb-4">Try Sample Commands</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <button onclick="setDemoCommand('install_packages --omics=multi')" class="w-full text-left p-4 bg-gray-50 dark:bg-slate-800 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-2 text-blue-600 dark:text-blue-400">
+                                        <i class="fas fa-download"></i>
+                                    </div>
+                                    <code class="font-mono">install_packages --omics=multi</code>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Install required bioinformatics packages</p>
+                            </button>
+                            
+                            <button onclick="setDemoCommand('analyze --input=./data/tcga_rnaseq --output=./results')" class="w-full text-left p-4 bg-gray-50 dark:bg-slate-800 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-2 text-blue-600 dark:text-blue-400">
+                                        <i class="fas fa-dna"></i>
+                                    </div>
+                                    <code class="font-mono">analyze --input=./data/tcga_rnaseq --output=./results</code>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Run RNA-seq differential expression analysis</p>
+                            </button>
+                            
+                            <button onclick="setDemoCommand('visualize --type=volcano --gene=TP53,KRAS,EGFR')" class="w-full text-left p-4 bg-gray-50 dark:bg-slate-800 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-2 text-blue-600 dark:text-blue-400">
+                                        <i class="fas fa-chart-bar"></i>
+                                    </div>
+                                    <code class="font-mono">visualize --type=volcano --gene=TP53,KRAS,EGFR</code>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Generate volcano plot for specific genes</p>
+                            </button>
+                            
+                            <button onclick="setDemoCommand('integrate --rna=./rna --protein=./prot --output=./multiomics')" class="w-full text-left p-4 bg-gray-50 dark:bg-slate-800 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-2 text-blue-600 dark:text-blue-400">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </div>
+                                    <code class="font-mono">integrate --rna=./rna --protein=./prot --output=./multiomics</code>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Integrate RNA-seq and proteomics data</p>
+                            </button>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Or enter custom command</label>
+                            <div class="flex">
+                                <input id="demo-command" type="text" class="flex-1 rounded-l-lg border-gray-300 dark:border-slate-700 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 border bg-white dark:bg-slate-800" placeholder="e.g., run survival analysis on TCGA data">
+                                <button onclick="runDemoCommand()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-r-lg font-medium">
+                                    Run
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2">
+                        <h3 class="text-xl font-bold mb-4">Output Preview</h3>
+                        <div id="demo-output" class="terminal-window h-96 overflow-y-auto">
+                            <div class="terminal-body">
+                                <div class="mb-2"><span class="terminal-prompt">$</span> <span class="terminal-command">omics-copilot --host=server.cluster.edu</span></div>
+                                <div class="terminal-output mb-4">
+                                    Connected to server.cluster.edu (24 cores, 128GB RAM)<br>
+                                    ✓ Ready for commands
+                                </div>
+                                <div id="demo-command-output"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation -->
+    <section id="install" class="py-16 bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 dark:text-white mb-12">Get Started</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- NPM -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400 mx-auto">
+                        <i class="fab fa-node-js text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">NPM Package</h3>
+                    <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg mb-4">
+                        <code class="block text-sm font-mono">npm install -g omics-copilot</code>
+                    </div>
+                    <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Command-line interface</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Local execution</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>All dependencies included</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Docker -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400 mx-auto">
+                        <i class="fab fa-docker text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Docker Container</h3>
+                    <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg mb-4">
+                        <code class="block text-sm font-mono">docker run -it biocontainers/omics-copilot</code>
+                    </div>
+                    <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Pre-configured environment</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Isolated execution</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>GPU support</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Web -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-slate-700">
+                    <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400 mx-auto">
+                        <i class="fas fa-globe text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Web Interface</h3>
+                    <div class="bg-gray-100 dark:bg-slate-700 p-4 rounded-lg mb-4">
+                        <code class="block text-sm font-mono">https://app.omicscopilot.ai</code>
+                    </div>
+                    <ul class="text-sm space-y-2 text-gray-600 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>No installation required</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Collaborative features</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mr-2 mt-0.5"></i>
+                            <span>Cloud execution</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="py-16 bg-gray-50 dark:bg-slate-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 dark:text-white mb-12">Technology Stack</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <span class="font-medium">Node.js</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <span class="font-medium">Python</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <span class="font-medium">LangChain</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-openai"></i>
+                    </div>
+                    <span class="font-medium">GPT-4o</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <span class="font-medium">Gemini</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <span class="font-medium">BioContainers</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <span class="font-medium">Plotly</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <span class="font-medium">Pandas</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <span class="font-medium">NumPy</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <span class="font-medium">Seaborn</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <span class="font-medium">Docker</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <span class="font-medium">GitHub</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="py-16 bg-blue-50 dark:bg-blue-900/20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-blue-900 dark:text-white mb-6">Academic Research</h2>
+                <p class="text-xl text-gray-700 dark:text-gray-300 mb-8">
+                    Our paper "<span class="font-semibold">Omics Copilot: An Agentic Bioinformatics Assistant for Multi-Omics Analysis</span>"
+                    is currently under review at Nature Methods.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-file-pdf mr-2"></i> Read Preprint
+                    </a>
+                    <a href="#" class="border-2 border-blue-600 text-blue-600 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-book mr-2"></i> Documentation
+                    </a>
+                    <a href="#" class="border-2 border-blue-600 text-blue-600 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 px-6 py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center">
+                        <i class="fab fa-github mr-2"></i> GitHub Repo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Omics Copilot</h3>
+                    <p class="text-gray-400">The next-generation bioinformatics assistant powered by AI agents.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">API Reference</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2025 Omics Copilot. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple demo functionality
+        function setDemoCommand(cmd) {
+            document.getElementById('demo-command').value = cmd;
+            runDemoCommand();
+        }
+        
+        function runDemoCommand() {
+            const cmd = document.getElementById('demo-command').value;
+            if (!cmd.trim()) return;
+            
+            const outputDiv = document.getElementById('demo-command-output');
+            outputDiv.innerHTML = `
+                <div class="mb-2"><span class="terminal-prompt">$</span> <span class="terminal-command">${cmd}</span></div>
+                <div class="terminal-output">
+                    Running analysis...<br>
+                    ${getDemoOutput(cmd)}
+                </div>
+            `;
+            
+            // Scroll to bottom
+            const terminal = document.getElementById('demo-output');
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+        
+        function getDemoOutput(cmd) {
+            if (cmd.includes('install_packages')) {
+                return `
+                    Checking system requirements...<br>
+                    Installing: DESeq2, Seurat, Scanpy, PyDESeq2<br>
+                    ✓ All packages installed successfully<br>
+                    Ready for analysis commands
+                `;
+            } else if (cmd.includes('analyze')) {
+                return `
+                    Detected RNA-seq data (TCGA format)<br>
+                    Running quality control with FastQC...<br>
+                    Aligning with STAR...<br>
+                    Quantifying with featureCounts...<br>
+                    Running DESeq2 differential expression...<br>
+                    ✓ Identified 342 DEGs (FDR < 0.05)<br>
+                    Results saved to ./results/
+                `;
+            } else if (cmd.includes('visualize')) {
+                return `
+                    Loading DEG results...<br>
+                    Generating volcano plot for TP53, KRAS, EGFR...<br>
+                    <img src="https://dummyimage.com/600x400/4f46e5/ffffff&text=Volcano+Plot" class="mt-2 w-full h-auto border border-gray-200 dark:border-slate-700"><br>
+                    Plot saved to results/volcano_plot.pdf
+                `;
+            } else if (cmd.includes('integrate')) {
+                return `
+                    Loading RNA-seq and proteomics data...<br>
+                    Normalizing and batch correcting...<br>
+                    Running MOFA+ integration...<br>
+                    Identified 3 latent factors explaining 78% variance<br>
+                    Results saved to ./multiomics/
+                `;
+            } else {
+                return `
+                    Processing command...<br>
+                    ✓ Analysis completed successfully<br>
+                    Results available in output directory
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
