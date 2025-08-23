@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HFR Visual Template (v3) — Reusable Styles + Guide</title>
+  <meta name="description" content="Reusable visual template for HawkFranklin Research v3 look: gradient highlight, left-tilted hue, announcement strip, nav underline, card glow, and theming via CSS variables." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --accent-50:#fefce8; --accent-100:#fef9c3; --accent-200:#fef08a; --accent-300:#fde047;
+      --accent-400:#facc15; --accent-500:#eab308; --accent-600:#ca8a04; --accent-700:#a16207; --accent-800:#854d0e; --accent-900:#713f12;
+      --dark-900:#0f172a; --dark-800:#1e293b; --dark-700:#334155; --dark-600:#475569; --dark-500:#64748b; --dark-400:#94a3b8; --dark-100:#f1f5f9;
+      --grad-a:#0ea5e9; --grad-b:var(--accent-500);
+    }
+    .theme-emerald { --accent-500:#10b981; --accent-600:#059669; --accent-100:#d1fae5; --grad-b:var(--accent-500); }
+    .theme-sky { --accent-500:#0ea5e9; --accent-600:#0284c7; --accent-100:#e0f2fe; --grad-b:var(--accent-500); }
+    .gradient-text { background:linear-gradient(90deg,var(--grad-a),var(--grad-b)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero-left-hue { background:radial-gradient(80% 120% at 0% 40%, rgba(234,179,8,.14) 0%, rgba(234,179,8,.06) 35%, transparent 60%), radial-gradient(60% 80% at 15% 10%, rgba(234,179,8,.10) 0%, transparent 60%); }
+    .announce-strip { background:linear-gradient(90deg, rgba(234,179,8,.12), rgba(234,179,8,.06)); border-top:1px solid rgba(234,179,8,.28); border-bottom:1px solid rgba(234,179,8,.28); }
+    .nav-link { position:relative; }
+    .nav-link:after { content:''; position:absolute; bottom:-4px; left:0; height:2px; width:0; background:var(--grad-b); transition:width .25s ease; }
+    .nav-link:hover:after, .nav-active:after { width:100%; }
+    .product-card, .research-card { transition: transform .25s, box-shadow .25s, border-color .25s; }
+    .product-card { background:linear-gradient(145deg,#fff,#f8fafc); border:1px solid #e2e8f0; box-shadow:0 4px 6px -1px rgba(0,0,0,.05), 0 2px 4px -1px rgba(0,0,0,.03); }
+    .product-card:hover { transform:translateY(-6px); box-shadow:0 14px 28px -8px rgba(14,165,233,.22); }
+    .research-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); }
+    .research-card:hover { transform:translateY(-6px); background:rgba(255,255,255,.08); box-shadow:0 10px 25px -8px rgba(14,165,233,.18); }
+    .btn-primary { background:linear-gradient(135deg,#0ea5e9 0%, var(--accent-600) 100%); color:#fff; transition:box-shadow .25s, transform .25s; }
+    .btn-primary:hover { box-shadow:0 12px 22px -6px rgba(14,165,233,.35); transform:translateY(-1px); }
+    .btn-outline { border:1px solid var(--accent-500); color:var(--accent-600); }
+    .logo-header { height:76px; width:auto; } .logo-footer { height:62px; width:auto; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+</head>
+<body class="font-sans bg-white text-[color:var(--dark-700)] antialiased">
+  <main class="max-w-5xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-[color:var(--dark-900)]">HFR Visual Template (v3)</h1>
+    <p class="mt-2 text-[color:var(--dark-600)]">Reusable building blocks to reproduce the v3 look on any page and retheme quickly via CSS variables.</p>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-semibold text-[color:var(--dark-900)]">What It Covers</h2>
+      <ul class="list-disc pl-6 mt-3 space-y-1">
+        <li>Gradient highlight on selected words</li>
+        <li>Left‑tilted hue background behind hero</li>
+        <li>Announcement strip (thin gold bar)</li>
+        <li>Nav underline + sizes (matching v2/v3)</li>
+        <li>Product/research card hover and glow</li>
+        <li>Easy theming via CSS variables (one place to change colors)</li>
+      </ul>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-semibold text-[color:var(--dark-900)]">How To Use It</h2>
+      <ul class="list-disc pl-6 mt-3 space-y-1">
+        <li>Gradient word: wrap only the part to highlight with <code>&lt;span class="gradient-text"&gt;...&lt;/span&gt;</code>.</li>
+        <li>Left hue: add <code>hero-left-hue</code> to the hero section container (not the whole page).</li>
+        <li>Announcement: insert a thin section under the hero with <code>announce-strip</code>.</li>
+        <li>Nav: add <code>nav-link</code> to top menu anchors. Use <code>text-base lg:text-lg</code> for size.</li>
+        <li>Cards: add <code>product-card</code> or <code>research-card</code> to relevant containers.</li>
+        <li>Logo: apply <code>logo-header</code> in header and <code>logo-footer</code> in footer.</li>
+      </ul>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-semibold text-[color:var(--dark-900)]">Minimal HTML Example</h2>
+      <p class="mt-2 text-[color:var(--dark-600)]">Copy this skeleton and swap colors via the CSS variables above.</p>
+      <pre class="mt-4 p-4 bg-[color:var(--dark-100)] rounded text-sm overflow-auto"><code>&lt;header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200"&gt;
+  &lt;div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between"&gt;
+    &lt;a href="index.html" class="flex items-center gap-3"&gt;
+      &lt;img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" /&gt;
+    &lt;/a&gt;
+    &lt;nav class="hidden md:flex items-center gap-8 text-base lg:text-lg"&gt;
+      &lt;a href="#home" class="nav-link"&gt;Home&lt;/a&gt;
+      &lt;a href="#products" class="nav-link"&gt;Products&lt;/a&gt;
+      &lt;a href="#research" class="nav-link"&gt;Research&lt;/a&gt;
+      &lt;a href="aclis.html" class="nav-link"&gt;ACLIS&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;section id="home" class="relative overflow-hidden hero-left-hue"&gt;
+  &lt;div class="max-w-7xl mx-auto px-4 pt-28 pb-24"&gt;
+    &lt;p class="text-lg font-semibold" style="color:var(--accent-600)"&gt;Your R&amp;D Partner in DeepTech&lt;/p&gt;
+    &lt;h1 class="font-display text-6xl lg:text-7xl font-extrabold leading-tight" style="color:var(--dark-900)"&gt;
+      Integrating AI for &lt;span class="gradient-text"&gt;Scientific Discovery&lt;/span&gt;
+    &lt;/h1&gt;
+    &lt;p class="mt-5 text-2xl max-w-3xl" style="color:var(--dark-600)"&gt;We co‑develop clinical‑grade AI systems that fit real workflows.&lt;/p&gt;
+    &lt;div class="mt-8 flex gap-4"&gt;
+      &lt;a href="aclis.html" class="btn-primary px-6 py-3 rounded-lg font-medium"&gt;Explore ACLIS&lt;/a&gt;
+      &lt;a href="contact.html" class="btn-outline px-6 py-3 rounded-lg font-medium"&gt;Partner with us&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class="announce-strip"&gt;
+  &lt;div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm"&gt;
+    &lt;div class="flex items-center gap-2" style="color:var(--accent-800)"&gt;&lt;i class="fa-solid fa-bolt"&gt;&lt;/i&gt;&lt;span&gt;Pilot spots open for ACLIS in 2025&lt;/span&gt;&lt;/div&gt;
+    &lt;a href="aclis.html" class="inline-flex items-center gap-2" style="color:var(--accent-900)"&gt;Learn about ACLIS &lt;i class="fa-solid fa-arrow-right text-xs"&gt;&lt;/i&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-2xl font-semibold text-[color:var(--dark-900)]">Re‑Theming (choose different colors)</h2>
+      <ul class="list-disc pl-6 mt-3 space-y-1">
+        <li>Quick: override <code>--accent-*</code> values in <code>:root</code>.</li>
+        <li>Multi‑themes: keep gold in <code>:root</code> and add <code>&lt;body class="theme-emerald"&gt;</code> or <code>theme-sky</code>.</li>
+        <li>Palette examples: Emerald (<code>#10b981</code>), Sky (<code>#0ea5e9</code>).</li>
+        <li>Gradient word: tweak <code>--grad-a</code> (edge) and <code>--grad-b</code> (main).</li>
+        <li>Hue: adjust radial alphas ~0.06–0.18 and use your accent’s RGB for tint.</li>
+      </ul>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-2xl font-semibold text-[color:var(--dark-900)]">Live Preview</h2>
+      <div class="mt-4 rounded-xl border border-slate-200 overflow-hidden">
+        <div class="p-6 hero-left-hue">
+          <p class="text-lg font-semibold" style="color:var(--accent-600)">Your R&amp;D Partner in DeepTech</p>
+          <h3 class="text-4xl sm:text-5xl font-extrabold" style="color:var(--dark-900)">Integrating AI for <span class="gradient-text">Scientific Discovery</span></h3>
+          <p class="mt-3 text-lg" style="color:var(--dark-600)">This block demonstrates the left‑tilted hue and gradient text.</p>
+          <div class="mt-4 flex gap-3">
+            <button class="btn-primary px-4 py-2 rounded-lg">Primary</button>
+            <button class="btn-outline px-4 py-2 rounded-lg">Outline</button>
+          </div>
+        </div>
+        <div class="announce-strip px-4 py-3 text-sm flex items-center gap-2 justify-between">
+          <div class="flex items-center gap-2" style="color:var(--accent-800)"><i class="fa-solid fa-bolt"></i><span>Pilot spots open for ACLIS in 2025</span></div>
+          <a href="#" style="color:var(--accent-900)" class="inline-flex items-center gap-2">Learn more <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
