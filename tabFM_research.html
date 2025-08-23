@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabular Foundation Models for Cancer Genomics</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #F0F4F8; /* Light grayish blue background */
+        color: #374151; /* Default text color: gray-700 */
+    }
+    .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 300px; /* Adjusted default height */
+    }
+    @media (min-width: 768px) { /* Medium devices and up */
+        .chart-container {
+            height: 350px;
+        }
+    }
+    .kpi-box {
+        background-color: #FFFFFF;
+        border-left: 5px solid #4A90E2; /* Primary accent blue */
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .section-header {
+        color: #1A202C; /* Dark gray for section headers */
+        border-bottom: 3px solid #4A90E2; /* Primary accent blue for underline */
+    }
+    .timeline-item {
+        position: relative;
+        padding-bottom: 2rem;
+        padding-left: 2.5rem;
+    }
+    .timeline-item:last-child {
+        padding-bottom: 0;
+    }
+    .timeline-marker {
+        position: absolute;
+        left: 0;
+        top: 0.125rem;
+        height: 1.5rem;
+        width: 1.5rem;
+        background-color: #FFFFFF;
+        border: 4px solid #4A90E2; /* Primary accent blue for marker */
+        border-radius: 9999px;
+    }
+    .timeline-line-container {
+        position: absolute;
+        left: 0.625rem; /* Centered with marker */
+        top: 1.625rem; /* Start below marker */
+        bottom: 0;
+        width: 4px;
+        background-color: #4A90E2; /* Primary accent blue for line */
+    }
+    .flowchart-step {
+        background-color: #FFFFFF;
+        border: 2px solid #50E3C2; /* Teal accent for flowchart steps */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s;
+        border-radius: 0.375rem;
+    }
+    .flowchart-step:hover {
+        transform: translateY(-5px);
+    }
+    .flowchart-arrow {
+        color: #4A90E2; /* Primary accent blue for arrows */
+        font-weight: bold;
+    }
+    .accent-red { color: #D0021B; }
+    .accent-yellow { color: #F5A623; }
+    .accent-green { color: #50E3C2; } /* Teal accent */
+    .accent-blue { color: #4A90E2; }
+
+    .bg-accent-red-light { background-color: #fadbd8; }
+    .bg-accent-yellow-light { background-color: #fef3c7; }
+    .bg-accent-green-light { background-color: #d1f2eb; }
+    .bg-accent-blue-light { background-color: #d6eaf8; }
+
+    .border-accent-red { border-color: #D0021B; }
+    .border-accent-yellow { border-color: #F5A623; }
+    .border-accent-green { border-color: #50E3C2; }
+    .border-accent-blue { border-color: #4A90E2; }
+
+    /* Icon styles */
+    .icon {
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        margin-right: 0.5em;
+        vertical-align: middle;
+    }
+</style>
+</head>
+<body class="text-gray-700">
+
+<header class="bg-white shadow-md p-6 text-center">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Tabular Foundation Models: Revolutionizing Cancer Genomics</h1>
+    <p class="text-lg sm:text-xl text-gray-600 mt-2">Harnessing In-Context Learning for Advanced Prognostic Insights</p>
+</header>
+
+<main class="container mx-auto p-4 md:p-8">
+
+    <section id="what-are-tfms" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">Understanding Tabular Foundation Models (TFMs)</h2>
+            <p class="text-base sm:text-lg mb-4">Tabular data, the bedrock of countless scientific and industrial applications, presents unique challenges for traditional machine learning. Tabular Foundation Models (TFMs) are a new paradigm, leveraging the power of large transformer architectures, pre-trained on vast amounts of diverse (often synthetic) tabular data. </p>
+            <p class="text-base sm:text-lg mb-6">Their core strength lies in <strong class="accent-blue">In-Context Learning (ICL)</strong>: the ability to make predictions for new, unseen tabular datasets by conditioning on the provided training samples within the input prompt itself, all in a single forward pass without needing explicit retraining or fine-tuning for that specific new task.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mt-6">
+                <div class="kpi-box p-6">
+                    <p class="text-3xl sm:text-4xl font-bold accent-blue">ICL</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">Prediction via In-Context Learning</p>
+                </div>
+                <div class="kpi-box p-6" style="border-left-color: #50E3C2;">
+                    <p class="text-3xl sm:text-4xl font-bold accent-green">Synthetic Data</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">Pre-trained on Millions of Datasets</p>
+                </div>
+                <div class="kpi-box p-6" style="border-left-color: #F5A623;">
+                    <p class="text-3xl sm:text-4xl font-bold accent-yellow">No Tuning</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">Zero-Shot Performance on New Tables</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="evolution-tfms" class="mb-12">
+         <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">The Evolution of Tabular Foundation Models</h2>
+            <p class="text-base sm:text-lg mb-6">The journey of TFMs has been marked by rapid advancements in scalability, performance, and applicability, moving from handling small tables to tackling large, complex datasets.</p>
+            <div class="relative">
+                <div class="timeline-line-container"></div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="text-lg sm:text-xl font-bold accent-blue">2023: TabPFN (ICLR) - The Genesis</h3>
+                    <p class="text-sm sm:text-base">Introduced the concept of a Prior-Data Fitted Network (PFN) for tabular data. A transformer pre-trained on synthetic datasets to solve small classification tasks (up to 1K samples, 100 features) in seconds via ICL. Showed promise but limited in scale.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker" style="border-color: #50E3C2;"></div>
+                    <h3 class="text-lg sm:text-xl font-bold accent-green">Jan 2025: TabPFNv2 (Nature) - Enhanced Capabilities</h3>
+                    <p class="text-sm sm:text-base">Significantly improved upon TabPFN. Scaled to handle datasets up to 10K samples and 500 features. Added support for regression, categorical data, and missing values. Employed a two-way attention mechanism (alternating column/row). Outperformed traditional methods on small-to-medium data but faced computational challenges with very large datasets.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker" style="border-color: #F5A623;"></div>
+                    <h3 class="text-lg sm:text-xl font-bold accent-yellow">May 2025: TabICL (Archive) - Scaling New Heights</h3>
+                    <p class="text-sm sm:text-base">Addressed the scalability limitations for ICL on large data. Pre-trained on synthetic data up to 60K samples, capable of handling 500K samples. Introduced a novel two-stage architecture (column-then-row embedding followed by ICL), distribution-aware column embeddings, and curriculum learning. Showed performance on par with or exceeding TabPFNv2 and other methods, especially on larger datasets, with significant speedups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tabicl-power" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">TabICL: Scaling In-Context Learning for Large Data</h2>
+            <p class="text-base sm:text-lg mb-6">TabICL represents a significant leap in applying foundation models to larger tabular datasets. Its innovative architecture and pretraining make it both powerful and efficient.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 accent-yellow">Key Innovations of TabICL</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base sm:text-lg">
+                        <li><strong class="font-semibold">Two-Stage Architecture:</strong> Efficiently processes tables by first creating fixed-dimensional row embeddings (column-then-row attention) before performing ICL, reducing complexity.</li>
+                        <li><strong class="font-semibold">Distribution-Aware Embeddings:</strong> Uses Set Transformers for column-wise embeddings, capturing feature distributions.</li>
+                        <li><strong class="font-semibold">Scalable Pretraining:</strong> Employs curriculum learning (up to 60K samples) and novel tree-based synthetic data generation.</li>
+                        <li><strong class="font-semibold">Large Data Handling:</strong> Designed for datasets up to 500K samples and 500 features.</li>
+                        <li><strong class="font-semibold">Efficiency:</strong> Up to 10x faster than TabPFNv2, especially on larger datasets.</li>
+                    </ul>
+                </div>
+                <div class="text-center">
+                     <h3 class="text-xl sm:text-2xl font-bold mb-3 accent-yellow">Simplified TabICL Flow</h3>
+                     <div class="space-y-2">
+                        <div class="p-3 flowchart-step">Input Table (X)</div>
+                        <div class="flowchart-arrow text-2xl">↓</div>
+                        <div class="p-3 flowchart-step">1. Column-wise Embedding (per column) & Row-wise Interaction (per row) → Row Embeddings (H)</div>
+                        <div class="flowchart-arrow text-2xl">↓</div>
+                        <div class="p-3 flowchart-step">2. Dataset-wise In-Context Learning on (H, Y_train)</div>
+                        <div class="flowchart-arrow text-2xl">↓</div>
+                        <div class="p-3 bg-accent-green-light rounded-md">Predictions (Y_test)</div>
+                     </div>
+                </div>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-4 text-center accent-yellow">TabICL Performance on Large Datasets</h3>
+            <p class="text-base sm:text-lg mb-6 text-center">TabICL demonstrates superior performance and efficiency, particularly on datasets with over 10,000 samples, outperforming both TabPFNv2 and strong baselines like CatBoost.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
+                <div class="kpi-box p-6 border-accent-yellow">
+                    <p class="text-3xl sm:text-4xl font-bold accent-yellow">500K+</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">Samples Handled</p>
+                </div>
+                <div class="kpi-box p-6 border-accent-green">
+                    <p class="text-3xl sm:text-4xl font-bold accent-green">Up to 10x</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">Faster than TabPFNv2</p>
+                </div>
+                <div class="kpi-box p-6 border-accent-blue">
+                    <p class="text-3xl sm:text-4xl font-bold accent-blue">Top Ranks</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">On Large Datasets (>10K samples)</p>
+                </div>
+            </div>
+            <div class="chart-container h-96">
+                <canvas id="tabiclPerformanceChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section id="tfms-cancer-genomics" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">The Next Frontier: TFMs for Cancer Genomics</h2>
+            <p class="text-base sm:text-lg mb-6"><strong class="accent-blue">We are currently building a Tabular Foundation Model specifically for Cancer Genomics.</strong> This initiative aims to leverage the power and scalability of TFM principles, inspired by models like TabICL, to tackle the unique complexities of cancer data and improve patient outcomes.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 accent-blue">Capabilities of Our Cancer Genomics TFM</h3>
+                    <ul class="list-none space-y-3 text-base sm:text-lg">
+                        <li class="flex items-start"><span class="icon accent-blue">📈</span><div><strong class="font-semibold">Enhanced Survival & Prognostic Prediction:</strong> Aiming for more accurate and personalized risk stratification.</div></li>
+                        <li class="flex items-start"><span class="icon accent-green">🧬</span><div><strong class="font-semibold">Multi-Omics Data Integration:</strong> Designed to incorporate diverse data types including genomics, transcriptomics, and clinical data.</div></li>
+                        <li class="flex items-start"><span class="icon accent-yellow">🎯</span><div><strong class="font-semibold">Initial Focus on Gene Expression:</strong> Beginning with gene expression data to build a robust foundational model, with plans to expand.</div></li>
+                        <li class="flex items-start"><span class="icon accent-red">⚙️</span><div><strong class="font-semibold">Advanced Survival-Specific Loss Functions:</strong> Incorporating tailored loss functions to better model time-to-event data and handle censoring, crucial for survival analysis.</div></li>
+                    </ul>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 accent-blue">Proposed Cancer TFM Workflow</h3>
+                    <div class="space-y-2 p-4 bg-gray-50 rounded-lg">
+                        <div class="p-3 flowchart-step text-sm">Input: Diverse Cancer Data
+                            <div class="text-xs">(Gene Expression, Multi-Omics, Clinical)</div>
+                        </div>
+                        <div class="flowchart-arrow text-2xl">↓</div>
+                        <div class="p-3 flowchart-step text-sm">Cancer-Specific Tabular Foundation Model
+                            <div class="text-xs">(Leveraging TFM principles + Cancer Domain Knowledge)</div>
+                        </div>
+                        <div class="flowchart-arrow text-2xl">↓</div>
+                         <div class="p-3 flowchart-step text-sm">Specialized Loss Functions
+                            <div class="text-xs">(Optimized for Survival Analysis)</div>
+                        </div>
+                        <div class="flowchart-arrow text-2xl">↓</div>
+                        <div class="p-3 bg-accent-blue-light rounded-md text-sm">Output:
+                            <ul class="list-disc list-inside text-xs">
+                                <li>Personalized Survival Prognosis</li>
+                                <li>Treatment Response Prediction</li>
+                                <li>Biomarker Discovery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cancer-data-types" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">Data: The Fuel for Cancer TFMs</h2>
+            <p class="text-base sm:text-lg mb-6">The success of TFMs in cancer genomics will heavily depend on the richness and diversity of data used for pretraining and application. Our approach aims to integrate multiple layers of biological and clinical information.</p>
+            <div class="chart-container">
+                <canvas id="cancerDataTypesChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section id="challenges-future" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">The Path Ahead: Challenges & Opportunities</h2>
+            <p class="text-base sm:text-lg mb-6">While TFMs hold immense promise for cancer genomics, several challenges must be addressed to translate these models into clinical impact. The future involves continuous innovation and rigorous validation.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div>
+                     <h3 class="text-xl sm:text-2xl font-bold mb-3 accent-red">Key Challenges</h3>
+                     <ul class="list-disc list-inside space-y-2 text-base sm:text-lg">
+                        <li><strong class="font-semibold">Data Scarcity & Heterogeneity:</strong> Accessing large, diverse, and standardized cancer datasets.</li>
+                        <li><strong class="font-semibold">Interpretability:</strong> Understanding the "black box" for clinical trust and biological insight.</li>
+                        <li><strong class="font-semibold">Clinical Validation:</strong> Rigorous testing in real-world clinical settings and diverse patient cohorts.</li>
+                        <li><strong class="font-semibold">Computational Resources:</strong> Training and deploying large-scale models.</li>
+                     </ul>
+                 </div>
+                 <div>
+                     <h3 class="text-xl sm:text-2xl font-bold mb-3 accent-green">Future Directions</h3>
+                     <ul class="list-disc list-inside space-y-2 text-base sm:text-lg">
+                        <li><strong class="font-semibold">Causal TFMs:</strong> Moving beyond correlation to understand causal drivers of cancer progression.</li>
+                        <li><strong class="font-semibold">Federated Learning:</strong> Training models across institutions without sharing sensitive patient data.</li>
+                        <li><strong class="font-semibold">Integration with Imaging:</strong> Combining tabular omics data with histopathology or radiology imaging.</li>
+                        <li><strong class="font-semibold">Therapeutic Guidance:</strong> Using TFMs to predict optimal treatment strategies.</li>
+                     </ul>
+                 </div>
+             </div>
+        </div>
+    </section>
+</main>
+
+<footer class="text-center p-6 bg-gray-800 text-white">
+    <p class="text-sm sm:text-base">Infographic visualizing the landscape of Tabular Foundation Models and their application to Cancer Genomics.</p>
+    <p class="text-xs sm:text-sm mt-1">Content synthesized from research including TabPFN (ICLR 2023), TabPFNv2 (Nature 2025), and TabICL (May 2025).</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            if (!item || !item.chart || !item.chart.data || !item.chart.data.labels || typeof item.dataIndex === 'undefined') {
+                return '';
+            }
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        const wrapLabel = (label, maxLength = 20) => {
+            if (typeof label !== 'string' || label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) lines.push(currentLine.trim());
+            return lines.length > 0 ? lines : [label];
+        };
+
+        const TFMColors = {
+            blue: '#4A90E2',    // Primary Accent
+            green: '#50E3C2',   // Teal Accent
+            yellow: '#F5A623',  // Yellow Accent
+            red: '#D0021B',     // Red Accent
+            darkGray: '#1A202C',
+            lightGrayBg: '#F0F4F8'
+        };
+
+        // Chart 1: TabICL Performance on Large Datasets
+        const tabiclPerfCtx = document.getElementById('tabiclPerformanceChart');
+        if(tabiclPerfCtx) {
+            new Chart(tabiclPerfCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['TabICL', 'CatBoost', 'TabPFNv2'],
+                    datasets: [{
+                        label: 'Average Rank on Large Datasets (>10K samples)',
+                        // Approximate ranks from TabICL paper (lower is better)
+                        // For visualization, we can invert or clearly state "Lower is Better"
+                        // Data here represents rank, so lower bars are better.
+                        data: [3.5, 4.0, 5.5], 
+                        backgroundColor: [TFMColors.yellow, TFMColors.green, TFMColors.blue],
+                        borderColor: TFMColors.darkGray,
+                        borderWidth: 1,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart for better label readability
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Average Rank (Lower is Better)',
+                                font: { size: 12, weight: 'bold' }
+                            },
+                            ticks: { font: { size: 10 } }
+                        },
+                        y: {
+                           ticks: { font: { size: 12 } } 
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Comparative Performance on Large Datasets (>10K Samples)',
+                            font: { size: 14, weight: 'bold' },
+                            padding: { top: 10, bottom: 20 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += context.parsed.x.toFixed(1);
+                                    }
+                                    return label;
+                                }
+                            },
+                            bodyFont: { size: 12 },
+                            titleFont: { size: 13, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart 2: Data Types for Cancer Genomics TFM
+        const cancerDataCtx = document.getElementById('cancerDataTypesChart');
+        if(cancerDataCtx) {
+            new Chart(cancerDataCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Gene Expression (Initial Focus)', 'Other Omics (e.g., Proteomics, Methylation)', 'Clinical Data (Stage, Grade, Demographics)', 'Imaging Data (Potential Future)'],
+                    datasets: [{
+                        label: 'Data Sources for Cancer TFM',
+                        data: [40, 25, 25, 10], // Illustrative percentages
+                        backgroundColor: [
+                            TFMColors.green,
+                            TFMColors.blue,
+                            TFMColors.yellow,
+                            TFMColors.red
+                        ],
+                        borderColor: TFMColors.lightGrayBg,
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 11 },
+                                boxWidth: 15,
+                                padding: 10,
+                                generateLabels: function(chart) {
+                                    const data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map(function(label, i) {
+                                            const meta = chart.getDatasetMeta(0);
+                                            const style = meta.controller.getStyle(i);
+                                            return {
+                                                text: wrapLabel(label, 25).join('\n'), // Wrap label text
+                                                fillStyle: style.backgroundColor,
+                                                strokeStyle: style.borderColor,
+                                                lineWidth: style.borderWidth,
+                                                hidden: isNaN(data.datasets[0].data[i]) || meta.data[i].hidden,
+                                                index: i
+                                            };
+                                        });
+                                    }
+                                    return [];
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Integrated Data Modalities for Cancer Genomics TFM',
+                            font: { size: 14, weight: 'bold' },
+                            padding: { top: 10, bottom: 15 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                 label: function(context) {
+                                    let label = context.label || '';
+                                    if (Array.isArray(label)) label = label.join(' ');
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            },
+                            bodyFont: { size: 12 },
+                            titleFont: { size: 13, weight: 'bold' }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
+

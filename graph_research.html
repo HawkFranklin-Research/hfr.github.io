@@ -1,0 +1,491 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GNNs in Multi-omics Cancer Research & The Rise of In-Context Learning</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #F3F4F6; /* Light Gray */
+        color: #4B5563; /* Gray-600 */
+    }
+    .section-header {
+        color: #1F2937; /* Gray-800 */
+        border-bottom-width: 3px;
+    }
+    .kpi-box {
+        background-color: #FFFFFF;
+        border-left-width: 5px;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .flowchart-step, .info-card, .formula-box, .icl-card {
+        background-color: #FFFFFF;
+        border-width: 2px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s;
+        border-radius: 0.375rem;
+    }
+    .flowchart-step:hover, .info-card:hover, .formula-box:hover, .icl-card:hover {
+        transform: translateY(-5px);
+    }
+    .flowchart-arrow {
+        font-weight: bold;
+    }
+    .timeline-item {
+        position: relative;
+        padding-bottom: 2rem;
+        padding-left: 2.5rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-marker {
+        position: absolute;
+        left: 0;
+        top: 0.125rem;
+        height: 1.5rem;
+        width: 1.5rem;
+        background-color: #FFFFFF;
+        border-width: 4px;
+        border-radius: 9999px;
+    }
+    .timeline-line {
+        position: absolute;
+        left: 0.625rem;
+        top: 1.625rem;
+        bottom: 0;
+        width: 4px;
+    }
+    /* Accent Colors */
+    .accent1-text { color: #3B82F6; } /* Blue-500 */
+    .accent1-bg { background-color: #3B82F6; }
+    .accent1-border { border-color: #3B82F6; }
+
+    .accent2-text { color: #EC4899; } /* Pink-500 */
+    .accent2-bg { background-color: #EC4899; }
+    .accent2-border { border-color: #EC4899; }
+
+    .accent3-text { color: #F59E0B; } /* Amber-500 */
+    .accent3-bg { background-color: #F59E0B; }
+    .accent3-border { border-color: #F59E0B; }
+
+    .accent4-text { color: #10B981; } /* Emerald-500 */
+    .accent4-bg { background-color: #10B981; }
+    .accent4-border { border-color: #10B981; }
+
+    .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 300px;
+        max-height: 350px;
+    }
+    @media (min-width: 768px) {
+        .chart-container { height: 350px; max-height: 400px; }
+    }
+    mjx-container {
+        overflow-x: auto; /* Allow horizontal scrolling for long equations */
+        overflow-y: hidden;
+        display: block; /* Ensure it takes block display for scrolling */
+        padding-bottom: 8px; /* Add some padding for scrollbar if it appears */
+    }
+</style>
+</head>
+<body>
+
+<header class="bg-white shadow-md p-6 text-center">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 accent1-text">Graph Neural Networks: Revolutionizing Multi-omics Cancer Research</h1>
+    <p class="text-lg sm:text-xl text-gray-600 mt-2">Mapping Mathematical Operations to Biological Insights & Exploring the Future with In-Context Learning</p>
+</header>
+
+<main class="container mx-auto p-4 md:p-8 space-y-12">
+
+    <section id="challenge" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent2-border pb-2 mb-4">The Intricate Puzzle of Cancer</h2>
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+            <div>
+                <p class="text-base sm:text-lg mb-4">Cancer is not a single disease but a complex constellation characterized by significant molecular heterogeneity. This diversity drives variability in clinical presentation, progression, and response to therapy.</p>
+                <p class="text-base sm:text-lg mb-4">High-throughput <strong class="accent2-text">multi-omics technologies</strong> (TCGA, CPTAC) generate vast datasets spanning genomics, transcriptomics, proteomics, and more, holding immense potential for precision oncology.</p>
+                <p class="text-base sm:text-lg">However, traditional analytical methods often struggle with the relational complexity inherent in biological systems.</p>
+            </div>
+            <div class="flex justify-center items-center space-x-4 p-4 rounded-lg bg-pink-50">
+                <div class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 accent2-text mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3m0-12a9 9 0 110 18 9 9 0 010-18z" /></svg>
+                    <p class="mt-2 font-semibold">Genomics</p>
+                </div>
+                <div class="text-center">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 accent2-text mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 12L3 8m4 4l4 4m6-4v12m0-12l4-8m-4 8l-4-4" /></svg>
+                    <p class="mt-2 font-semibold">Transcriptomics</p>
+                </div>
+                <div class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 accent2-text mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg>
+                    <p class="mt-2 font-semibold">Proteomics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="intro-gnns" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent1-border pb-2 mb-4">Enter Graph Neural Networks (GNNs)</h2>
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+            <div>
+                <p class="text-base sm:text-lg mb-4">GNNs are specialized deep learning models designed to operate on <strong class="accent1-text">graph-structured data</strong>. They represent entities (genes, proteins, patients) as nodes and their relationships (interactions, similarities) as edges.</p>
+                <p class="text-base sm:text-lg mb-4">The core mechanism is <strong class="accent1-text">message passing</strong>, where nodes iteratively aggregate information from their neighbors, learning representations (embeddings) that capture both node features and local graph topology.</p>
+                <div class="mt-6 space-y-4">
+                    <div class="kpi-box p-4 accent1-border">
+                        <h3 class="text-lg font-bold accent1-text">Model Relational Data</h3>
+                        <p class="text-sm">Explicitly captures biological interactions and similarities.</p>
+                    </div>
+                    <div class="kpi-box p-4 accent1-border">
+                        <h3 class="text-lg font-bold accent1-text">Integrate Multi-Omics</h3>
+                        <p class="text-sm">Can fuse diverse data types into a unified framework.</p>
+                    </div>
+                    <div class="kpi-box p-4 accent1-border">
+                        <h3 class="text-lg font-bold accent1-text">Performance Gains</h3>
+                        <p class="text-sm">Often yield 6-15% median improvement over non-graph methods.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center p-4 rounded-lg bg-blue-50">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 accent1-text mb-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V5a1 1 0 00-1.447-.894l-4 2A1 1 0 0011 7v10zM4 17a1 1 0 001.447.894l4-2A1 1 0 0010 15V5a1 1 0 00-1.447-.894l-4 2A1 1 0 004 7v10z" />
+                </svg>
+                <p class="text-center font-semibold text-lg">Nodes aggregate information from neighbors, learning context-aware representations.</p>
+                <div class="mt-4 flex space-x-2">
+                    <span class="px-3 py-1 bg-blue-200 text-blue-700 rounded-full text-sm">Gene A</span>
+                    <span class="text-2xl accent1-text">&rarr;</span>
+                    <span class="px-3 py-1 bg-blue-200 text-blue-700 rounded-full text-sm">Gene B</span>
+                    <span class="text-2xl accent1-text">&larr;</span>
+                    <span class="px-3 py-1 bg-blue-200 text-blue-700 rounded-full text-sm">Protein X</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent3-border pb-2 mb-4">The GNN Workflow in Cancer Research</h2>
+        <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+            <div class="flowchart-step p-4 accent3-border w-full md:w-1/5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 accent3-text mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4" /></svg>
+                <h3 class="font-semibold">1. Data Acquisition</h3>
+                <p class="text-xs">Multi-omics, Clinical, Imaging Data</p>
+            </div>
+            <div class="flowchart-arrow text-3xl accent3-text md:rotate-0 rotate-90">&rarr;</div>
+            <div class="flowchart-step p-4 accent3-border w-full md:w-1/5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 accent3-text mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                <h3 class="font-semibold">2. Graph Construction</h3>
+                <p class="text-xs">Nodes (Genes, Patients), Edges (Interactions, Similarity)</p>
+            </div>
+            <div class="flowchart-arrow text-3xl accent3-text md:rotate-0 rotate-90">&rarr;</div>
+            <div class="flowchart-step p-4 accent3-border w-full md:w-1/5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 accent3-text mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <h3 class="font-semibold">3. GNN Model Application</h3>
+                <p class="text-xs">GCN, GAT, GraphSAGE, etc. for learning</p>
+            </div>
+            <div class="flowchart-arrow text-3xl accent3-text md:rotate-0 rotate-90">&rarr;</div>
+            <div class="flowchart-step p-4 accent3-border w-full md:w-1/5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 accent3-text mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                <h3 class="font-semibold">4. Downstream Tasks</h3>
+                <p class="text-xs">Subtyping, Survival, Drug Response, Biomarkers</p>
+            </div>
+            <div class="flowchart-arrow text-3xl accent3-text md:rotate-0 rotate-90">&rarr;</div>
+            <div class="flowchart-step p-4 accent3-border w-full md:w-1/5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 accent3-text mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                <h3 class="font-semibold">5. Insights & Outcomes</h3>
+                <p class="text-xs">Improved Accuracy, Novel Discoveries, Personalized Medicine</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="applications" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent2-border pb-2 mb-4">Key GNN Applications in Cancer Genomics</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="info-card p-4 accent2-border">
+                <h3 class="text-xl font-bold mb-2 accent2-text">Subtype Classification</h3>
+                <p class="text-sm mb-2">Identifying distinct molecular subtypes for tailored treatments. GNNs integrate multi-omics or leverage interaction networks.</p>
+                <p class="text-xs font-mono">Models: omicsGAT, MOGONET, MCRGCN</p>
+            </div>
+            <div class="info-card p-4 accent2-border">
+                <h3 class="text-xl font-bold mb-2 accent2-text">Survival Prediction</h3>
+                <p class="text-sm mb-2">Predicting patient outcomes (e.g., overall survival). GNNs model patient similarity or gene/pathway networks.</p>
+                <p class="text-xs font-mono">Models: GNN-surv, PathGNN, FGCNSurv</p>
+            </div>
+            <div class="info-card p-4 accent2-border">
+                <h3 class="text-xl font-bold mb-2 accent2-text">Drug Response</h3>
+                <p class="text-sm mb-2">Predicting sensitivity or resistance to drugs. GNNs model drug structures, target interactions, or cell line graphs.</p>
+                <p class="text-xs font-mono">Models: DRPreter, XGDP, DualGCN</p>
+            </div>
+            <div class="info-card p-4 accent2-border">
+                <h3 class="text-xl font-bold mb-2 accent2-text">Biomarker Discovery</h3>
+                <p class="text-sm mb-2">Identifying key molecular players (driver genes, predictive biomarkers) by integrating diverse omics layers.</p>
+                <p class="text-xs font-mono">Models: CGMega, MRNGCN, MICAH</p>
+            </div>
+        </div>
+        <div class="mt-6 chart-container">
+            <canvas id="applicationsChart"></canvas>
+        </div>
+    </section>
+
+    <section id="architectures" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent1-border pb-2 mb-4">Spotlight on GNN Architectures</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="info-card p-4 accent1-border">
+                <h3 class="text-lg font-bold accent1-text">GCN (Graph Convolutional Network)</h3>
+                <p class="text-sm">Aggregates neighbor features, akin to image convolutions. Foundational for many tasks.</p>
+            </div>
+            <div class="info-card p-4 accent1-border">
+                <h3 class="text-lg font-bold accent1-text">GAT (Graph Attention Network)</h3>
+                <p class="text-sm">Assigns different importance (attention) to neighbors, allowing context-specific aggregation.</p>
+            </div>
+            <div class="info-card p-4 accent1-border">
+                <h3 class="text-lg font-bold accent1-text">GraphSAGE</h3>
+                <p class="text-sm">Inductive learning framework; samples and aggregates features from a fixed-size neighborhood.</p>
+            </div>
+            <div class="info-card p-4 accent1-border">
+                <h3 class="text-lg font-bold accent1-text">GIN (Graph Isomorphism Network)</h3>
+                <p class="text-sm">Theoretically powerful for distinguishing graph structures, useful for molecular graphs.</p>
+            </div>
+            <div class="info-card p-4 accent1-border">
+                <h3 class="text-lg font-bold accent1-text">Graph Transformers</h3>
+                <p class="text-sm">Adapt Transformer architecture for graphs, capturing global dependencies via attention.</p>
+            </div>
+            <div class="info-card p-4 accent1-border">
+                <h3 class="text-lg font-bold accent1-text">Heterogeneous GNNs / Hypergraphs</h3>
+                <p class="text-sm">Model diverse node/edge types or higher-order interactions beyond pairwise connections.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="math" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent3-border pb-2 mb-4">Mathematical Foundations: GNNs in Biology</h2>
+        <p class="text-base sm:text-lg mb-6">Core GNN operations translate mathematical constructs into biologically meaningful interpretations, enabling models to learn from complex omics data.</p>
+        <div class="space-y-6">
+            <div class="formula-box p-4 accent3-border">
+                <h3 class="text-lg font-bold accent3-text">1. k-Nearest-Neighbour (kNN) Adjacency Matrix</h3>
+                <p class="text-sm my-2">Defines connections based on similarity, forming patient or gene networks.</p>
+                <div class="bg-amber-50 p-3 rounded">
+                    <p class="text-sm font-mono">\( A_{ij}\;=\; \begin{cases} 1, & \text{if } j \in \mathrm{kNN}(i) \text{ or } i \in \mathrm{kNN}(j),\\ 0, & \text{otherwise}. \end{cases} \)</p>
+                </div>
+                <p class="text-xs mt-2 italic"><strong>Biological Link:</strong> Connects patients with similar molecular profiles (e.g., from TCGA expression data) for subtype discovery or genes with related functions.</p>
+            </div>
+            <div class="formula-box p-4 accent3-border">
+                <h3 class="text-lg font-bold accent3-text">2. Graph Convolutional Network (GCN) Layer</h3>
+                <p class="text-sm my-2">Updates a node's representation by averaging features of its interacting partners.</p>
+                 <div class="bg-amber-50 p-3 rounded">
+                    <p class="text-sm font-mono">\( \mathbf{h}_v^{(l+1)} \;=\; \sigma\!\Biggl(\sum_{u \in \tilde{\mathcal{N}}(v)} \frac{1}{\sqrt{\tilde{d}_v \tilde{d}_u}}\; \mathbf{W}^{(l)} \mathbf{h}_u^{(l)}\Biggr) \)</p>
+                </div>
+                <p class="text-xs mt-2 italic"><strong>Biological Link:</strong> Models how a gene's function or a patient's state is influenced by its molecular or clinical neighborhood (e.g., in PPI networks or patient similarity graphs).</p>
+            </div>
+            <div class="formula-box p-4 accent3-border">
+                <h3 class="text-lg font-bold accent3-text">3. Graph Attention Network (GAT) Layer</h3>
+                <p class="text-sm my-2">Assigns learnable importance (attention weights \(\alpha_{vu}\)) to neighbors during aggregation.</p>
+                 <div class="bg-amber-50 p-3 rounded">
+                    <p class="text-sm font-mono">\( \mathbf{h}_v^{(l+1)} = \sigma\!\Biggl( \sum_{u \in \mathcal{N}(v)} \alpha_{vu} \mathbf{W}^{(l)} \mathbf{h}_u^{(l)} \Biggr) \)</p>
+                </div>
+                <p class="text-xs mt-2 italic"><strong>Biological Link:</strong> Identifies critical interactors for a gene in a specific cancer context or influential patient similarities for subtype determination (e.g., omicsGAT).</p>
+            </div>
+             <div class="formula-box p-4 accent3-border">
+                <h3 class="text-lg font-bold accent3-text">4. Cox Partial-Likelihood for Survival Analysis</h3>
+                <p class="text-sm my-2">Standard loss for training GNNs to predict patient survival outcomes, handling censored data.</p>
+                 <div class="bg-amber-50 p-3 rounded">
+                    <p class="text-sm font-mono">\( \mathcal{L}_{\text{Cox}} = -\sum_{i: \delta_i=1} \Biggl( f(\mathbf{x}_i) - \log \sum_{j:t_j \ge t_i} \exp(f(\mathbf{x}_j)) \Biggr) \)</p>
+                </div>
+                <p class="text-xs mt-2 italic"><strong>Biological Link:</strong> Enables GNNs (e.g., GNN-surv) to learn risk scores from omics profiles that correlate with patient survival times, aiding prognostic modeling.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gnn-challenges-future" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent1-border pb-2 mb-4">GNNs in Cancer: Current Hurdles & The Road Ahead</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-3 accent1-text">Key Challenges</h3>
+                <ul class="list-disc list-inside space-y-2 text-base">
+                    <li><strong class="font-semibold">Graph Construction:</strong> Robustly defining nodes and edges from noisy, high-dimensional omics data remains critical.</li>
+                    <li><strong class="font-semibold">Interpretability (XAI):</strong> Understanding *why* a GNN makes a prediction is crucial for clinical trust and biological discovery.</li>
+                    <li><strong class="font-semibold">Scalability:</strong> Applying GNNs to massive biobanks or genome-wide interaction networks efficiently.</li>
+                    <li><strong class="font-semibold">Data Heterogeneity:</strong> Effectively integrating diverse data types (multi-omics, clinical, imaging) with varying quality and scales.</li>
+                    <li><strong class="font-semibold">Validation:</strong> Ensuring models generalize to new, unseen patient cohorts and diverse clinical settings.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-3 accent1-text">Main Future Directions</h3>
+                <ul class="list-disc list-inside space-y-2 text-base">
+                    <li><strong class="font-semibold">Causality-Aware GNNs:</strong> Moving beyond correlation to infer causal relationships in biological networks.</li>
+                    <li><strong class="font-semibold">Graph Foundation Models:</strong> Pre-training large GNNs on vast biological data for broad applicability.</li>
+                    <li><strong class="font-semibold">Federated Learning:</strong> Training GNNs collaboratively across institutions without sharing sensitive patient data.</li>
+                    <li><strong class="font-semibold">Dynamic & Temporal GNNs:</strong> Modeling disease progression and treatment effects over time.</li>
+                    <li><strong class="font-semibold">Multi-Scale Modeling:</strong> Integrating information from molecular to tissue and patient levels.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="icl-gnns" class="bg-emerald-50 rounded-lg shadow-lg p-6 md:p-8">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent4-border text-emerald-700 pb-2 mb-6">The Next Frontier: In-Context Learning (ICL) for Adaptive GNNs</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+            <div>
+                <h3 class="text-xl font-bold mb-3 accent4-text">What is In-Context Learning for GNNs?</h3>
+                <p class="text-base mb-4">Inspired by Large Language Models (LLMs), ICL enables a pre-trained GNN to adapt to <strong class="accent4-text">new tasks or data contexts using a few examples (a "prompt")</strong>, often without any parameter updates.</p>
+                <p class="text-base mb-4">Instead of extensive retraining, the GNN leverages its learned knowledge to interpret the prompt and make predictions for the new scenario.</p>
+
+                <h3 class="text-xl font-bold mb-3 mt-6 accent4-text">Why ICL in Cancer Research?</h3>
+                <ul class="list-disc list-inside space-y-2 text-base mb-4">
+                    <li>Rapidly adapt models to <strong class="accent4-text">new cancer subtypes or rare diseases</strong> with limited data.</li>
+                    <li>Personalize prognostic or treatment response models using <strong class="accent4-text">patient-specific "prompts"</strong> (e.g., unique molecular features).</li>
+                    <li>Accelerate drug discovery by prompting GNNs with effects of novel compounds or targets.</li>
+                    <li>Handle evolving biological understanding and data distributions more dynamically.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-bold accent4-text mb-2 text-center">Simplified ICL-GNN Workflow</h3>
+                <div class="flex flex-col items-center space-y-2 text-sm">
+                    <div class="icl-card p-3 accent4-border w-full text-center">
+                        <p>📊 Pre-trained GNN (Foundation Model)</p>
+                    </div>
+                    <div class="text-2xl accent4-text">&darr; +</div>
+                    <div class="icl-card p-3 accent4-border w-full text-center">
+                        <p>📝 Graph Prompt (e.g., few examples of a new cancer subtype, drug effect)</p>
+                    </div>
+                    <div class="text-2xl accent4-text">&darr;</div>
+                    <div class="icl-card p-3 accent4-border w-full text-center">
+                        <p>🧠 GNN Processes Prompt + Query</p>
+                    </div>
+                    <div class="text-2xl accent4-text">&darr;</div>
+                    <div class="icl-card p-3 bg-emerald-100 accent4-border w-full text-center">
+                        <p class="font-semibold">🎯 Adaptive Prediction for New Context</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="text-xl sm:text-2xl font-bold mt-8 mb-4 accent4-text">Pioneering ICL-GNN Methods</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="icl-card p-4 accent4-border">
+                <h4 class="text-lg font-bold">PRODIGY (Huang et al., 2023)</h4>
+                <p class="text-sm">Pre-trains GNNs on "prompt graphs" connecting examples and queries to label nodes, enabling ICL for node/edge classification on unseen graphs.</p>
+            </div>
+            <div class="icl-card p-4 accent4-border">
+                <h4 class="text-lg font-bold">All in One (Sun et al., 2023)</h4>
+                <p class="text-sm">Multi-task prompting framework unifying node, edge, and graph tasks via prompt graphs and meta-learned prompt initializations.</p>
+            </div>
+            <div class="icl-card p-4 accent4-border">
+                <h4 class="text-lg font-bold">One For All (OFA) (Liu et al., 2024)</h4>
+                <p class="text-sm">Uses text-attributed graphs and class nodes as prompts, aiming for a single GNN for all tasks across diverse domains, including zero-shot learning.</p>
+            </div>
+             <div class="icl-card p-4 accent4-border">
+                <h4 class="text-lg font-bold">GPPT (Sun et al., 2022)</h4>
+                <p class="text-sm">Early method unifying pre-training and downstream node classification by reformulating it as link prediction to prompt tokens (label nodes).</p>
+            </div>
+             <div class="icl-card p-4 accent4-border">
+                <h4 class="text-lg font-bold">AskGNN (Hu et al., 2024)</h4>
+                <p class="text-sm">Hybrid GNN-LLM approach where a GNN retrieves relevant graph examples to construct prompts for an LLM to perform ICL on text-attributed graphs.</p>
+            </div>
+             <div class="icl-card p-4 accent4-border">
+                <h4 class="text-lg font-bold">GraphPrompter (Lv et al., 2025)</h4>
+                <p class="text-sm">Focuses on optimizing the selection and generation of graph prompts via multi-stage refinement to boost ICL performance.</p>
+            </div>
+        </div>
+
+        <h3 class="text-xl sm:text-2xl font-bold mt-8 mb-4 accent4-text">ICL-GNNs: Potential & Challenges</h3>
+         <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h4 class="text-lg font-semibold mb-2">Potential Impact in Oncology:</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm">
+                    <li>Faster development of models for rare cancers or novel biomarkers.</li>
+                    <li>More dynamic and personalized risk assessment adapting to patient journey.</li>
+                    <li>Efficient exploration of drug repurposing candidates.</li>
+                    <li>Reduced need for extensive, task-specific labeled datasets.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold mb-2">Key Challenges for ICL-GNNs:</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm">
+                    <li>Defining effective and interpretable "graph prompts".</li>
+                    <li>Scalability of processing complex prompts for large graphs.</li>
+                    <li>Ensuring robustness and generalization across diverse cancer types and datasets.</li>
+                    <li>Theoretical understanding of how GNNs perform ICL.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="conclusion" class="bg-white rounded-lg shadow-lg p-6 md:p-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold section-header accent1-border pb-2 mb-4">Paving the Way for Precision Oncology</h2>
+        <p class="text-base sm:text-lg mb-4">GNNs have demonstrated remarkable potential in transforming cancer research by deciphering complex multi-omics data. Their ability to model relationships and integrate diverse information sources offers tangible improvements in subtype classification, survival prediction, and drug response modeling.</p>
+        <p class="text-base sm:text-lg mb-4">The advent of <strong class="accent4-text">In-Context Learning</strong> promises to further enhance their adaptability and utility, pushing GNNs towards becoming indispensable tools in the quest for personalized and effective cancer treatments.</p>
+        <p class="text-base sm:text-lg">While challenges in interpretability, generalization, and robust graph construction remain, ongoing research is actively addressing these hurdles, bringing GNN-powered precision oncology closer to clinical reality.</p>
+    </section>
+
+</main>
+
+<footer class="text-center p-6 bg-gray-800 text-white mt-12">
+    <p class="text-sm">Infographic synthesized from research on GNNs in Cancer Genomics and In-Context Learning (2018-2025).</p>
+    <p class="text-xs mt-1">Visual representation for educational purposes. Content derived from provided academic manuscripts.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Color palette
+    const PPal = {
+        blue: '#3B82F6', pink: '#EC4899', amber: '#F59E0B', emerald: '#10B981',
+        gray100: '#F3F4F6', gray800: '#1F2937'
+    };
+
+    // Chart: Applications Focus
+    const applicationsCtx = document.getElementById('applicationsChart');
+    if(applicationsCtx) {
+        new Chart(applicationsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Subtype Classification', 'Survival Prediction', 'Drug Response', 'Biomarker Discovery'],
+                datasets: [{
+                    label: 'Relative Research Focus (Illustrative)',
+                    data: [35, 30, 25, 10], // Illustrative data
+                    backgroundColor: [PPal.pink, PPal.blue, PPal.amber, PPal.emerald],
+                    borderColor: PPal.gray800,
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Illustrative Focus (%)' } },
+                    x: { ticks: { font: { size: 10 } } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Illustrative Focus of GNN Applications in Cancer Research',
+                        font: { size: 14, weight: 'bold' },
+                        padding: { top: 10, bottom: 20 }
+                    }
+                }
+            }
+        });
+    }
+    
+    // MathJax configuration
+    if (typeof MathJax !== 'undefined' && MathJax.startup) {
+        MathJax.startup.promise.then(() => {
+            MathJax.typesetPromise(); // Retypeset after initial rendering if needed
+        });
+    }
+});
+</script>
+
+</body>
+
+

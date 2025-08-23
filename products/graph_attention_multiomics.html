@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Attention Network for Multi-Omics Risk Stratification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-left-color: #0ea5e9;
+        }
+        .infographic-item {
+            position: relative;
+        }
+        .infographic-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230ea5e9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 5l7 7-7 7M5 5l7 7-7 7' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        @media (max-width: 768px) {
+            .infographic-item:not(:last-child):after {
+                display: none;
+            }
+        }
+        .tech-stack-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .dna-pattern {
+            background-color: #f0f9ff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230ea5e9' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M30 0h4v4h-4zM0 30h4v4H0zm60 0h-4v4h4zM30 60h4v-4h-4zM8 8h4v4H8zm40 40h4v4h-4zM8 48h4v4H8zm40-40h4v4h-4zM8 48h4v4H8zm0-40h4v4H8zm40 40h4v4h-4z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Header -->
+    <header class="gradient-bg py-6 dna-pattern">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="w-16 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
+                        <i class="fas fa-dna text-3xl text-sky-600"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-sky-900">Graph Attention Network</h1>
+                        <p class="text-lg text-sky-700">Multi-Omics Risk Stratification in Cancer Genomics</p>
+                    </div>
+                </div>
+                <div class="flex space-x-4">
+                    <span class="px-4 py-2 bg-sky-100 text-sky-800 rounded-full text-sm font-medium">
+                        <i class="fas fa-copyright mr-2"></i> HFR Copyrighted Algorithm
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Overview -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold text-sky-900 mb-6">Revolutionizing Cancer Risk Prediction</h2>
+                    <p class="text-xl text-gray-700 mb-8">
+                        Our Graph Attention Network (GAT/GATv2) integrates multi-omics data with biological knowledge to predict patient survival outcomes and stratify risk groups with unprecedented accuracy.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <span class="px-4 py-2 bg-sky-50 text-sky-800 rounded-full font-medium">
+                            <i class="fas fa-dna mr-2"></i> Genomics
+                        </span>
+                        <span class="px-4 py-2 bg-sky-50 text-sky-800 rounded-full font-medium">
+                            <i class="fas fa-chart-line mr-2"></i> AI-Powered
+                        </span>
+                        <span class="px-4 py-2 bg-sky-50 text-sky-800 rounded-full font-medium">
+                            <i class="fas fa-procedures mr-2"></i> Clinical Utility
+                        </span>
+                    </div>
+                    <a href="#technology" class="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300 inline-flex items-center">
+                        <i class="fas fa-microscope mr-2"></i> Explore Technology
+                    </a>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-lg">
+                        <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-semibold text-gray-800">Key Performance Metrics</h3>
+                                <span class="text-xs bg-sky-100 text-sky-800 px-2 py-1 rounded">Clinical Validation</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-chart-bar text-sky-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">AUC 0.98</h4>
+                                        <p class="text-sm text-gray-600">On selected biomarkers and stratification tasks</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-layer-group text-sky-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Multi-omic Fusion</h4>
+                                        <p class="text-sm text-gray-600">Integrates genomics, proteomics, and clinical factors</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 bg-sky-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-brain text-sky-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Attention Mechanisms</h4>
+                                        <p class="text-sm text-gray-600">Highlights influential pathways and interactions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Details -->
+    <section id="technology" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-sky-900 mb-12">Technical Approach</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-lg text-sky-800 mb-2">Biologically-Informed Graphs</h3>
+                    <p class="text-gray-600">Graphs constructed from known gene/protein interactions and pathways.</p>
+                </div>
+                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-lg text-sky-800 mb-2">GAT/GATv2 Layers</h3>
+                    <p class="text-gray-600">Attention over nodes captures cross-modal signal and important subnetworks.</p>
+                </div>
+                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-lg text-sky-800 mb-2">Survival Heads</h3>
+                    <p class="text-gray-600">Custom heads for risk scores and clinical endpoint prediction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <footer class="bg-sky-50 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold text-sky-900 mb-4">Collaborate on Multi-Omics AI</h3>
+            <p class="text-gray-700 mb-6">Contact us to discuss datasets, validation, and clinical pilots.</p>
+            <a href="/contact.html" class="inline-block bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>
+

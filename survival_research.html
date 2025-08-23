@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML in Cancer Prognosis: A Visual Review (2016-2025)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #F0F4F8; /* Light grayish blue background */
+    }
+    .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px; /* Max width for larger charts */
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px; /* Default height */
+        max-height: 400px; /* Max height to prevent overly tall charts */
+    }
+    @media (min-width: 768px) { /* Medium devices and up */
+        .chart-container {
+            height: 400px; /* Taller charts on larger screens */
+        }
+    }
+    .kpi-box {
+        background-color: #FFFFFF; /* White background for KPI boxes */
+        border-left: 5px solid #FF6B6B; /* Accent color for KPI boxes */
+        border-radius: 0.5rem; /* Rounded corners */
+    }
+    .section-header {
+        color: #1A202C; /* Dark gray for section headers */
+        border-bottom: 3px solid #FF6B6B; /* Accent color for section header underline */
+    }
+    .timeline-item {
+        position: relative;
+        padding-bottom: 2rem;
+        padding-left: 2.5rem; /* Space for marker and line */
+    }
+    .timeline-item:last-child {
+        padding-bottom: 0;
+    }
+    .timeline-marker {
+        position: absolute;
+        left: 0;
+        top: 0.125rem; /* Align with text */
+        height: 1.5rem;
+        width: 1.5rem;
+        background-color: #FFFFFF; /* White marker */
+        border: 4px solid #4D96FF; /* Blue border for marker */
+        border-radius: 9999px; /* Circular marker */
+    }
+    .timeline-line {
+        position: absolute;
+        left: 0.625rem; /* Centered with marker */
+        top: 1.625rem; /* Start below marker */
+        bottom: 0;
+        width: 4px;
+        background-color: #4D96FF; /* Blue line */
+    }
+    .flowchart-step {
+        background-color: #FFFFFF; /* White background for flowchart steps */
+        border: 2px solid #4D96FF; /* Blue border for flowchart steps */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+        transition: transform 0.2s; /* Hover effect */
+        border-radius: 0.375rem; /* Rounded corners */
+    }
+    .flowchart-step:hover {
+        transform: translateY(-5px); /* Slight lift on hover */
+    }
+    .flowchart-arrow {
+        color: #4D96FF; /* Blue arrow */
+        font-weight: bold;
+    }
+</style>
+</head>
+<body class="text-gray-700">
+<header class="bg-white shadow-md p-6 text-center">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800" style="color: #1A202C;">Advances in Machine Learning for Cancer Survival Prognosis</h1>
+    <p class="text-lg sm:text-xl text-gray-600 mt-2">A Visual Synthesis of Key Research and Trends (2016-2025)</p>
+</header>
+
+<main class="container mx-auto p-4 md:p-8">
+    <section id="introduction" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">The Evolving Landscape of Prognostic Modeling</h2>
+            <p class="text-base sm:text-lg mb-4">The period between 2016 and 2025 has marked a paradigm shift in cancer survival prediction. Driven by the limitations of traditional statistical methods, the field has rapidly embraced machine learning (ML) and deep learning (DL) to decipher the complex, high-dimensional data now available. This infographic visualizes this evolution, highlighting the move from single-data models to sophisticated multi-modal frameworks that integrate genomics, histopathology, and clinical data to create more accurate and personalized patient prognoses.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mt-6">
+                <div class="kpi-box p-6">
+                    <p class="text-3xl sm:text-4xl font-bold" style="color: #FF6B6B;">30+</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">Key Studies Surveyed</p>
+                </div>
+                <div class="kpi-box p-6" style="border-left-color: #4D96FF;">
+                    <p class="text-3xl sm:text-4xl font-bold" style="color: #4D96FF;">~10 Years</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">Of Transformative Research</p>
+                </div>
+                <div class="kpi-box p-6" style="border-left-color: #FFD166;">
+                    <p class="text-3xl sm:text-4xl font-bold" style="color: #FFD166;">C-Index</p>
+                    <p class="text-md sm:text-lg font-semibold text-gray-600">The Gold Standard Metric</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="data-modalities" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">The Data Revolution: Fueling Prognostic AI</h2>
+            <p class="text-base sm:text-lg mb-6">The power of modern prognostic models lies in their ability to integrate diverse and complementary data sources. Each modality provides a unique window into tumor biology, and their combination enables a more holistic and accurate assessment of patient risk. This section illustrates the primary data types driving this revolution.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="dataModalitiesChart"></canvas>
+                </div>
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3" style="color: #1A202C;">From Unimodal to Multi-Omics</h3>
+                    <p class="mb-4 text-base sm:text-lg">Early models often relied on a single data type, such as gene expression. The key trend has been the move towards multi-omics and multi-modal integration, combining molecular data with clinical variables and, more recently, high-resolution histopathology images. This fusion captures a more complete picture of the disease, leading to more robust predictions.</p>
+                    <div class="space-y-3 text-base sm:text-lg">
+                        <p><strong style="color: #FF6B6B;">🧬 Genomics:</strong> Mutations, CNVs, methylation.</p>
+                        <p><strong style="color: #FFD166;">🔬 Histopathology (WSI):</strong> Digital slide images revealing cellular morphology.</p>
+                        <p><strong style="color: #4D96FF;">📊 Clinical Data:</strong> Age, tumor stage, grade. Foundational, strong predictors.</p>
+                        <p><strong style="color: #06D6A0;">🧩 Multi-Omics:</strong> The synergistic combination of multiple molecular data layers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology-timeline" class="mb-12">
+         <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">A Timeline of Foundational Methodologies</h2>
+            <p class="text-base sm:text-lg mb-6">The journey of ML in cancer prognosis has been marked by several landmark papers and methodological shifts. This timeline highlights key innovations, from the adaptation of the Cox model for deep learning to the development of novel architectures and loss functions designed to handle the unique challenges of survival data.</p>
+            <div class="relative">
+                <div class="timeline-line block"></div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="text-lg sm:text-xl font-bold" style="color: #4D96FF;">2018: The Rise of Deep Survival Models</h3>
+                    <p class="font-semibold text-base sm:text-lg">DeepSurv & DeepHit</p>
+                    <p class="text-sm sm:text-base">Two seminal papers established the viability of deep learning. <strong style="color: #1A202C;">DeepSurv</strong> adapted the classic Cox Proportional Hazards model's loss function for neural networks. <strong style="color: #1A202C;">DeepHit</strong> introduced a novel loss to directly model survival distribution and handle competing risks, moving beyond the Cox model's assumptions.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="text-lg sm:text-xl font-bold" style="color: #4D96FF;">2020: The Imaging Frontier & Early Fusion</h3>
+                    <p class="font-semibold text-base sm:text-lg">WSI Analysis & Multi-Omics Autoencoders</p>
+                    <p class="text-sm sm:text-base"><strong style="color: #1A202C;">Wulczyn et al.</strong> demonstrated that weakly supervised deep learning on histopathology images (WSIs) could predict survival across 10 cancer types, finding a Censored Cross-Entropy loss most effective. Simultaneously, works like <strong style="color: #1A202C;">Tong et al.</strong> explored autoencoders for feature-level fusion of multi-omics data.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="text-lg sm:text-xl font-bold" style="color: #4D96FF;">2021-2022: Maturation of Integrated Frameworks</h3>
+                    <p class="font-semibold text-base sm:text-lg">Pathomic Fusion, MultiSurv & DeepProg</p>
+                    <p class="text-sm sm:text-base">The field matured with frameworks designed for robust multi-modal integration. <strong style="color: #1A202C;">Pathomic Fusion</strong> elegantly combined WSI and genomic features using Kronecker products. <strong style="color: #1A202C;">MultiSurv</strong> and <strong style="color: #1A202C;">DeepProg</strong> provided flexible pan-cancer pipelines for integrating multiple omics layers, demonstrating improved performance and the power of ensemble models.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="text-lg sm:text-xl font-bold" style="color: #4D96FF;">2023-2025: Advanced Fusion & Validation</h3>
+                    <p class="font-semibold text-base sm:text-lg">CATfusion & The Push for Robustness</p>
+                    <p class="text-sm sm:text-base">The latest advances feature sophisticated fusion mechanisms. <strong style="color: #1A202C;">CATfusion</strong> employed cross-attention transformers to integrate WSI and genomic data. A greater emphasis emerged on rigorous external validation, as seen in studies by <strong style="color: #1A202C;">Liu et al.</strong> and <strong style="color: #1A202C;">Audureau et al.</strong>, highlighting the critical gap between internal and real-world performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="fusion-strategies" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">The Art of Integration: Data Fusion Strategies</h2>
+            <p class="text-base sm:text-lg mb-6">Simply collecting multi-modal data is not enough; the method of integration is paramount. Researchers have developed several strategies to fuse heterogeneous data, each with its own advantages and complexities. The goal is to create a unified, informative representation that a machine learning model can use for prediction.</p>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2" style="color: #FF6B6B;">1. Early Fusion (Concatenation)</h3>
+                    <div class="flex flex-col md:flex-row items-center gap-4 text-sm sm:text-base">
+                        <div class="flex flex-wrap justify-center items-center space-x-2">
+                            <div class="p-3 sm:p-4 rounded-md bg-red-100">🧬 Genomics</div>
+                            <div class="p-3 sm:p-4 rounded-md bg-blue-100">🔬 WSI</div>
+                            <div class="p-3 sm:p-4 rounded-md bg-yellow-100">📊 Clinical</div>
+                        </div>
+                        <div class="flowchart-arrow text-3xl sm:text-4xl mx-2 sm:mx-4">→</div>
+                        <div class="p-3 sm:p-4 rounded-md flowchart-step flex-grow text-center">Combined Feature Vector</div>
+                        <div class="flowchart-arrow text-3xl sm:text-4xl mx-2 sm:mx-4">→</div>
+                        <div class="p-3 sm:p-4 rounded-md bg-green-100">🤖 ML Model</div>
+                    </div>
+                    <p class="mt-2 text-gray-600 text-sm sm:text-base">Features are simply concatenated into one large vector before being fed to the model. It's simple but can be affected by the "curse of dimensionality."</p>
+                </div>
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2" style="color: #4D96FF;">2. Intermediate Fusion (Feature-Level)</h3>
+                    <div class="flex flex-col md:flex-row items-center gap-4 text-sm sm:text-base">
+                       <div class="flex flex-wrap justify-center space-x-2">
+                            <div class="flex flex-col items-center">
+                                <div class="p-3 sm:p-4 rounded-md bg-red-100">🧬 Genomics</div>
+                                <div class="my-2 text-2xl">↓</div>
+                                <div class="p-2 sm:p-2 rounded-md flowchart-step">Learned Rep. 1</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="p-3 sm:p-4 rounded-md bg-blue-100">🔬 WSI</div>
+                                <div class="my-2 text-2xl">↓</div>
+                                <div class="p-2 sm:p-2 rounded-md flowchart-step">Learned Rep. 2</div>
+                            </div>
+                       </div>
+                        <div class="flowchart-arrow text-3xl sm:text-4xl mx-2 sm:mx-4 md:my-0 my-2">→</div>
+                         <div class="p-3 sm:p-4 rounded-md flowchart-step text-center">Fusion Layer (e.g., Attention)</div>
+                        <div class="flowchart-arrow text-3xl sm:text-4xl mx-2 sm:mx-4 md:my-0 my-2">→</div>
+                         <div class="p-3 sm:p-4 rounded-md bg-green-100">🤖 ML Model</div>
+                    </div>
+                    <p class="mt-2 text-gray-600 text-sm sm:text-base">Separate representations are learned for each modality, then fused at an intermediate model layer. This allows for capturing modality-specific patterns first. Methods like attention mechanisms or Kronecker products are used here.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2" style="color: #FFD166;">3. Late Fusion (Decision-Level)</h3>
+                    <div class="flex flex-col md:flex-row items-center gap-4 text-sm sm:text-base">
+                        <div class="flex flex-wrap justify-center space-x-2">
+                            <div class="flex flex-col items-center">
+                                <div class="p-3 sm:p-4 rounded-md bg-red-100">🧬 Genomics</div>
+                                <div class="my-2 text-2xl">↓</div>
+                                <div class="p-2 sm:p-2 rounded-md bg-green-100">🤖 Model 1</div>
+                                <div class="my-2 text-2xl">↓</div>
+                                <div class="p-2 sm:p-2 rounded-md flowchart-step">Prediction 1</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="p-3 sm:p-4 rounded-md bg-blue-100">🔬 WSI</div>
+                                <div class="my-2 text-2xl">↓</div>
+                                <div class="p-2 sm:p-2 rounded-md bg-green-100">🤖 Model 2</div>
+                                <div class="my-2 text-2xl">↓</div>
+                                <div class="p-2 sm:p-2 rounded-md flowchart-step">Prediction 2</div>
+                            </div>
+                       </div>
+                       <div class="flowchart-arrow text-3xl sm:text-4xl mx-2 sm:mx-4 md:my-0 my-2">→</div>
+                       <div class="p-3 sm:p-4 rounded-md flowchart-step text-center">Aggregate Predictions (e.g., Voting)</div>
+                       <div class="flowchart-arrow text-3xl sm:text-4xl mx-2 sm:mx-4 md:my-0 my-2">→</div>
+                       <div class="p-3 sm:p-4 rounded-md text-lg sm:text-xl font-bold" style="color: #1A202C;">Final Outcome</div>
+                    </div>
+                    <p class="mt-2 text-gray-600 text-sm sm:text-base">Separate models are trained for each modality, and their final predictions are combined. Nikolaou et al. (2025) found this approach consistently outperformed single-modality models.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="performance" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+             <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">Performance Insights: Pan-Cancer vs. Cancer-Specific</h2>
+             <p class="text-base sm:text-lg mb-6">A key question in the field is whether a single "pan-cancer" model can be effective across all tumor types, or if models must be tailored to the unique biology of each cancer. The data reveals a distinct trade-off: pan-cancer models leverage larger datasets for discovering broad patterns, but cancer-specific models often achieve higher accuracy by focusing on specific drivers.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="chart-container">
+                    <canvas id="panCancerChart"></canvas>
+                </div>
+                 <div class="chart-container">
+                    <canvas id="cancerSpecificChart"></canvas>
+                </div>
+            </div>
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                 <h3 class="text-xl sm:text-2xl font-bold mb-2" style="color: #1A202C;">The Generalization Gap: A Critical Hurdle</h3>
+                 <p class="text-sm sm:text-base">A recurring theme is the performance drop when a model trained on one dataset (e.g., TCGA) is tested on a completely new, external cohort. This "generalization gap" is a major challenge for clinical translation. The chart below visualizes the C-Index scores for a study with robust external validation, showing the difference between performance on the training data versus unseen validation cohorts.</p>
+                  <div class="chart-container mt-4 h-80 md:h-96">
+                    <canvas id="generalizationGapChart"></canvas>
+                </div>
+             </div>
+        </div>
+    </section>
+
+    <section id="conclusion" class="mb-12">
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl sm:text-3xl font-bold section-header pb-2 mb-4">The Path to the Clinic: Challenges & Future Directions</h2>
+            <p class="text-base sm:text-lg mb-6">While the research is promising, the journey from a high-performing model to a trusted clinical tool is fraught with challenges. Overcoming these hurdles is the next frontier for the field.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div>
+                     <h3 class="text-xl sm:text-2xl font-bold mb-3" style="color: #FF6B6B;">Key Challenges</h3>
+                     <ul class="list-disc list-inside space-y-2 text-base sm:text-lg">
+                        <li><strong class="font-semibold">Interpretability:</strong> Opening the "black box" of deep learning to build clinical trust.</li>
+                        <li><strong class="font-semibold">Generalizability:</strong> Ensuring models work robustly on new, diverse patient populations beyond the training data.</li>
+                         <li><strong class="font-semibold">Data Integration:</strong> Optimally fusing noisy, heterogeneous, and often incomplete data.</li>
+                         <li><strong class="font-semibold">Standardization:</strong> Lack of common benchmarks makes direct comparison of models difficult.</li>
+                     </ul>
+                 </div>
+                 <div>
+                     <h3 class="text-xl sm:text-2xl font-bold mb-3" style="color: #4D96FF;">Future Directions</h3>
+                     <ul class="list-disc list-inside space-y-2 text-base sm:text-lg">
+                        <li><strong class="font-semibold">Explainable AI (XAI):</strong> Developing models that can explain their predictions.</li>
+                        <li><strong class="font-semibold">Federated Learning:</strong> Training on data from multiple hospitals without sharing sensitive information.</li>
+                        <li><strong class="font-semibold">Dynamic Modeling:</strong> Updating predictions as new patient data becomes available over time.</li>
+                        <li><strong class="font-semibold">Causal Inference:</strong> Moving beyond correlation to understand the causal drivers of survival.</li>
+                     </ul>
+                 </div>
+             </div>
+        </div>
+    </section>
+</main>
+
+<footer class="text-center p-6 bg-gray-800 text-white">
+    <p class="text-sm sm:text-base">Infographic generated based on the deep research report "Advances in Machine Learning for Cancer Survival Prognosis" (2016-2025).</p>
+    <p class="text-xs sm:text-sm mt-1">This is a visual summary and does not replace the detailed findings of the source material. No SVG or Mermaid JS was used in this document.</p>
+</footer>
+
+<script>
+    // Wait for the DOM to be fully loaded before initializing charts
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        // Common callback for chart tooltips to handle array labels (for wrapped text)
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            if (!item || !item.chart || !item.chart.data || !item.chart.data.labels || typeof item.dataIndex === 'undefined') {
+                return ''; // Return empty if data is not available
+            }
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) { // If label is an array (wrapped), join it
+                return label.join(' ');
+            }
+            return label; // Otherwise, return the label as is
+        };
+
+        // Function to wrap long labels for chart axes to prevent overlap
+        const wrapLabel = (label, maxLength = 16) => {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label; // Return original label if short or not a string
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) { // Add any remaining part of the label
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [label]; // Return as array of lines or original label if not wrapped
+        };
+
+        // Color palette for charts
+        const EnergeticPlayful = {
+            red: '#FF6B6B',
+            blue: '#4D96FF',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            dark: '#1A202C',
+            lightGray: '#F0F4F8'
+        };
+
+        
+        // Chart 1: Data Modalities Doughnut Chart
+        const dataModalitiesCtx = document.getElementById('dataModalitiesChart');
+        if(dataModalitiesCtx) { // Check if canvas element exists
+            new Chart(dataModalitiesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Genomics (Mutations, CNVs, etc.)', 'Histopathology (WSI)', 'Clinical (Age, Stage, etc.)', 'Multi-Omics Integration'],
+                    datasets: [{
+                        label: 'Prevalence in High-Impact Studies',
+                        data: [30, 25, 35, 40], // Sample data
+                        backgroundColor: [
+                            EnergeticPlayful.red,
+                            EnergeticPlayful.yellow,
+                            EnergeticPlayful.blue,
+                            EnergeticPlayful.green
+                        ],
+                        borderColor: EnergeticPlayful.lightGray, // Border for segments
+                        borderWidth: 4 // Width of the border
+                    }]
+                },
+                options: {
+                    responsive: true, // Make chart responsive
+                    maintainAspectRatio: false, // Allow chart to fill container height
+                    plugins: {
+                        legend: {
+                            position: 'top', // Legend position
+                            labels: {
+                                font: { size: 12 }, // Legend font size
+                                boxWidth: 20, // Width of legend color box
+                                padding: 15 // Padding around legend items
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Primary Data Modalities in Prognostic AI Research',
+                            font: { size: 14, weight: 'bold' }, // Title font properties
+                            padding: { top: 10, bottom: 20 } // Padding for title
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback // Custom tooltip title
+                            },
+                            bodyFont: { size: 12 }, // Tooltip body font size
+                            titleFont: { size: 13, weight: 'bold' } // Tooltip title font size
+                        }
+                    },
+                    cutout: '60%' // Percentage of the chart that is cut out (for doughnut)
+                }
+            });
+        }
+
+        // Chart 2: Pan-Cancer Models Performance Bar Chart
+        const panCancerCtx = document.getElementById('panCancerChart');
+        if(panCancerCtx) { // Check if canvas element exists
+             new Chart(panCancerCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['CATfusion (2023)', 'Nikolaou et al. (2025)', 'MultiSurv (2021)', 'Wulczyn et al. (DLS) (2020)'].map(label => wrapLabel(label, 20)), // Wrap labels
+                    datasets: [{
+                        label: 'C-Index',
+                        data: [0.668, 0.785, 0.822, 0.611], // Sample data
+                        backgroundColor: EnergeticPlayful.red,
+                        borderColor: EnergeticPlayful.dark,
+                        borderWidth: 1,
+                        borderRadius: 5 // Rounded bars
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart
+                     scales: {
+                        x: {
+                            beginAtZero: true, // X-axis starts at 0
+                            suggestedMax: 1.0, // Suggest max value for C-Index
+                            title: {
+                                display: true,
+                                text: 'Concordance Index (C-Index)',
+                                font: { size: 12, weight: 'bold' }
+                            },
+                            ticks: { font: { size: 10 } }
+                        },
+                        y: {
+                           ticks: { font: { size: 10 } } // Y-axis tick font size
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // Hide legend for single dataset
+                        },
+                        title: {
+                            display: true,
+                            text: 'Performance of Pan-Cancer Models (Overall C-Index)',
+                            font: { size: 14, weight: 'bold' },
+                            padding: { top: 10, bottom: 20 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            },
+                             bodyFont: { size: 12 },
+                            titleFont: { size: 13, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Chart 3: Cancer-Specific Models Performance Bar Chart
+        const cancerSpecificCtx = document.getElementById('cancerSpecificChart');
+        if(cancerSpecificCtx) { // Check if canvas element exists
+            new Chart(cancerSpecificCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Wang et al. (CMM, 2023)', 'Sharma et al. (HNSC, 2022)', 'Chen et al. (Glioma, 2021)', 'Liu et al. (Duodenal - Val, 2025)'].map(label => wrapLabel(label, 20)), // Wrap labels
+                    datasets: [{
+                        label: 'C-Index',
+                        data: [0.910, 0.916, 0.826, 0.747], // Sample data
+                        backgroundColor: EnergeticPlayful.blue,
+                        borderColor: EnergeticPlayful.dark,
+                        borderWidth: 1,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart
+                    scales: {
+                       x: {
+                            beginAtZero: true,
+                            suggestedMax: 1.0,
+                            title: {
+                                display: true,
+                                text: 'Concordance Index (C-Index)',
+                                font: { size: 12, weight: 'bold' }
+                            },
+                            ticks: { font: { size: 10 } }
+                        },
+                        y: {
+                           ticks: { font: { size: 10 } }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Performance of Cancer-Specific Models (Test/Val C-Index)',
+                            font: { size: 14, weight: 'bold' },
+                            padding: { top: 10, bottom: 20 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            },
+                            bodyFont: { size: 12 },
+                            titleFont: { size: 13, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Chart 4: Generalization Gap Bar Chart
+         const generalizationGapCtx = document.getElementById('generalizationGapChart');
+         if(generalizationGapCtx) { // Check if canvas element exists
+             new Chart(generalizationGapCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Validation Cohort 1', 'Validation Cohort 2', 'Validation Cohort 3'].map(label => wrapLabel(label, 15)), // Wrap labels
+                    datasets: [
+                        {
+                            label: 'Training C-Index',
+                            data: [0.882, 0.882, 0.882], // Sample data
+                            backgroundColor: EnergeticPlayful.yellow,
+                            borderRadius: 5
+                        },
+                        {
+                            label: 'External Validation C-Index',
+                            data: [0.747, 0.736, 0.734], // Sample data
+                            backgroundColor: EnergeticPlayful.green,
+                            borderRadius: 5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { // Y-axis is now the C-Index score
+                            beginAtZero: true,
+                            suggestedMax: 1.0,
+                            title: {
+                                display: true,
+                                text: 'C-Index Score',
+                                font: { size: 12, weight: 'bold' }
+                            },
+                            ticks: { font: { size: 10 } }
+                        },
+                        x: { // X-axis is now the cohorts
+                           ticks: { font: { size: 10 } }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: { size: 12 },
+                                boxWidth: 20,
+                                padding: 15
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Example: Liu et al. (2025) Duodenal Adenocarcinoma Model',
+                            font: { size: 14, weight: 'bold' },
+                            padding: { top: 10, bottom: 20 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            },
+                            bodyFont: { size: 12 },
+                            titleFont: { size: 13, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+         }
+    });
+</script>
+</body>
+</html>
+
