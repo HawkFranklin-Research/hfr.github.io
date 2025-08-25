@@ -1,104 +1,143 @@
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-  /* Apply Inter font to the research page container */
-  .research-page-container {
-    font-family: 'Inter', sans-serif;
-  }
-  /* Additional custom styles if needed */
-</style>
-
-<div class="research-page-container py-12 md:py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Anchor targets for additional programs -->
-        <span id="multiomics"></span>
-        <span id="agents"></span>
-        <span id="vision"></span>
-        <div class="text-center">
-            <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl tracking-tight">
-                Our Research Directions
-            </h1>
-            <p class="mt-5 text-xl text-gray-600 max-w-3xl mx-auto">
-                At Hawk-Franklin Research, we are at the forefront of pioneering AI methodologies to tackle complex challenges, particularly in biosciences and healthcare. Explore our key research areas where we are pushing the boundaries of innovation through detailed reviews and novel developments.
-            </p>
-        </div>
-
-        <div class="mt-16 grid gap-8 md:gap-10 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-
-            <div id="gnn" class="flex flex-col rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <div class="flex-shrink-0">
-                    <div class="h-52 w-full bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 flex items-center justify-center p-4">
-                        <svg class="h-24 w-24 text-white opacity-80 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.75l-.75-.75A2.25 2.25 0 018.25 4.5h7.5a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-.75a2.25 2.25 0 00-2.25 2.25v.75m0-12.5h.008v.008H12v-.008zm0 2.25h.008v.008H12v-.008zm0 2.25h.008v.008H12v-.008zm0 2.25h.008v.008H12v-.008zm-2.25-.75a2.25 2.25 0 01-2.25-2.25v-.75m0 12.5a2.25 2.25 0 01-2.25-2.25V8.25a2.25 2.25 0 012.25-2.25h7.5M15 15h.008v.008H15v-.008zm0 2.25h.008v.008H15v-.008zm0 2.25h.008v.008H15v-.008zm0 2.25h.008v.008H15v-.008z" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-semibold text-gray-900">In-Context Learning for GNNs</h3>
-                        <p class="mt-3 text-base text-gray-600">
-                            We are investigating novel approaches to enable Graph Neural Networks to perform in-context learning. This allows GNNs to adapt to new graph structures and tasks with minimal examples, drawing inspiration from Large Language Models, which is crucial for dynamic biological data scenarios.
-                        </p>
-                    </div>
-                    <div class="mt-6">
-                        <a href="graph_research.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-3 md:text-lg md:px-10 transition-colors duration-300">
-                            Explore ICL & GNNs
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tabular" class="flex flex-col rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <div class="flex-shrink-0">
-                     <div class="h-52 w-full bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-600 flex items-center justify-center p-4">
-                        <svg class="h-24 w-24 text-white opacity-80 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h7.5M8.25 12h7.5m-7.5 5.25h7.5M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3.75A1.5 1.5 0 014.5 2.25h15A1.5 1.5 0 0121 3.75v16.5A1.5 1.5 0 0119.5 21.75h-15A1.5 1.5 0 013 20.25V3.75z" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-semibold text-gray-900">Tabular Foundation Models</h3>
-                        <p class="mt-3 text-base text-gray-600">
-                            Our focus is on developing robust foundation models specifically engineered for tabular data. By pre-training on diverse and extensive datasets, these models aim to achieve superior zero-shot or few-shot performance in critical areas such as cancer genomics and biomarker discovery.
-                        </p>
-                    </div>
-                    <div class="mt-6">
-                         <a href="tabFM_research.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 md:py-3 md:text-lg md:px-10 transition-colors duration-300">
-                            Discover Tabular FMs
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="survival" class="flex flex-col rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out group">
-                <div class="flex-shrink-0">
-                    <div class="h-52 w-full bg-gradient-to-br from-amber-500 via-orange-600 to-red-600 flex items-center justify-center p-4">
-                        <svg class="h-24 w-24 text-white opacity-80 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.061 12.939L12 14.879l1.939-1.94M10.061 12.939a2.25 2.25 0 113.182 3.182m-3.182-3.182a2.25 2.25 0 003.182 3.182"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-semibold text-gray-900">Survival Foundation Models</h3>
-                        <p class="mt-3 text-base text-gray-600">
-                           We are advancing specialized foundation models for survival analysis. These models are designed to integrate multi-modal patient data to deliver more accurate prognostic predictions, significantly contributing to personalized medicine strategies in oncology and other critical care areas.
-                        </p>
-                    </div>
-                    <div class="mt-6">
-                        <a href="survival_research.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 md:py-3 md:text-lg md:px-10 transition-colors duration-300">
-                            Explore Survival FMs
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Programs | HawkFranklin Research</title>
+  <meta name="description" content="Explore HFR research programs: Tabular FMs, Survival FMs, In‑Context GNNs, and Multi‑omics translation." />
+  <link rel="icon" href="assets/img/Hawk_only_logo_may_circle.drawio.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="assets/css/site.css" rel="stylesheet" />
+  <link href="assets/css/theme.css" rel="stylesheet" />
+</head>
+<body class="bg-white text-dark-800">
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+        <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#products" class="nav-link">Products</a>
+        <a href="research.html" class="nav-link">Research</a>
+        <a href="aclis.html" class="nav-link">ACLIS</a>
+        <a href="publications.html" class="nav-link">Publications</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+      <div class="hidden md:block">
+        <a href="contact.html" class="btn-primary">Request Demo</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
-</div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+      <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="index.html" class="py-2 font-medium">Home</a>
+        <a href="index.html#products" class="py-2">Products</a>
+        <a href="research.html" class="py-2">Research</a>
+        <a href="aclis.html" class="py-2">ACLIS</a>
+        <a href="publications.html" class="py-2">Publications</a>
+        <a href="about.html" class="py-2">About</a>
+        <a href="contact.html" class="btn-primary text-center mt-2">Request Demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-16 hero-left-hue">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-base sm:text-lg font-semibold tracking-wider" style="color:var(--accent-600)">Programs at HFR</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-dark-900">Research for <span class="gradient-text">Clinical Impact</span></h1>
+        <p class="mt-4 text-lg text-dark-600 max-w-3xl">We explore foundation models, in‑context learning, and multi‑omics to power clinical‑grade AI systems.</p>
+      </div>
+    </section>
+
+    <section class="py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <a href="tabFM_research.html" class="product-card rounded-xl overflow-hidden">
+          <div class="h-40 bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center">
+            <i class="fas fa-table text-white text-5xl"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-dark-900 mb-2">Tabular Foundation Models</h3>
+            <p class="text-dark-600">In‑context learning for clinical tabular data with zero/low‑shot adaptation.</p>
+          </div>
+        </a>
+
+        <a href="survival_research.html" class="product-card rounded-xl overflow-hidden">
+          <div class="h-40 bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center">
+            <i class="fas fa-heartbeat text-white text-5xl"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-dark-900 mb-2">Survival Foundation Models</h3>
+            <p class="text-dark-600">Cross‑modal survival modeling across imaging, EHR, and omics.</p>
+          </div>
+        </a>
+
+        <a href="graph_research.html" class="product-card rounded-xl overflow-hidden">
+          <div class="h-40 bg-gradient-to-br from-indigo-500 to-fuchsia-600 flex items-center justify-center">
+            <i class="fas fa-project-diagram text-white text-5xl"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-dark-900 mb-2">In‑Context GNNs</h3>
+            <p class="text-dark-600">Few‑shot graph reasoning for biomedical networks and device ecosystems.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-dark-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid gap-12 md:grid-cols-4">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-footer" />
+          </div>
+          <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and clinical‑grade product engineering.</p>
+          <div class="flex space-x-4 mt-6">
+            <a href="https://www.linkedin.com/company/hawk-franklin-research" class="text-dark-300 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+            <a href="https://github.com/HawkFranklin-Research" class="text-dark-300 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-lg mb-4">Explore</h4>
+          <ul class="space-y-2 text-sm text-dark-300">
+            <li><a href="aclis.html" class="hover:text-white">ACLIS</a></li>
+            <li><a href="research.html" class="hover:text-white">Research</a></li>
+            <li><a href="publications.html" class="hover:text-white">Publications</a></li>
+            <li><a href="vision.html" class="hover:text-white">Vision & Ethics</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-lg mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-dark-300">
+            <li><a href="about.html" class="hover:text-white">About</a></li>
+            <li><a href="careers.html" class="hover:text-white">Careers</a></li>
+            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm text-dark-300">
+            <li><a href="mailto:contact@hawk-franklin-research.com" class="hover:text-white">contact@hawk-franklin-research.com</a></li>
+            <li>India • Thane, Maharashtra</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+          <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+          <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

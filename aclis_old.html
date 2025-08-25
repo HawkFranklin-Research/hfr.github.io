@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | HawkFranklin Research</title>
-  <meta name="description" content="Get in touch with HFR about research, ACLIS, and collaborations." />
+  <title>ACLIS by HFR | Adaptive Clinically Intelligent System</title>
+  <meta name="description" content="ACLIS unifies AI‑enabled devices, agents, and foundation models with physician‑defined control, privacy, and interoperability." />
   <link rel="icon" href="assets/img/Hawk_only_logo_may_circle.drawio.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,7 +15,7 @@
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+      <a href="index.html" class="flex items-center gap-3">
         <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" />
       </a>
       <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
@@ -46,51 +46,110 @@
     </div>
   </header>
 
-  <section class="py-16 bg-accent-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-dark-900">Contact HFR</h1>
-      <p class="mt-4 text-lg text-dark-700 max-w-3xl">Have questions about our research or ACLIS? Get in touch.</p>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-800 to-indigo-700"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 text-white">
+      <div class="max-w-3xl">
+        <p class="inline-block text-xs tracking-wider uppercase text-indigo-200 mb-3">Product</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold">ACLIS — Adaptive Clinically Intelligent System</h1>
+        <p class="mt-4 text-lg text-indigo-100">A unified interface for AI‑enabled devices, agents, and foundation models — with physician‑defined control.</p>
+        <div class="mt-6 flex gap-3">
+          <a class="btn-contrast" href="contact.html">Request Demo</a>
+          <a class="btn-ghost !text-indigo-200" href="#pillars">See the pillars</a>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Problem / Solution -->
   <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 md:grid-cols-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2 items-start">
       <div>
-        <h2 class="h2">Details</h2>
-        <div class="mt-6 space-y-6 text-sm">
-          <div>
-            <div class="font-semibold">Email</div>
-            <a class="text-indigo-600" href="mailto:contact@hawk-franklin-research.com">contact@hawk-franklin-research.com</a>
-          </div>
-          <div>
-            <div class="font-semibold">Location</div>
-            <p>Centrum Business Square, D607, Rd Number 04, Neheru Nagar, Wagle Industrial Estate, Thane West, Thane, Maharashtra 400604</p>
-          </div>
+        <p class="kicker">The challenge</p>
+        <h2 class="h2">Taming the AI revolution for healthcare</h2>
+        <ul class="mt-4 space-y-3 list-disc pl-5 text-slate-700">
+          <li>Tool overload across models, agents, and devices.</li>
+          <li>Integration gaps with clinical IT and native device UIs.</li>
+          <li>Regulatory obligations and hospital governance.</li>
+          <li>Training burden for clinicians and staff.</li>
+          <li>Fragmented outcomes and lack of auditability.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="kicker">The solution</p>
+        <h2 class="h2">One surface. Protocol‑safe intelligence.</h2>
+        <ul class="mt-4 space-y-3 list-disc pl-5 text-slate-700">
+          <li>Single integration hub for devices, models, and agents.</li>
+          <li>Clinical AI Protocol for physician‑defined rules and oversight.</li>
+          <li>Agentic orchestration that learns from outcomes within guardrails.</li>
+          <li>Secure, in‑house alignment of foundation models.</li>
+          <li>Progressive adoption—learn one system; add tech without retraining.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three pillars -->
+  <section id="pillars" class="py-16 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <p class="kicker">Core pillars</p>
+        <h2 class="h2">How ACLIS works</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="card">
+          <h3 class="h3">Universal Integration Hub</h3>
+          <p>One interface for devices, models, and agents; vendor‑neutral and able to wrap native UIs when needed.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Clinical AI Protocol</h3>
+          <p>Rules for access, thresholds, alerts, and audit—defined by hospitals and physicians.</p>
+        </div>
+        <div class="card">
+          <h3 class="h3">Agentic Intelligence</h3>
+          <p>Outcome‑aware orchestration that improves safely within protocol constraints.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Safety & Deployment -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-3">
       <div class="card">
-        <h2 class="h3">Request a demo</h2>
-        <form id="contactForm" class="mt-4 grid gap-4">
-          <div>
-            <label class="label" for="name">Name</label>
-            <input id="name" name="name" type="text" class="input" required />
-          </div>
-          <div>
-            <label class="label" for="email">Email</label>
-            <input id="email" name="email" type="email" class="input" required />
-          </div>
-          <div>
-            <label class="label" for="org">Organization</label>
-            <input id="org" name="org" type="text" class="input" />
-          </div>
-          <div>
-            <label class="label" for="message">Message</label>
-            <textarea id="message" name="message" rows="4" class="input"></textarea>
-          </div>
-          <button type="submit" class="btn-primary">Send</button>
-          <p class="text-xs text-slate-500">Submits via email client. Or write us directly.</p>
-        </form>
+        <h3 class="h3">Safety & Governance</h3>
+        <p>Audit logs, access controls, explainability hooks, and change control built‑in.</p>
       </div>
+      <div class="card">
+        <h3 class="h3">Deployment Options</h3>
+        <p>On‑prem or private cloud; data‑local training where required by policy.</p>
+      </div>
+      <div class="card">
+        <h3 class="h3">Interoperability</h3>
+        <p>Standards‑friendly, vendor‑neutral design; integrates clinical IT and medical devices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audience callouts -->
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-6 md:grid-cols-3">
+      <div class="card bg-white/5 border-white/10 text-slate-100">
+        <h3 class="h3">For Physicians</h3>
+        <p>Learn once—new AI becomes a familiar extension of your workflow.</p>
+      </div>
+      <div class="card bg-white/5 border-white/10 text-slate-100">
+        <h3 class="h3">For Hospitals</h3>
+        <p>One control plane aligned to your governance and regulatory needs.</p>
+      </div>
+      <div class="card bg-white/5 border-white/10 text-slate-100">
+        <h3 class="h3">For Device Makers</h3>
+        <p>Integrate and focus on your core tech—ACLIS handles orchestration.</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      <a class="btn-contrast" href="contact.html">Request a Demo</a>
     </div>
   </section>
 
@@ -145,5 +204,5 @@
   </footer>
 
   <script src="assets/js/site.js"></script>
-  </body>
-  </html>
+</body>
+</html>

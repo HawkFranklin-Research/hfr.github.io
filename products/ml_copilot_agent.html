@@ -6,6 +6,7 @@
     <title>ML Copilot Agent - AI-Powered Machine Learning Assistant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="../assets/css/theme.css" rel="stylesheet" />
     <style>
         .gradient-bg {
             background: linear-gradient(135deg, #f0f4ff 0%, #e6edff 50%, #d9e4ff 100%);
@@ -63,35 +64,35 @@
 </head>
 <body class="font-sans antialiased text-gray-800">
     <!-- HFR Header -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="../index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
-                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-[60px] w-auto" />
+                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" />
             </a>
-            <nav class="hidden md:flex items-center gap-7 text-base lg:text-lg">
-                <a href="../index.html#home" class="hover:text-slate-600">Home</a>
-                <a href="../index.html#products" class="hover:text-slate-600">Products</a>
-                <a href="../index.html#research" class="hover:text-slate-600">Research</a>
-                <a href="../aclis.html" class="hover:text-slate-600">ACLIS</a>
-                <a href="../publications.html" class="hover:text-slate-600">Publications</a>
-                <a href="../about.html" class="hover:text-slate-600">About</a>
+            <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#products" class="nav-link">Products</a>
+                <a href="../research.html" class="nav-link">Research</a>
+                <a href="../aclis.html" class="nav-link">ACLIS</a>
+                <a href="../publications.html" class="nav-link">Publications</a>
+                <a href="../about.html" class="nav-link">About</a>
             </nav>
             <div class="hidden md:block">
-                <a href="../contact.html" class="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-4 py-2 text-sm font-medium hover:bg-slate-800 transition">Request Demo</a>
+                <a href="../contact.html" class="btn-primary">Request Demo</a>
             </div>
-            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-slate-100" aria-label="Open menu">
+            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
         </div>
-        <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
+        <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
             <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
-                <a href="../index.html#home" class="py-2">Home</a>
+                <a href="../index.html" class="py-2 font-medium">Home</a>
                 <a href="../index.html#products" class="py-2">Products</a>
-                <a href="../index.html#research" class="py-2">Research</a>
+                <a href="../research.html" class="py-2">Research</a>
                 <a href="../aclis.html" class="py-2">ACLIS</a>
                 <a href="../publications.html" class="py-2">Publications</a>
                 <a href="../about.html" class="py-2">About</a>
-                <a href="../contact.html" class="py-2 font-medium text-white bg-slate-900 rounded-lg text-center">Request Demo</a>
+                <a href="../contact.html" class="btn-primary text-center mt-2">Request Demo</a>
             </nav>
         </div>
     </header>
@@ -226,48 +227,54 @@
     <!-- Footer CTA -->
     <!-- HFR Footer -->
     <footer class="bg-dark-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="grid gap-8 md:grid-cols-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid gap-12 md:grid-cols-4">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-[50px] w-auto" />
+                        <img src="../assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
                     </div>
-                    <p class="text-sm text-slate-300">Frontier AI → Clinical Intelligence.</p>
+                    <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and clinical‑grade product engineering.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.linkedin.com/company/hawk-franklin-research" class="text-dark-300 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+                        <a href="https://github.com/HawkFranklin-Research" class="text-dark-300 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+                    </div>
                 </div>
                 <div>
-                    <h4 class="font-semibold">Navigate</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+                    <h4 class="font-semibold text-lg mb-4">Explore</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
                         <li><a href="../aclis.html" class="hover:text-white">ACLIS</a></li>
-                        <li><a href="../index.html#research" class="hover:text-white">Research</a></li>
+                        <li><a href="../research.html" class="hover:text-white">Research</a></li>
                         <li><a href="../publications.html" class="hover:text-white">Publications</a></li>
                         <li><a href="../vision.html" class="hover:text-white">Vision & Ethics</a></li>
-                        <li><a href="../careers.html" class="hover:text-white">Careers</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold">Contact</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
-                        <li><a href="mailto:consult@hawk-franklin-research.com" class="hover:text-white">consult@hawk-franklin-research.com</a></li>
+                    <h4 class="font-semibold text-lg mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
+                        <li><a href="../about.html" class="hover:text-white">About</a></li>
+                        <li><a href="../careers.html" class="hover:text-white">Careers</a></li>
+                        <li><a href="../contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
+                        <li><a href="mailto:contact@hawk-franklin-research.com" class="hover:text-white">contact@hawk-franklin-research.com</a></li>
                         <li>India • Thane, Maharashtra</li>
                     </ul>
                 </div>
-                <div>
-                    <h4 class="font-semibold">Follow</h4>
-                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
-                        <li><a href="https://www.linkedin.com/company/hawk-franklin-research" class="hover:text-white">LinkedIn</a></li>
-                        <li><a href="https://github.com/HawkFranklin-Research" class="hover:text-white">GitHub</a></li>
-                    </ul>
+            </div>
+            <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+                    <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+                    <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
                 </div>
             </div>
-            <div class="mt-8 text-xs text-slate-400">© <span id="y"></span> HawkFranklin Research. All rights reserved.</div>
         </div>
     </footer>
 
-    <script>
-        const btn = document.getElementById('menuBtn');
-        const menu = document.getElementById('mobileMenu');
-        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-        const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
-    </script>
+    <script src="../assets/js/site.js"></script>
 </body>
 </html>

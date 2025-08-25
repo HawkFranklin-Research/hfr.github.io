@@ -1,0 +1,906 @@
+user
+Yes do this "Apply the same unified header/footer to ACLIS and product pages for 100% global consistency. Want me to
+update those
+as well?" , but there is a problem in the footer, for footer, i want you to choose a this image "HFR name logo
+2.png" , also can you increase its size a little bit, if you want to keep using the transparent background image, than
+you would have to innovate on the fotter panel with some diferent colors, Also I have noticed that from the home page
+of ACLIS ( i mean once we go to aclis page " file:///Users/vatsal1/Projects/s2/hfr_website/aclis.html" ,over there the
+panel is still not changed, everything is still same here, I mean the top panel and iamge logo etc, So can you handle
+it.
+
+thinking
+Updating header and footer
+
+I need to apply a unified header and footer for the ACLIS and product pages. There's an existing aclis.html with
+an older header/footer that needs updates. The new header should be sticky, with a height of 20 and a specific
+logo-header class while including navigation items with proper links. For the footer, it should have a dark theme
+and use the "HFR name logo 2.png" image, which I'll ensure is referenced correctly, using proper URL encoding, and
+increase its size from 62px to around 72px or 80px.
+
+Implementing design changes
+
+It's noted that if we continue using a transparent background image, we might need to innovate the footer panel with
+different colors. They prefer to use "HFR name logo 2.png" instead. I’ll implement that. I also need to apply the same
+header and footer style to various product pages, ensuring they match the index's style and have a dark footer with
+the name logo. Plus, the ACLIS page header must be updated to be unified, addressing the concern that the panel hasn't
+changed yet. I'll add theme.css and Font Awesome links to ACLIS and product pages to align everything.
+
+Updating navigation and footer
+
+I need to ensure that the navigation links are consistent with the index page. The Home link should direct to either
+#home or index.html, as previous pages used index.html for linking. I’ll also replicate the navigation from earlier
+updates for pages like about.html, including links to other sections. For the footer, I’ll use a dark background with
+the "HFR name logo 2.png" shown larger. I plan to adjust the CSS to implement a new class that increases the logo's
+height to 76px or 80px. Pages using the logo-footer will remain unchanged, while only the dark footers will have this
+adjustment.
+
+Updating logos and headers
+
+I’ll update the footer to use the "HFR name logo 2.png" exclusively for the ACLIS and product pages as requested.
+The user specified not to implement it site-wide yet, so I'll change the footer image on these pages and increase
+the size. Additionally, it looks like the product pages currently have a duplicate header setup—an "HFR Header" and
+another page-specific header with a gradient background. I should unify this by removing the duplicate header to
+streamline the design for the product pages.
+
+Unifying headers and footers
+
+The second header is specifically for the DermAssist product and should probably stay as a section, even though it
+uses the  tag. I want to maintain proper semantics, ensuring there's only one site header and using a section for the
+product hero block. Our main task is to unify the navigation panel at the top. I’ll replace the markup of the first
+header with the unified one and implement a new dark footer.
+
+For the CSS updates, I need to add a new class for the logo’s height, ensure all relevant pages link to the new
+theme.css and Font Awesome, and update multiple product pages. Specifically, I’ll also ensure the paths to images are
+correct for the footer.
+
+
+
+
+
+codex
+I’m going to add a larger footer logo class, then update ACLIS and all product pages to use the unified header and the
+new footer using the “HFR name logo 2.png”, with the larger size applied.
+
+✏️ Applying patch to 1 file (+1 -1)
+  └ /Users/vatsal1/Projects/s2/hfr_website/assets/css/theme.css (+1 -1)
+    22     .logo-footer { height:62px; width:auto; }
+    23    +.logo-footer-wide { height:80px; width:auto; }
+    43     .text-dark-600{ color:var(--dark-600); }
+
+
+✓ Applied patch
+  └ Success. Updated the following files:
+    M assets/css/theme.css
+
+✓ Completed
+  └ 📖 aclis.html
+
+Modifying ACLIS Header
+
+I need to update the ACLIS header to a unified style, which involves changing classes and the logo. I plan to add FA
+and theme.css in the head, replace the body class, and adjust the header with new styles like switching the border to
+dark and updating the logo image source. I should add a Products link and change the button styles to be consistent
+with our theme. Finally, I’ll check the existing footer to ensure it matches the new style before patching it. Then,
+I’ll move on to the product pages.
+
+✓ Completed
+  └ 📖 ml_copilot_agent.html
+
+thinking
+Updating header and footer
+
+I need to unify the header and footer design. The header is mostly there but still uses some unique classes like h-16
+and slate. I’ll standardize it to match the earlier used header with standardized nav items like About and possibly
+Careers.
+
+The new header design will include adjustments to classes, heights, and logo positioning. I plan to update the
+navigation links to ensure consistency across pages, including incorporating Careers into the footer.
+
+Ensuring menu consistency
+
+I noticed that on the smaller pages, we included a Careers link in the navigation, but the index page doesn't have
+it. To maintain consistency with the index header, it makes sense to omit Careers from other pages, even though it was
+previously included in about.html. If we want to unify them all, I should stick with the index menu. While the user
+didn’t complain, I feel we should aim for consistency, especially between ACLIS and product pages. For now, I think
+leaving the Careers link as is could work, while keeping the other pages aligned.
+
+Updating navigation and footer
+
+I want to maintain the navigation set of Home, Products, Research, ACLIS, Publications, About, and Careers for
+consistency across all pages. The index page doesn’t have Careers, but that’s okay.
+
+I’ll adjust the mobile menu and unify the footer to a dark theme with the logo. For product pages, existing footers
+differ, so I’ll override them and incorporate theme.css. I plan to patch the ACLIS page first by updating the head,
+body class, headers, and nav items, as well as adding a Products link. After that, I’ll replace its footer for
+consistency.
+
+
+
+✏️ Applying patch to 1 file (+53 -45)
+  └ /Users/vatsal1/Projects/s2/hfr_website/aclis.html (+53 -45)
+    9        <script src="https://cdn.tailwindcss.com"></script>
+    10    +  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    11       <link href="assets/css/site.css" rel="stylesheet" />
+    12    +  <link href="assets/css/theme.css" rel="stylesheet" />
+    13     </head>
+    12    -<body class="bg-slate-50 text-slate-900">
+    14    +<body class="bg-white text-dark-800">
+    15       <!-- Header -->
+    14    -  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200">
+    15    -    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    16    +  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+    17    +    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    18           <a href="index.html" class="flex items-center gap-3">
+    17    -        <img src="assets/img/Hawk_only_logo_may_circle.drawio.png" alt="HFR" class="h-12 w-auto" />
+    19    +        <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" />
+    20           </a>
+    19    -      <nav class="hidden md:flex items-center gap-6 text-sm">
+    21    +      <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+    22             <a href="index.html" class="nav-link">Home</a>
+    21    -        <a href="aclis.html" class="nav-link">ACLIS</a>
+    23    +        <a href="index.html#products" class="nav-link">Products</a>
+    24             <a href="research.html" class="nav-link">Research</a>
+    25    +        <a href="aclis.html" class="nav-link">ACLIS</a>
+    26             <a href="publications.html" class="nav-link">Publications</a>
+    24    -        <a href="vision.html" class="nav-link">Vision & Ethics</a>
+    27             <a href="about.html" class="nav-link">About</a>
+    32           </div>
+    31    -      <button id="menuBtn" class="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md
+borde
+           r border-slate-200">
+    32    -        <span class="sr-only">Open menu</span>
+    33    -        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5
+w-5"><pat
+           h d="M3.75 6.75h16.5v1.5H3.75zM3.75 11.25h16.5v1.5H3.75zM3.75 15.75h16.5v1.5H3.75z"/></svg>
+    33    +      <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+    34    +        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+stroke="curr
+           entColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4
+18h16"/
+           ></svg>
+    35           </button>
+    36         </div>
+    36    -    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
+    37    -      <div class="px-4 py-3 grid gap-3 text-sm">
+    38    -        <a href="index.html" class="block">Home</a>
+    39    -        <a href="aclis.html" class="block">ACLIS</a>
+    40    -        <a href="research.html" class="block">Research</a>
+    41    -        <a href="publications.html" class="block">Publications</a>
+    42    -        <a href="vision.html" class="block">Vision & Ethics</a>
+    43    -        <a href="about.html" class="block">About</a>
+    44    -        <a href="careers.html" class="block">Careers</a>
+    45    -        <a href="contact.html" class="btn-primary w-full text-center">Request Demo</a>
+    46    -      </div>
+    37    +    <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+    38    +      <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+    39    +        <a href="index.html" class="py-2 font-medium">Home</a>
+    40    +        <a href="index.html#products" class="py-2">Products</a>
+    41    +        <a href="research.html" class="py-2">Research</a>
+    42    +        <a href="aclis.html" class="py-2">ACLIS</a>
+    43    +        <a href="publications.html" class="py-2">Publications</a>
+    44    +        <a href="about.html" class="py-2">About</a>
+    45    +        <a href="careers.html" class="py-2">Careers</a>
+    46    +        <a href="contact.html" class="py-2 font-medium text-white bg-primary-600 rounded-lg text-center
+mt-2
+           ">Request Demo</a>
+    47    +      </nav>
+    48         </div>
+    158      <!-- Footer -->
+    158   -  <footer class="border-t border-slate-200 bg-white">
+    159   -    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    160   -      <div class="grid gap-8 md:grid-cols-4">
+    159   +  <footer class="bg-dark-900 text-white">
+    160   +    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    161   +      <div class="grid gap-12 md:grid-cols-4">
+    162            <div>
+    162   -          <img src="assets/img/HawkFranklin_for_latex.drawio.png" alt="HFR" class="h-8 w-auto mb-4" />
+    163   -          <p class="text-sm text-slate-600">Advancing science through AI research and product
+engineering.</
+           p>
+    163   +          <div class="flex items-center gap-3 mb-4">
+    164   +            <img src="assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
+    165   +          </div>
+    166   +          <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and
+clinical‑grad
+           e product engineering.</p>
+    167   +          <div class="flex space-x-4 mt-6">
+    168   +            <a href="https://www.linkedin.com/company/hawk-franklin-research" class="text-dark-300
+hover:tex
+           t-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+    169   +            <a href="https://github.com/HawkFranklin-Research" class="text-dark-300 hover:text-white"><i
+cla
+           ss="fab fa-github text-lg"></i></a>
+    170   +          </div>
+    171            </div>
+    172            <div>
+    166   -          <h4 class="font-semibold">Explore</h4>
+    167   -          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+    168   -            <li><a href="aclis.html" class="hover:text-slate-800">ACLIS</a></li>
+    169   -            <li><a href="research.html" class="hover:text-slate-800">Research</a></li>
+    170   -            <li><a href="publications.html" class="hover:text-slate-800">Publications</a></li>
+    171   -            <li><a href="vision.html" class="hover:text-slate-800">Vision & Ethics</a></li>
+    173   +          <h4 class="font-semibold text-lg mb-4">Explore</h4>
+    174   +          <ul class="space-y-2 text-sm text-dark-300">
+    175   +            <li><a href="aclis.html" class="hover:text-white">ACLIS</a></li>
+    176   +            <li><a href="research.html" class="hover:text-white">Research</a></li>
+    177   +            <li><a href="publications.html" class="hover:text-white">Publications</a></li>
+    178   +            <li><a href="vision.html" class="hover:text-white">Vision & Ethics</a></li>
+    179              </ul>
+    181            <div>
+    175   -          <h4 class="font-semibold">Company</h4>
+    176   -          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+    177   -            <li><a href="about.html" class="hover:text-slate-800">About</a></li>
+    178   -            <li><a href="careers.html" class="hover:text-slate-800">Careers</a></li>
+    179   -            <li><a href="contact.html" class="hover:text-slate-800">Contact</a></li>
+    182   +          <h4 class="font-semibold text-lg mb-4">Company</h4>
+    183   +          <ul class="space-y-2 text-sm text-dark-300">
+    184   +            <li><a href="about.html" class="hover:text-white">About</a></li>
+    185   +            <li><a href="careers.html" class="hover:text-white">Careers</a></li>
+    186   +            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+    187              </ul>
+    189            <div>
+    183   -          <h4 class="font-semibold">Contact</h4>
+    184   -          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+    185   -            <li><a href="mailto:consult@hawk-franklin-research.com" class="hover:text-slate-800">consult@haw
+           k-franklin-research.com</a></li>
+    190   +          <h4 class="font-semibold text-lg mb-4">Contact</h4>
+    191   +          <ul class="space-y-2 text-sm text-dark-300">
+    192   +            <li><a href="mailto:consult@hawk-franklin-research.com" class="hover:text-white">consult@hawk-fr
+           anklin-research.com</a></li>
+    193                <li>India • Thane, Maharashtra</li>
+    196          </div>
+    190   -      <div class="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs 
+           text-slate-500">
+    191   -        <p>© <span id="year"></span> HawkFranklin Research. All rights reserved.</p>
+    192   -        <div class="flex items-center gap-4">
+    193   -          <a href="https://www.linkedin.com/company/hawk-franklin-research"
+class="hover:text-slate-700">Lin
+           kedIn</a>
+    194   -          <a href="https://github.com/HawkFranklin-Research" class="hover:text-slate-700">GitHub</a>
+    197   +      <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between
+items-center
+           ">
+    198   +        <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All rights
+reserve
+           d.</p>
+    199   +        <div class="flex space-x-6 mt-4 md:mt-0">
+    200   +          <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+    201   +          <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+    202   +          <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+    203            </div>
+
+
+✓ Applied patch
+  └ Success. Updated the following files:
+    M aclis.html
+
+✓ Completed
+  └ 📖 dermassist.html
+
+✓ Completed
+  └ 🔎 footer in dermassist.html
+
+✓ Completed
+  └ 📖 dermassist.html
+
+thinking
+Cleaning up footers
+
+I’m noticing this page has two footer tags, which is quite messy. One is the HFR footer, and then there's another
+incorrectly nested footer. We really need to consolidate this into a single footer.
+
+I’m thinking about replacing everything from the first footer occurrence to the end of the file with a unified footer.
+Alternatively, we could simplify this by replacing the content from the "" to the end with new footer markup. The logo
+and stylesheet should be included too!
+
+Streamlining scripts and footers
+
+I think it’s better to include the reference to the site.js script at the end and remove the inline script. For
+dermassist.html, I’ll replace the segment starting at "" all the way to the end of the file with a unified footer and
+make sure to include ../assets/js/site.js.
+
+Next, I’ll patch the other product pages the same way, focusing on the header and footer of omics_copilot.html and
+graph_attention_multiomics.html.
+
+
+✓ Completed
+  └ 📖 omics_copilot.html
+
+✓ Completed
+  └ 🔎 </footer>|HFR Footer in omics_copilot.html
+
+✓ Completed
+  └ 📖 omics_copilot.html
+
+✓ Completed
+  └ 📖 graph_attention_multiomics.html
+
+✓ Completed
+  └ 🔎 HFR Footer|</footer> in graph_attention_multiomics.html
+
+✏️ Applying patch to 1 file (+30 -29)
+  └ /Users/vatsal1/Projects/s2/hfr_website/products/dermassist.html (+30 -29)
+    8          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/
+all.min.css">
+    9     +    <link href="../assets/css/theme.css" rel="stylesheet" />
+    10         <style>
+    276        <!-- Footer CTA -->
+    276   -    <!-- HFR Footer -->
+    277   +    <!-- HFR Footer (unified) -->
+    278        <footer class="bg-dark-900 text-white">
+    278   -      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    279   -        <div class="grid gap-8 md:grid-cols-4">
+    279   +      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    280   +        <div class="grid gap-12 md:grid-cols-4">
+    281              <div>
+    282                <div class="flex items-center gap-3 mb-4">
+    282   -              <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-[50px] w-auto" 
+           />
+    283   +              <img src="../assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
+    284                </div>
+    284   -            <p class="text-sm text-slate-300">Frontier AI → Clinical Intelligence.</p>
+    285   +            <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and
+clinical‑gr
+           ade product engineering.</p>
+    286   +            <div class="flex space-x-4 mt-6">
+    287   +              <a href="https://www.linkedin.com/company/hawk-franklin-research" class="text-dark-300
+hover:t
+           ext-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+    288   +              <a href="https://github.com/HawkFranklin-Research" class="text-dark-300 hover:text-white"><i
+c
+           lass="fab fa-github text-lg"></i></a>
+    289   +            </div>
+    290              </div>
+    291              <div>
+    287   -            <h4 class="font-semibold">Navigate</h4>
+    288   -            <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    292   +            <h4 class="font-semibold text-lg mb-4">Explore</h4>
+    293   +            <ul class="space-y-2 text-sm text-dark-300">
+    294                  <li><a href="../aclis.html" class="hover:text-white">ACLIS</a></li>
+    290   -              <li><a href="../index.html#research" class="hover:text-white">Research</a></li>
+    295   +              <li><a href="../research.html" class="hover:text-white">Research</a></li>
+    296                  <li><a href="../publications.html" class="hover:text-white">Publications</a></li>
+    297                  <li><a href="../vision.html" class="hover:text-white">Vision & Ethics</a></li>
+    298   +            </ul>
+    299   +          </div>
+    300   +          <div>
+    301   +            <h4 class="font-semibold text-lg mb-4">Company</h4>
+    302   +            <ul class="space-y-2 text-sm text-dark-300">
+    303   +              <li><a href="../about.html" class="hover:text-white">About</a></li>
+    304                  <li><a href="../careers.html" class="hover:text-white">Careers</a></li>
+    305   +              <li><a href="../contact.html" class="hover:text-white">Contact</a></li>
+    306                </ul>
+    308              <div>
+    297   -            <h4 class="font-semibold">Contact</h4>
+    298   -            <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    309   +            <h4 class="font-semibold text-lg mb-4">Contact</h4>
+    310   +            <ul class="space-y-2 text-sm text-dark-300">
+    311                  <li><a href="mailto:consult@hawk-franklin-research.com" class="hover:text-white">consult@hawk-
+           franklin-research.com</a></li>
+    314              </div>
+    303   -          <div>
+    304   -            <h4 class="font-semibold">Follow</h4>
+    305   -            <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    306   -              <li><a href="https://www.linkedin.com/company/hawk-franklin-research"
+class="hover:text-white"
+           >LinkedIn</a></li>
+    307   -              <li><a href="https://github.com/HawkFranklin-Research" class="hover:text-white">GitHub</
+a></li
+           >
+    308   -            </ul>
+    315   +        </div>
+    316   +        <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between
+items-cent
+           er">
+    317   +          <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All rights
+reser
+           ved.</p>
+    318   +          <div class="flex space-x-6 mt-4 md:mt-0">
+    319   +            <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+    320   +            <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+    321   +            <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+    322              </div>
+    323            </div>
+    311   -        <div class="mt-8 text-xs text-slate-400">© <span id="y"></span> HawkFranklin Research. All rights
+re
+           served.</div>
+    324          </div>
+    315   -    <script>
+    316   -      const btn = document.getElementById('menuBtn');
+    317   -      const menu = document.getElementById('mobileMenu');
+    318   -      if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    319   -      const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+    320   -    </script>
+    321   -        <div class="container mx-auto px-4 text-center">
+    322   -            <h3 class="text-2xl font-bold text-blue-900 mb-4">Interested in DermAssist?</h3>
+    323   -            <p class="text-gray-700 mb-6">Reach out to learn more about pilots and clinical validation.</p>
+    324   -            <a href="/contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3
+r
+           ounded-lg font-medium transition duration-300">Contact Us</a>
+    325   -        </div>
+    326   -    </footer>
+    327   +    <script src="../assets/js/site.js"></script>
+
+
+✓ Applied patch
+  └ Success. Updated the following files:
+    M products/dermassist.html
+
+✏️ Applying patch to 1 file (+45 -38)
+  └ /Users/vatsal1/Projects/s2/hfr_website/products/ml_copilot_agent.html (+45 -38)
+    8          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/
+all.min.css">
+    9     +    <link href="../assets/css/theme.css" rel="stylesheet" />
+    10         <style>
+    66         <!-- HFR Header -->
+    66    -    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    67    -        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    67    +    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+    68    +        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    69                 <a href="../index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+    69    -                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-[60px]
+w-auto
+           " />
+    70    +                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" /
+>
+    71                 </a>
+    71    -            <nav class="hidden md:flex items-center gap-7 text-base lg:text-lg">
+    72    -                <a href="../index.html#home" class="hover:text-slate-600">Home</a>
+    73    -                <a href="../index.html#products" class="hover:text-slate-600">Products</a>
+    74    -        <a href="../research.html" class="hover:text-slate-600">Research</a>
+    75    -                <a href="../aclis.html" class="hover:text-slate-600">ACLIS</a>
+    76    -                <a href="../publications.html" class="hover:text-slate-600">Publications</a>
+    77    -                <a href="../about.html" class="hover:text-slate-600">About</a>
+    72    +            <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+    73    +                <a href="../index.html" class="nav-link">Home</a>
+    74    +                <a href="../index.html#products" class="nav-link">Products</a>
+    75    +                <a href="../research.html" class="nav-link">Research</a>
+    76    +                <a href="../aclis.html" class="nav-link">ACLIS</a>
+    77    +                <a href="../publications.html" class="nav-link">Publications</a>
+    78    +                <a href="../about.html" class="nav-link">About</a>
+    79                 </nav>
+    80                 <div class="hidden md:block">
+    80    -                <a href="../contact.html" class="inline-flex items-center gap-2 rounded-lg bg-slate-900
+text
+           -white px-4 py-2 text-sm font-medium hover:bg-slate-800 transition">Request Demo</a>
+    81    +                <a href="../contact.html" class="btn-primary">Request Demo</a>
+    82                 </div>
+    82    -            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-slate-100" aria-label="Open menu">
+    83    +            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+    84                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+stro
+           ke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4
+12h16M4
+            18h16"/></svg>
+    86             </div>
+    86    -        <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
+    87    +        <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+    88                 <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+    88    -                <a href="../index.html#home" class="py-2">Home</a>
+    89    +                <a href="../index.html" class="py-2 font-medium">Home</a>
+    90                     <a href="../index.html#products" class="py-2">Products</a>
+    90    -        <a href="../research.html" class="py-2">Research</a>
+    91    +                <a href="../research.html" class="py-2">Research</a>
+    92                     <a href="../aclis.html" class="py-2">ACLIS</a>
+    94                     <a href="../about.html" class="py-2">About</a>
+    94    -                <a href="../contact.html" class="py-2 font-medium text-white bg-slate-900 rounded-lg
+text-ce
+           nter">Request Demo</a>
+    95    +                <a href="../contact.html" class="py-2 font-medium text-white bg-primary-600
+rounded-lg text-
+           center mt-2">Request Demo</a>
+    96                 </nav>
+    229        <footer class="bg-dark-900 text-white">
+    229   -        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    230   -            <div class="grid gap-8 md:grid-cols-4">
+    230   +        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    231   +            <div class="grid gap-12 md:grid-cols-4">
+    232                    <div>
+    233                        <div class="flex items-center gap-3 mb-4">
+    233   -                        <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR"
+class="h-[50px
+           ] w-auto" />
+    234   +                        <img src="../assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
+    235                        </div>
+    235   -                    <p class="text-sm text-slate-300">Frontier AI → Clinical Intelligence.</p>
+    236   +                    <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and
+cli
+           nical‑grade product engineering.</p>
+    237   +                    <div class="flex space-x-4 mt-6">
+    238   +                        <a href="https://www.linkedin.com/company/hawk-franklin-research"
+class="text-dark-3
+           00 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+    239   +                        <a href="https://github.com/HawkFranklin-Research" class="text-dark-300
+hover:text-w
+           hite"><i class="fab fa-github text-lg"></i></a>
+    240   +                    </div>
+    241                    </div>
+    242                    <div>
+    238   -                    <h4 class="font-semibold">Navigate</h4>
+    239   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    243   +                    <h4 class="font-semibold text-lg mb-4">Explore</h4>
+    244   +                    <ul class="space-y-2 text-sm text-dark-300">
+    245                            <li><a href="../aclis.html" class="hover:text-white">ACLIS</a></li>
+    241   -                        <li><a href="../index.html#research" class="hover:text-white">Research</a></li>
+    246   +                        <li><a href="../research.html" class="hover:text-white">Research</a></li>
+    247                            <li><a href="../publications.html" class="hover:text-white">Publications</a></li>
+    248                            <li><a href="../vision.html" class="hover:text-white">Vision & Ethics</a></li>
+    249   +                    </ul>
+    250   +                </div>
+    251   +                <div>
+    252   +                    <h4 class="font-semibold text-lg mb-4">Company</h4>
+    253   +                    <ul class="space-y-2 text-sm text-dark-300">
+    254   +                        <li><a href="../about.html" class="hover:text-white">About</a></li>
+    255                            <li><a href="../careers.html" class="hover:text-white">Careers</a></li>
+    256   +                        <li><a href="../contact.html" class="hover:text-white">Contact</a></li>
+    257                        </ul>
+    259                    <div>
+    248   -                    <h4 class="font-semibold">Contact</h4>
+    249   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    260   +                    <h4 class="font-semibold text-lg mb-4">Contact</h4>
+    261   +                    <ul class="space-y-2 text-sm text-dark-300">
+    262                            <li><a href="mailto:consult@hawk-franklin-research.com"
+class="hover:text-white">con
+           sult@hawk-franklin-research.com</a></li>
+    265                    </div>
+    254   -                <div>
+    255   -                    <h4 class="font-semibold">Follow</h4>
+    256   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    257   -                        <li><a href="https://www.linkedin.com/company/hawk-franklin-research"
+class="hover:t
+           ext-white">LinkedIn</a></li>
+    258   -                        <li><a href="https://github.com/HawkFranklin-Research"
+class="hover:text-white">GitH
+           ub</a></li>
+    259   -                    </ul>
+    266   +            </div>
+    267   +            <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row
+justify-between items-
+           center">
+    268   +                <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All
+rights
+            reserved.</p>
+    269   +                <div class="flex space-x-6 mt-4 md:mt-0">
+    270   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+    271   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+    272   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+    273                    </div>
+    274                </div>
+    262   -            <div class="mt-8 text-xs text-slate-400">© <span id="y"></span> HawkFranklin Research. All
+right
+           s reserved.</div>
+    275            </div>
+    266   -    <script>
+    267   -        const btn = document.getElementById('menuBtn');
+    268   -        const menu = document.getElementById('mobileMenu');
+    269   -        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    270   -        const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+    271   -    </script>
+    278   +    <script src="../assets/js/site.js"></script>
+    279    </body>
+
+
+✓ Applied patch
+  └ Success. Updated the following files:
+    M products/ml_copilot_agent.html
+
+✏️ Applying patch to 1 file (+45 -38)
+  └ /Users/vatsal1/Projects/s2/hfr_website/products/omics_copilot.html (+45 -38)
+    9          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/
+all.min.css">
+    10    +    <link href="../assets/css/theme.css" rel="stylesheet" />
+    11         <style>
+    36         <!-- HFR Header -->
+    36    -    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    37    -        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    37    +    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+    38    +        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    39                 <a href="../index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+    39    -                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-[60px]
+w-auto
+           " />
+    40    +                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" /
+>
+    41                 </a>
+    41    -            <nav class="hidden md:flex items-center gap-7 text-base lg:text-lg">
+    42    -                <a href="../index.html#home" class="hover:text-slate-600">Home</a>
+    43    -                <a href="../index.html#products" class="hover:text-slate-600">Products</a>
+    44    -        <a href="../research.html" class="hover:text-slate-600">Research</a>
+    45    -                <a href="../aclis.html" class="hover:text-slate-600">ACLIS</a>
+    46    -                <a href="../publications.html" class="hover:text-slate-600">Publications</a>
+    47    -                <a href="../about.html" class="hover:text-slate-600">About</a>
+    42    +            <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+    43    +                <a href="../index.html" class="nav-link">Home</a>
+    44    +                <a href="../index.html#products" class="nav-link">Products</a>
+    45    +                <a href="../research.html" class="nav-link">Research</a>
+    46    +                <a href="../aclis.html" class="nav-link">ACLIS</a>
+    47    +                <a href="../publications.html" class="nav-link">Publications</a>
+    48    +                <a href="../about.html" class="nav-link">About</a>
+    49                 </nav>
+    50                 <div class="hidden md:block">
+    50    -                <a href="../contact.html" class="inline-flex items-center gap-2 rounded-lg bg-slate-900
+text
+           -white px-4 py-2 text-sm font-medium hover:bg-slate-800 transition">Request Demo</a>
+    51    +                <a href="../contact.html" class="btn-primary">Request Demo</a>
+    52                 </div>
+    52    -            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-slate-100" aria-label="Open menu">
+    53    +            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+    54                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+stro
+           ke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4
+12h16M4
+            18h16"/></svg>
+    56             </div>
+    56    -        <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
+    57    +        <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+    58                 <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+    58    -                <a href="../index.html#home" class="py-2">Home</a>
+    59    +                <a href="../index.html" class="py-2 font-medium">Home</a>
+    60                     <a href="../index.html#products" class="py-2">Products</a>
+    60    -        <a href="../research.html" class="py-2">Research</a>
+    61    +                <a href="../research.html" class="py-2">Research</a>
+    62                     <a href="../aclis.html" class="py-2">ACLIS</a>
+    64                     <a href="../about.html" class="py-2">About</a>
+    64    -                <a href="../contact.html" class="py-2 font-medium text-white bg-slate-900 rounded-lg
+text-ce
+           nter">Request Demo</a>
+    65    +                <a href="../contact.html" class="py-2 font-medium text-white bg-primary-600
+rounded-lg text-
+           center mt-2">Request Demo</a>
+    66                 </nav>
+    150        <footer class="bg-dark-900 text-white">
+    150   -        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    151   -            <div class="grid gap-8 md:grid-cols-4">
+    151   +        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    152   +            <div class="grid gap-12 md:grid-cols-4">
+    153                    <div>
+    154                        <div class="flex items-center gap-3 mb-4">
+    154   -                        <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR"
+class="h-[50px
+           ] w-auto" />
+    155   +                        <img src="../assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
+    156                        </div>
+    156   -                    <p class="text-sm text-slate-300">Frontier AI → Clinical Intelligence.</p>
+    157   +                    <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and
+cli
+           nical‑grade product engineering.</p>
+    158   +                    <div class="flex space-x-4 mt-6">
+    159   +                        <a href="https://www.linkedin.com/company/hawk-franklin-research"
+class="text-dark-3
+           00 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+    160   +                        <a href="https://github.com/HawkFranklin-Research" class="text-dark-300
+hover:text-w
+           hite"><i class="fab fa-github text-lg"></i></a>
+    161   +                    </div>
+    162                    </div>
+    163                    <div>
+    159   -                    <h4 class="font-semibold">Navigate</h4>
+    160   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    164   +                    <h4 class="font-semibold text-lg mb-4">Explore</h4>
+    165   +                    <ul class="space-y-2 text-sm text-dark-300">
+    166                            <li><a href="../aclis.html" class="hover:text-white">ACLIS</a></li>
+    162   -                        <li><a href="../index.html#research" class="hover:text-white">Research</a></li>
+    167   +                        <li><a href="../research.html" class="hover:text-white">Research</a></li>
+    168                            <li><a href="../publications.html" class="hover:text-white">Publications</a></li>
+    169                            <li><a href="../vision.html" class="hover:text-white">Vision & Ethics</a></li>
+    170   +                    </ul>
+    171   +                </div>
+    172   +                <div>
+    173   +                    <h4 class="font-semibold text-lg mb-4">Company</h4>
+    174   +                    <ul class="space-y-2 text-sm text-dark-300">
+    175   +                        <li><a href="../about.html" class="hover:text-white">About</a></li>
+    176                            <li><a href="../careers.html" class="hover:text-white">Careers</a></li>
+    177   +                        <li><a href="../contact.html" class="hover:text-white">Contact</a></li>
+    178                        </ul>
+    180                    <div>
+    169   -                    <h4 class="font-semibold">Contact</h4>
+    170   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    181   +                    <h4 class="font-semibold text-lg mb-4">Contact</h4>
+    182   +                    <ul class="space-y-2 text-sm text-dark-300">
+    183                            <li><a href="mailto:consult@hawk-franklin-research.com"
+class="hover:text-white">con
+           sult@hawk-franklin-research.com</a></li>
+    186                    </div>
+    175   -                <div>
+    176   -                    <h4 class="font-semibold">Follow</h4>
+    177   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    178   -                        <li><a href="https://www.linkedin.com/company/hawk-franklin-research"
+class="hover:t
+           ext-white">LinkedIn</a></li>
+    179   -                        <li><a href="https://github.com/HawkFranklin-Research"
+class="hover:text-white">GitH
+           ub</a></li>
+    180   -                    </ul>
+    187   +            </div>
+    188   +            <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row
+justify-between items-
+           center">
+    189   +                <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All
+rights
+            reserved.</p>
+    190   +                <div class="flex space-x-6 mt-4 md:mt-0">
+    191   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+    192   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+    193   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+    194                    </div>
+    195                </div>
+    183   -            <div class="mt-8 text-xs text-slate-400">© <span id="y"></span> HawkFranklin Research. All
+right
+           s reserved.</div>
+    196            </div>
+    187   -    <script>
+    188   -        const btn = document.getElementById('menuBtn');
+    189   -        const menu = document.getElementById('mobileMenu');
+    190   -        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    191   -        const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+    192   -    </script>
+    199   +    <script src="../assets/js/site.js"></script>
+    200    </body>
+
+
+✓ Applied patch
+  └ Success. Updated the following files:
+    M products/omics_copilot.html
+
+✏️ Applying patch to 1 file (+45 -38)
+  └ /Users/vatsal1/Projects/s2/hfr_website/products/graph_attention_multiomics.html (+45 -38)
+    8          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/
+all.min.css">
+    9     +    <link href="../assets/css/theme.css" rel="stylesheet" />
+    10         <style>
+    62         <!-- HFR Header -->
+    62    -    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    63    -        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    63    +    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+    64    +        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    65                 <a href="../index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+    65    -                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-[60px]
+w-auto
+           " />
+    66    +                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" /
+>
+    67                 </a>
+    67    -            <nav class="hidden md:flex items-center gap-7 text-base lg:text-lg">
+    68    -                <a href="../index.html#home" class="hover:text-slate-600">Home</a>
+    69    -                <a href="../index.html#products" class="hover:text-slate-600">Products</a>
+    70    -        <a href="../research.html" class="hover:text-slate-600">Research</a>
+    71    -                <a href="../aclis.html" class="hover:text-slate-600">ACLIS</a>
+    72    -                <a href="../publications.html" class="hover:text-slate-600">Publications</a>
+    73    -                <a href="../about.html" class="hover:text-slate-600">About</a>
+    68    +            <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+    69    +                <a href="../index.html" class="nav-link">Home</a>
+    70    +                <a href="../index.html#products" class="nav-link">Products</a>
+    71    +                <a href="../research.html" class="nav-link">Research</a>
+    72    +                <a href="../aclis.html" class="nav-link">ACLIS</a>
+    73    +                <a href="../publications.html" class="nav-link">Publications</a>
+    74    +                <a href="../about.html" class="nav-link">About</a>
+    75                 </nav>
+    76                 <div class="hidden md:block">
+    76    -                <a href="../contact.html" class="inline-flex items-center gap-2 rounded-lg bg-slate-900
+text
+           -white px-4 py-2 text-sm font-medium hover:bg-slate-800 transition">Request Demo</a>
+    77    +                <a href="../contact.html" class="btn-primary">Request Demo</a>
+    78                 </div>
+    78    -            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-slate-100" aria-label="Open menu">
+    79    +            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+    80                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+stro
+           ke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4
+12h16M4
+            18h16"/></svg>
+    82             </div>
+    82    -        <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
+    83    +        <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+    84                 <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+    84    -                <a href="../index.html#home" class="py-2">Home</a>
+    85    +                <a href="../index.html" class="py-2 font-medium">Home</a>
+    86                     <a href="../index.html#products" class="py-2">Products</a>
+    86    -        <a href="../research.html" class="py-2">Research</a>
+    87    +                <a href="../research.html" class="py-2">Research</a>
+    88                     <a href="../aclis.html" class="py-2">ACLIS</a>
+    90                     <a href="../about.html" class="py-2">About</a>
+    90    -                <a href="../contact.html" class="py-2 font-medium text-white bg-slate-900 rounded-lg
+text-ce
+           nter">Request Demo</a>
+    91    +                <a href="../contact.html" class="py-2 font-medium text-white bg-primary-600
+rounded-lg text-
+           center mt-2">Request Demo</a>
+    92                 </nav>
+    207        <footer class="bg-dark-900 text-white">
+    207   -        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    208   -            <div class="grid gap-8 md:grid-cols-4">
+    208   +        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    209   +            <div class="grid gap-12 md:grid-cols-4">
+    210                    <div>
+    211                        <div class="flex items-center gap-3 mb-4">
+    211   -                        <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR"
+class="h-[50px
+           ] w-auto" />
+    212   +                        <img src="../assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
+    213                        </div>
+    213   -                    <p class="text-sm text-slate-300">Frontier AI → Clinical Intelligence.</p>
+    214   +                    <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and
+cli
+           nical‑grade product engineering.</p>
+    215   +                    <div class="flex space-x-4 mt-6">
+    216   +                        <a href="https://www.linkedin.com/company/hawk-franklin-research"
+class="text-dark-3
+           00 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+    217   +                        <a href="https://github.com/HawkFranklin-Research" class="text-dark-300
+hover:text-w
+           hite"><i class="fab fa-github text-lg"></i></a>
+    218   +                    </div>
+    219                    </div>
+    220                    <div>
+    216   -                    <h4 class="font-semibold">Navigate</h4>
+    217   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    221   +                    <h4 class="font-semibold text-lg mb-4">Explore</h4>
+    222   +                    <ul class="space-y-2 text-sm text-dark-300">
+    223                            <li><a href="../aclis.html" class="hover:text-white">ACLIS</a></li>
+    219   -                        <li><a href="../index.html#research" class="hover:text-white">Research</a></li>
+    224   +                        <li><a href="../research.html" class="hover:text-white">Research</a></li>
+    225                            <li><a href="../publications.html" class="hover:text-white">Publications</a></li>
+    226                            <li><a href="../vision.html" class="hover:text-white">Vision & Ethics</a></li>
+    227   +                    </ul>
+    228   +                </div>
+    229   +                <div>
+    230   +                    <h4 class="font-semibold text-lg mb-4">Company</h4>
+    231   +                    <ul class="space-y-2 text-sm text-dark-300">
+    232   +                        <li><a href="../about.html" class="hover:text-white">About</a></li>
+    233                            <li><a href="../careers.html" class="hover:text-white">Careers</a></li>
+    234   +                        <li><a href="../contact.html" class="hover:text-white">Contact</a></li>
+    235                        </ul>
+    237                    <div>
+    226   -                    <h4 class="font-semibold">Contact</h4>
+    227   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    238   +                    <h4 class="font-semibold text-lg mb-4">Contact</h4>
+    239   +                    <ul class="space-y-2 text-sm text-dark-300">
+    240                            <li><a href="mailto:consult@hawk-franklin-research.com"
+class="hover:text-white">con
+           sult@hawk-franklin-research.com</a></li>
+    243                    </div>
+    232   -                <div>
+    233   -                    <h4 class="font-semibold">Follow</h4>
+    234   -                    <ul class="mt-3 space-y-2 text-sm text-slate-300">
+    235   -                        <li><a href="https://www.linkedin.com/company/hawk-franklin-research"
+class="hover:t
+           ext-white">LinkedIn</a></li>
+    236   -                        <li><a href="https://github.com/HawkFranklin-Research"
+class="hover:text-white">GitH
+           ub</a></li>
+    237   -                    </ul>
+    244   +            </div>
+    245   +            <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row
+justify-between items-
+           center">
+    246   +                <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All
+rights
+            reserved.</p>
+    247   +                <div class="flex space-x-6 mt-4 md:mt-0">
+    248   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+    249   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+    250   +                    <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+    251                    </div>
+    252                </div>
+    240   -            <div class="mt-8 text-xs text-slate-400">© <span id="y"></span> HawkFranklin Research. All
+right
+           s reserved.</div>
+    253            </div>
+    244   -    <script>
+    245   -        const btn = document.getElementById('menuBtn');
+    246   -        const menu = document.getElementById('mobileMenu');
+    247   -        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    248   -        const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+    249   -    </script>
+    256   +    <script src="../assets/js/site.js"></script>
+    257    </body>
+
+
+✓ Applied patch
+  └ Success. Updated the following files:
+    M products/graph_attention_multiomics.html
+
+🖐 You've hit your usage limit. Limits reset every 5h and every week.
+
+▌ Ask Codex to do anything                                                                                           
+ ⏎ send   Ctrl+J newline   Ctrl+C quit   218542 tokens used   46% context left  

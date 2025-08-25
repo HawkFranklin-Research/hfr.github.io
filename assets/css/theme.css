@@ -1,0 +1,46 @@
+:root {
+  --accent-50:#fefce8; --accent-100:#fef9c3; --accent-200:#fef08a; --accent-300:#fde047;
+  --accent-400:#facc15; --accent-500:#eab308; --accent-600:#ca8a04; --accent-700:#a16207; --accent-800:#854d0e; --accent-900:#713f12;
+  --dark-900:#0f172a; --dark-800:#1e293b; --dark-700:#334155; --dark-600:#475569; --dark-500:#64748b; --dark-400:#94a3b8; --dark-300:#cbd5e1; --dark-200:#e2e8f0; --dark-100:#f1f5f9;
+  --grad-a:#0ea5e9; --grad-b:var(--accent-500);
+}
+
+/* Optional alternate themes */
+.theme-emerald { --accent-500:#10b981; --accent-600:#059669; --accent-100:#d1fae5; --grad-b:var(--accent-500); }
+.theme-sky { --accent-500:#0ea5e9; --accent-600:#0284c7; --accent-100:#e0f2fe; --grad-b:var(--accent-500); }
+
+/* Reusable effects */
+.gradient-text { background:linear-gradient(90deg,var(--grad-a),var(--grad-b)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-left-hue { background:radial-gradient(80% 120% at 0% 40%, rgba(234,179,8,.14) 0%, rgba(234,179,8,.06) 35%, transparent 60%), radial-gradient(60% 80% at 15% 10%, rgba(234,179,8,.10) 0%, transparent 60%); }
+.announce-strip { background:linear-gradient(90deg, rgba(234,179,8,.12), rgba(234,179,8,.06)); border-top:1px solid rgba(234,179,8,.28); border-bottom:1px solid rgba(234,179,8,.28); }
+
+/* Header / Nav */
+.nav-link { position:relative; }
+.nav-link:after { content:''; position:absolute; bottom:-4px; left:0; height:2px; width:0; background:var(--grad-b); transition:width .25s ease; }
+.nav-link:hover:after, .nav-active:after { width:100%; }
+.logo-header { height:76px; width:auto; }
+.logo-footer { height:62px; width:auto; }
+.logo-footer-wide { height:80px; width:auto; }
+
+/* Cards */
+.product-card, .research-card { transition: transform .25s, box-shadow .25s, border-color .25s; }
+.product-card { background:linear-gradient(145deg,#fff,#f8fafc); border:1px solid var(--dark-200); box-shadow:0 4px 6px -1px rgba(0,0,0,.05), 0 2px 4px -1px rgba(0,0,0,.03); }
+.product-card:hover { transform:translateY(-6px); box-shadow:0 14px 28px -8px rgba(14,165,233,.22); }
+.research-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); }
+.research-card:hover { transform:translateY(-6px); background:rgba(255,255,255,.08); box-shadow:0 10px 25px -8px rgba(14,165,233,.18); }
+
+/* Icon badge used in Research cards */
+.tech-icon { width:80px; height:80px; display:flex; align-items:center; justify-content:center; border-radius:20px; background:rgba(14,165,233,0.10); color:#0ea5e9; font-size:36px; margin-bottom:20px; }
+
+/* Buttons */
+.btn-primary { background:linear-gradient(135deg,#0ea5e9 0%, #0284c7 100%); color:#fff; transition:box-shadow .25s, transform .25s; padding:0.625rem 1rem; border-radius:0.5rem; font-weight:600; display:inline-flex; align-items:center; }
+.btn-primary:hover { box-shadow:0 12px 22px -6px rgba(14,165,233,.35); transform:translateY(-1px); }
+.btn-outline { border:1px solid var(--accent-500); color:var(--accent-700); padding:0.625rem 1rem; border-radius:0.5rem; font-weight:600; display:inline-flex; align-items:center; }
+
+/* Color helpers */
+.bg-accent-50{ background-color:var(--accent-50); }
+.bg-accent-100{ background-color:var(--accent-100); }
+.text-dark-900{ color:var(--dark-900); }
+.text-dark-800{ color:var(--dark-800); }
+.text-dark-700{ color:var(--dark-700); }
+.text-dark-600{ color:var(--dark-600); }

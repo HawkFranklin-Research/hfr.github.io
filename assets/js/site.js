@@ -34,8 +34,7 @@ if (form) {
     const org = fd.get('org') || '';
     const message = fd.get('message') || '';
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nOrganization: ${org}\n\n${message}`);
-    const mailto = `mailto:consult@hawk-franklin-research.com?subject=${encodeURIComponent('HFR Demo / Inquiry')}&body=${body}`;
+    const mailto = `mailto:contact@hawk-franklin-research.com?subject=${encodeURIComponent('HFR Demo / Inquiry')}&body=${body}`;
     window.location.href = mailto;
   });
 }
-

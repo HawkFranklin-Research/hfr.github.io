@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ACLIS | HawkFranklin Research</title>
-    <link rel="icon" href="assets/img/Hawk_only_logo_may_circle.drawio.png" />
+    <title>ACLIS: Pitch Deck | HawkFranklin Research</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Font Awesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
-    <link href="assets/css/site.css" rel="stylesheet" />
-    <link href="assets/css/theme.css" rel="stylesheet" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,64 +152,27 @@
         }
     </style>
 </head>
-<body class="antialiased bg-white text-dark-800">
-
-    <!-- HFR Header (unified) -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href="index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
-          <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" />
-        </a>
-        <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="index.html#products" class="nav-link">Products</a>
-          <a href="research.html" class="nav-link">Research</a>
-          <a href="aclis.html" class="nav-link">ACLIS</a>
-          <a href="publications.html" class="nav-link">Publications</a>
-          <a href="about.html" class="nav-link">About</a>
-        </nav>
-        <div class="hidden md:block">
-          <a href="contact.html" class="btn-primary">Request Demo</a>
-        </div>
-        <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-      <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
-        <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
-          <a href="index.html" class="py-2 font-medium">Home</a>
-          <a href="index.html#products" class="py-2">Products</a>
-          <a href="research.html" class="py-2">Research</a>
-          <a href="aclis.html" class="py-2">ACLIS</a>
-          <a href="publications.html" class="py-2">Publications</a>
-          <a href="about.html" class="py-2">About</a>
-          <a href="contact.html" class="btn-primary text-center mt-2">Request Demo</a>
-        </nav>
-      </div>
-    </header>
+<body class="antialiased">
 
     <!-- Side Navigation Dots -->
     <div id="slide-nav" class="side-nav"></div>
 
     <!-- Slide 1: Title -->
-    <section id="slide1" class="slide hero-left-hue" style="min-height:70vh; padding-top:2.5rem; padding-bottom:2.5rem;">
-      <div class="max-w-7xl w-full px-4">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div class="text-left">
-            <p class="text-base sm:text-lg font-semibold tracking-wider" style="color:var(--accent-600)">Product Preview</p>
-            <div class="flex items-center gap-4 flex-wrap">
-              <h1 class="text-5xl md:text-6xl font-extrabold leading-tight gradient-text">
-                Adaptive Clinically<br class="hidden md:block" />Intelligent System
-              </h1>
-              <img src="ACLIS_logo.png" alt="ACLIS Logo" class="h-14 md:h-16 w-auto drop-shadow" />
-            </div>
-            <p class="mt-4 text-xl text-slate-600 max-w-xl">
-              The <span class="font-semibold">unified interface</span> for managing AI-enabled medical devices, foundation models, agents, and physician expertise into one <span class="font-semibold">adaptive clinical brain.</span>
-            </p>
-          </div>
-          <div class="hidden md:block"><!-- Intentionally left empty for future content --></div>
+    <section id="slide1" class="slide bg-grid">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_for_latex.drawio.png" alt="HawkFranklin Research" class="h-[100px] w-auto drop-shadow" />
         </div>
-      </div>
+        <div class="text-center max-w-5xl">
+            <div class="flex justify-center items-center gap-8 mb-4">
+                <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-slate-900 text-right">
+                    <span class="gradient-text">Adaptive Clinically<br>Intelligent System</span>
+                </h1>
+                <img src="ACLIS_logo.png" alt="ACLIS Logo" class="h-36 w-auto drop-shadow" />
+            </div>
+            <p class="mt-6 text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto">
+                The <span class="font-semibold">unified interface</span> for managing AI-enabled medical devices, foundation models, agents, and physician expertise into one <span class="font-semibold">adaptive clinical brain.</span>
+            </p>
+        </div>
     </section>
 
     <!-- Slide 2: FDA Approvals & RWE -->
@@ -482,7 +442,7 @@
                             <i class="fas fa-brain text-purple-600 text-2xl"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-xl text-slate-800">Adaptive Intelligence</h4>
+                            <h4 class="font-bold text-xl text-slate-800">Agentic Intelligence</h4>
                             <p class="mt-1 text-slate-600">Continuously learns from outcomes to create a self-improving clinical ecosystem.</p>
                         </div>
                     </div>
@@ -686,31 +646,31 @@
     <!-- Slide 9: Team & Contact -->
     <section id="slide9" class="slide bg-gray-800 text-white">
         <div class="text-center max-w-5xl w-full">
-            <img src="assets/img/HawkFranklin_for_latex.drawio.png" alt="HawkFranklin Research" class="h-20 w-auto mx-auto mb-8 drop-shadow" />
+            <img src="HawkFranklin_for_latex.drawio.png" alt="HawkFranklin Research" class="h-20 w-auto mx-auto mb-8 drop-shadow" />
             <h2 class="text-4xl md:text-5xl font-bold">Meet the Team Behind <span class="gradient-text">ACLIS</span></h2>
             <p class="mt-4 text-lg text-gray-300">A dedicated team of researchers, engineers, and clinicians.</p>
             <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
                 <!-- Team Member 1 -->
                 <div class="text-center">
-                    <img src="Vatsal_Patel.jpg" alt="Vatsal Patel" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600 object-cover">
+                    <img src="https://placehold.co/200x200/e0e7ff/374151?text=VP" alt="Vatsal Patel" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600">
                     <h4 class="font-bold text-lg">Vatsal Patel</h4>
                     <p class="text-sm text-gray-400">Founder & Research Engineer</p>
                 </div>
                  <!-- Team Member 2 -->
                 <div class="text-center">
-                    <img src="Ananya_Pal.jpg" alt="Ananya Pal" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600 object-cover">
+                    <img src="https://placehold.co/200x200/e0e7ff/374151?text=AP" alt="Ananya Pal" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600">
                     <h4 class="font-bold text-lg">Ananya Pal</h4>
                     <p class="text-sm text-gray-400">Co-Founder & Manager</p>
                 </div>
                  <!-- Team Member 3 -->
                 <div class="text-center">
-                    <img src="Saurav_Roy.jpeg" alt="Saurav Roy" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600 object-cover">
+                    <img src="https://placehold.co/200x200/e0e7ff/374151?text=SR" alt="Saurav Roy" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600">
                     <h4 class="font-bold text-lg">Saurav Roy</h4>
                     <p class="text-sm text-gray-400">Operations & Marketing Head</p>
                 </div>
                  <!-- Team Member 4 -->
                 <div class="text-center">
-                    <img src="Abhijeet%20Patel.jpg" alt="Dr. Abhijeet Patel" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600 object-cover">
+                    <img src="https://placehold.co/200x200/e0e7ff/374151?text=AP" alt="Dr. Abhijeet Patel" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-600">
                     <h4 class="font-bold text-lg">Dr. Abhijeet Patel</h4>
                     <p class="text-sm text-gray-400">Advisory Physician</p>
                 </div>
@@ -727,8 +687,8 @@
             // UPDATED slide names to reflect the correct number of slides
             const slideNames = [
                 "Title", "FDA & RWE", "The AI Surge", "The Challenge",
-                "The Solution", "USP 1: Integration", "USP 2: Intelligence", 
-                "USP 3: Protocol", "Team & Contact"
+                "The Solution", "USP 1: Integration", "USP 2: Protocol", 
+                "USP 3: Intelligence", "Team & Contact"
             ];
             
             slides.forEach((slide, index) => {
@@ -881,6 +841,5 @@
             }
         });
     </script>
-  <script src="assets/js/site.js"></script>
 </body>
 </html>
