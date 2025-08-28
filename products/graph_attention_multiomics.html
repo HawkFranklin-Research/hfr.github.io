@@ -181,23 +181,482 @@
         </div>
     </section>
 
-    <!-- Technology Details -->
-    <section id="technology" class="py-16 bg-gray-50">
+    <!-- Key Features -->
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-sky-900 mb-12">Technical Approach</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-bold text-lg text-sky-800 mb-2">Biologically-Informed Graphs</h3>
-                    <p class="text-gray-600">Graphs constructed from known gene/protein interactions and pathways.</p>
+            <h2 class="text-3xl font-bold text-center text-sky-900 mb-12">Innovative Approach to Cancer Genomics</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-project-diagram text-sky-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Heterogeneous Graph Architecture</h3>
+                    <p class="text-gray-600 mb-4">
+                        Patient-Gene network with weighted edges from expression, mutation, CNV, and methylation data, enhanced with PPI/pathway knowledge.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">GAT/GATv2</span>
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">Multi-edge Types</span>
+                    </div>
                 </div>
-                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-bold text-lg text-sky-800 mb-2">GAT/GATv2 Layers</h3>
-                    <p class="text-gray-600">Attention over nodes captures cross-modal signal and important subnetworks.</p>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-brain text-sky-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Attention Mechanism</h3>
+                    <p class="text-gray-600 mb-4">
+                        Dynamic attention weights identify influential gene interactions and pathways for interpretable risk prediction.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">GATv2Conv</span>
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">Multi-head</span>
+                    </div>
                 </div>
-                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-bold text-lg text-sky-800 mb-2">Survival Heads</h3>
-                    <p class="text-gray-600">Custom heads for risk scores and clinical endpoint prediction.</p>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-dna text-sky-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Multi-Omics Integration</h3>
+                    <p class="text-gray-600 mb-4">
+                        Combines gene expression, somatic variants, CNV, methylation, and clinical covariates into unified patient embeddings.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">17D Features</span>
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">2784 Genes</span>
+                    </div>
                 </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-user-md text-sky-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Clinical Risk Stratification</h3>
+                    <p class="text-gray-600 mb-4">
+                        Predicts hazard scores, survival probabilities (1/3/5-year), and assigns patients to low/medium/high risk groups.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">KM Curves</span>
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">C-index</span>
+                    </div>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-sky-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Biomarker Discovery</h3>
+                    <p class="text-gray-600 mb-4">
+                        Attention maps reveal 70 significant genes strongly associated with distinct survival outcomes.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">Pathway Analysis</span>
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">p &lt; 0.05</span>
+                    </div>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-cogs text-sky-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Production-Ready Pipeline</h3>
+                    <p class="text-gray-600 mb-4">
+                        TorchScript/ONNX export, FastAPI microservice, and integration with HFR products (ACLIS, ML Copilot).
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">REST/gRPC</span>
+                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">Model Card</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Workflow -->
+    <section id="technology" class="py-16 bg-white dna-pattern">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-sky-900 mb-12">Multi-Omics Integration Workflow</h2>
+            
+            <div class="bg-sky-50 rounded-2xl p-8 mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+                    <!-- Step 1 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-database text-3xl text-sky-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Data Collection</h3>
+                        <p class="text-gray-600">TCGA multi-omics data (expression, mutations, CNV, methylation) + clinical covariates</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-project-diagram text-3xl text-sky-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Graph Construction</h3>
+                        <p class="text-gray-600">Patient-Gene heterogeneous graph with pathway-informed edges</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-brain text-3xl text-sky-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">GAT/GATv2 Training</h3>
+                        <p class="text-gray-600">Type-specific encoders with Cox partial likelihood loss</p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-3xl text-sky-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Risk Stratification</h3>
+                        <p class="text-gray-600">Patient embeddings → risk scores → clinically interpretable groups</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <h3 class="font-bold text-xl text-sky-800 mb-4">Graph Architecture Details</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-sky-500 mt-1 mr-3"></i>
+                            <span><strong>Nodes:</strong> Patients P and Genes G (2784 cancer hallmark genes)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-sky-500 mt-1 mr-3"></i>
+                            <span><strong>Edges:</strong> patient→gene with weights from multi-omics data + gene↔gene from PPI/pathways</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-sky-500 mt-1 mr-3"></i>
+                            <span><strong>Features:</strong> [expr_z, mut_bin, cnv_z, meth_z, mask] → linear projection</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-sky-500 mt-1 mr-3"></i>
+                            <span><strong>Readout:</strong> Patient embedding z_patient from final layer + optional attention pooling</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <h3 class="font-bold text-xl text-sky-800 mb-4">Model Specifications</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-microchip text-sky-500 mt-1 mr-3"></i>
+                            <span><strong>Framework:</strong> PyTorch + PyTorch Geometric (PyG)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-cogs text-sky-500 mt-1 mr-3"></i>
+                            <span><strong>Architecture:</strong> 2-3 GATv2 layers with residuals, layer-norm, dropout (0.2-0.4)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-tachometer-alt text-sky-500 mt-1 mr-3"></i>
+                            <span><strong>Optimizer:</strong> AdamW (lr=2e-4, weight decay 1e-4) with cosine decay</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-ruler-combined text-sky-500 mt-1 mr-3"></i>
+                            <span><strong>Regularization:</strong> Graph sparsity control, L1 on edge attentions, pathway-grouped dropout</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-sky-900 mb-12">Clinical Impact & Results</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl text-sky-800 mb-4 flex items-center">
+                        <i class="fas fa-procedures mr-3 text-sky-600"></i> Survival Group Stratification
+                    </h3>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-sky-500 rounded-full mr-2"></div>
+                            <span>Group 0</span>
+                        </div>
+                        <span class="font-medium">154 months median survival</span>
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-sky-300 rounded-full mr-2"></div>
+                            <span>Group 1</span>
+                        </div>
+                        <span class="font-medium">49 months median survival</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-sky-700 rounded-full mr-2"></div>
+                            <span>Group 2</span>
+                        </div>
+                        <span class="font-medium">21 months median survival</span>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-600">
+                            <i class="fas fa-info-circle text-sky-500 mr-1"></i> Log-rank test p &lt; 0.05 for Group 2 vs Groups 0/1
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl text-sky-800 mb-4 flex items-center">
+                        <i class="fas fa-dna mr-3 text-sky-600"></i> Biomarker Discovery
+                    </h3>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium">Attention Threshold = 0.15</span>
+                            <span class="text-sm font-medium">169 edges (138 genes)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-sky-600 h-2.5 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium">Statistically Significant</span>
+                            <span class="text-sm font-medium">70 edges (68 genes)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-sky-600 h-2.5 rounded-full" style="width: 41%"></div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-600">
+                            <i class="fas fa-info-circle text-sky-500 mr-1"></i> Top genes show AUC &gt; 0.9 in classification tasks
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                <h3 class="font-bold text-xl text-sky-800 mb-6">Evaluation Metrics</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center p-4 bg-sky-50 rounded-lg">
+                        <div class="text-3xl font-bold text-sky-700 mb-2">0.98</div>
+                        <div class="text-sm font-medium text-sky-800">Binary Classification AUC</div>
+                        <div class="text-xs text-gray-600 mt-1">(high-risk vs lower-risk)</div>
+                    </div>
+                    <div class="text-center p-4 bg-sky-50 rounded-lg">
+                        <div class="text-3xl font-bold text-sky-700 mb-2">0.93</div>
+                        <div class="text-sm font-medium text-sky-800">Multi-class AUC</div>
+                        <div class="text-xs text-gray-600 mt-1">(3 risk groups)</div>
+                    </div>
+                    <div class="text-center p-4 bg-sky-50 rounded-lg">
+                        <div class="text-3xl font-bold text-sky-700 mb-2">0.85</div>
+                        <div class="text-sm font-medium text-sky-800">Validation C-index</div>
+                        <div class="text-xs text-gray-600 mt-1">(concordance index)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="py-16 bg-white dna-pattern">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-sky-900 mb-12">Technology Stack</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <span class="font-medium">Python</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <span class="font-medium">PyTorch</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <span class="font-medium">PyG</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <span class="font-medium">TCGA</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <span class="font-medium">scikit-learn</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <span class="font-medium">pandas</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <span class="font-medium">numpy</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <span class="font-medium">matplotlib</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <span class="font-medium">seaborn</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span class="font-medium">lifelines</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <span class="font-medium">FastAPI</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <span class="font-medium">GitHub</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IP & Integration -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-sky-900 mb-12">HFR Intellectual Property & Integration</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl text-sky-800 mb-4 flex items-center">
+                        <i class="fas fa-copyright mr-3 text-sky-600"></i> Copyrighted Graph Algorithm
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        Proprietary methods for edge weighting, attention priors, and patient-gene subgraph construction.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-sky-500 mt-1 mr-3"></i>
+                            <span>Graph construction/learning components</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-sky-500 mt-1 mr-3"></i>
+                            <span>Edge feature encoding</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-sky-500 mt-1 mr-3"></i>
+                            <span>Attention mechanism enhancements</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-bold text-xl text-sky-800 mb-4 flex items-center">
+                        <i class="fas fa-robot mr-3 text-sky-600"></i> RAG for LLM
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        Retrieval-Augmented Generation system for literature grounding of top genes/pathways.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-sky-500 mt-1 mr-3"></i>
+                            <span>Evidence retrieval for oncogenic roles</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-sky-500 mt-1 mr-3"></i>
+                            <span>Literature-augmented clinical notes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-sky-500 mt-1 mr-3"></i>
+                            <span>Integrated with attention explanations</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm mt-8 border border-gray-200">
+                <h3 class="font-bold text-xl text-sky-800 mb-4 flex items-center">
+                    <i class="fas fa-plug mr-3 text-sky-600"></i> HFR Product Integration
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-sky-50 rounded-lg">
+                        <h4 class="font-bold text-sky-800 mb-2 flex items-center">
+                            <i class="fas fa-clinic-medical mr-2"></i> ACLIS
+                        </h4>
+                        <p class="text-gray-600 text-sm">
+                            Clinical intelligence system integration via gRPC/REST with audit logs and governance protocols.
+                        </p>
+                    </div>
+                    <div class="p-4 bg-sky-50 rounded-lg">
+                        <h4 class="font-bold text-sky-800 mb-2 flex items-center">
+                            <i class="fas fa-cogs mr-2"></i> ML Copilot
+                        </h4>
+                        <p class="text-gray-600 text-sm">
+                            Automated pipeline execution for experiments, sweeps, ablations, and model registry updates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="py-16 bg-sky-50 dna-pattern">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-sky-900 mb-6">Research & Development</h2>
+                <p class="text-xl text-gray-700 mb-8">
+                    Our work on "Graph Attention Networks for Biomedical Insights: Multi-Omics Integration for Risk Stratification and Biomarker Identification" demonstrates the clinical utility of GNNs in cancer genomics.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" class="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                        <i class="fas fa-file-pdf mr-2"></i> Read Preprint
+                    </a>
+                    <a href="#" class="border-2 border-sky-600 text-sky-600 hover:bg-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                        <i class="fas fa-code mr-2"></i> View Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA (Shared) -->
+    <section class="py-16 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #4338ca 0%, #2563eb 50%, #0891b2 100%);">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(1000px 400px at 10% 20%, #ffffff 0, transparent 60%), radial-gradient(800px 300px at 90% 80%, #ffffff 0, transparent 60%)"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold mb-6">Let’s Build Clinical‑Grade AI Together</h2>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">Partner with HFR on pilots, research collaborations, or enterprise integrations across healthcare and biosciences.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="../contact.html" class="bg-white hover:bg-slate-100 text-indigo-700 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+                    <i class="fas fa-calendar-check mr-2"></i> Request Demo
+                </a>
+                <a href="../index.html#products" class="border-2 border-white text-white hover:bg-white/10 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+                    <i class="fas fa-boxes-stacked mr-2"></i> Explore Products
+                </a>
             </div>
         </div>
     </section>

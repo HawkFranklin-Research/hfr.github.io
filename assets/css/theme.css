@@ -44,3 +44,15 @@
 .text-dark-800{ color:var(--dark-800); }
 .text-dark-700{ color:var(--dark-700); }
 .text-dark-600{ color:var(--dark-600); }
+/* Extended helpers to mirror Tailwind-like custom palette on pages without inline Tailwind config */
+.text-dark-500{ color:var(--dark-500); }
+.text-dark-400{ color:var(--dark-400); }
+.text-dark-300{ color:var(--dark-300); }
+.text-dark-200{ color:var(--dark-200); }
+.text-dark-100{ color:var(--dark-100); }
+.bg-dark-100{ background-color:var(--dark-100); }
+.bg-dark-900{ background-color:var(--dark-900); }
+.border-dark-200{ border-color:var(--dark-200) !important; }
+.border-dark-700{ border-color:var(--dark-700) !important; }
+/* Hover utility shim for hover:bg-dark-100 used in headers */
+.hover\:bg-dark-100:hover { background-color: var(--dark-100); }

@@ -182,44 +182,466 @@
         </div>
     </section>
 
-    <!-- Technology Section -->
-    <section id="technology" class="py-16 bg-white">
+    <!-- Application Scenarios -->
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-12">What Makes ML Copilot Different</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-bold text-lg text-indigo-800 mb-2">Intelligent Data Prep</h3>
-                    <p class="text-gray-600">Context-aware preprocessing with data profiling and reproducible pipelines.</p>
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-12">Powerful Applications Across Domains</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Scenario 1 -->
+                <div class="scenario-card p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-dna text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Biomedical Research</h3>
+                    <p class="text-gray-600 mb-4">
+                        Accelerate biomarker discovery, analyze genomic data, and predict clinical outcomes with automated ML pipelines.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">TCGA Analysis</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Survival Prediction</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Drug Response</span>
+                    </div>
                 </div>
-                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-bold text-lg text-indigo-800 mb-2">Auto-Modeling</h3>
-                    <p class="text-gray-600">Guided model selection with configuration suggestions and baselines.</p>
+                
+                <!-- Scenario 2 -->
+                <div class="scenario-card p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-bar text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Business Analytics</h3>
+                    <p class="text-gray-600 mb-4">
+                        Transform raw business data into actionable insights with predictive modeling and customer segmentation.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Churn Prediction</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Market Segmentation</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Sales Forecasting</span>
+                    </div>
                 </div>
-                <div class="feature-card bg-white p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-bold text-lg text-indigo-800 mb-2">Explainable Outputs</h3>
-                    <p class="text-gray-600">Feature importances, SHAP-like insights, and readable reports.</p>
+                
+                <!-- Scenario 3 -->
+                <div class="scenario-card p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-image text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Computer Vision</h3>
+                    <p class="text-gray-600 mb-4">
+                        Develop image classification and object detection models without writing complex code from scratch.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Medical Imaging</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Quality Control</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Facial Recognition</span>
+                    </div>
+                </div>
+                
+                <!-- Scenario 4 -->
+                <div class="scenario-card p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-language text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Natural Language Processing</h3>
+                    <p class="text-gray-600 mb-4">
+                        Implement text classification, sentiment analysis, and document summarization with guided workflows.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Sentiment Analysis</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Topic Modeling</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Chatbots</span>
+                    </div>
+                </div>
+                
+                <!-- Scenario 5 -->
+                <div class="scenario-card p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-industry text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Industrial IoT</h3>
+                    <p class="text-gray-600 mb-4">
+                        Predictive maintenance and anomaly detection for manufacturing equipment using sensor data.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Predictive Maintenance</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Quality Prediction</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Process Optimization</span>
+                    </div>
+                </div>
+                
+                <!-- Scenario 6 -->
+                <div class="scenario-card p-6 rounded-xl shadow-md">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Education & Research</h3>
+                    <p class="text-gray-600 mb-4">
+                        Teach machine learning concepts and accelerate academic research with interactive experimentation.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Teaching Tool</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Research Prototyping</span>
+                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Data Exploration</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Scenarios -->
-    <section class="py-16 bg-gray-50">
+    <!-- Technology Section -->
+    <section id="technology" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Common Scenarios</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="scenario-card p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-semibold mb-2">CSV to Model</h3>
-                    <p class="text-gray-600">Upload a dataset, configure target and features, train with best practice defaults.</p>
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-12">How ML Copilot Works</h2>
+            
+            <div class="bg-indigo-50 rounded-2xl p-8 mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+                    <!-- Step 1 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-terminal text-3xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Command Input</h3>
+                        <p class="text-gray-600">User provides natural language instructions for ML tasks</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-brain text-3xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">LLM Processing</h3>
+                        <p class="text-gray-600">GPT-4o/Gemini interprets request and generates Python code</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-code text-3xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Code Execution</h3>
+                        <p class="text-gray-600">Code interpreter safely executes generated Python code</p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-poll text-3xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Result Delivery</h3>
+                        <p class="text-gray-600">Outputs, visualizations, and files are returned to user</p>
+                    </div>
                 </div>
-                <div class="scenario-card p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-semibold mb-2">Benchmark & Compare</h3>
-                    <p class="text-gray-600">Evaluate multiple models and compare performance with visual dashboards.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-xl text-indigo-800 mb-4">Key Features</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Interactive command-line interface for ML workflows</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Support for multiple LLM providers (OpenAI, Gemini)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Built-in code interpreter for safe Python execution</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Automated data preprocessing and feature engineering</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Multiple ML algorithms with hyperparameter tuning</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Comprehensive model evaluation metrics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Automated visualization and reporting</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="scenario-card p-6 rounded-xl border border-gray-200">
-                    <h3 class="font-semibold mb-2">Shareable Reports</h3>
-                    <p class="text-gray-600">Export documentation with metrics, plots, and configuration details.</p>
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-xl text-indigo-800 mb-4">Technical Specifications</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-microchip text-indigo-500 mt-1 mr-3"></i>
+                            <span><strong>Core Architecture:</strong> LLM Agent with Code Interpreter</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-database text-indigo-500 mt-1 mr-3"></i>
+                            <span><strong>Supported Data:</strong> CSV, Excel, JSON, Images (with extensions)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-code text-indigo-500 mt-1 mr-3"></i>
+                            <span><strong>ML Libraries:</strong> scikit-learn, pandas, numpy, matplotlib, seaborn</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-laptop-code text-indigo-500 mt-1 mr-3"></i>
+                            <span><strong>Interface:</strong> CLI with Python API options</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-alt text-indigo-500 mt-1 mr-3"></i>
+                            <span><strong>Security:</strong> Local code execution with sandboxing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-book text-indigo-500 mt-1 mr-3"></i>
+                            <span><strong>Documentation:</strong> Auto-generated reports in Markdown/HTML</span>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-12">Technology Stack</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <span class="font-medium">Python</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <span class="font-medium">LlamaIndex</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <span class="font-medium">Gemini</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-openai"></i>
+                    </div>
+                    <span class="font-medium">GPT-4o</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <span class="font-medium">scikit-learn</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <span class="font-medium">pandas</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <span class="font-medium">numpy</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <span class="font-medium">matplotlib</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <span class="font-medium">seaborn</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span class="font-medium">lifelines</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <span class="font-medium">GitHub</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <span class="font-medium">ReadTheDocs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-12">Experience ML Copilot</h2>
+            
+            <div class="bg-white rounded-2xl p-8 border border-gray-200 max-w-4xl mx-auto">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
+                        <h3 class="text-xl font-bold mb-4">Try Sample Commands</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-2">
+                                        <i class="fas fa-terminal text-indigo-600 text-sm"></i>
+                                    </div>
+                                    <code class="text-sm font-mono">list files</code>
+                                </div>
+                                <p class="text-xs text-gray-500">Show files in current directory</p>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-2">
+                                        <i class="fas fa-terminal text-indigo-600 text-sm"></i>
+                                    </div>
+                                    <code class="text-sm font-mono">preprocess data.csv target=outcome</code>
+                                </div>
+                                <p class="text-xs text-gray-500">Clean and prepare your dataset</p>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-2">
+                                        <i class="fas fa-terminal text-indigo-600 text-sm"></i>
+                                    </div>
+                                    <code class="text-sm font-mono">train model=random_forest</code>
+                                </div>
+                                <p class="text-xs text-gray-500">Train a machine learning model</p>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-2">
+                                        <i class="fas fa-terminal text-indigo-600 text-sm"></i>
+                                    </div>
+                                    <code class="text-sm font-mono">plot confusion_matrix</code>
+                                </div>
+                                <p class="text-xs text-gray-500">Visualize model performance</p>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-2">
+                                        <i class="fas fa-terminal text-indigo-600 text-sm"></i>
+                                    </div>
+                                    <code class="text-sm font-mono">document</code>
+                                </div>
+                                <p class="text-xs text-gray-500">Generate analysis report</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Or enter custom command</label>
+                            <div class="flex">
+                                <input type="text" class="flex-1 rounded-l-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-2 px-3 border" placeholder="e.g., perform PCA and plot components">
+                                <button class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-r-lg font-medium">
+                                    Execute
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Select LLM Provider</label>
+                            <select class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-2 px-3 border">
+                                <option>OpenAI GPT-4o (Default)</option>
+                                <option>Google Gemini 1.5</option>
+                                <option>Local Model (Experimental)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2">
+                        <h3 class="text-xl font-bold mb-4">Output Preview</h3>
+                        <div class="bg-gray-800 text-gray-100 p-4 rounded-lg font-mono text-sm h-96 overflow-y-auto">
+                            <div class="text-green-400">$ python -m ml_copilot_agent</div>
+                            <div class="my-2">ML Copilot Agent initialized with GPT-4o</div>
+                            <div class="text-green-400">$ preprocess data.csv target=outcome</div>
+                            <div class="my-2">
+                                <div>Loading data.csv (1425 rows × 28 columns)</div>
+                                <div>Handling missing values: 5 rows dropped</div>
+                                <div>Encoding categorical variables: 3 features one-hot encoded</div>
+                                <div>Normalizing numerical features</div>
+                                <div>Saved preprocessed data to data_preprocessed.csv</div>
+                            </div>
+                            <div class="text-green-400">$ train model=random_forest</div>
+                            <div class="my-2">
+                                <div>Training Random Forest classifier...</div>
+                                <div>Using 5-fold cross-validation</div>
+                                <div>Best parameters: n_estimators=200, max_depth=10</div>
+                                <div>Validation accuracy: 0.87 ± 0.03</div>
+                                <div>Saved model to models/rf_model.pkl</div>
+                            </div>
+                            <div class="text-green-400">$ plot confusion_matrix</div>
+                            <div class="my-2">
+                                <div>Generating confusion matrix...</div>
+                                <div>Saved plot to results/confusion_matrix.png</div>
+                                <div class="flex justify-center my-2">
+                                    <div class="text-center">
+                                        <div class="font-bold">Confusion Matrix</div>
+                                        <div class="text-xs">
+                                            <div>TP: 245 | FP: 32</div>
+                                            <div>FN: 28 | TN: 267</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="py-16 bg-indigo-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-indigo-900 mb-6">Academic Research</h2>
+                <p class="text-xl text-gray-700 mb-8">
+                    Our preprint "<span class="font-semibold">ML Copilot: An LLM-Powered Agent for Orchestrating Complex Machine Learning Workflows</span>" 
+                    is currently under peer review at the Journal of Engineering Artificial Intelligence.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                        <i class="fas fa-file-pdf mr-2"></i> Read Preprint
+                    </a>
+                    <a href="#" class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">
+                        <i class="fas fa-book mr-2"></i> Documentation
+                    </a>
+                    <a href="#" class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">
+                        <i class="fab fa-github mr-2"></i> GitHub Repo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA (Shared) -->
+    <section class="py-16 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #4338ca 0%, #2563eb 50%, #0891b2 100%);">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(1000px 400px at 10% 20%, #ffffff 0, transparent 60%), radial-gradient(800px 300px at 90% 80%, #ffffff 0, transparent 60%)"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold mb-6">Let’s Build Clinical‑Grade AI Together</h2>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">Partner with HFR on pilots, research collaborations, or enterprise integrations across healthcare and biosciences.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="../contact.html" class="bg-white hover:bg-slate-100 text-indigo-700 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+                    <i class="fas fa-calendar-check mr-2"></i> Request Demo
+                </a>
+                <a href="../index.html#products" class="border-2 border-white text-white hover:bg-white/10 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+                    <i class="fas fa-boxes-stacked mr-2"></i> Explore Products
+                </a>
             </div>
         </div>
     </section>
