@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schedule a Demo | HawkFranklin Research</title>
+  <meta name="description" content="Schedule a live demo of HFR products like DermAssist and Omics Copilot." />
+  <link rel="icon" href="assets/img/Hawk_only_logo_may_circle.drawio.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="assets/css/site.css" rel="stylesheet" />
+  <link href="assets/css/theme.css" rel="stylesheet" />
+</head>
+<body class="bg-white text-dark-800">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+        <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#products" class="nav-link">Products</a>
+        <a href="research.html" class="nav-link">Research</a>
+        <a href="aclis.html" class="nav-link">ACLIS</a>
+        <a href="publications.html" class="nav-link">Publications</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+      <div class="hidden md:block">
+        <a href="schedule.html" class="btn-primary">Schedule Demo</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+      <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="index.html" class="py-2 font-medium">Home</a>
+        <a href="index.html#products" class="py-2">Products</a>
+        <a href="research.html" class="py-2">Research</a>
+        <a href="aclis.html" class="py-2">ACLIS</a>
+        <a href="publications.html" class="py-2">Publications</a>
+        <a href="about.html" class="py-2">About</a>
+        <a href="schedule.html" class="btn-primary text-center mt-2">Schedule Demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="py-16 bg-accent-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-dark-900">Schedule a Demo</h1>
+      <p class="mt-4 text-lg text-dark-700 max-w-3xl">
+        Book a live walkthrough of DermAssist, Omics Copilot, or other HFR products. We’ll tailor the session to your use case.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 md:grid-cols-2">
+      <div>
+        <h2 class="h2">Quick Options</h2>
+        <div class="mt-6 space-y-4">
+          <a href="mailto:contact@hawk-franklin-research.com?subject=Demo%20Request&body=Hi%20HFR%2C%0A%0AWe'd%20like%20a%20demo%20of%3A%20DermAssist%20%2F%20Omics%20Copilot%20%2F%20Other%20(please%20specify).%0AAvailability%3A%20%5BShare%203%20time%20slots%5D%0ATeam%3A%20%5BNames%20%2B%20roles%5D%0A%0AThanks!" class="inline-flex items-center btn-primary">
+            <i class="fas fa-envelope mr-2"></i> Email Us to Schedule
+          </a>
+          <p class="text-sm text-slate-600">Prefer a calendar link? We can add Calendly/Google appointment scheduling here.</p>
+
+          <div class="mt-6 p-4 border rounded-lg bg-slate-50">
+            <h3 class="font-semibold mb-2">Calendar Embed (optional)</h3>
+            <p class="text-sm text-slate-600">Provide a Calendly or Google Appointment link and we’ll embed it here.</p>
+            <!-- Example Calendly embed (replace URL when available)
+            <div class="calendly-inline-widget" data-url="https://calendly.com/your-team/demo" style="min-width:320px;height:700px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="h3">Tell us about your needs</h2>
+        <form class="mt-4 grid gap-4" onsubmit="window.location='mailto:contact@hawk-franklin-research.com?subject='+encodeURIComponent('Demo Request: '+(document.getElementById('product').value||'HFR'))+'&body='+encodeURIComponent('Name: '+(document.getElementById('name').value||'')+'%0AEmail: '+(document.getElementById('email').value||'')+'%0AOrganization: '+(document.getElementById('org').value||'')+'%0AProduct: '+(document.getElementById('product').value||'')+'%0AUse case: '+(document.getElementById('message').value||'')); return false;">
+          <div>
+            <label class="label" for="name">Name</label>
+            <input id="name" name="name" type="text" class="input" />
+          </div>
+          <div>
+            <label class="label" for="email">Email</label>
+            <input id="email" name="email" type="email" class="input" />
+          </div>
+          <div>
+            <label class="label" for="org">Organization</label>
+            <input id="org" name="org" type="text" class="input" />
+          </div>
+          <div>
+            <label class="label" for="product">Product</label>
+            <select id="product" name="product" class="input">
+              <option>DermAssist</option>
+              <option>Omics Copilot</option>
+              <option>ACLIS</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="message">Use case / notes</label>
+            <textarea id="message" name="message" rows="4" class="input"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Request via Email</button>
+          <p class="text-xs text-slate-500">Opens your email client with a pre-filled message.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA (Shared) -->
+  <section class="py-16 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #4338ca 0%, #2563eb 50%, #0891b2 100%);">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(1000px 400px at 10% 20%, #ffffff 0, transparent 60%), radial-gradient(800px 300px at 90% 80%, #ffffff 0, transparent 60%)"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-6">Let’s Build Clinical‑Grade AI Together</h2>
+      <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">Partner with HFR on pilots, research collaborations, or enterprise integrations across healthcare and biosciences.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="schedule.html" class="bg-white hover:bg-slate-100 text-indigo-700 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+          <i class="fas fa-calendar-check mr-2"></i> Schedule Demo
+        </a>
+        <a href="index.html#products" class="border-2 border-white text-white hover:bg-white/10 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+          <i class="fas fa-boxes-stacked mr-2"></i> Explore Products
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid gap-12 md:grid-cols-4">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
+          </div>
+          <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and clinical‑grade product engineering.</p>
+          <div class="flex space-x-4 mt-6">
+            <a href="https://www.linkedin.com/company/hawk-franklin-research" class="text-dark-300 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+            <a href="https://github.com/HawkFranklin-Research" class="text-dark-300 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-lg mb-4">Explore</h4>
+          <ul class="space-y-2 text-sm text-dark-300">
+            <li><a href="aclis.html" class="hover:text-white">ACLIS</a></li>
+            <li><a href="research.html" class="hover:text-white">Research</a></li>
+            <li><a href="publications.html" class="hover:text-white">Publications</a></li>
+            <li><a href="vision.html" class="hover:text-white">Vision & Ethics</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-lg mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-dark-300">
+            <li><a href="about.html" class="hover:text-white">About</a></li>
+            <li><a href="careers.html" class="hover:text-white">Careers</a></li>
+            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-lg mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm text-dark-300">
+            <li><a href="mailto:contact@hawk-franklin-research.com" class="hover:text-white">contact@hawk-franklin-research.com</a></li>
+            <li>India • Thane, Maharashtra</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+          <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+          <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
+
