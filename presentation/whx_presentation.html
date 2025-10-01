@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WHX Presentation | HawkFranklin Research</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+  <style>
+    :root { --grad-a: #0ea5e9; --grad-b: #eab308; }
+    html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+    body { font-family: 'Inter', system-ui, sans-serif; background:#f8fafc; color:#0f172a; }
+    .gradient-text { background: linear-gradient(90deg, var(--grad-a), var(--grad-b)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-left-hue { background: radial-gradient(80% 120% at 0% 40%, rgba(234,179,8,0.14) 0%, rgba(234,179,8,0.06) 35%, transparent 60%), radial-gradient(60% 80% at 15% 10%, rgba(234,179,8,0.10) 0%, transparent 60%); }
+    .slide { min-height: 100vh; display:flex; align-items:center; justify-content:center; padding:4rem 2rem; position:relative; overflow:hidden; scroll-snap-align:start; scroll-snap-stop:always; }
+    .card { background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); border: 1px solid rgba(226,232,240,0.6); border-radius: 1.25rem; box-shadow: 0 20px 30px -12px rgba(0,0,0,.15); }
+    .hue-top-right-sky { background-image: radial-gradient(60% 80% at 90% 10%, rgba(14, 165, 233, .12) 0%, rgba(14, 165, 233, .06) 40%, transparent 70%); }
+    .hue-top-left-amber { background-image: radial-gradient(80% 120% at 0% 0%, rgba(234,179,8,.18) 0%, rgba(234,179,8,.08) 34%, transparent 60%), radial-gradient(55% 70% at 10% 0%, rgba(234,179,8,.12) 0%, transparent 60%); }
+    .hue-center-purple { background-image: radial-gradient(50% 50% at 50% 50%, rgba(168,85,247,.10) 0%, rgba(168,85,247,.05) 45%, transparent 65%); }
+    .hue-bottom-left-emerald { background-image: radial-gradient(70% 100% at 0% 100%, rgba(16,185,129,.12) 0%, rgba(16,185,129,.06) 40%, transparent 70%); }
+    .hue-right-cyan { background-image: radial-gradient(80% 120% at 100% 50%, rgba(6, 182, 212, .12) 0%, rgba(6, 182, 212, .06) 40%, transparent 70%), radial-gradient(30% 60% at 85% 80%, rgba(59, 130, 246, .08) 0%, transparent 60%); }
+    .hue-dark-violet { background-color:#0b1220; background-image: radial-gradient(60% 80% at 75% 0%, rgba(139,92,246,.22) 0%, rgba(139,92,246,.10) 40%, transparent 70%); }
+    .badge { display:inline-flex; align-items:center; gap:.5rem; padding:.375rem .625rem; border-radius:.5rem; font-size:.75rem; font-weight:600; }
+    .autonav { position:fixed; right:12px; bottom:12px; z-index:50; }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1: Company Hero (matches index) -->
+  <section class="slide hero-left-hue">
+    <div class="max-w-5xl mx-auto text-left relative -translate-y-8 md:-translate-y-14">
+      <!-- Top-left pinned logo removed -->
+      <p class="text-base sm:text-lg font-semibold tracking-wider text-yellow-700 uppercase mb-3">Your R&D Partner in DeepTech</p>
+      <h1 class="font-[800] leading-tight text-5xl sm:text-6xl lg:text-7xl mb-4 text-center">
+        <span class="text-slate-900">Integrating AI for</span><br class="hidden sm:block" />
+        <span class="gradient-text">Scientific Discovery</span>
+      </h1>
+      <p class="text-2xl text-slate-600 max-w-3xl mx-auto text-center">HawkFranklin Research translates frontier AI into clinical‑grade products for healthcare, genomics, and computational biology.</p>
+      
+    </div>
+  </section>
+
+  <!-- Slide 3: The New Wave (from ACLIS deck) -->
+  <section class="slide hue-center-purple">
+    <div class="max-w-7xl w-full">
+      <div class="w-full max-w-5xl mx-auto mb-6 text-left">
+        <h3 class="text-cyan-600 text-2xl font-normal">The Future</h3>
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900">A New Wave of <span class="gradient-text">Clinical Intelligence</span></h2>
+      </div>
+      <div class="w-full grid md:grid-cols-2 gap-6 items-stretch">
+        <div class="card p-6 bg-white/90">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="bg-violet-100 p-4 rounded-full"><i class="fa-solid fa-cubes text-3xl text-violet-600"></i></div>
+            <div>
+              <h3 class="text-2xl font-bold text-slate-800">Biomedical Foundation Models</h3>
+              <p class="text-slate-500 mt-1">Purpose-built models for specific data types.</p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center bg-slate-50 p-4 rounded-lg"><i class="fas fa-microscope fa-fw text-lg text-blue-500 mr-4"></i><div><strong class="font-semibold text-blue-800">Pathology: 9</strong></div></div>
+            <div class="flex items-center bg-slate-50 p-4 rounded-lg"><i class="fas fa-x-ray fa-fw text-lg text-green-500 mr-4"></i><div><strong class="font-semibold text-green-800">Radiology: 7</strong></div></div>
+            <div class="flex items-center bg-slate-50 p-4 rounded-lg"><i class="fas fa-vials fa-fw text-lg text-orange-500 mr-4"></i><div><strong class="font-semibold text-orange-800">Single‑cell: 8</strong></div></div>
+            <div class="flex items-center bg-slate-50 p-4 rounded-lg"><i class="fas fa-dna fa-fw text-lg text-purple-500 mr-4"></i><div><strong class="font-semibold text-purple-800">Genomics (DNA): 5</strong></div></div>
+            <div class="flex items-center bg-slate-50 p-4 rounded-lg"><i class="fas fa-file-alt fa-fw text-lg text-rose-500 mr-4"></i><div><strong class="font-semibold text-rose-800">EHR/clinical‑text: 7</strong></div></div>
+          </div>
+        </div>
+        <div class="card p-6 bg-white/90">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="bg-indigo-100 p-4 rounded-full"><i class="fas fa-robot text-3xl text-indigo-600"></i></div>
+            <div>
+              <h3 class="text-2xl font-bold text-slate-800">AI Agents</h3>
+              <p class="text-slate-500 mt-1">Autonomous agents dramatically improve model accuracy.</p>
+            </div>
+          </div>
+          <div class="flex-grow w-full" style="min-height: 350px;">
+            <canvas id="agentPerfBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6">
+        <h3 class="font-semibold text-xl mb-3 text-center text-slate-800">Powered by Diverse Clinical Data Modalities</h3>
+        <div class="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 text-center max-w-5xl mx-auto">
+          <div class="py-3 px-2 bg-gray-700 rounded-lg text-white"><i class="fas fa-images text-4xl text-blue-400 mb-1"></i><p class="font-semibold">Medical Images</p><p class="text-sm text-gray-300">Pathology, CT, MRI</p></div>
+          <div class="py-3 px-2 bg-gray-700 rounded-lg text-white"><i class="fas fa-notes-medical text-4xl text-red-400 mb-1"></i><p class="font-semibold">EHR Data</p><p class="text-sm text-gray-300">Clinical Records</p></div>
+          <div class="py-3 px-2 bg-gray-700 rounded-lg text-white"><i class="fas fa-dna text-4xl text-purple-400 mb-1"></i><p class="font-semibold">Genomic Sequences</p><p class="text-sm text-gray-300">DNA & RNA</p></div>
+          <div class="py-3 px-2 bg-gray-700 rounded-lg text-white"><i class="fas fa-vials text-4xl text-orange-400 mb-1"></i><p class="font-semibold">Single-Cell</p><p class="text-sm text-gray-300">Spatial, scRNA</p></div>
+          <div class="py-3 px-2 bg-gray-700 rounded-lg text-white"><i class="fas fa-heart-pulse text-4xl text-emerald-400 mb-1"></i><p class="font-semibold">Wearables</p><p class="text-sm text-gray-300">Vitals & Sensors</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: Core Technology (orchestrator graph) -->
+  <section class="slide hue-bottom-left-emerald relative">
+    <div class="max-w-7xl w-full mx-auto">
+      <div class="w-full max-w-5xl mx-auto mb-6 text-left">
+        <h3 class="text-emerald-600 text-2xl font-normal">Core Technology</h3>
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">ACLIS: <span class="text-emerald-600">Agents + Protocols</span></h2>
+        <p class="mt-3 text-lg text-slate-600 max-w-4xl">The ACLIS Agent Orchestrator connects to a secure MCP server, unifying devices, data, models, and clinical rules.</p>
+      </div>
+      <div id="ct-stage" class="relative w-full max-w-6xl mx-auto" style="height:860px;">
+        <div id="user-views" class="relative z-40 -mt-2 mb-3 flex justify-center items-start gap-6 w-full px-2">
+          <div id="view-patient" class="card px-5 py-2 rounded-lg text-center shadow-lg border-b-4 border-sky-400 bg-white min-w-[160px]"><i class="fas fa-user text-sky-500 text-3xl"></i><p class="text-sm font-semibold text-slate-800 mt-1.5">Patient</p></div>
+          <div id="view-physician" class="card px-5 py-2 rounded-lg text-center shadow-lg border-b-4 border-blue-500 bg-white min-w-[160px]"><i class="fas fa-user-md text-blue-600 text-3xl"></i><p class="text-sm font-semibold text-slate-800 mt-1.5">Physician</p></div>
+          <div id="view-nursing" class="card px-5 py-2 rounded-lg text-center shadow-lg border-b-4 border-green-500 bg-white min-w-[160px]"><i class="fas fa-user-nurse text-green-600 text-3xl"></i><p class="text-sm font-semibold text-slate-800 mt-1.5">Nursing</p></div>
+          <div id="view-admin" class="card px-5 py-2 rounded-lg text-center shadow-lg border-b-4 border-gray-500 bg-white min-w-[160px]"><i class="fas fa-user-shield text-gray-600 text-3xl"></i><p class="text-sm font-semibold text-slate-800 mt-1.5">Admin</p></div>
+        </div>
+        <div id="node-orch" class="relative z-30 mx-auto grid place-items-center w-max mt-2">
+          <div class="card border-2 border-slate-200 px-8 py-4 rounded-2xl shadow-xl min-w-[420px] md:min-w-[640px]">
+            <div class="flex items-center gap-3 justify-center"><i class="fa-solid fa-display text-2xl text-slate-700"></i><h3 class="text-2xl font-extrabold text-slate-800">User Interface</h3></div>
+            <p class="text-sm text-slate-600 mt-1 text-center">Screens · Controls · Workflows</p>
+          </div>
+        </div>
+        <div id="node-mcp" class="absolute top-[34%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 grid place-items-center w-max">
+          <div class="card border-2 border-sky-300 px-8 py-6 rounded-2xl shadow-xl ring-8 ring-sky-100/60">
+            <div class="flex items-center justify-center gap-3 text-purple-700 font-extrabold text-2xl md:text-3xl"><i class="fas fa-brain text-3xl md:text-4xl"></i><span>ACLIS</span></div>
+            <p class="text-sm text-slate-600 mt-3">Rules • Traceable • Secure • Orchestration</p>
+            <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200"><i class="fa-solid fa-plug"></i> Universal Integration</span>
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200"><i class="fa-solid fa-brain"></i> Agentic Intelligence</span>
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-shield-heart"></i> Clinical AI Protocol</span>
+            </div>
+          </div>
+        </div>
+        <div id="node-rules" class="absolute left-0 top-[34%] -translate-y-1/2 -translate-x-[6%] z-10">
+          <div class="card px-7 py-6 rounded-2xl border-l-4 border-emerald-500 min-w-[260px]"><div class="flex items-center gap-4 text-slate-700"><i class="fa-solid fa-clipboard-check text-4xl text-emerald-600"></i><div><div class="font-bold text-lg">Clinician's Rules</div><div class="text-sm text-slate-500">Policies · Safety · Audit</div></div></div></div>
+        </div>
+        <div id="node-specialists" class="absolute right-0 top-[34%] -translate-y-1/2 translate-x-[6%] z-10">
+          <div class="card px-7 py-6 rounded-2xl border-l-4 border-cyan-500 min-w-[260px]"><div class="flex items-center gap-4 text-slate-700"><i class="fa-solid fa-robot text-4xl text-cyan-600"></i><div><div class="font-bold text-lg">Specialist Agents</div><div class="text-sm text-slate-500">Radiology · Genomics</div></div></div></div>
+        </div>
+        <svg id="ct-arrows" class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#a21caf"/></marker>
+            <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#059669"/></marker>
+            <marker id="arrow-cyan" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#06b6d4"/></marker>
+            <marker id="arrow-purple-sm" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#a21caf"/></marker>
+            <marker id="arrow-green-sm" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#059669"/></marker>
+          </defs>
+          <line id="ln-patient-orch" x1="0" y1="0" x2="0" y2="0" stroke="#9333ea" stroke-width="2" marker-end="url(#arrow-purple-sm)"/>
+          <line id="ln-physician-orch" x1="0" y1="0" x2="0" y2="0" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green-sm)"/>
+          <line id="ln-nursing-orch" x1="0" y1="0" x2="0" y2="0" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+          <line id="ln-admin-orch" x1="0" y1="0" x2="0" y2="0" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+          <line id="ln-orch-mcp" x1="0" y1="0" x2="0" y2="0" stroke="#1d4ed8" stroke-width="3" marker-end="url(#arrow-purple)"/>
+          <line id="ln-mcp-orch" x1="0" y1="0" x2="0" y2="0" stroke="#22c55e" stroke-width="3" marker-end="url(#arrow-green)"/>
+          <line id="ln-rules-mcp" x1="0" y1="0" x2="0" y2="0" stroke="#22c55e" stroke-width="2" marker-end="url(#arrow-green)"/>
+          <line id="ln-mcp-spec" x1="0" y1="0" x2="0" y2="0" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+  <!-- Slide 2: DIRECT COPY from product_portfolio.html (slide1) -->
+    <section id="slide1" class="slide hue-top-left-amber">
+        <!-- <img src="backgrounds/exports/top_left_amber.png" alt="" class="bg-overlay w-full h-full object-cover" aria-hidden="true"> -->
+        <div class="absolute top-8 left-8">
+            <img src="aclis_slide_deck/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research Logo" class="h-24 w-auto drop-shadow-sm" onerror="this.style.display='none'"/>
+        </div>
+        <div class="text-center max-w-7xl w-full">
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900">
+                Our Portfolio of <span class="gradient-text">Clinical AI</span>
+            </h1>
+            <p class="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">
+                From co-developed clinical tools to frontier research in foundation models, our products are engineered for scientific impact.
+            </p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Co-Developed Products -->
+                <div class="card p-6 text-left border-t-4 border-emerald-500">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="bg-emerald-100 p-3 rounded-full"><i class="fas fa-handshake-angle text-2xl text-emerald-600"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800">Co-Developed Products</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-green-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-allergies text-green-600"></i></div> <div><h4 class="font-semibold">DermAssist</h4><p class="text-sm text-slate-500">AI-powered dermatology assistant.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-cyan-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-dna text-cyan-600"></i></div> <div><h4 class="font-semibold">Omics Copilot</h4><p class="text-sm text-slate-500">AI agent for multi-omics analysis.</p></div></li>
+                    </ul>
+                </div>
+                <!-- Future Technologies -->
+                <div class="card p-6 text-left border-t-4 border-blue-500 md:col-span-2">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="bg-blue-100 p-3 rounded-full"><i class="fas fa-rocket text-2xl text-blue-600"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800">Future Technologies & Research Programs</h3>
+                    </div>
+                     <ul class="space-y-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                        <!-- Swapped: PathoLens at first position -->
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-indigo-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-microscope text-indigo-600"></i></div> <div><h4 class="font-semibold">PathoLens Agent</h4><p class="text-sm text-slate-500">AI-powered pathology analysis.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-rose-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-heartbeat text-rose-600"></i></div> <div><h4 class="font-semibold">Cancer Prognostic Foundation Model</h4><p class="text-sm text-slate-500">Cross-modal survival modeling.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-purple-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-atom text-purple-600"></i></div> <div><h4 class="font-semibold">Generative Multiomics</h4><p class="text-sm text-slate-500">Synthesize & impute omics data.</p></div></li>
+                        <!-- Swapped: Tabular moved to last position -->
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-amber-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-table text-amber-600"></i></div> <div><h4 class="font-semibold">Tabular Foundation Model</h4><p class="text-sm text-slate-500">In-context learning for clinical data.</p></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide: Omics Copilot (copied from product_portfolio.html slide3, adjusted) -->
+    <section id="slide-omics" class="slide bg-white hue-right-cyan">
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-dna text-4xl text-cyan-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-cyan-700">Omics Copilot</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">AI Agent for Multi-Omics Analysis</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">An intelligent agent providing a natural language interface for multi-omics analysis, designed to accelerate computational biology and genomic research workflows.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Capabilities</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-cyan-500 mt-1.5"></i><span>Query complex genomic datasets using natural language.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-cyan-500 mt-1.5"></i><span>Automates routine bioinformatics tasks like QC, alignment, and analysis.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-cyan-500 mt-1.5"></i><span>Integrates with existing bioinformatics tools and pipelines via API.</span></li>
+                    </ul>
+                </div>
+                 <div class="mt-8 pt-6 border-t border-slate-200">
+                    <p class="text-sm font-semibold text-slate-500 mb-2">In Partnership With:</p>
+                    <img src="aclis_slide_deck/flyer/oneomics_logo.webp" alt="OneOMICS Logo" class="h-14 w-auto" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="card p-4">
+                 <div class="bg-slate-800 p-6 rounded-xl font-mono text-sm text-slate-300 shadow-lg">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <p class="text-green-400">&gt; user: Correlate expression of TP53 with survival outcomes in TCGA-BRCA, stratified by PAM50 subtypes.</p>
+                    <p class="mt-4 animate-pulse"> <span class="text-cyan-400">[Omics Copilot]:</span> Processing query... Fetching TCGA-BRCA data... Performing survival analysis... Generating plots...</p>
+                    <div class="mt-4 h-40 bg-slate-700/50 rounded flex items-center justify-center text-slate-500">
+                        [Kaplan-Meier Plot Loading...]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide: DermAssist (copied from product_portfolio.html slide2, adjusted) -->
+    <section id="slide-dermassist" class="slide bg-white hue-bottom-left-emerald">
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-allergies text-4xl text-emerald-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-emerald-700">DermAssist</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">AI-Powered Dermatology Assistant</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">A clinical vision AI that supports lesion triage and dermatological diagnosis, providing clinicians with intelligent assistance for skin condition assessment.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Capabilities</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1.5"></i><span>Multi-label predictions for complex dermatological conditions.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1.5"></i><span>Top-K probability visualization for differential diagnosis.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1.5"></i><span>Powered by hybrid CNN/Transformer pipelines for state-of-the-art analysis.</span></li>
+                    </ul>
+                </div>
+                 <div class="mt-8 pt-6 border-t border-slate-200">
+                    <p class="text-sm font-semibold text-slate-500 mb-2">In Partnership With:</p>
+                    <img src="aclis_slide_deck/flyer/timpac_logo.png" alt="TIMPAC Logo" class="h-28 w-auto" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="card p-4">
+                <div class="bg-slate-100 p-4 rounded-xl">
+                    <h3 class="font-semibold text-slate-800 mb-3">DermAssist Preview</h3>
+                    <!-- Video placeholder: drop actual video, leave space for manual placement -->
+                    <div class="w-full h-64 md:h-80 bg-slate-200 rounded-lg"></div>
+                    <p class="text-xs text-slate-500 mt-2">Video placeholder (to be added manually).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Slide 3: Products Overview (brief + partner logos) -->
+  <section class="slide hue-top-right-sky">
+    <div class="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <img src="../assets/img/HawkFranklin_Aug23.transparent.png" class="h-16" alt="HFR">
+          <div class="text-2xl font-bold text-slate-800">ACLIS</div>
+          <div class="ml-auto text-xl font-bold text-slate-700">WHX Tech</div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900">Product Portfolio</h2>
+        <p class="text-lg text-slate-600 mt-3">Flagship orchestrator plus a suite of domain agents and research products.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center"><i class="fas fa-allergies text-emerald-600"></i></div><div><b>DermAssist</b> — Dermatology assistant <span class="text-slate-400">(Partner: TIMPAC)</span></div></li>
+          <li class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center"><i class="fas fa-dna text-cyan-600"></i></div><div><b>Omics Copilot</b> — Multi‑omics AI agent <span class="text-slate-400">(Partner: OneOmics)</span></div></li>
+          <li class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center"><i class="fas fa-robot text-purple-600"></i></div><div><b>ML Copilot</b> — Data prep + model training</div></li>
+          <li class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center"><i class="fas fa-atom text-indigo-600"></i></div><div><b>Generative Multiomics</b> — Synthesis + imputation</div></li>
+          <li class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center"><i class="fas fa-project-diagram text-amber-600"></i></div><div><b>GNN Multiomics</b> — Graph‑based risk modeling</div></li>
+          <li class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center"><i class="fas fa-microscope text-pink-600"></i></div><div><b>PathoLens Agent</b> — Digital pathology analysis</div></li>
+        </ul>
+        <div class="mt-6 flex gap-6 items-center">
+          <img src="../assets/img/timpac_logo.png" alt="Timpac" class="h-10" />
+          <img src="../assets/img/oneomics_logo.webp" alt="OneOmics" class="h-7" />
+        </div>
+      </div>
+      <div class="card p-6">
+        <h3 class="text-slate-800 font-semibold mb-3">ACLIS Snapshot</h3>
+        <p class="text-slate-600">Adaptive Clinically Intelligent System: unifies devices, agents, and models under clinician control.</p>
+        <ul class="grid grid-cols-2 gap-3 mt-4 text-sm">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-plug text-blue-600"></i> Universal Integration</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-brain text-purple-600"></i> Agentic Intelligence</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-shield-heart text-emerald-600"></i> Clinical Protocol</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-lock text-slate-600"></i> Privacy & Audit</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4: AI is Being Deployed (from ACLIS deck) -->
+    <div class="max-w-6xl w-full">
+      <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-2">From Lab to Clinic: <span class="text-blue-600">AI is Being Deployed</span></h2>
+      <p class="text-lg text-slate-600 mb-8">AI/ML devices are clearing regulatory hurdles and showing real‑world value.</p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="card p-6 border-t-4 border-blue-500">
+          <h3 class="font-bold text-xl mb-2 flex items-center"><i class="fas fa-stamp mr-3 text-blue-500"></i>FDA‑Approved Medical AI Devices</h3>
+          <div class="w-full h-80"><canvas id="fdaDeviceChart"></canvas></div>
+        </div>
+        <div class="card p-6 border-t-4 border-emerald-500">
+          <h3 class="font-bold text-xl mb-6 flex items-center"><i class="fas fa-chart-pie mr-3 text-emerald-500"></i>Real‑World Evidence</h3>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div class="bg-white p-4 rounded-lg border-l-4 border-emerald-400 shadow-sm">
+              <h4 class="font-semibold text-slate-800">Penda Health & OpenAI (Jul 2025)</h4>
+              <p class="text-slate-600 mt-1">39,849 visits; 106 clinicians.</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-emerald-400 shadow-sm">
+              <h4 class="font-semibold text-slate-800">Doctronic (Hayat et al., Jul 2025)</h4>
+              <p class="text-slate-600 mt-1">500 telehealth encounters.</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-emerald-400 shadow-sm">
+              <p class="text-lg font-medium text-slate-600">Diagnostic Errors</p>
+              <p class="text-3xl font-bold text-emerald-600">-16%</p>
+              <p class="text-xs text-slate-500">Reduction vs control</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-emerald-400 shadow-sm">
+              <p class="text-lg font-medium text-slate-600">Diagnostic Match</p>
+              <p class="text-3xl font-bold text-emerald-600">81%</p>
+              <p class="text-xs text-slate-500">vs. Human Clinician</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Roadmap Snapshot (simplified) -->
+  <section class="slide">
+    <div class="max-w-6xl w-full">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8">ACLIS Roadmap</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6">
+          <div class="text-sm font-semibold text-slate-500">Mar 2025</div>
+          <h3 class="font-bold text-lg mt-1">Concept Phase</h3>
+          <ul class="mt-3 text-sm text-slate-600 space-y-1">
+            <li>Vision & core requirements</li>
+            <li>Foundational integrations mapped</li>
+          </ul>
+        </div>
+        <div class="card p-6 border border-blue-200">
+          <div class="text-sm font-semibold text-blue-600">Sept 2025</div>
+          <h3 class="font-bold text-lg mt-1 text-blue-800">Product Preview</h3>
+          <ul class="mt-3 text-sm text-slate-700 space-y-1">
+            <li>UI & MCP Server</li>
+            <li>AI Agent Cluster</li>
+            <li>Simulated Devices & EHR</li>
+            <li>3 Disease Models</li>
+          </ul>
+        </div>
+        <div class="card p-6">
+          <div class="text-sm font-semibold text-slate-500">Jan 2026</div>
+          <h3 class="font-bold text-lg mt-1">Clinical Integration</h3>
+          <ul class="mt-3 text-sm text-slate-600 space-y-1">
+            <li>Clinics in India</li>
+            <li>Low‑risk common diseases</li>
+            <li>Dermatology & Pathology</li>
+            <li>Wearables & EHR</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6: Team (from ACLIS deck) -->
+  <section class="slide hue-right-cyan">
+    <div class="max-w-6xl w-full">
+      <h2 class="text-4xl md:text-5xl font-bold">Meet the Team Behind <span class="gradient-text">ACLIS</span></h2>
+      <div class="grid md:grid-cols-4 gap-6 mt-8 text-center">
+        <div class="card p-4">
+          <img src="../Abhijeet%20Patel.jpg" alt="Abhijeet Patel" class="w-28 h-28 rounded-full object-cover mx-auto mb-3">
+          <div class="font-semibold">Abhijeet Patel</div>
+          <div class="text-sm text-slate-600">CTO (AI Systems)</div>
+        </div>
+        <div class="card p-4">
+          <img src="../Vatsal_Patel.jpg" alt="Vatsal Patel" class="w-28 h-28 rounded-full object-cover mx-auto mb-3">
+          <div class="font-semibold">Vatsal Patel</div>
+          <div class="text-sm text-slate-600">CEO & Architect</div>
+        </div>
+        <div class="card p-4">
+          <img src="../Ananya_Pal.jpg" alt="Ananya Pal" class="w-28 h-28 rounded-full object-cover mx-auto mb-3">
+          <div class="font-semibold">Ananya Pal</div>
+          <div class="text-sm text-slate-600">Bioinformatics</div>
+        </div>
+        <div class="card p-4">
+          <img src="../Saurav_Roy.jpeg" alt="Saurav Roy" class="w-28 h-28 rounded-full object-cover mx-auto mb-3">
+          <div class="font-semibold">Saurav Roy</div>
+          <div class="text-sm text-slate-600">ML Research</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: DermAssist (video) -->
+  <section class="slide">
+    <div class="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center"><i class="fas fa-allergies text-4xl text-emerald-600"></i></div>
+          <div>
+            <h2 class="text-4xl md:text-5xl font-bold text-emerald-700">DermAssist</h2>
+            <p class="text-lg text-slate-500">AI‑Powered Dermatology Assistant</p>
+          </div>
+        </div>
+        <ul class="space-y-2 text-slate-700">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1.5"></i><span>Lesion triage and differential diagnosis support.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1.5"></i><span>Integrates into clinical workflow; privacy‑preserving.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-handshake text-emerald-600 mt-1.5"></i><span>In partnership with TIMPAC.</span></li>
+        </ul>
+      </div>
+      <div class="card p-4">
+        <h3 class="font-semibold text-slate-800 mb-2">Product Preview</h3>
+        <video controls class="w-full rounded-lg bg-black" poster="../assets/img/HawkFranklin_Aug23.transparent.png">
+          <source src="../assets/video/dermassist_preview.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8: Omics Copilot -->
+  <section class="slide">
+    <div class="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center"><i class="fas fa-dna text-4xl text-cyan-600"></i></div>
+          <div>
+            <h2 class="text-4xl md:text-5xl font-bold text-cyan-700">Omics Copilot</h2>
+            <p class="text-lg text-slate-500">Bioinformatics AI Assistant</p>
+          </div>
+        </div>
+        <ul class="space-y-2 text-slate-700">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-cyan-500 mt-1.5"></i><span>Natural‑language interface for multi‑omics analysis.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-cyan-500 mt-1.5"></i><span>Connects to HPC/cloud; automates workflows.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-handshake text-cyan-600 mt-1.5"></i><span>In partnership with OneOmics.</span></li>
+        </ul>
+      </div>
+      <div class="card p-4">
+        <div class="bg-slate-800 p-6 rounded-xl font-mono text-sm text-slate-300">
+          <div class="flex items-center gap-2 mb-4"><div class="w-3 h-3 bg-red-500 rounded-full"></div><div class="w-3 h-3 bg-yellow-500 rounded-full"></div><div class="w-3 h-3 bg-green-500 rounded-full"></div></div>
+          <div class="mb-2 text-cyan-300">$ install_packages --omics=multi</div>
+          <div class="mb-4">Installing Seurat, DESeq2, Scanpy... ✓ done</div>
+          <div class="mb-2 text-cyan-300">$ analyze --input=./data/tcga_rnaseq --output=./results</div>
+          <div>✓ Identified 342 DE genes (FDR < 0.05)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9: ML Copilot -->
+  <section class="slide">
+    <div class="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center"><i class="fas fa-robot text-4xl text-purple-600"></i></div>
+          <div>
+            <h2 class="text-4xl md:text-5xl font-bold text-purple-700">ML Copilot</h2>
+            <p class="text-lg text-slate-500">Interactive ML Assistant</p>
+          </div>
+        </div>
+        <ul class="space-y-2 text-slate-700">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-purple-500 mt-1.5"></i><span>Data prep, training, and evaluation flows.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-purple-500 mt-1.5"></i><span>Reusable pipelines; experiment tracking.</span></li>
+        </ul>
+      </div>
+      <div class="card p-6">
+        <h3 class="font-semibold">Example UX</h3>
+        <p class="text-slate-600">“Try Demo” and pipeline selection UI similar to product page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Generative Multiomics -->
+  <section class="slide">
+    <div class="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center"><i class="fas fa-atom text-4xl text-indigo-600"></i></div>
+          <div>
+            <h2 class="text-4xl md:text-5xl font-bold text-indigo-700">Generative Multiomics</h2>
+            <p class="text-lg text-slate-500">Synthesis & Imputation</p>
+          </div>
+        </div>
+        <ul class="space-y-2 text-slate-700">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-indigo-500 mt-1.5"></i><span>Impute unmeasured biomarkers in sparse datasets.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-indigo-500 mt-1.5"></i><span>Cross‑modal generation guided by GNNs.</span></li>
+        </ul>
+      </div>
+      <div class="card p-6"><p class="text-slate-600">Research‑to‑product track focused on robust, explainable generation.</p></div>
+    </div>
+  </section>
+
+  <!-- Slide 11: GNN Multiomics -->
+  <section class="slide">
+    <div class="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center"><i class="fas fa-project-diagram text-4xl text-amber-600"></i></div>
+          <div>
+            <h2 class="text-4xl md:text-5xl font-bold text-amber-700">GNN Multiomics</h2>
+            <p class="text-lg text-slate-500">Graph Attention for Risk</p>
+          </div>
+        </div>
+        <ul class="space-y-2 text-slate-700">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-amber-500 mt-1.5"></i><span>Integrates omics with graph biology for prognostics.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-amber-500 mt-1.5"></i><span>Works with patient cohorts; explainable attention.</span></li>
+        </ul>
+      </div>
+      <div class="card p-6"><p class="text-slate-600">Results and examples available on site.</p></div>
+    </div>
+  </section>
+
+  <!-- Slide 12: PathoLens -->
+  <section class="slide hue-dark-violet text-white">
+    <div class="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center"><i class="fas fa-microscope text-4xl text-white"></i></div>
+          <div>
+            <h2 class="text-4xl md:text-5xl font-bold">PathoLens Agent</h2>
+            <p class="text-lg text-slate-300">Digital Pathology Analysis</p>
+          </div>
+        </div>
+        <ul class="space-y-2 text-slate-200">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-300 mt-1.5"></i><span>WSI analysis with vision foundation models.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-300 mt-1.5"></i><span>Biomarker quantification; reporting.</span></li>
+        </ul>
+      </div>
+      <div class="card card-dark p-6 bg-white/5"><p>Coming 2025</p></div>
+    </div>
+  </section>
+
+  <!-- Auto-advance control -->
+  <div class="autonav">
+    <button id="toggleAuto" class="px-3 py-1.5 rounded bg-slate-900 text-white text-sm">Pause</button>
+  </div>
+
+  <script>
+    // Exact charts from ACLIS deck
+    document.addEventListener('DOMContentLoaded', () => {
+      Chart.register(ChartDataLabels);
+      const barCtx = document.getElementById('agentPerfBarChart');
+      if(barCtx) {
+        new Chart(barCtx, { type: 'bar', data: { labels: [["MAI-DxO", "(Microsoft, July '25)"],["MedAgent-Pro", "(Oxford, July '25)"],["MedRAX", "(Cohere, Feb '25)"]], datasets: [{ label: 'Baseline (LLM/Human)', data: [20.0, 56.0, 28.7], backgroundColor: 'rgba(156, 163, 175, 0.8)', borderColor: 'rgba(107, 114, 128, 1)', borderWidth: 1, borderRadius: 4 }, { label: 'AI Agent', data: [85.5, 90.0, 63.1], backgroundColor: 'rgba(79, 70, 229, 0.8)', borderColor: 'rgba(67, 56, 202, 1)', borderWidth: 1, borderRadius: 4 }] }, options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { beginAtZero: true, max: 100, title: { display: true, text: 'Diagnostic Accuracy (%)' } }, y: { ticks: { font: { size: 14 } } } }, plugins: { legend: { position: 'bottom' }, datalabels: { display: false }, tooltip: { callbacks: { label: function(context) { let label = context.dataset.label || ''; if (label) { label += ': '; } if (context.parsed.x !== null) { label += context.parsed.x + '%'; } return label; } } } } });
+      }
+      const fdaDeviceCtx = document.getElementById('fdaDeviceChart');
+      if(fdaDeviceCtx) {
+        new Chart(fdaDeviceCtx, { type: 'line', data: { labels: ['2017', '2019', '2021', '2023', 'Mar 2025'], datasets: [{ label: 'AI Devices Approved', data: [26, 80, 130, 221, 1016], borderColor: '#3b82f6', backgroundColor: 'rgba(59, 130, 246, 0.1)', fill: true, tension: 0.1, borderWidth: 3, pointRadius: 4, pointBackgroundColor: '#3b82f6' }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { display: false } }, scales: { y: { beginAtZero: true, title: { display: true, text: 'Cumulative Devices' } }, x: { grid: { display: false } } } } });
+      }
+    });
+    // Slide: Core Technology — draw connector arrows (exact layout logic)
+    (function(){
+      const svg   = document.getElementById('ct-arrows');
+      const orch  = document.getElementById('node-orch');
+      const mcp   = document.getElementById('node-mcp');
+      const rules = document.getElementById('node-rules');
+      const spec  = document.getElementById('node-specialists');
+      const patientView   = document.getElementById('view-patient');
+      const physicianView = document.getElementById('view-physician');
+      const nursingView   = document.getElementById('view-nursing');
+      const adminView     = document.getElementById('view-admin');
+      if (!svg || !orch || !mcp || !rules || !spec) return;
+      function centerIn(svgEl, el){ const r=el.getBoundingClientRect(), s=svgEl.getBoundingClientRect(); return { x:(r.left+r.right)/2 - s.left, y:(r.top+r.bottom)/2 - s.top }; }
+      function attachArrows(){
+        const svgRect = svg.getBoundingClientRect();
+        const orchRect = orch.getBoundingClientRect();
+        const pOrch = centerIn(svg, orch);
+        const pMcp  = centerIn(svg, mcp);
+        const pRules= centerIn(svg, rules);
+        const pSpec = centerIn(svg, spec);
+        const orchTopX = pOrch.x, orchTopY = orchRect.top - svgRect.top;
+        function drawViewLine(id, viewEl){ if(!viewEl) return; const pView = centerIn(svg, viewEl); const line=document.getElementById(id); if(!line) return; line.setAttribute('x1', pView.x); line.setAttribute('y1', pView.y + viewEl.offsetHeight/2); line.setAttribute('x2', orchTopX); line.setAttribute('y2', orchTopY); }
+        drawViewLine('ln-patient-orch', patientView);
+        drawViewLine('ln-physician-orch', physicianView);
+        drawViewLine('ln-nursing-orch', nursingView);
+        drawViewLine('ln-admin-orch', adminView);
+        const mcpRect  = mcp.getBoundingClientRect();
+        const xDown = pOrch.x, offset = 26, yPad = 16;
+        const yStart = (orchRect.bottom - svgRect.top) - yPad;
+        const yEnd   = (mcpRect.top - svgRect.top) + yPad;
+        const ln1 = document.getElementById('ln-orch-mcp'); if(ln1){ ln1.setAttribute('x1', xDown - offset); ln1.setAttribute('y1', yStart); ln1.setAttribute('x2', xDown - offset); ln1.setAttribute('y2', yEnd); }
+        const ln1b= document.getElementById('ln-mcp-orch'); if(ln1b){ ln1b.setAttribute('x1', xDown + offset); ln1b.setAttribute('y1', yEnd); ln1b.setAttribute('x2', xDown + offset); ln1b.setAttribute('y2', yStart); }
+        const rulesRect = rules.getBoundingClientRect();
+        const xPad=16, xStart2=(rulesRect.right - svgRect.left) - xPad, yMid2=pRules.y, xEnd2=(mcpRect.left - svgRect.left) + xPad, yEnd2=pMcp.y;
+        const ln2=document.getElementById('ln-rules-mcp'); if(ln2){ ln2.setAttribute('x1', xStart2); ln2.setAttribute('y1', yMid2); ln2.setAttribute('x2', xEnd2); ln2.setAttribute('y2', yEnd2); }
+        const specRect= spec.getBoundingClientRect();
+        const xStart3=(specRect.left - svgRect.left) + xPad, yStart3=pSpec.y, xEnd3=(mcpRect.right - svgRect.left) - xPad, yEnd3=pMcp.y;
+        const ln3=document.getElementById('ln-mcp-spec'); if(ln3){ ln3.setAttribute('x1', xStart3); ln3.setAttribute('y1', yStart3); ln3.setAttribute('x2', xEnd3); ln3.setAttribute('y2', yEnd3); }
+      }
+      const ro = new ResizeObserver(()=>attachArrows());
+      window.addEventListener('load', ()=>{ attachArrows(); ['ct-arrows','node-orch','node-mcp','node-rules','node-specialists','ct-stage','view-patient','view-physician','view-nursing','view-admin'].forEach(id=>{ const el=document.getElementById(id); if(el) ro.observe(el); }); window.addEventListener('scroll', attachArrows, {passive:true}); window.addEventListener('resize', attachArrows); });
+    })();
+
+    // Auto-advance by word count
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      let idx = 0, running = true, timer = null;
+      const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
+      function durFor(el){
+        const words = (el.innerText||'').trim().split(/\s+/).filter(Boolean).length;
+        return clamp(6000 + words*180, 6000, 25000); // 6s + 180ms/word
+      }
+      function go(i){
+        idx = (i+slides.length)%slides.length;
+        slides[idx].scrollIntoView({ behavior:'smooth', block:'start' });
+        schedule();
+      }
+      function schedule(){
+        if (!running) return;
+        clearTimeout(timer);
+        timer = setTimeout(()=>go(idx+1), durFor(slides[idx]));
+      }
+      document.addEventListener('keydown', e=>{
+        if (e.key==='ArrowRight' || e.key==='PageDown') { running=false; clearTimeout(timer); go(idx+1); }
+        if (e.key==='ArrowLeft'  || e.key==='PageUp')   { running=false; clearTimeout(timer); go(idx-1); }
+        if (e.key===' ') { running=!running; schedule(); }
+      });
+      document.getElementById('toggleAuto').onclick = ()=>{ running=!running; document.getElementById('toggleAuto').textContent = running? 'Pause':'Play'; schedule(); };
+      // kick off
+      setTimeout(schedule, 800);
+    })();
+  </script>
+</body>
+</html>
