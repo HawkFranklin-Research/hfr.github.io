@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DermAssist - AI Dermatology Assistant</title>
+    <title>PelliScope - AI for Pre-Medical Dermatology Inquiry</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="../assets/css/theme.css" rel="stylesheet" />
@@ -84,34 +84,40 @@
                             <i class="fas fa-allergies text-3xl text-emerald-600"></i>
                         </div>
                         <div>
-                            <h2 class="text-4xl md:text-5xl font-bold text-blue-900">DermAssist</h2>
-                            <p class="text-lg font-medium text-slate-600">AI-Powered Dermatology Assistant</p>
+                            <h2 class="text-4xl md:text-5xl font-bold text-blue-900">PelliScope</h2>
+                            <p class="text-lg font-medium text-slate-600">AI for Pre-Medical Dermatology Inquiry</p>
                         </div>
                     </div>
-                    <p class="text-xl text-gray-700 mb-8">A clinical vision AI that supports lesion triage and dermatological diagnosis, providing clinicians with intelligent assistance for skin condition assessment.</p>
+                    <p class="text-xl text-gray-700 mb-8">PelliScope is a clinical vision AI that supports lesion triage and dermatological diagnosis, providing clinicians with intelligent assistance for skin condition assessment.</p>
                     <div>
                         <h3 class="text-2xl font-semibold text-gray-900 mb-4">Key Capabilities</h3>
                         <ul class="space-y-3 text-lg text-gray-700">
                             <li class="flex items-start gap-3">
                                 <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
-                                <span>Multi-label predictions for complex dermatological conditions.</span>
+                                <span>Free skin lesion check-up to detect infectious versus non-infectious presentations.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
-                                <span>Top-K probability visualization for differential diagnosis.</span>
+                                <span>Paid differential diagnosis pathway for complex skin conditions.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
-                                <span>Powered by hybrid CNN/Transformer pipelines for state-of-the-art analysis.</span>
+                                <span>Resource-optimized AI executable on CPU-grade hardware—no GPUs required.</span>
                             </li>
                         </ul>
+                        <div class="mt-8">
+                            <a href="#demo" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
+                                <i class="fas fa-play-circle text-lg"></i>
+                                Watch Demo
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="lg:w-1/2 flex justify-center">
-                    <div class="relative w-full max-w-lg">
+                    <div class="relative w-full max-w-xl" id="dermassistPreview">
                         <div class="absolute -top-6 -left-6 w-64 h-64 bg-blue-200 rounded-2xl opacity-50"></div>
                         <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-blue-300 rounded-2xl opacity-50"></div>
-                        <div class="relative bg-white p-4 rounded-2xl shadow-xl">
+                        <div id="analysisCard" class="relative bg-white p-4 rounded-2xl shadow-xl transition-opacity duration-700 ease-in-out" style="min-height: 360px;">
                             <div class="flex justify-between items-center mb-4">
                                 <h3 class="font-semibold text-gray-800">Skin Lesion Analysis</h3>
                                 <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">AI Assessment</span>
@@ -160,6 +166,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="analysisVideo" class="relative rounded-2xl shadow-xl overflow-hidden bg-black hidden opacity-0 transition-opacity duration-700 ease-in-out" style="min-height: 360px;">
+                            <video id="dermassistHeroVideo" class="w-full h-full object-cover" muted playsinline controls preload="metadata" poster="../assets/video/pelliscope_top_preview.jpg">
+                                <source src="../assets/video/pelliscope_top_preview.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -169,7 +181,7 @@
     <!-- Infographic Section (Extract this for slides) -->
     <section id="technology" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">How DermAssist Works</h2>
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">How PelliScope Works</h2>
             
             <div class="bg-blue-50 rounded-2xl p-8 mb-12">
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
@@ -258,7 +270,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
-                            <span><strong>Compliance:</strong> Research/demo only (not a diagnostic device)</span>
+                            <span><strong>Compliance:</strong> Tele-medicine, pre-medical inquiry, and research use cases</span>
                         </li>
                     </ul>
                 </div>
@@ -333,19 +345,33 @@
     <!-- Demo Section (video + schedule) -->
     <section id="demo" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-blue-900 mb-8">DermAssist Preview</h2>
-            <div class="max-w-3xl mx-auto bg-gray-50 rounded-2xl p-4 border border-gray-200">
-                <video controls class="w-full rounded-lg bg-black" poster="../assets/img/HawkFranklin_Aug23.transparent.png">
-                    <source src="../assets/video/dermassist_preview.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p class="text-sm text-gray-500 mt-3">
-                    Tip: Place your 30s preview at <code>assets/video/dermassist_preview.mp4</code> (MP4/H.264 recommended).
-                </p>
-                <div class="mt-6 text-center">
-                    <a href="../schedule.html" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
-                        <i class="fas fa-calendar-check mr-2"></i> Schedule a Live Demo
+            <div class="flex flex-col lg:flex-row items-start gap-12">
+                <div class="w-full lg:w-5/12 lg:pr-8">
+                    <a href="../assets/video/pelliscope_preview.mp4" class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 uppercase tracking-widest">
+                        PelliScope Preview <i class="fas fa-external-link-alt text-xs"></i>
                     </a>
+                    <h2 class="text-3xl font-bold text-blue-900 mt-2 mb-4">See the workflow in action</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Walk through a 30-second capture of the PelliScope console — from multi-angle intake to confidence-ranked triage guidance.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="../assets/video/pelliscope_preview.mp4" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
+                            <i class="fas fa-play-circle text-lg"></i>
+                            Watch Demo
+                        </a>
+                        <a href="../schedule.html" class="inline-flex items-center gap-2 border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition">
+                            <i class="fas fa-calendar-check text-base"></i>
+                            Schedule Live Session
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full lg:flex-1">
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 shadow-lg" style="min-height: 34rem;">
+                        <video autoplay loop muted playsinline controls class="w-full h-full rounded-xl bg-black object-cover" poster="../assets/video/dermassist_preview.jpg">
+                            <source src="../assets/video/pelliscope_preview.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
             </div>
         </div>
@@ -419,6 +445,48 @@
       </div>
     </footer>
 
+    <script>
+      (function () {
+        const card = document.getElementById('analysisCard');
+        const videoWrap = document.getElementById('analysisVideo');
+        const video = document.getElementById('dermassistHeroVideo');
+        if (!card || !videoWrap || !video) return;
+
+        const CARD_DISPLAY_MS = 5000;
+        const TRANSITION_MS = 800;
+        let cardTimeoutId;
+
+        const showCard = () => {
+          videoWrap.classList.add('opacity-0');
+          setTimeout(() => {
+            video.pause();
+            video.currentTime = 0;
+            videoWrap.classList.add('hidden');
+            card.classList.remove('hidden');
+            requestAnimationFrame(() => card.classList.remove('opacity-0'));
+            cardTimeoutId = setTimeout(showVideo, CARD_DISPLAY_MS);
+          }, TRANSITION_MS);
+        };
+
+        const showVideo = () => {
+          if (cardTimeoutId) {
+            clearTimeout(cardTimeoutId);
+            cardTimeoutId = null;
+          }
+          card.classList.add('opacity-0');
+          setTimeout(() => {
+            card.classList.add('hidden');
+            videoWrap.classList.remove('hidden');
+            requestAnimationFrame(() => videoWrap.classList.remove('opacity-0'));
+            video.play().catch(() => {});
+          }, TRANSITION_MS);
+        };
+
+        video.addEventListener('ended', showCard);
+
+        setTimeout(showVideo, 2000);
+      })();
+    </script>
     <script src="../assets/js/site.js"></script>
 
 </body>
