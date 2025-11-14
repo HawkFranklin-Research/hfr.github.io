@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Portfolio | HawkFranklin Research</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for easy theming, inspired by your template */
+        :root {
+          --grad-a: #3b82f6; /* A vibrant blue */
+          --grad-b: #10b981; /* A rich green */
+        }
+
+        /* General Styling */
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f9; /* Light blue-gray background */
+            color: #1e293b; /* Dark slate text */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Slide Structure */
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        /* Gradient Text & Hue Backgrounds */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hue-top-left-amber {
+            background-image:
+                radial-gradient(80% 120% at 0% 0%, rgba(234,179,8,.18) 0%, rgba(234,179,8,.08) 34%, transparent 60%),
+                radial-gradient(55% 70% at 10% 0%, rgba(234,179,8,.12) 0%, transparent 60%);
+        }
+        .hue-top-right-sky {
+            background-image:
+                radial-gradient(60% 80% at 90% 10%, rgba(14, 165, 233, .12) 0%, rgba(14, 165, 233, .06) 40%, transparent 70%);
+        }
+        .hue-top-right-violet {
+            background-image:
+                radial-gradient(65% 85% at 90% 5%, rgba(99, 102, 241, .18) 0%, rgba(99, 102, 241, .08) 45%, transparent 70%),
+                radial-gradient(55% 70% at 5% 90%, rgba(56, 189, 248, .10) 0%, transparent 65%);
+        }
+        .hue-bottom-left-emerald {
+            background-image:
+                radial-gradient(70% 100% at 0% 100%, rgba(16, 185, 129, .12) 0%, rgba(16, 185, 129, .06) 40%, transparent 70%);
+        }
+        .hue-center-purple {
+            background-image:
+                radial-gradient(50% 50% at 50% 50%, rgba(168, 85, 247, .10) 0%, rgba(168, 85, 247, .05) 45%, transparent 65%);
+        }
+        .hue-right-cyan {
+            background-image:
+                radial-gradient(80% 120% at 100% 50%, rgba(6, 182, 212, .12) 0%, rgba(6, 182, 212, .06) 40%, transparent 70%);
+        }
+        .hue-top-right-apricot {
+            background-image:
+                radial-gradient(60% 90% at 95% 0%, rgba(249, 115, 22, .18) 0%, rgba(249, 115, 22, .08) 45%, transparent 70%),
+                radial-gradient(70% 90% at 0% 100%, rgba(15, 23, 42, .06) 0%, transparent 65%);
+        }
+        .hue-top-left-rose {
+            background-image:
+                radial-gradient(70% 90% at 0% 0%, rgba(244, 63, 94, .12) 0%, rgba(244, 63, 94, .06) 40%, transparent 70%);
+        }
+        .hue-bottom-right-rose {
+            background-image:
+                radial-gradient(70% 100% at 100% 95%, rgba(244, 63, 94, .20) 0%, rgba(244, 63, 94, .08) 45%, transparent 70%),
+                radial-gradient(60% 80% at 10% 10%, rgba(248, 113, 113, .08) 0%, transparent 65%);
+        }
+        .hue-dark-violet {
+            background-color: #0b1220;
+            background-image:
+                radial-gradient(60% 80% at 75% 0%, rgba(139, 92, 246, .22) 0%, rgba(139, 92, 246, .10) 40%, transparent 70%);
+        }
+
+        /* Shared Card Style */
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+        }
+        /* Dark mode card for final slide */
+        .card-dark {
+             background: rgba(255, 255, 255, 0.05);
+             backdrop-filter: blur(12px);
+             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Optional: PNG background overlay slot (uncomment if you prefer PNGs)
+        .bg-overlay { position:absolute; inset:0; pointer-events:none; }
+        */
+    </style>
+    <!--
+      Tip: To export slide images, run
+      node scripts/export_slide_image.js product_portfolio.html '#slide1' backgrounds/exports/portfolio_slide1.jpg --w=1920 --h=1080 --quality=95
+    -->
+</head>
+<body class="antialiased">
+
+    <!-- Slide 1: Title & Portfolio Overview -->
+    <section id="slide1" class="slide hue-top-left-amber">
+        <!-- <img src="backgrounds/exports/top_left_amber.png" alt="" class="bg-overlay w-full h-full object-cover" aria-hidden="true"> -->
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research Logo" class="h-24 w-auto drop-shadow-sm" onerror="this.style.display='none'"/>
+        </div>
+        <div class="text-center max-w-7xl w-full">
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900">
+                Portfolio of <span class="gradient-text">BioMedical AI</span>
+            </h1>
+            <p class="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">
+                From HFR-initiated pilots to frontier research in foundation models, our products are engineered for scientific impact.
+            </p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- HFR TRL Products -->
+                <div class="card p-6 text-left border-t-4 border-indigo-500">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full"><i class="fas fa-flask text-2xl text-indigo-600"></i></div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">HFR's TRL 3–5 Products</h3>
+                            <p class="text-sm text-slate-500">Clinical pilots advancing through HawkFranklin Research labs.</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-emerald-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-allergies text-emerald-600"></i></div> <div><h4 class="font-semibold">PelliScope</h4><p class="text-sm text-slate-500">AI for differential dermatology triage and pre-medical inquiry.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-orange-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-x-ray text-orange-600"></i></div> <div><h4 class="font-semibold">RadExpo</h4><p class="text-sm text-slate-500">Imaging intelligence console for chest X-ray triage workflows.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-rose-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-ribbon text-rose-600"></i></div> <div><h4 class="font-semibold">C-Risq</h4><p class="text-sm text-slate-500">Graph-driven multi-omics platform for cancer risk stratification.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-sky-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-flask-vial text-sky-600"></i></div> <div><h4 class="font-semibold">MedDiscover</h4><p class="text-sm text-slate-500">RAG-LLM copilot for biomedical study question &amp; answer.</p></div></li>
+                    </ul>
+                </div>
+                <!-- Future Technologies -->
+                <div class="card p-6 text-left border-t-4 border-blue-500">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="bg-blue-100 p-3 rounded-full"><i class="fas fa-rocket text-2xl text-blue-600"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-800">Future Technologies</h3>
+                    </div>
+                     <ul class="space-y-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-indigo-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-microscope text-indigo-600"></i></div> <div><h4 class="font-semibold">PathoLens Agent</h4><p class="text-sm text-slate-500">AI-powered pathology analysis.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-rose-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-heartbeat text-rose-600"></i></div> <div><h4 class="font-semibold">EHR Foundation Model</h4><p class="text-sm text-slate-500">Longitudinal reasoning over electronic health records.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-purple-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-atom text-purple-600"></i></div> <div><h4 class="font-semibold">Generative Multiomics</h4><p class="text-sm text-slate-500">Synthesize & impute omics data.</p></div></li>
+                        <li class="flex items-center gap-3"><div class="w-10 h-10 bg-amber-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-table text-amber-600"></i></div> <div><h4 class="font-semibold">Tabular Foundation Model</h4><p class="text-sm text-slate-500">In-context learning for clinical data.</p></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 2: RadExpo Imaging -->
+    <section id="slide2" class="slide bg-white hue-top-right-apricot">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_logo_only.png" alt="HawkFranklin Logo" class="h-16 w-auto" onerror="this.style.display='none'"/>
+        </div>
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-x-ray text-4xl text-orange-500"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-orange-600">RadExpo</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">Imaging Intelligence for Chest X-ray Triage</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">RadExpo unifies the RadAssist workflow into a single imaging console—combining modern drag-and-drop review, calibrated multi-label classifiers, and deployment-ready APIs purpose-built for radiology teams.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Highlights</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1.5"></i><span>Responsive Vite + React UI with study-level caching so re-running models never repeats uploads.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1.5"></i><span>Attention-based heads trained on NIH ChestX-ray14 (macro ROC-AUC ≈ 0.80) alongside calibrated logistic regressions.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1.5"></i><span>FastAPI surface mirrors RadioAssist contracts for painless PACS, reporting, or dashboard integration.</span></li>
+                    </ul>
+                </div>
+                <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-500">
+                    <div class="p-4 bg-orange-50 rounded-xl border border-orange-200">
+                        <div class="font-semibold text-slate-700">Frontend</div>
+                        <p class="mt-1"><span class="font-mono text-slate-600">Radio-Assist/rad2/</span> · Live charts via <span class="font-mono text-slate-600">recharts</span>, keyboard shortcuts, and top-k overlays.</p>
+                    </div>
+                    <div class="p-4 bg-orange-50 rounded-xl border border-orange-200">
+                        <div class="font-semibold text-slate-700">Training</div>
+                        <p class="mt-1">Artifacts in <span class="font-mono text-slate-600">radssist-train/training/runs_full/</span> keep metrics, plots, and weights audit-ready.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-6 border-t-4 border-orange-500">
+                <h3 class="font-semibold text-slate-800 text-2xl">Workflow Snapshot</h3>
+                <div class="mt-4 space-y-5 text-slate-600">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-11 h-11 rounded-2xl bg-orange-100 flex items-center justify-center text-orange-500 text-xl"><i class="fas fa-file-medical"></i></span>
+                            <div>
+                                <p class="font-semibold text-slate-700">Cold Read Launchpad</p>
+                                <p class="text-sm">Batch CXRs, preview thumbnails, and select classifier heads in one motion.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-11 h-11 rounded-2xl bg-orange-100 flex items-center justify-center text-orange-500 text-xl"><i class="fas fa-chart-column"></i></span>
+                            <div>
+                                <p class="font-semibold text-slate-700">Explainable Outputs</p>
+                                <p class="text-sm">Per-finding probabilities, top-k ranks, and threshold sweeps visualised instantly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-11 h-11 rounded-2xl bg-orange-100 flex items-center justify-center text-orange-500 text-xl"><i class="fas fa-server"></i></span>
+                            <div>
+                                <p class="font-semibold text-slate-700">Ops Ready</p>
+                                <p class="text-sm">Docker-friendly FastAPI (<span class="font-mono text-slate-600">/api/radassist</span>) with audit logs and security hooks staged.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-200 text-sm text-slate-500">
+                    <div class="flex justify-between">
+                        <span>Findings</span>
+                        <span class="font-semibold text-slate-700">8 NIH CXR14 labels</span>
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span>Best Epoch</span>
+                        <span class="font-semibold text-slate-700">Run 20250918 · Epoch 15</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: PelliScore -->
+    <section id="slide3" class="slide bg-white hue-bottom-left-emerald">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_logo_only.png" alt="HawkFranklin Logo" class="h-16 w-auto" onerror="this.style.display='none'"/>
+        </div>
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-allergies text-4xl text-emerald-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-emerald-700">PelliScore</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">AI for Differential Dermatology</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">A clinical vision AI that supports lesion triage and dermatological diagnosis, providing clinicians with intelligent assistance for skin condition assessment.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Capabilities</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1.5"></i><span>Free infectious vs. non-infectious screening from three recommended capture angles.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1.5"></i><span>$1 paid differential diagnosis upgrade with tele-consult or appointment routing.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-500 mt-1.5"></i><span>Resource-optimized AI executable on CPU-grade hardware for remote deployments.</span></li>
+                    </ul>
+                </div>
+                 <div class="mt-8 pt-6 border-t border-slate-200">
+                    <p class="text-sm font-semibold text-slate-500 mb-2">In Partnership With:</p>
+                    <img src="flyer/timpac_logo.png" alt="TIMPAC Logo" class="h-12 w-auto" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="card p-4">
+                <div class="bg-slate-100 p-6 rounded-xl">
+                    <h3 class="font-semibold text-slate-800 mb-2">Lesion Analysis Mockup</h3>
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Skin lesion" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.src='https://placehold.co/600x240/e2e8f0/334155?text=Lesion+Image'">
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1 font-medium"><span class="text-slate-700">Eczema</span><span class="text-emerald-700">78%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-emerald-500 h-2.5 rounded-full" style="width: 78%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1 font-medium"><span class="text-slate-700">Psoriasis</span><span class="text-slate-500">65%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-slate-400 h-2.5 rounded-full" style="width: 65%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1 font-medium"><span class="text-slate-700">Contact Dermatitis</span><span class="text-slate-500">42%</span></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-slate-400 h-2.5 rounded-full" style="width: 42%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Omics Copilot -->
+    <section id="slide4" class="slide bg-white hue-right-cyan">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_logo_only.png" alt="HawkFranklin Logo" class="h-16 w-auto" onerror="this.style.display='none'"/>
+        </div>
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-dna text-4xl text-cyan-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-cyan-700">Omics Copilot</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">AI Agent for Multi-Omics Analysis</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">An intelligent agent providing a natural language interface for multi-omics analysis, designed to accelerate computational biology and genomic research workflows.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Capabilities</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-cyan-500 mt-1.5"></i><span>Query complex genomic datasets using natural language.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-cyan-500 mt-1.5"></i><span>Automates routine bioinformatics tasks like QC, alignment, and analysis.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-cyan-500 mt-1.5"></i><span>Integrates with existing bioinformatics tools and pipelines via API.</span></li>
+                    </ul>
+                </div>
+                 <div class="mt-8 pt-6 border-t border-slate-200">
+                    <p class="text-sm font-semibold text-slate-500 mb-2">In Partnership With:</p>
+                    <img src="flyer/oneomics_logo.webp" alt="OneOMICS Logo" class="h-8 w-auto" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <div class="card p-4">
+                 <div class="bg-slate-800 p-6 rounded-xl font-mono text-sm text-slate-300 shadow-lg">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <p class="text-green-400">&gt; user: Correlate expression of TP53 with survival outcomes in TCGA-BRCA, stratified by PAM50 subtypes.</p>
+                    <p class="mt-4 animate-pulse"> <span class="text-cyan-400">[Omics Copilot]:</span> Processing query... Fetching TCGA-BRCA data... Performing survival analysis... Generating plots...</p>
+                    <div class="mt-4 h-40 bg-slate-700/50 rounded flex items-center justify-center text-slate-500">
+                        [Kaplan-Meier Plot Loading...]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: MedDiscover -->
+    <section id="slide5" class="slide bg-white hue-top-right-violet">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_logo_only.png" alt="HawkFranklin Logo" class="h-16 w-auto" onerror="this.style.display='none'"/>
+        </div>
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-sky-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-flask-vial text-4xl text-sky-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-sky-700">MedDiscover</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">Biomedical RAG Copilot for Evidence-Grounded Q&amp;A</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">MedDiscover transforms curated biomedical PDFs into an interactive research assistant. The Gradio front-end pairs MedCPT embeddings, FAISS retrieval, and GPT-4o/Ollama decoders so researchers can interrogate metabolomics and rare-disease literature with grounded, citation-aware answers.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Modules</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><div class="w-10 h-10 bg-sky-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-file-pdf text-sky-600"></i></div> <span class="text-slate-600">Drag-and-drop PDF ingestion with 500-word chunking and persisted FAISS indices for rapid reloads.</span></li>
+                        <li class="flex items-start gap-3"><div class="w-10 h-10 bg-indigo-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-brain text-indigo-600"></i></div> <span class="text-slate-600">Switchable embeddings: MedCPT on GPU with cross-encoder re-ranking, or OpenAI Ada-002 when running CPU-only.</span></li>
+                        <li class="flex items-start gap-3"><div class="w-10 h-10 bg-emerald-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-robot text-emerald-600"></i></div> <span class="text-slate-600">LLM orchestration across GPT-4.1/4o and local Ollama models, with per-query JSONL + CSV logs.</span></li>
+                        <li class="flex items-start gap-3"><div class="w-10 h-10 bg-purple-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-chart-line text-purple-600"></i></div> <span class="text-slate-600">Evaluation toolkit measuring ROUGE, BLEU, Context Precision/Recall, and Faithfulness on curated QA sets.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card p-6 border-t-4 border-sky-500">
+                <h3 class="font-semibold text-slate-800 text-2xl">Pipeline &amp; Evaluation</h3>
+                <div class="mt-4 space-y-4 text-slate-600">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-sky-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-database text-sky-600"></i></div>
+                        <div><h4 class="font-semibold text-slate-800">Retrieval Stack</h4><p class="text-sm text-slate-500">FAISS dense search with optional MedCPT cross-encoder reranking keeps answers tied to source passages.</p></div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-rose-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-network-wired text-rose-600"></i></div>
+                        <div><h4 class="font-semibold text-slate-800">Query Orchestration</h4><p class="text-sm text-slate-500">Token-limited prompts (≤150 tokens) stream to GPT-4o or Ollama; retrieved chunks are surfaced for citation checks.</p></div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-amber-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-file-export text-amber-500"></i></div>
+                        <div><h4 class="font-semibold text-slate-800">Ops &amp; Monitoring</h4><p class="text-sm text-slate-500">Every dialogue is logged to JSONL/CSV with token counts, making downstream audit and fine-tuning straightforward.</p></div>
+                    </div>
+                </div>
+                <div class="mt-6 grid grid-cols-2 gap-4 text-center">
+                    <div class="p-4 bg-white/75 border border-sky-200 rounded-xl shadow-sm">
+                        <div class="text-2xl font-bold text-sky-700">0.80</div>
+                        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wide">Faithfulness</p>
+                        <p class="text-[11px] text-slate-400 mt-1">MedCPT RAG vs metabolomics QA set</p>
+                    </div>
+                    <div class="p-4 bg-white/75 border border-indigo-200 rounded-xl shadow-sm">
+                        <div class="text-2xl font-bold text-indigo-700">0.75</div>
+                        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wide">Context precision</p>
+                        <p class="text-[11px] text-slate-400 mt-1">Top-k retrieval grounded in source PDFs</p>
+                    </div>
+                    <div class="p-4 bg-white/75 border border-emerald-200 rounded-xl shadow-sm">
+                        <div class="text-2xl font-bold text-emerald-700">0.37</div>
+                        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wide">ROUGE-1</p>
+                        <p class="text-[11px] text-slate-400 mt-1">Outperforms non-RAG baseline ≈0.16</p>
+                    </div>
+                    <div class="p-4 bg-white/75 border border-rose-200 rounded-xl shadow-sm">
+                        <div class="text-2xl font-bold text-rose-700">0.39</div>
+                        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wide">Answer correctness</p>
+                        <p class="text-[11px] text-slate-400 mt-1">30-query metabolomics benchmark</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-slate-500">Evaluation draws on the MedDiscover manuscript dataset (Gaucher, NAFLD, T1D) with Kruskal–Wallis + Dunn’s post-hoc significance tests.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: C-Risq -->
+    <section id="slide6" class="slide bg-white hue-bottom-right-rose">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_logo_only.png" alt="HawkFranklin Logo" class="h-16 w-auto" onerror="this.style.display='none'"/>
+        </div>
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-ribbon text-4xl text-rose-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-rose-700">C-Risq</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">Graph-Attentive Multi-Omics Risk Stratification</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">C-Risq builds patient-specific gene networks from 430 TCGA-HNSCC samples, stacking 17-dimensional multi-omics features per gene into graph attention autoencoders. The system compresses each patient into a single latent manifold while preserving survival-critical interactions.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Highlights</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-rose-500 mt-1.5"></i><span>Integrates expression, CNA, six-region methylation, and mutation signatures into unified 17D node embeddings.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-rose-500 mt-1.5"></i><span>GATv2 encoder-decoder reconstructs node/edge weights with &ge;0.8 cosine fidelity, enabling interpretable latent space.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-rose-500 mt-1.5"></i><span>Attention analysis surfaces 70 high-salience genes and biomarker edges that distinguish survival cohorts.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-rose-500 mt-1.5"></i><span>Risk stratification models reach multiclass AUC &gt;0.90 and binary AUC &approx;0.98 for high vs lower risk groups.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card p-6 border-t-4 border-rose-500">
+                <h3 class="font-semibold text-slate-800 text-2xl">Graph Attention Workflow</h3>
+                <div class="mt-4 space-y-4 text-slate-600">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-rose-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-project-diagram text-rose-600"></i></div>
+                        <div><h4 class="font-semibold text-slate-800">Patient Graph Builder</h4><p class="text-sm text-slate-500">OmicsConfig pipelines assemble patient-specific adjacency matrices; edge weights encode pathway proximity and co-expression.</p></div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-amber-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-fire-alt text-amber-500"></i></div>
+                        <div><h4 class="font-semibold text-slate-800">Attention Mining</h4><p class="text-sm text-slate-500">GATv2 attention weights are harvested via <span class="font-mono text-slate-600">Attention_Extracter.py</span> to rank gene-gene interactions.</p></div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-indigo-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-clone text-indigo-600"></i></div>
+                        <div><h4 class="font-semibold text-slate-800">Latent Embedding</h4><p class="text-sm text-slate-500">2,784 latent scalars per patient drive K-means clustering and downstream survival modeling pipelines.</p></div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-green-100 flex-shrink-0 rounded-full flex items-center justify-center"><i class="fas fa-stethoscope text-green-600"></i></div>
+                        <div><h4 class="font-semibold text-slate-800">Clinical Translation</h4><p class="text-sm text-slate-500">GraphAnalysis toolkit links attention-derived signatures to Kaplan–Meier separations and biomarker panels.</p></div>
+                    </div>
+                </div>
+                <div class="mt-6 grid grid-cols-2 gap-4 text-center">
+                    <div class="p-4 bg-white/80 border border-rose-200 rounded-xl shadow-sm">
+                        <div class="text-2xl font-bold text-rose-700">430</div>
+                        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wide">Patients</p>
+                        <p class="text-[11px] text-slate-400 mt-1">TCGA-HNSCC cohort</p>
+                    </div>
+                    <div class="p-4 bg-white/80 border border-amber-200 rounded-xl shadow-sm">
+                        <div class="text-2xl font-bold text-amber-600">17</div>
+                        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wide">Features / gene</p>
+                        <p class="text-[11px] text-slate-400 mt-1">Expression, CNA, methylation, mutations</p>
+                    </div>
+                    <div class="p-4 bg-white/80 border border-indigo-200 rounded-xl shadow-sm">
+                        <div class="text-2xl font-bold text-indigo-700">70</div>
+                        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wide">High-attention genes</p>
+                        <p class="text-[11px] text-slate-400 mt-1">Biomarker shortlist via attention scores</p>
+                    </div>
+                    <div class="p-4 bg-white/80 border border-green-200 rounded-xl shadow-sm">
+                        <div class="text-2xl font-bold text-green-700">0.98</div>
+                        <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wide">Binary AUC</p>
+                        <p class="text-[11px] text-slate-400 mt-1">High-risk vs lower-risk survival model</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Tabular Foundation Model -->
+    <section id="slide7" class="slide bg-white hue-top-left-amber">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_logo_only.png" alt="HawkFranklin Logo" class="h-16 w-auto" onerror="this.style.display='none'"/>
+        </div>
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-table text-4xl text-amber-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-amber-700">Tabular Foundation Model</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">Next-Generation Clinical Data Analysis</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">A new paradigm for tabular data, our foundation model is pre-trained on vast datasets to perform zero-shot and few-shot predictions on new clinical tables via In-Context Learning (ICL).</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Capabilities</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-amber-500 mt-1.5"></i><span>Adapts to new clinical risk prediction tasks without fine-tuning.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-amber-500 mt-1.5"></i><span>Specialized for survival analysis and censored time-to-event data.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-amber-500 mt-1.5"></i><span>Dramatically reduces model development time for new clinical questions.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card p-6">
+                <h3 class="font-semibold text-slate-800 mb-4 text-center">In-Context Learning (ICL) Workflow</h3>
+                 <div class="flex flex-col items-center space-y-3 text-sm">
+                    <div class="p-4 rounded-lg bg-slate-50 border w-full text-center"><p class="font-semibold">📊 Pre-trained Tabular Foundation Model</p></div>
+                    <div class="text-2xl font-bold text-amber-500">+</div>
+                    <div class="p-4 rounded-lg bg-amber-50 border border-amber-200 w-full text-center"><p class="font-semibold">📋 Prompt: A few labeled examples from a new clinical dataset</p></div>
+                    <div class="text-2xl font-bold text-slate-400">↓</div>
+                     <div class="p-4 rounded-lg bg-slate-50 border w-full text-center"><p class="font-semibold">🧠 Model performs single forward pass</p></div>
+                    <div class="text-2xl font-bold text-slate-400">↓</div>
+                    <div class="p-4 rounded-lg bg-amber-100 border border-amber-200 w-full text-center"><p class="font-semibold text-amber-800">🎯 Accurate predictions for the new dataset, no re-training required.</p></div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 8: Cancer Prognostic FM -->
+    <section id="slide8" class="slide bg-white hue-top-left-rose">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_logo_only.png" alt="HawkFranklin Logo" class="h-16 w-auto" onerror="this.style.display='none'"/>
+        </div>
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-heartbeat text-4xl text-rose-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-rose-700">Cancer Prognostic FM</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">A Cross-Modal Survival Foundation Model</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">This foundation model is engineered specifically for cancer survival prediction, integrating diverse data modalities to create a holistic view of patient prognosis.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Capabilities</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-rose-500 mt-1.5"></i><span>Fuses data from histopathology images, EHR, and multi-omics.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-rose-500 mt-1.5"></i><span>Learns pan-cancer prognostic features while allowing for cancer-specific adaptation.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-rose-500 mt-1.5"></i><span>Provides more accurate and clinically realistic risk stratification.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card p-6">
+                 <h3 class="font-semibold text-slate-800 mb-4 text-center">Multi-Modal Data Fusion</h3>
+                 <div class="relative flex justify-center items-center h-80">
+                    <div class="absolute w-40 h-40 bg-rose-500/10 rounded-full animate-pulse"></div>
+                    <div class="absolute w-60 h-60 bg-rose-500/10 rounded-full animate-pulse delay-75"></div>
+                    <div class="relative w-32 h-32 bg-rose-600 text-white rounded-full flex flex-col items-center justify-center text-center shadow-lg"><i class="fas fa-brain text-3xl"></i><span class="font-semibold mt-1">Prognostic Core</span></div>
+                    <!-- Data sources -->
+                    <div class="absolute top-0 left-0 p-3 bg-white rounded-lg shadow-md text-center"><i class="fas fa-microscope text-rose-500 text-2xl"></i><p class="text-xs mt-1">Pathology</p></div>
+                    <div class="absolute top-0 right-0 p-3 bg-white rounded-lg shadow-md text-center"><i class="fas fa-dna text-purple-500 text-2xl"></i><p class="text-xs mt-1">Genomics</p></div>
+                    <div class="absolute bottom-0 left-0 p-3 bg-white rounded-lg shadow-md text-center"><i class="fas fa-file-medical text-blue-500 text-2xl"></i><p class="text-xs mt-1">EHR</p></div>
+                    <div class="absolute bottom-0 right-0 p-3 bg-white rounded-lg shadow-md text-center"><i class="fas fa-chart-pie text-green-500 text-2xl"></i><p class="text-xs mt-1">Clinical</p></div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: Generative Multiomics -->
+    <section id="slide9" class="slide bg-white hue-center-purple">
+        <div class="absolute top-8 left-8">
+            <img src="HawkFranklin_logo_only.png" alt="HawkFranklin Logo" class="h-16 w-auto" onerror="this.style.display='none'"/>
+        </div>
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-atom text-4xl text-purple-600"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-purple-700">Generative Multiomics</h2>
+                        <p class="text-lg font-medium text-slate-500 mt-1">Unlocking Deeper Biological Insights</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-600 mt-4">This research program focuses on generative AI to model complex biological systems, enabling the synthesis and imputation of multi-omics data to complete datasets and uncover novel interactions.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-slate-800">Key Capabilities</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-purple-500 mt-1.5"></i><span>Synthesize realistic secondary omics profiles (e.g., proteomics from transcriptomics).</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-purple-500 mt-1.5"></i><span>Impute unmeasured biomarkers in sparse datasets using GNN-based models.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-purple-500 mt-1.5"></i><span>Enhance downstream analysis by providing more complete and robust data.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card p-6">
+                 <h3 class="font-semibold text-slate-800 mb-4 text-center">Data Imputation Example</h3>
+                 <div class="bg-slate-50 p-6 rounded-lg border">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <h4 class="font-medium mb-2">Input Data</h4>
+                            <div class="p-4 bg-white rounded shadow-sm border">
+                                <p class="font-semibold text-sm">Transcriptomics ✓</p>
+                                <p class="font-semibold text-sm mt-2">Proteomics <span class="text-red-500 font-bold">✗ (Missing)</span></p>
+                                <p class="font-semibold text-sm mt-2">Clinical ✓</p>
+                            </div>
+                        </div>
+                         <div class="text-center">
+                            <h4 class="font-medium mb-2">Generated Output</h4>
+                             <div class="p-4 bg-white rounded shadow-sm border border-purple-300">
+                                <p class="font-semibold text-sm">Transcriptomics ✓</p>
+                                <p class="font-semibold text-sm mt-2 text-purple-700">Proteomics ✓ (Imputed)</p>
+                                <p class="font-semibold text-sm mt-2">Clinical ✓</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="text-4xl text-center text-purple-400 my-4">&rarr;</div>
+                     <div class="p-4 bg-purple-100 rounded text-center text-purple-800 font-semibold">Complete Dataset for Analysis</div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: PathoLens & Contact -->
+    <section id="slide10" class="slide hue-dark-violet text-slate-100">
+        <div class="max-w-7xl w-full grid md:grid-cols-2 gap-16 items-center">
+            <div class="text-left">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-16 h-16 bg-indigo-500/20 rounded-2xl flex items-center justify-center flex-shrink-0"><i class="fas fa-microscope text-4xl text-indigo-300"></i></div>
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold text-white">PathoLens Agent</h2>
+                        <p class="text-lg font-medium text-slate-400 mt-1">Coming 2025: AI-Powered Pathology Analysis</p>
+                    </div>
+                </div>
+                <p class="text-lg text-slate-300 mt-4">An autonomous AI agent designed to analyze digital pathology slides. PathoLens utilizes vision foundation models to identify features, quantify biomarkers, and generate reports, empowering pathologists with speed and precision.</p>
+                <div class="mt-8 space-y-4">
+                    <h4 class="text-xl font-semibold text-white">Anticipated Features</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-indigo-400 mt-1.5"></i><span>Automated feature detection and quantification (e.g., tumor infiltrating lymphocytes).</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-indigo-400 mt-1.5"></i><span>Integrates with existing digital pathology workflows and LIS.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-indigo-400 mt-1.5"></i><span>Generates comprehensive, customizable reports to aid in diagnostics.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card card-dark p-8 text-center border-t-4 border-indigo-500">
+                <img src="HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research Logo" class="h-20 w-auto mx-auto mb-4" onerror="this.style.display='none'"/>
+                 <h3 class="text-3xl font-bold text-white">Partner With Us</h3>
+                 <p class="mt-2 text-slate-300 max-w-sm mx-auto">Let's collaborate to build the future of clinical and research AI. Reach out to discuss our research, products, and partnership opportunities.</p>
+                 <div class="mt-8">
+                     <a href="mailto:contact@hawk-franklin-research.com" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-envelope mr-3"></i> Get In Touch
+                     </a>
+                 </div>
+                 <p class="mt-8 text-xs text-slate-500">&copy; 2025 HawkFranklin Research. All Rights Reserved.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
