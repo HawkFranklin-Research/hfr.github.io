@@ -158,7 +158,20 @@ async function main() {
 
     const baseName = slug || path.basename(absHtml, path.extname(absHtml));
     const executablePath = await findChrome();
-    const browser = await puppeteer.launch({ executablePath, headless: 'new', args: ['--no-sandbox'] });
+    const browser = await puppeteer.launch({
+      executablePath,
+      headless: 'new',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-breakpad',
+        '--disable-crash-reporter',
+        '--disable-crashpad',
+        '--single-process',
+        '--no-zygote'
+      ]
+    });
     const page = await browser.newPage();
     try {
       await page.goto('file://' + absHtml, { waitUntil: 'networkidle2', timeout: 120000 });

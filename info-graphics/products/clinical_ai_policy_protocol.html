@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical AI Policy Protocol (CAPP)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="/assets/css/theme.css" rel="stylesheet" />
+    <style>
+        :root {
+            --capp-deep: #0f172a;
+            --capp-primary: #0d9488; /* teal */
+            --capp-secondary: #fcd34d; /* amber */
+            --capp-glow: rgba(13, 148, 136, 0.18);
+        }
+        .emerald-gradient {
+            background: radial-gradient(circle at top left, rgba(13,148,136,0.18), transparent 45%),
+                        linear-gradient(135deg, #042f2e 0%, #065f46 40%, #0d9488 100%);
+        }
+        .feature-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #fef9c3;
+        }
+        .pillar-card {
+            border-radius: 1rem;
+            border: 1px solid rgba(15,118,110,0.25);
+            background: white;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(15,118,110,0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .pillar-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(15,118,110,0.15);
+        }
+        .section-badge {
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #0d9488;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-900 bg-slate-50">
+    <!-- Global Header -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="/index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+                <img src="/assets/img/HawkFranklin_Aug23.transparent.png" class="logo-header" alt="HFR Logo">
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-base font-medium">
+                <a href="/index.html#products" class="nav-link">Products</a>
+                <a href="/research.html" class="nav-link">Research</a>
+                <a href="/publications.html" class="nav-link">Publications</a>
+                <a href="/about.html" class="nav-link">About</a>
+            </nav>
+            <div class="hidden md:block">
+                <a href="/contact.html" class="btn-primary">Contact Us</a>
+            </div>
+            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-slate-100" aria-label="Open menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
+            <nav class="px-4 py-4 flex flex-col gap-3 text-sm font-medium">
+                <a href="/index.html#products" class="nav-link">Products</a>
+                <a href="/research.html" class="nav-link">Research</a>
+                <a href="/publications.html" class="nav-link">Publications</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <a href="/contact.html" class="btn-primary text-center">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="emerald-gradient text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none opacity-40" style="background-image: radial-gradient(circle at 20% 20%, var(--capp-glow), transparent 55%), radial-gradient(circle at 80% 10%, rgba(251,191,36,0.25), transparent 45%);"></div>
+        <div class="relative max-w-6xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="text-sm uppercase tracking-widest mb-4 text-amber-200 font-semibold">Clinical Governance | MCP</div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Clinical AI Policy Protocol (CAPP)</h1>
+                    <p class="text-lg md:text-xl text-teal-50 mb-8">
+                        A Model Context Protocol (MCP) server that enforces patient consent, authorization, and auditability between AI agents and clinical systems—without modifying model weights. Based on the NeurIPS 2025 position paper.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <span class="feature-chip"><i class="fas fa-lock"></i> OAuth&nbsp;2.1 Resource Server</span>
+                        <span class="feature-chip"><i class="fas fa-passport"></i> Consent-Aware Minimization</span>
+                        <span class="feature-chip"><i class="fas fa-file-contract"></i> FHIR AuditEvent Provenance</span>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#architecture" class="bg-amber-300 text-slate-900 hover:bg-amber-200 px-6 py-3 rounded-lg font-semibold transition duration-200 flex items-center">
+                            Explore Architecture <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="https://github.com/VatsalPatel18/ml-copilot-agent" target="_blank" rel="noopener" class="border border-white/70 text-white hover:bg-white/10 px-6 py-3 rounded-lg font-semibold transition duration-200 flex items-center">
+                            View Repo <i class="fab fa-github ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 bg-white/10 backdrop-blur rounded-3xl border border-white/30 p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-amber-200">Position Highlights</h3>
+                    <ul class="space-y-4 text-teal-50">
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-200 mt-1"></i>Defines a Clinical AI Policy Protocol layer that mediates every tool/data call using MCP semantics.</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-200 mt-1"></i>Externalizes policy-as-code via HL7 FHIR Consent, FHIR AuditEvent, and OPA/XACML engines.</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-200 mt-1"></i>Includes synthetic evaluation plan measuring enforcement precision, leakage resistance, audit completeness, and latency overhead.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pillars -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="section-badge text-center mb-3">Policy Control Plane</p>
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">Five Core CAPP Functions</h2>
+            <p class="text-center text-slate-600 mb-10 max-w-3xl mx-auto">CAPP operates as an MCP server in the critical path between AI hosts and clinical systems. Each function is deterministic, auditable, and mapped to healthcare regulations.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="pillar-card">
+                    <div class="text-emerald-700 text-3xl mb-3"><i class="fas fa-shield-halved"></i></div>
+                    <h3 class="font-semibold text-lg mb-2">Identity &amp; Authorization</h3>
+                    <p class="text-slate-600 text-sm">Acts as OAuth 2.1 resource server. Terminates tokens, enforces PKCE, resource indicators, and audience-bound scopes before invoking EHR/FHIR/PACS.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="text-emerald-700 text-3xl mb-3"><i class="fas fa-user-shield"></i></div>
+                    <h3 class="font-semibold text-lg mb-2">Consent-Aware Minimization</h3>
+                    <p class="text-slate-600 text-sm">Evaluates HL7 FHIR <code>Consent</code> before data retrieval; rewrites or denies requests to meet patient preferences and jurisdictional scope-of-practice.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="text-emerald-700 text-3xl mb-3"><i class="fas fa-scroll"></i></div>
+                    <h3 class="font-semibold text-lg mb-2">Audit &amp; Provenance</h3>
+                    <p class="text-slate-600 text-sm">Logs every allow/deny decision as FHIR <code>AuditEvent</code> with “who, what, when, why, policyVersion” to satisfy HIPAA and EU AI Act obligations.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="text-emerald-700 text-3xl mb-3"><i class="fas fa-arrows-rotate"></i></div>
+                    <h3 class="font-semibold text-lg mb-2">Predetermined Change Control</h3>
+                    <p class="text-slate-600 text-sm">Policies, allowlists, and thresholds are versioned artifacts. CAPP blocks traffic during unvalidated updates to align with FDA PCCP expectations.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="text-emerald-700 text-3xl mb-3"><i class="fas fa-wave-square"></i></div>
+                    <h3 class="font-semibold text-lg mb-2">Structured Response Guards</h3>
+                    <p class="text-slate-600 text-sm">Optional schema enforcement for responses plus MCP <code>elicit</code> prompts that escalate high-risk actions to human reviewers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Figure -->
+    <section id="architecture" class="py-16 bg-slate-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="section-badge mb-3">Architecture</p>
+            <h2 class="text-3xl font-bold mb-4">Wire-Level Mediation for Consent, Authorization, and Audit</h2>
+            <p class="text-slate-600 mb-10 max-w-4xl">The CAPP sits between the MCP client runtime and every downstream clinical API. It enforces allowlists on MCP tools, rewrites requests to honor consent, and emits standardized audit trails.</p>
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6">
+                <img src="/assets/img/ml-capp-figure1.png" alt="Clinical AI Policy Protocol diagram" class="rounded-2xl border border-slate-200">
+                <p class="text-sm text-slate-500 mt-3">Figure: Adapted from the “Clinical AI Policy Protocol for Healthcare” manuscript.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scope + Limitations -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-emerald-50 border border-emerald-100 rounded-2xl p-8">
+                    <p class="section-badge mb-2 text-emerald-800">Enforceable Scope</p>
+                    <h3 class="text-2xl font-semibold mb-4">What CAPP Guarantees</h3>
+                    <ul class="space-y-3 text-slate-700">
+                        <li class="flex gap-3"><i class="fas fa-check text-emerald-600 mt-1"></i>Deterministic allow/deny decisions with audit references for each policy version.</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-emerald-600 mt-1"></i>Consent-aware filtering/minimization using structured FHIR Consent.</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-emerald-600 mt-1"></i>OAuth 2.1 enforcement: audience-bound tokens, PKCE, token termination.</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-emerald-600 mt-1"></i>Complete provenance trail via FHIR AuditEvent and policy-as-code references.</li>
+                    </ul>
+                </div>
+                <div class="bg-rose-50 border border-rose-100 rounded-2xl p-8">
+                    <p class="section-badge mb-2 text-rose-700">Inherent Limits</p>
+                    <h3 class="text-2xl font-semibold mb-4">What CAPP Does Not Claim</h3>
+                    <ul class="space-y-3 text-slate-700">
+                        <li class="flex gap-3"><i class="fas fa-xmark text-rose-500 mt-1"></i>No guarantee of hallucination-free or clinically correct content.</li>
+                        <li class="flex gap-3"><i class="fas fa-xmark text-rose-500 mt-1"></i>Cannot fully eliminate prompt-injection or tool-poisoning; reduces blast radius via allowlists.</li>
+                        <li class="flex gap-3"><i class="fas fa-xmark text-rose-500 mt-1"></i>Roots are scope hints—true sandboxing requires operational isolation.</li>
+                        <li class="flex gap-3"><i class="fas fa-xmark text-rose-500 mt-1"></i>Regulatory compliance still depends on authorship of the underlying policies.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evaluation Plan -->
+    <section class="py-16 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="section-badge text-amber-300 mb-2">Synthetic Evaluation</p>
+            <h2 class="text-3xl font-bold mb-8">How We Test the Control Plane</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white/10 border border-white/20 rounded-2xl p-6">
+                    <h3 class="text-xl font-semibold mb-3">Policy Enforcement Correctness</h3>
+                    <p class="text-slate-200 text-sm">Replay synthetic tool calls with varying roles, scopes, and consent states against a deterministic oracle to measure allow/deny precision, recall, and F1.</p>
+                </div>
+                <div class="bg-white/10 border border-white/20 rounded-2xl p-6">
+                    <h3 class="text-xl font-semibold mb-3">Leakage Resistance</h3>
+                    <p class="text-slate-200 text-sm">Red-team harness with prompt-injection and tool-poisoning probes measures exfiltration attempts with and without mitigation toggles.</p>
+                </div>
+                <div class="bg-white/10 border border-white/20 rounded-2xl p-6">
+                    <h3 class="text-xl font-semibold mb-3">Audit Completeness</h3>
+                    <p class="text-slate-200 text-sm">Score FHIR AuditEvent payloads for required provenance fields and run compliance queries (HIPAA 164.312, EU AI Act logging) over the generated logs.</p>
+                </div>
+                <div class="bg-white/10 border border-white/20 rounded-2xl p-6">
+                    <h3 class="text-xl font-semibold mb-3">Latency Overhead</h3>
+                    <p class="text-slate-200 text-sm">Quantify median and P95 latency per tool call with ablations (consent disabled vs. enabled) to document operational cost.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regulatory Alignment -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="section-badge text-center mb-3">Governance Mapping</p>
+            <h2 class="text-3xl font-bold text-center mb-6">Targeted Regulatory Interfaces</h2>
+            <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                <table class="min-w-full divide-y divide-slate-200 text-sm">
+                    <thead class="bg-slate-100 text-slate-700">
+                        <tr>
+                            <th class="px-6 py-3 text-left font-semibold">Objective</th>
+                            <th class="px-6 py-3 text-left font-semibold">CAPP Mechanism</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr>
+                            <td class="px-6 py-3 font-medium">HIPAA 45 CFR 164.312 Audit Controls</td>
+                            <td class="px-6 py-3 text-slate-700">Allow/deny logs + tool invocations emitted as FHIR <code>AuditEvent</code> with user identity, purpose-of-use, and policy references.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-3 font-medium">FDA Predetermined Change Control Plan (PCCP)</td>
+                            <td class="px-6 py-3 text-slate-700">Versioned policy bundles with change windows; traffic blocked when configurations are unvalidated; decisions cite policy version.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-3 font-medium">EU AI Act (High-Risk Systems)</td>
+                            <td class="px-6 py-3 text-slate-700">Runtime enforcement, deny-by-default, human oversight via <code>elicit</code>, explainable denials recorded for technical documentation.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-3 font-medium">NIST AI RMF &amp; ISO 14971/IEC 62304</td>
+                            <td class="px-6 py-3 text-slate-700">Risk management overlays; policy-as-code under software lifecycle control; CAPA-ready audit trails.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #0d9488 0%, #0b7285 45%, #164e63 100%);">
+        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(900px 400px at 15% 20%, #fef3c7 0, transparent 70%), radial-gradient(800px 300px at 85% 70%, #d9f99d 0, transparent 60%);"></div>
+        <div class="relative max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold mb-4">Ready to Pilot a Clinical Policy Control Plane?</h2>
+            <p class="text-lg text-emerald-100 mb-8">Work with HawkFranklin Research to evaluate MCP-based mediation in your environment, map policies to FHIR Consent/Audit artifacts, and execute synthetic validation before touching PHI.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/contact.html" class="bg-white text-teal-900 hover:bg-emerald-50 px-8 py-3 rounded-lg font-semibold transition duration-200">Request Briefing</a>
+                <a href="/index.html#products" class="border border-white/70 text-white hover:bg-white/10 px-8 py-3 rounded-lg font-semibold transition duration-200">Browse Products</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+    </script>
+</body>
+</html>
