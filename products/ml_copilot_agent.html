@@ -60,6 +60,75 @@
             font-size: 28px;
             margin-bottom: 12px;
         }
+        .bio-highlight {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .bio-highlight span {
+            background: rgba(79, 70, 229, 0.1);
+            color: #3730a3;
+            font-size: 0.9rem;
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            font-weight: 600;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+        .case-card {
+            background: white;
+            border: 1px solid #e0e7ff;
+            border-left: 6px solid #6366f1;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .case-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 45px rgba(15, 23, 42, 0.12);
+        }
+        .case-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+        .case-meta span {
+            background: #f1f5f9;
+            border-radius: 999px;
+            padding: 0.25rem 0.75rem;
+        }
+        .case-metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-top: 0.75rem;
+        }
+        .case-metric i {
+            color: #22c55e;
+        }
+        .figure-panel {
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid #e2e8f0;
+            padding: 1rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+        .figure-panel img {
+            width: 100%;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+        }
+        .figure-caption {
+            font-size: 0.95rem;
+            color: #475569;
+            margin-top: 0.75rem;
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-800">
@@ -123,17 +192,22 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center">
                 <div class="lg:w-1/2 mb-12 lg:mb-0">
-                    <h2 class="text-4xl md:text-5xl font-bold text-indigo-900 mb-6">Your AI-Powered Machine Learning Assistant</h2>
-                    <p class="text-xl text-gray-700 mb-8">
-                        ML Copilot is an interactive machine learning assistant that streamlines data preprocessing, model training, 
-                        evaluation, visualization, and documentation—all through an intuitive interface powered by cutting-edge AI.
+                    <h2 class="text-4xl md:text-5xl font-bold text-indigo-900 mb-6">From Prompt to Reproducible Biomedical ML</h2>
+                    <p class="text-xl text-gray-700">
+                        ML Copilot executes leakage-aware workflows across genomics, proteomics, and hematology data—turning task cards
+                        into calibrated models, decision-curve analysis, and citable manifests without bespoke scripting.
                     </p>
-                    <div class="flex space-x-4">
+                    <div class="bio-highlight">
+                        <span>6 biomedical cohorts (TCGA, CPTAC, CBC)</span>
+                        <span>Deterministic seeds + leakage guards</span>
+                        <span>Calibration &amp; DCA exported by default</span>
+                    </div>
+                    <div class="flex space-x-4 mt-8">
                         <a href="#demo" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
                             Try Demo
                         </a>
-                        <a href="#technology" class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">
-                            Learn More
+                        <a href="#validation" class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">
+                            See Validations
                         </a>
                     </div>
                 </div>
@@ -182,105 +256,64 @@
         </div>
     </section>
 
-    <!-- Application Scenarios -->
-    <section class="py-16 bg-white">
+    <!-- Biomedical Validation -->
+    <section id="validation" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-12">Powerful Applications Across Domains</h2>
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-4">Validated Across Oncology & Hematology</h2>
+            <p class="text-lg text-center text-slate-600 max-w-3xl mx-auto mb-12">
+                The copilot replicated six task cards from our manuscript—spanning TCGA, CPTAC, and clinical CBC datasets—
+                with deterministic seeding, leakage checks, and calibrated outputs. Highlights from the four flagship case studies:
+            </p>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Scenario 1 -->
-                <div class="scenario-card p-6 rounded-xl shadow-md">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-dna text-indigo-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Biomedical Research</h3>
-                    <p class="text-gray-600 mb-4">
-                        Accelerate biomarker discovery, analyze genomic data, and predict clinical outcomes with automated ML pipelines.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">TCGA Analysis</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Survival Prediction</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Drug Response</span>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="case-card">
+                    <h3 class="text-xl font-bold text-slate-900">HNSCC Prognostic Classifier</h3>
+                    <p class="text-slate-600 mt-2">RNA-seq clustering and supervised refinement discovered a 12-gene signature
+                        that stratified TCGA survival and generalized to CPTAC validation.</p>
+                    <div class="case-metric"><i class="fas fa-signal"></i>Log-rank <strong>p = 0.00562</strong> (CPTAC)</div>
+                    <div class="case-metric"><i class="fas fa-dna"></i>Concordance index <strong>0.70</strong></div>
+                    <div class="case-meta">
+                        <span>TCGA-HNSC</span>
+                        <span>CPTAC-HNSC</span>
+                        <span>12 genes</span>
+                        <span>Calibrated RF</span>
                     </div>
                 </div>
-                
-                <!-- Scenario 2 -->
-                <div class="scenario-card p-6 rounded-xl shadow-md">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-chart-bar text-indigo-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Business Analytics</h3>
-                    <p class="text-gray-600 mb-4">
-                        Transform raw business data into actionable insights with predictive modeling and customer segmentation.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Churn Prediction</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Market Segmentation</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Sales Forecasting</span>
+                <div class="case-card">
+                    <h3 class="text-xl font-bold text-slate-900">LUAD TRU/PP/PI Transfer</h3>
+                    <p class="text-slate-600 mt-2">Harmonized expression matrices enabled cross-cohort subtype prediction
+                        with disciplined ComBat ablations and probability calibration.</p>
+                    <div class="case-metric"><i class="fas fa-chart-line"></i>Balanced accuracy <strong>0.912</strong></div>
+                    <div class="case-metric"><i class="fas fa-equals"></i>Macro F1 <strong>0.905</strong>, Macro AUPRC <strong>0.974</strong></div>
+                    <div class="case-meta">
+                        <span>TCGA-LUAD</span>
+                        <span>CPTAC-LUAD</span>
+                        <span>Logistic Regression</span>
+                        <span>TRU · PP · PI</span>
                     </div>
                 </div>
-                
-                <!-- Scenario 3 -->
-                <div class="scenario-card p-6 rounded-xl shadow-md">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-image text-indigo-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Computer Vision</h3>
-                    <p class="text-gray-600 mb-4">
-                        Develop image classification and object detection models without writing complex code from scratch.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Medical Imaging</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Quality Control</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Facial Recognition</span>
+                <div class="case-card">
+                    <h3 class="text-xl font-bold text-slate-900">CPTAC-BRCA Receptor Profiling</h3>
+                    <p class="text-slate-600 mt-2">Parallel RNA vs proteome pipelines quantified hormone receptor status with
+                        calibration curves and net-benefit analysis for ER/PR/HER2.</p>
+                    <div class="case-metric"><i class="fas fa-vial"></i>Proteome ROC-AUC: ER <strong>0.954</strong>, HER2 <strong>0.951</strong></div>
+                    <div class="case-metric"><i class="fas fa-water"></i>RNA PR-AUC (PR) <strong>0.932</strong></div>
+                    <div class="case-meta">
+                        <span>CPTAC-BRCA</span>
+                        <span>Calibrated LR</span>
+                        <span>DCA &amp; Brier logs</span>
                     </div>
                 </div>
-                
-                <!-- Scenario 4 -->
-                <div class="scenario-card p-6 rounded-xl shadow-md">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-language text-indigo-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Natural Language Processing</h3>
-                    <p class="text-gray-600 mb-4">
-                        Implement text classification, sentiment analysis, and document summarization with guided workflows.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Sentiment Analysis</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Topic Modeling</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Chatbots</span>
-                    </div>
-                </div>
-                
-                <!-- Scenario 5 -->
-                <div class="scenario-card p-6 rounded-xl shadow-md">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-industry text-indigo-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Industrial IoT</h3>
-                    <p class="text-gray-600 mb-4">
-                        Predictive maintenance and anomaly detection for manufacturing equipment using sensor data.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Predictive Maintenance</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Quality Prediction</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Process Optimization</span>
-                    </div>
-                </div>
-                
-                <!-- Scenario 6 -->
-                <div class="scenario-card p-6 rounded-xl shadow-md">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-graduation-cap text-indigo-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Education & Research</h3>
-                    <p class="text-gray-600 mb-4">
-                        Teach machine learning concepts and accelerate academic research with interactive experimentation.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Teaching Tool</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Research Prototyping</span>
-                        <span class="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs">Data Exploration</span>
+                <div class="case-card">
+                    <h3 class="text-xl font-bold text-slate-900">CBC-Based Anemia Triage</h3>
+                    <p class="text-slate-600 mt-2">Routine labs plus derived Mentzer-style indices delivered interpretable
+                        triage with SHAP explanations for physicians.</p>
+                    <div class="case-metric"><i class="fas fa-heartbeat"></i>Random forest F1 <strong>1.00</strong> on hold-out</div>
+                    <div class="case-metric"><i class="fas fa-balance-scale"></i>Logistic regression F1 <strong>0.984</strong> with best calibration</div>
+                    <div class="case-meta">
+                        <span>Adult &amp; Pediatric CBC</span>
+                        <span>SHAP Diagnostics</span>
+                        <span>Mentzer · Shine-Lal</span>
                     </div>
                 </div>
             </div>
@@ -331,7 +364,38 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <h3 class="text-2xl font-bold text-indigo-900 mb-4">Event-Driven Architecture &amp; Guardrails</h3>
+                    <p class="text-slate-600 mb-4">Each workflow step is an event with explicit inputs, schema validation,
+                        deterministic seeds, and rollback protection. The copilot records prompts, generated code, package versions,
+                        SHAP/DCA assets, and final manifests for exact reproduction.</p>
+                    <ul class="space-y-3 text-slate-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-halved text-indigo-600 mt-1 mr-3"></i>
+                            Leakage guards on patient/sample IDs plus per-cohort z-scaling and ComBat ablations.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clipboard-check text-indigo-600 mt-1 mr-3"></i>
+                            Built-in calibration, decision-curve analysis, and Brier logging for every classifier.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-rotate text-indigo-600 mt-1 mr-3"></i>
+                            Automatic failure recovery with schema snapshots and immutable manifests.
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-diagram-project text-indigo-600 mt-1 mr-3"></i>
+                            Modular events for preprocess, train, evaluate, visualize, and custom instructions.
+                        </li>
+                    </ul>
+                </div>
+                <div class="figure-panel">
+                    <img src="../assets/img/ml-copilot/unified_diagram.drawio.png" alt="ML Copilot system architecture diagram">
+                    <p class="figure-caption">The manuscript’s system diagram shows the GPT-4o/Gemini planner orchestrating
+                        sandboxed Python execution via LlamaIndex events with provenance captured at each hop.</p>
+                </div>
+            </div>
+
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-white p-6 rounded-xl border border-gray-200">
                     <h3 class="font-bold text-xl text-indigo-800 mb-4">Key Features</h3>
@@ -481,6 +545,40 @@
         </div>
     </section>
 
+    <!-- Case Study Figures -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-4">Case Study Visuals</h2>
+            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-12">
+                Direct exports from the manuscript highlight what the copilot produced—Kaplan-Meier survival plots, subtype transfer
+                precision-recall curves, receptor-status comparisons, and SHAP-based interpretability. Each figure is reproducible from
+                the task cards shipped with ML Copilot.
+            </p>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="figure-panel">
+                    <img src="../assets/img/ml-copilot/CaseStudy1.drawio.png" alt="Case Study 1 - HNSCC survival stratification">
+                    <p class="figure-caption">Case Study 1: Survival stratification for HNSCC with TCGA discovery and CPTAC validation
+                        showing the 12-gene classifier’s log-rank separation.</p>
+                </div>
+                <div class="figure-panel">
+                    <img src="../assets/img/ml-copilot/CaseStudy2.drawio.png" alt="Case Study 2 - LUAD subtype transfer results">
+                    <p class="figure-caption">Case Study 2: Cross-cohort LUAD TRU/PP/PI transfer with per-class precision-recall curves and
+                        balanced accuracy summaries for linear vs. tree-based models.</p>
+                </div>
+                <div class="figure-panel">
+                    <img src="../assets/img/ml-copilot/CaseStudy3.drawio.png" alt="Case Study 3 - CPTAC BRCA receptor results">
+                    <p class="figure-caption">Case Study 3: RNA vs. proteome comparison for ER/PR/HER2 receptor status including label
+                        distributions and modality-specific PR-AUC.</p>
+                </div>
+                <div class="figure-panel">
+                    <img src="../assets/img/ml-copilot/CaseStudy4.drawio.png" alt="Case Study 4 - CBC anemia model diagnostics">
+                    <p class="figure-caption">Case Study 4: CBC-based anemia classification with learning curves, calibration overlays, and
+                        SHAP feature importances that mirror hematology heuristics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Demo Section -->
     <section id="demo" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
@@ -621,7 +719,7 @@
                     <a href="#" class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">
                         <i class="fas fa-book mr-2"></i> Documentation
                     </a>
-                    <a href="#" class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">
+                    <a href="https://github.com/VatsalPatel18/ml-copilot-agent" class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300" target="_blank" rel="noopener">
                         <i class="fab fa-github mr-2"></i> GitHub Repo
                     </a>
                 </div>

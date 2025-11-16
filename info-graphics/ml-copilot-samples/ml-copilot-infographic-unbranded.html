@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Copilot Agent - Graphical Abstract</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* Palette: Indigo & Teal */
+            --hf-dark-900: #0f172a; /* slate-900 */
+            --hf-dark-800: #1e293b; /* slate-800 */
+            --hf-dark-700: #334155; /* slate-700 */
+            
+            --hf-accent-main: #4f46e5; /* indigo-600 */
+            --hf-accent-main-dark: #4338ca; /* indigo-700 */
+            
+            --hf-accent-sec: #14b8a6; /* teal-500 */
+            --hf-accent-sec-dark: #0d9488; /* teal-600 */
+            
+            --hf-accent-soft: rgba(79, 70, 229, 0.1); /* indigo-100 */
+            --hf-accent-sec-soft: rgba(20, 184, 166, 0.08); /* teal-50 */
+        }
+        body {
+            background-color: #e2e8f0; /* slate-200 */
+            font-family: 'Inter', sans-serif;
+        }
+        .font-display {
+            font-family: 'Lexend', sans-serif;
+        }
+        .font-mono {
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* Canvas with fixed dimensions */
+        .infographic-canvas {
+            width: 1240px;
+            height: auto;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            background: #ffffff;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--hf-accent-main), var(--hf-accent-sec));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Header with HFR Logo placeholder and Hue */
+        .hf-hero {
+            position: relative;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        /* The "Hue" effect, using the new palette */
+        .hf-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(40% 50% at 95% 10%, var(--hf-accent-soft) 0%, transparent 70%),
+                radial-gradient(30% 35% at 90% 28%, var(--hf-accent-sec-soft) 0%, transparent 68%);
+        }
+        
+        .hf-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hf-title-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hf-accent-main);
+            font-size: 1.75rem;
+        }
+
+        /* Terminal card styling */
+        .terminal-header {
+            background-color: var(--hf-dark-700);
+        }
+        .terminal-body {
+            background-color: var(--hf-dark-800);
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+        
+    </style>
+</head>
+<body class="min-h-screen w-full flex items-center justify-center p-4 sm:p-8">
+
+    <!-- Infographic Artboard -->
+    <div id="page" class="infographic-canvas rounded-2xl overflow-hidden flex flex-col">
+        
+        <!-- Header Band -->
+        <header class="hf-hero px-12 text-slate-900 h-[120px] flex-shrink-0 flex items-center justify-center">
+            <div class="flex flex-col justify-center items-center text-center gap-1">
+                <div class="flex items-center justify-center gap-4">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-robot"></i>
+                    </span>
+                    <h1 class="font-display text-4xl font-bold text-slate-800">Machine Learning Copilot Agent</h1>
+                </div>
+                <h2 class="text-xl font-medium text-slate-600">Language-Guided Workflows for Biomedical Discovery</h2>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="flex flex-col">
+
+            <!-- Section 1: Background & Objective -->
+            <section class="px-12 py-6">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-500 uppercase">1. The Problem & Objective</h3>
+                <div class="grid grid-cols-2 gap-x-6 mt-3">
+                    <!-- Before -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col">
+                        <h4 class="text-lg font-bold text-red-600">Before: Manual & Brittle Workflows</h4>
+                        <p class="text-sm text-slate-600 mt-1 mb-3">Complex, error-prone scripting with high risk of data leakage and poor reproducibility.</p>
+                        <div class="bg-[var(--hf-dark-800)] p-3 rounded-lg text-xs font-mono text-slate-400 flex-grow">
+                            <span class="text-yellow-400">import</span> pandas <span class="text-yellow-400">as</span> pd<br>
+                            <span class="text-yellow-400">from</span> sklearn.model_selection <span class="text-yellow-400">import</span> ...<br>
+                            <br>
+                            <span class="text-slate-500"># Manual data cleaning</span><br>
+                            df = pd.read_csv(<span class="text-red-400">"data.csv"</span>)<br>
+                            df = df.fillna(df.mean())<br>
+                            <span class="text-slate-500"># Manual splitting & training</span><br>
+                            X_train, X_test = ...<br>
+                            model.fit(X_train, y_train)<br>
+                            <span class="text-slate-500"># Easy to forget calibration, DCA...</span>
+                        </div>
+                    </div>
+                    
+                    <!-- After -->
+                    <div class="bg-indigo-900 text-white p-4 rounded-xl flex flex-col">
+                         <h4 class="text-lg font-bold text-green-400">After: The MLCA Way</h4>
+                         <p class="text-sm text-indigo-200 mt-1 mb-3">Language-guided instructions orchestrate the entire, reproducible workflow.</p>
+                         <div class="terminal-body rounded-lg shadow-lg overflow-hidden border border-slate-600 flex-grow">
+                            <div class="terminal-header flex items-center p-2">
+                                <div class="w-2.5 h-2.5 bg-red-500 rounded-full mr-1.5"></div>
+                                <div class="w-2.5 h-2.5 bg-yellow-500 rounded-full mr-1.5"></div>
+                                <div class="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
+                            </div>
+                            <div class="p-3 text-xs">
+                                <span class="text-green-400">ml_copilot></span><span class="text-white"> custom instruction</span>
+                                <p class="text-cyan-400 mt-1">> <span class="text-white">Run a full survival analysis on HNSCC data. Find prognostic groups, train a classifier, and validate on CPTAC. Ensure DCA and calibration plots are saved.</span></p>
+                                <p class="text-yellow-400 mt-2">> Planning multi-step workflow...</p>
+                                <p class="text-green-400 mt-1">✔ Full analysis complete.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Objective Box -->
+                <div class="mt-4 bg-indigo-50 border border-indigo-200 rounded-xl p-4 flex items-center gap-4">
+                    <i class="fa-solid fa-bullseye text-3xl text-indigo-600 flex-shrink-0"></i>
+                    <div>
+                        <h4 class="font-bold text-indigo-900">Objective: Agent-Orchestrated Analysis</h4>
+                        <p class="text-sm text-indigo-700">To show an LLM agent can automate complex, end-to-end biomedical ML workflows while enforcing safety, reproducibility, and clinical-utility metrics (DCA, SHAP, Calibration) by default.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="border-t border-slate-200 mx-12"></div>
+
+            <!-- Section 2: Methodology -->
+            <section class="px-12 py-5">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-500 uppercase">2. Methodology: The Event-Driven Agentic Pipeline</h3>
+                <div class="flex justify-between items-center text-center mt-3 text-slate-700">
+                    
+                    <!-- Box 1 -->
+                    <div class="bg-white border border-slate-200 rounded-lg p-3 w-[23%] h-[120px] flex flex-col items-center justify-center shadow-sm">
+                        <i class="fa-solid fa-comment-dots text-2xl text-[var(--hf-accent-main)] mb-2"></i>
+                        <h4 class="font-semibold text-sm">1. User Instruction</h4>
+                        <p class="text-xs text-slate-500">High-level task in natural language via CLI (e.g., `preprocess`, `custom instruction`)</p>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right-long text-3xl text-slate-400"></i>
+
+                    <!-- Box 2 -->
+                    <div class="bg-white border border-slate-200 rounded-lg p-3 w-[23%] h-[120px] flex flex-col items-center justify-center shadow-sm">
+                        <i class="fa-solid fa-brain text-2xl text-[var(--hf-accent-main)] mb-2"></i>
+                        <h4 class="font-semibold text-sm">2. LLM-Powered Planning</h4>
+                        <p class="text-xs text-slate-500">gpt-5.1 & LlamaIndex plan sub-tasks and generate Python code dynamically.</p>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right-long text-3xl text-slate-400"></i>
+
+                    <!-- Box 3 -->
+                    <div class="bg-white border border-slate-200 rounded-lg p-3 w-[23%] h-[120px] flex flex-col items-center justify-center shadow-sm">
+                        <i class="fa-solid fa-shield-halved text-2xl text-[var(--hf-accent-main)] mb-2"></i>
+                        <h4 class="font-semibold text-sm">3. Secure Execution</h4>
+                        <p class="text-xs text-slate-500">Code Interpreter tool runs code in a sandbox. Agent handles errors & logs events.</p>
+                    </div>
+
+                    <i class="fa-solid fa-arrow-right-long text-3xl text-slate-400"></i>
+
+                    <!-- Box 4 -->
+                    <div class="bg-white border border-slate-200 rounded-lg p-3 w-[23%] h-[120px] flex flex-col items-center justify-center shadow-sm">
+                        <i class="fa-solid fa-file-archive text-2xl text-[var(--hf-accent-main)] mb-2"></i>
+                        <h4 class="font-semibold text-sm">4. Validated Artifacts</h4>
+                        <p class="text-xs text-slate-500">Outputs models, plots (DCA, SHAP), and reproducible run manifests.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="border-t border-slate-200 mx-12"></div>
+
+            <!-- Section 3: Results & Conclusion -->
+            <section class="px-12 py-5">
+                <div class="grid grid-cols-2 gap-x-6">
+                    
+                    <!-- Left: Results (The "Brag") -->
+                    <div class="bg-teal-50 border border-teal-200 rounded-xl p-5">
+                        <h3 class="text-lg font-bold text-teal-900 mb-3">3. Results: Validated Across Diverse Biomedical Tasks</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- HNSCC -->
+                            <div class="bg-white p-3 rounded-lg border border-teal-100">
+                                <div class="flex items-center mb-1">
+                                    <i class="fa-solid fa-dna text-teal-600 w-6"></i>
+                                    <h5 class="font-semibold ml-2">HNSCC Prognostics</h5>
+                                </div>
+                                <p class="text-sm text-slate-600">Discovered 12-gene classifier, validated on CPTAC <span class="font-medium text-green-700">(p=0.00562)</span>.</p>
+                            </div>
+                            <!-- LUAD -->
+                            <div class="bg-white p-3 rounded-lg border border-teal-100">
+                                <div class="flex items-center mb-1">
+                                    <i class="fa-solid fa-lungs text-teal-600 w-6"></i>
+                                    <h5 class="font-semibold ml-2">LUAD Subtype Transfer</h5>
+                                </div>
+                                <p class="text-sm text-slate-600">Achieved <span class="font-medium text-green-700">0.912 Balanced Accuracy</span> in cross-cohort transfer (TCGA <i class="fa-solid fa-arrow-right-long text-xs"></i> CPTAC).</p>
+                            </div>
+                            <!-- BRCA -->
+                            <div class="bg-white p-3 rounded-lg border border-teal-100">
+                                <div class="flex items-center mb-1">
+                                    <i class="fa-solid fa-vial text-teal-600 w-6"></i>
+                                    <h5 class="font-semibold ml-2">BRCA Receptor Status</h5>
+                                </div>
+                                <p class="text-sm text-slate-600">Proteomics model hit <span class="font-medium text-green-700">0.951 AUC for HER2</span>, outperforming RNA-seq.</p>
+                            </div>
+                            <!-- Anemia -->
+                            <div class="bg-white p-3 rounded-lg border border-teal-100">
+                                <div class="flex items-center mb-1">
+                                    <i class="fa-solid fa-tint text-teal-600 w-6"></i>
+                                    <h5 class="font-semibold ml-2">Anemia Classification</h5>
+                                </div>
+                                <p class="text-sm text-slate-600">Near-perfect CBC classification with full <span class="font-medium text-green-700">SHAP interpretability</span>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Conclusion -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <h3 class="text-lg font-bold text-slate-800 mb-3">4. Conclusion: The Future of Agentic AI</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h5 class="font-semibold text-slate-700">Automates Complex Workflows</h5>
+                                    <p class="text-sm text-slate-600">Converts high-level goals into multi-step analyses across genomics, proteomics, and clinical data.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h5 class="font-semibold text-slate-700">Enforces Best Practices</h5>
+                                    <p class="text-sm text-slate-600">Builds clinical utility (DCA, Calibration) and interpretability (SHAP) into the workflow by default.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-green-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h5 class="font-semibold text-slate-700">Ensures Full Reproducibility</h5>
+                                    <p class="text-sm text-slate-600">Generates citable manifests with all seeds, versions, and logs for auditable and rerunnable science.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="mt-auto bg-[var(--hf-dark-900)] text-slate-300 px-12 py-3 flex justify-between items-center text-sm flex-shrink-0 h-[50px]">
+            <div class="flex items-center space-x-6 font-mono text-xs">
+                <span><i class="fa-solid fa-brain text-indigo-400"></i> LLM: gpt-5.1</span>
+                <span><i class="fa-solid fa-link text-indigo-400"></i> Framework: LlamaIndex</span>
+                <span><i class="fa-solid fa-code text-indigo-400"></i> Tool: Code Interpreter</span>
+            </div>
+            <div class="text-slate-400 text-xs">
+                © 2025. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

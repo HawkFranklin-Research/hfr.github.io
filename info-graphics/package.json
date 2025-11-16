@@ -1,0 +1,24 @@
+{
+  "name": "ml-copilot-info-graphics",
+  "version": "1.0.0",
+  "description": "Utility scripts for exporting ML Copilot infographic HTML comps into JPEG/PNG assets",
+  "main": "index.js",
+  "scripts": {
+    "export:ml-copilot": "node scripts/export_infographic_images.js ml-copilot-samples/ml-copilot-infographic.html --selector=#page --slug=ml-copilot-infographic --outDir=exports",
+    "export:deepsite": "node scripts/export_infographic_images.js ml-copilot-samples/sample_deepsite.html --selector=.max-w-6xl --slug=sample_deepsite --outDir=exports",
+    "export:gemini": "node scripts/export_infographic_images.js ml-copilot-samples/ml-copilot-gemini.html --selector=#page --slug=ml-copilot-gemini --outDir=exports",
+    "export:ml-copilot-unbranded": "node scripts/export_infographic_images.js ml-copilot-samples/ml-copilot-infographic-unbranded.html --selector=#page --slug=ml-copilot-infographic-unbranded --outDir=exports",
+    "export:all": "npm run export:ml-copilot && npm run export:deepsite && npm run export:gemini && npm run export:ml-copilot-unbranded"
+  },
+  "keywords": [
+    "infographic",
+    "export",
+    "puppeteer",
+    "ml-copilot"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer-core": "^23.5.0"
+  }
+}
