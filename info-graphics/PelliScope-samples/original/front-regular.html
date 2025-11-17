@@ -63,30 +63,16 @@
             transform: translateY(-50%);
             display: flex;
             align-items: center;
-            gap: 0.85rem;
-            font-weight: 700;
-            font-family: 'Lexend', sans-serif;
-            color: var(--hf-dark-700);
-            font-size: 1.25rem;
+            justify-content: center;
         }
 
         .hf-hero__logo img {
-            width: 68px;
-            height: 68px;
+            width: 220px;
+            height: auto;
             object-fit: contain;
-            border-radius: 99px;
-            border: 2px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .hf-hero__logo-text {
-            font-size: 1.35rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .hf-hero__logo-emphasis {
-            color: #c49c28; /* Keeping the gold emphasis from sample */
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
         }
         
         .hf-title-icon {
@@ -170,8 +156,7 @@
         <header class="hf-hero pl-12 pr-56 text-slate-900 h-[100px] flex-shrink-0">
             <!-- Logo from HawkFranklin -->
             <div class="hf-hero__logo">
-                <img src="../hawk_logo.png" alt="HawkFranklin Research crest">
-                <span class="hf-hero__logo-text">HawkFranklin <span class="hf-hero__logo-emphasis">Research</span></span>
+                <img src="../../../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo">
             </div>
             <!-- Title -->
             <div class="flex items-center gap-4 h-full">
@@ -258,12 +243,12 @@
                                 </div>
                                 <!-- Progress Bar -->
                                 <div>
-                                    <div class="flex justify-between text-sm mb-1"><span class="font-medium text-slate-700">Eczema</span><span>78%</span></div>
-                                    <div class="w-full bg-gray-200 rounded-full h-2"><div class="progress-bar h-2 rounded-full" style="width: 78%"></div></div>
+                                    <div class="flex justify-between text-sm mb-1"><span class="font-medium text-slate-700">Herpes Zoster</span><span>74%</span></div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2"><div class="progress-bar h-2 rounded-full" style="width: 74%"></div></div>
                                 </div>
                                 <div>
-                                    <div class="flex justify-between text-sm mb-1"><span class="font-medium text-slate-700">Psoriasis</span><span>65%</span></div>
-                                    <div class="w-full bg-gray-200 rounded-full h-2"><div class="progress-bar h-2 rounded-full" style="width: 65%; opacity: 0.7"></div></div>
+                                    <div class="flex justify-between text-sm mb-1"><span class="font-medium text-slate-700">Allergic Contact Dermatitis</span><span>59%</span></div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2"><div class="progress-bar h-2 rounded-full" style="width: 59%; opacity: 0.7"></div></div>
                                 </div>
                             </div>
                         </div>
@@ -283,16 +268,16 @@
                 <div class="mt-4 bg-[var(--hf-accent-sec-dark)] text-white rounded-xl p-8 shadow-2xl">
                     <h4 class="font-display text-3xl font-bold mb-4 text-cyan-300">Emirates Health Services (EHS)</h4>
                     <p class="text-lg text-blue-100 mb-6">PelliScope has been shortlisted by Emirates Health Services (EHS), the federal health provider of the UAE. This partnership provides a critical, large-scale entry point into the GCC market.</p>
-                    <div class="bg-black/20 rounded-lg p-6">
-                        <div class="flex">
-                            <i class="fa-solid fa-calendar-star text-4xl text-cyan-300 w-16"></i>
+                    <div class="bg-black/20 rounded-lg p-6 space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-calendar-days text-4xl text-cyan-300 mt-1" aria-hidden="true"></i>
                             <div>
                                 <h5 class="font-bold text-xl text-white">Showcasing at Arab Health 2026</h5>
                                 <p class="text-blue-200 mt-1">HawkFranklin Research has been invited to present the PelliScope proof-of-concept under the official EHS booth, a high-visibility opportunity to engage regional stakeholders.</p>
                             </div>
                         </div>
-                        <div class="flex mt-6">
-                            <i class="fa-solid fa-handshake text-4xl text-cyan-300 w-16"></i>
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-handshake text-4xl text-cyan-300 mt-1" aria-hidden="true"></i>
                             <div>
                                 <h5 class="font-bold text-xl text-white">Co-Development & Commercialization</h5>
                                 <p class="text-blue-200 mt-1">This engagement is the foundation for a long-term co-development plan to build a localized, robust dermatological AI for the UAE market, positioning PelliScope as the standard for pre-medical triage.</p>
