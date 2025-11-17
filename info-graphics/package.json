@@ -8,6 +8,9 @@
     "export:deepsite": "node scripts/export_infographic_images.js ml-copilot-samples/sample_deepsite.html --selector=.max-w-6xl --slug=sample_deepsite --outDir=exports",
     "export:gemini": "node scripts/export_infographic_images.js ml-copilot-samples/ml-copilot-gemini.html --selector=#page --slug=ml-copilot-gemini --outDir=exports",
     "export:ml-copilot-unbranded": "node scripts/export_infographic_images.js ml-copilot-samples/ml-copilot-infographic-unbranded.html --selector=#page --slug=ml-copilot-infographic-unbranded --outDir=exports",
+    "export:pelliscope-front": "node scripts/export_infographic_images.js PelliScope-samples/original/front-regular.html --selector=#page --slug=pelliscope-front --outDir=PelliScope-samples/exports",
+    "export:pelliscope-back": "node scripts/export_infographic_images.js PelliScope-samples/original/back-regular.html --selector=#page --slug=pelliscope-back --outDir=PelliScope-samples/exports",
+    "export:pelliscope": "npm run export:pelliscope-front && npm run export:pelliscope-back",
     "export:all": "npm run export:ml-copilot && npm run export:deepsite && npm run export:gemini && npm run export:ml-copilot-unbranded"
   },
   "keywords": [

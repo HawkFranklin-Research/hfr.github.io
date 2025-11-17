@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelliScope - About HawkFranklin Research (Back)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* PALETTE: Navy & Teal (Print-Safe) */
+            --hf-dark-900: #0f172a; /* slate-900 */
+            --hf-dark-800: #1e293b; /* slate-800 */
+            --hf-dark-700: #334155; /* slate-700 */
+            
+            /* Main accent is Teal (for PelliScope icon) */
+            --hf-accent-main: #0d9488; /* teal-600 */
+            --hf-accent-main-dark: #0f766e; /* teal-700 */
+            --hf-accent-soft: rgba(20, 184, 166, 0.08); /* teal-50-ish */
+
+            /* Secondary accent is Navy Blue (replaces Slate) */
+            --hf-accent-sec: #1e40af; /* blue-800 */
+            --hf-accent-sec-dark: #1e3a8a; /* blue-900 */
+            --hf-accent-sec-soft: #eff6ff; /* blue-50 */
+        }
+        body {
+            background-color: #e2e8f0; /* slate-200 */
+            font-family: 'Inter', sans-serif;
+        }
+        .font-display {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Canvas mimics the A4-style page */
+        .infographic-canvas {
+            width: 1240px; /* Fixed width like the sample */
+            height: auto;
+            min-height: 1754px; /* A4 aspect ratio */
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hf-hero__logo-emphasis {
+            color: #c49c28; /* Keeping the gold emphasis from sample */
+        }
+
+        /* NEW: Print-Optimization Styles */
+        @media print {
+            body {
+                background-color: #ffffff; /* Remove grey page background */
+                margin: 0;
+                padding: 0;
+            }
+            .infographic-canvas {
+                box-shadow: none; /* Remove shadow */
+                width: 100%;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+                border: none;
+            }
+            /* CRITICAL: Force all background colors and images to print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            /* CRITICAL: Remove browser-added margins, headers, footers */
+            @page {
+                size: auto;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen w-full flex items-center justify-center p-4 sm:p-8">
+
+    <!-- Infographic "Page" -->
+    <div id="page" class="infographic-canvas rounded-2xl overflow-hidden">
+        
+        <!-- ======================================== -->
+        <!-- HEADER -->
+        <!-- ======================================== -->
+        <header class="px-12 py-8 text-center bg-slate-50 border-b border-slate-200">
+            <img src="../../../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research primary logo" class="mx-auto h-24 md:h-32 lg:h-40 w-auto drop-shadow-lg">
+            <p class="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">
+                We are a deep-tech research firm translating frontier AI into clinical-grade products at the intersection of AI and Science.
+            </p>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="flex-grow">
+
+            <!-- ======================================== -->
+            <!-- SECTION 1: OUR MODEL & PHILOSOPHY -->
+            <!-- ======================================== -->
+            <section class="px-12 py-8 bg-white">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Philosophy -->
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Our Philosophy</h3>
+                        <p class="text-slate-600 mb-4">
+                            HawkFranklin Research was founded by a passionate, bootstrapped group of researchers and engineers. We believe the greatest barrier to innovation isn't a lack of ideas, but the R&D inequality between large corporations and everyone else.
+                        </p>
+                        <blockquote class="border-l-4 border-[var(--hf-accent-main)] pl-4 py-2 bg-[var(--hf-accent-soft)]">
+                            <p class="text-lg font-medium text-[var(--hf-accent-main-dark)] italic">
+                                "We are a resilient, self-funded team. We believe in our mission to build impactful technology and will succeed with or without external funding—this is an opportunity to join a team that is already moving forward."
+                            </p>
+                        </blockquote>
+                    </div>
+                    <!-- Model -->
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Our Operational Model</h3>
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4">
+                                <i class="fa-solid fa-handshake text-3xl text-[var(--hf-accent-sec)] w-10"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-[var(--hf-accent-sec-dark)]">Path A: Partner-Initiated R&D</h4>
+                                    <p class="text-sm text-slate-600">You bring a defined challenge. We build the dedicated AI solution, acting as your external deep-tech R&D team.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4">
+                                <i class="fa-solid fa-lightbulb text-3xl text-[var(--hf-accent-sec)] w-10"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-[var(--hf-accent-sec-dark)]">Path B: HFR-Initiated Products</h4>
+                                    <p class="text-sm text-slate-600">We identify a market gap, build a validated product (like PelliScope), and then seek commercial partners to scale it.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Separator -->
+            <div class="border-t border-slate-200 mx-12"></div>
+
+            <!-- ======================================== -->
+            <!-- SECTION 2: BROADER RESEARCH PORTFOLIO -->
+            <!-- ======================================== -->
+            <section class="px-12 py-8 bg-slate-50">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-500 uppercase text-center">Our Broader AI & Science Portfolio</h3>
+                <div class="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                        <i class="fa-solid fa-microscope text-3xl text-[var(--hf-accent-main)]"></i>
+                        <h4 class="font-semibold text-slate-800 mt-2">PathoLens</h4>
+                        <p class="text-xs text-slate-500">AI agents for digital pathology analysis.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                        <i class="fa-solid fa-ribbon text-3xl text-[var(--hf-accent-main)]"></i>
+                        <h4 class="font-semibold text-slate-800 mt-2">C-Risq</h4>
+                        <p class="text-xs text-slate-500">Multi-omics for cancer risk stratification.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                        <i class="fa-solid fa-flask-vial text-3xl text-[var(--hf-accent-main)]"></i>
+                        <h4 class="font-semibold text-slate-800 mt-2">MedDiscover</h4>
+                        <p class="text-xs text-slate-500">RAG copilot for biomedical Q&A.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                        <i class="fa-solid fa-brain text-3xl text-[var(--hf-accent-main)]"></i>
+                        <h4 class="font-semibold text-slate-800 mt-2">Clinical FM</h4>
+                        <p class="text-xs text-slate-500">Foundation models for tabular EHR data.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Separator -->
+            <div class="border-t border-slate-200 mx-12"></div>
+
+            <!-- ======================================== -->
+            <!-- SECTION 3: THE PELLISCOPE TEAM -->
+            <!-- ======================================== -->
+            <section class="px-12 py-8 bg-white flex-grow">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-500 uppercase text-center">The PelliScope Team</h3>
+                <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 max-w-6xl mx-auto">
+                    
+                    <!-- Team Member 1 -->
+                    <div class="text-center">
+                        <img src="../../../Vatsal_Patel.jpg" alt="Vatsal Patel" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white object-cover">
+                        <h5 class="font-bold text-lg text-slate-800 mt-3">Vatsal Patel</h5>
+                        <p class="font-medium text-[var(--hf-accent-sec)]">Founder & Research Engineer</p>
+                        <p class="text-sm text-slate-500">M.Sc Artificial Intelligence (IU Berlin)</p>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="text-center">
+                        <img src="../../../Ananya_Pal.jpg" alt="Ananya Pal" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white object-cover">
+                        <h5 class="font-bold text-lg text-slate-800 mt-3">Ananya Pal</h5>
+                        <p class="font-medium text-[var(--hf-accent-sec)]">Managing Director</p>
+                        <p class="text-sm text-slate-500">B.S Economics</p>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="text-center">
+                        <img src="../../../Saurav_Roy.jpeg" alt="Saurav Roy" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white object-cover">
+                        <h5 class="font-bold text-lg text-slate-800 mt-3">Saurav Roy</h5>
+                        <p class="font-medium text-[var(--hf-accent-sec)]">Operations Head</p>
+                        <p class="text-sm text-slate-500">M.Tech Biotechnology</p>
+                    </div>
+                    
+                    <!-- Team Member 4 -->
+                    <div class="text-center">
+                        <img src="../../../Abhijeet%20Patel.jpg" alt="Dr. Abhijeet Patel" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white object-cover">
+                        <h5 class="font-bold text-lg text-slate-800 mt-3">Dr. Abhijeet Patel</h5>
+                        <p class="font-medium text-[var(--hf-accent-sec)]">Clinical Research Physician</p>
+                        <p class="text-sm text-slate-500">Bachelor of Medicine & Surgery</p>
+                    </div>
+                    
+                    <!-- Team Member 5 -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/eff6ff/1e3a8a?text=Dr.+Yash+P" alt="Dr. Yash Patel" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white">
+                        <h5 class="font-bold text-lg text-slate-800 mt-3">Dr. Yash Patel</h5>
+                        <p class="font-medium text-[var(--hf-accent-sec)]">Clinical Research Physician</p>
+                        <p class="text-sm text-slate-500">Bachelor of Medicine & Surgery</p>
+                    </div>
+                    
+                    <!-- Team Member 6 (Placeholder) -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/eff6ff/1e3a8a?text=Nishi" alt="Nishi" class="w-32 h-32 rounded-full mx-auto shadow-lg border-4 border-white">
+                        <h5 class="font-bold text-lg text-slate-800 mt-3">Nishi [Lastname]</h5>
+                        <p class="font-medium text-[var(--hf-accent-sec)]">[Your Role Here]</p>
+                        <p class="text-sm text-slate-500">[Your Qualification Here]</p>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+        
+        <!-- ======================================== -->
+        <!-- FOOTER -->
+        <!-- ======================================== -->
+        <footer class="mt-auto bg-[var(--hf-dark-900)] text-slate-300 px-12 py-3 flex justify-between items-center text-sm flex-shrink-0 h-[50px]">
+            <div class="flex items-center space-x-6 text-xs">
+                <!-- Footer accents are teal -->
+                <span><i class="fa-solid fa-file-alt text-teal-400"></i> Technology: DermAssist MIL (Derm Foundation)</span>
+                <span><i class="fa-solid fa-check-circle text-teal-400"></i> Validation: 80.2% Mean Acc. (SCIN)</span>
+                <span><i class="fa-solid fa-globe-americas text-teal-400"></i> Market: US/GCC</span>
+            </div>
+            <div class="text-slate-400 text-xs">
+                © 2025 HawkFranklin Research. All rights reserved. Confidential.
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
