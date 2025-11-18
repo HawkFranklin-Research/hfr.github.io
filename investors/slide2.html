@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelliScope - Investor Slide Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* PALETTE: Navy & Teal */
+            --hf-dark-900: #0f172a;
+            --hf-dark-800: #1e293b;
+            --hf-dark-700: #334155;
+            
+            /* Main accent is Teal */
+            --hf-accent-main: #0d9488;
+            --hf-accent-main-dark: #0f766e;
+            --hf-accent-soft: rgba(20, 184, 166, 0.08);
+
+            /* Secondary accent is Navy Blue */
+            --hf-accent-sec: #1e40af;
+            --hf-accent-sec-dark: #1e3a8a;
+            --hf-accent-sec-soft: #eff6ff;
+        }
+
+        body {
+            background-color: #cbd5e1;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Prevent body scroll, handle in slide */
+        }
+
+        .font-display {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* The Slide Container */
+        .deck-container {
+            width: 1240px;
+            height: 877px; /* Approximate A4 Landscape / 4:3 ratio */
+            background: #ffffff;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Individual Slide Styling */
+        .slide {
+            display: none; /* Hidden by default */
+            height: 100%;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Header Consistency */
+        .hf-hero {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .hf-title-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hf-accent-main);
+            font-size: 2.2rem;
+        }
+
+        /* Analysis Card Visuals */
+        .analysis-card {
+            background: linear-gradient(135deg, white, #f0f9ff);
+            border: 1px solid #e0f2fe;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #ccfbf1, var(--hf-accent-main));
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: absolute;
+            bottom: 24px;
+            right: 32px;
+            display: flex;
+            gap: 12px;
+            z-index: 50;
+        }
+
+        .nav-btn {
+            background: var(--hf-dark-900);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: var(--hf-accent-main);
+        }
+
+        .nav-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .slide-indicator {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--hf-accent-main);
+            width: 30px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="deck-container">
+        
+        <!-- ========================== -->
+        <!-- SLIDE 1: PRODUCT & TECH -->
+        <!-- ========================== -->
+        <div class="slide active" id="slide-1">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-allergies"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">PelliScope</h1>
+                        <h2 class="text-lg font-medium text-slate-600">AI-Powered Dermatological Decision Support</h2>
+                    </div>
+                </div>
+                <!-- Logo -->
+                <div>
+                     <img src="https://placehold.co/220x60/ffffff/1e3a8a?text=HawkFranklin+Research&font=lexend" alt="HawkFranklin Logo" class="h-12 object-contain">
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="flex-grow p-12 flex flex-col justify-between bg-white">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-2">01 | The Product</h3>
+                
+                <!-- Top Row: Deployment vs Visual -->
+                <div class="grid grid-cols-12 gap-12 h-full">
+                    
+                    <!-- Left: Context & Deployment -->
+                    <div class="col-span-5 flex flex-col justify-center">
+                        <h2 class="font-display text-3xl font-bold text-slate-800 mb-6 leading-tight">Clinically-Validated AI <br><span class="text-[var(--hf-accent-main)]">For Any Workflow</span></h2>
+                        
+                        <div class="bg-slate-50 rounded-xl p-6 border border-slate-100 shadow-sm">
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wide mb-4">Deployment Models</h4>
+                            <ul class="space-y-5">
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-[var(--hf-accent-main)]">
+                                        <i class="fa-solid fa-clipboard-check text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Pre-Medical Inquiry</h5>
+                                        <p class="text-xs text-slate-500">Triage before the patient sees a doctor</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-[var(--hf-accent-main)]">
+                                        <i class="fa-solid fa-video text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Tele-Medicine Integration</h5>
+                                        <p class="text-xs text-slate-500">Real-time analysis during remote consults</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-[var(--hf-accent-main)]">
+                                        <i class="fa-solid fa-calendar-check text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Appointment Scheduling</h5>
+                                        <p class="text-xs text-slate-500">Prioritize urgency based on visual risk</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Analysis Card -->
+                    <div class="col-span-7 flex items-center justify-center">
+                        <div class="analysis-card rounded-2xl p-6 w-full shadow-lg transform scale-95 hover:scale-100 transition-transform duration-500">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-semibold text-gray-800">Patient Scan: #8829-A</h3>
+                                <span class="text-xs bg-teal-100 text-teal-800 px-3 py-1 rounded-full font-bold tracking-wide flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check"></i> ANALYSIS COMPLETE
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-3 mb-5">
+                                <div class="text-center">
+                                    <img src="https://placehold.co/150x120/e2e8f0/94a3b8?text=Close-Up" class="w-full h-28 object-cover rounded-lg border border-slate-200">
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://placehold.co/150x120/e2e8f0/94a3b8?text=Context" class="w-full h-28 object-cover rounded-lg border border-slate-200">
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://placehold.co/150x120/e2e8f0/94a3b8?text=Angled" class="w-full h-28 object-cover rounded-lg border border-slate-200">
+                                </div>
+                            </div>
+                            <!-- Stats -->
+                            <div class="bg-white border border-slate-100 rounded-xl p-4 shadow-sm flex justify-between items-center">
+                                <div class="text-left">
+                                    <p class="text-xs text-slate-500 uppercase">Primary Detection</p>
+                                    <p class="text-lg font-bold text-slate-800">Herpes Zoster</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-3xl font-display font-bold text-[var(--hf-accent-main)]">74%</p>
+                                    <p class="text-xs text-slate-500">Confidence</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 px-1">
+                                <div class="flex justify-between text-xs mb-1"><span class="font-medium text-slate-600">Allergic Dermatitis</span><span>59%</span></div>
+                                <div class="w-full bg-slate-100 rounded-full h-1.5"><div class="progress-bar h-1.5 rounded-full" style="width: 59%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: Capabilities Grid -->
+                <div class="mt-8 pt-6 border-t border-slate-100">
+                    <h4 class="text-sm font-bold text-slate-800 mb-4">Current Core Capabilities</h4>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-shield-virus text-2xl text-rose-500 pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-sm">Preliminary Triage</h5>
+                                <p class="text-xs text-slate-500 leading-relaxed mt-1">Instantly distinguishes between <strong class="text-slate-700">infectious vs. non-infectious</strong> lesions to protect staff.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-microscope text-2xl text-amber-500 pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-sm">Differential Assessment</h5>
+                                <p class="text-xs text-slate-500 leading-relaxed mt-1">Probability scoring for <strong class="text-slate-700">10 common conditions</strong> (Eczema, Psoriasis, Tinea, etc.).</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-server text-2xl text-[var(--hf-accent-main)] pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-sm">Resource-Optimized</h5>
+                                <p class="text-xs text-slate-500 leading-relaxed mt-1">Runs on standard CPU hardware. Zero GPU dependency. Low-cost deployment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+
+        <!-- ========================== -->
+        <!-- SLIDE 2: PARTNERSHIP & MARKET -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-2">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-handshake"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">The Opportunity</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Strategic Entry & Market Potential</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://placehold.co/220x60/ffffff/1e3a8a?text=HawkFranklin+Research&font=lexend" alt="HawkFranklin Logo" class="h-12 object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-slate-50 flex flex-col">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4">02 | Strategic Roadmap</h3>
+
+                <!-- The Navy Partnership Box -->
+                <div class="bg-[var(--hf-accent-sec-dark)] rounded-2xl p-8 text-white shadow-2xl relative overflow-hidden mb-8 flex-shrink-0">
+                    <!-- Decorative background element -->
+                    <i class="fa-solid fa-globe-americas absolute -right-10 -bottom-10 text-[10rem] text-white opacity-5"></i>
+                    
+                    <div class="relative z-10">
+                        <h2 class="font-display text-2xl text-cyan-300 font-bold mb-4">Upcoming Technology Showcase & GCC Opportunity</h2>
+                        <p class="text-blue-100 text-lg max-w-4xl leading-relaxed">
+                            PelliScope has been shortlisted for a <strong class="text-white">proof-of-concept demonstration</strong> by a major healthcare provider in the UAE. We will be co-presenting at an upcoming health conference, creating a critical entry point into the GCC market.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-8 mt-8">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 flex items-start gap-4">
+                                <div class="bg-cyan-500/20 p-3 rounded-lg text-cyan-300">
+                                    <i class="fa-solid fa-calendar-days text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-lg text-white">Arab Health 2026</h5>
+                                    <p class="text-sm text-blue-200 mt-1">Official technology showcase under our partner's booth. High visibility.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 flex items-start gap-4">
+                                <div class="bg-cyan-500/20 p-3 rounded-lg text-cyan-300">
+                                    <i class="fa-solid fa-code-branch text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-lg text-white">Co-Development</h5>
+                                    <p class="text-sm text-blue-200 mt-1">Foundation for a localized, robust dermatological AI model standard for the UAE.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Statistics Row -->
+                <div class="grid grid-cols-3 gap-6 flex-grow">
+                    <!-- Stat 1 -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="bg-teal-50 p-2 rounded text-[var(--hf-accent-main-dark)]"><i class="fa-solid fa-chart-pie"></i></div>
+                            <h6 class="font-semibold text-slate-700">Total Addressable Market</h6>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-display font-bold text-slate-800">$1.9 Billion</p>
+                            <p class="text-xs text-slate-500 mt-1">2024 Global AI Dermatology Valuation</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="bg-teal-50 p-2 rounded text-[var(--hf-accent-main-dark)]"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                            <h6 class="font-semibold text-slate-700">Growth Rate</h6>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-display font-bold text-slate-800">33% CAGR</p>
+                            <p class="text-xs text-slate-500 mt-1">Projected growth 2025–2035</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="bg-blue-50 p-2 rounded text-[var(--hf-accent-sec)]"><i class="fa-solid fa-file-contract"></i></div>
+                            <h6 class="font-semibold text-slate-700">Revenue Model</h6>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-display font-bold text-slate-800">$15k/mo</p>
+                            <p class="text-xs text-slate-500 mt-1">Per licensing deal + $0.50 SaaS fee per inquiry</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+
+        <!-- ========================== -->
+        <!-- SLIDE 3: INVESTMENT ASK -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-3">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Investment</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Scaling PelliScope AI</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://placehold.co/220x60/ffffff/1e3a8a?text=HawkFranklin+Research&font=lexend" alt="HawkFranklin Logo" class="h-12 object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-white flex gap-12">
+                
+                <!-- Left Column: The Ask -->
+                <div class="w-2/3 flex flex-col">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4">03 | Funding Requirements</h3>
+                    
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                        HawkFranklin Research is bootstrapped and ready to scale. We are launching a new Dubai-based entity to service GCC partnerships and are seeking capital for two distinct goals:
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <!-- Urgent Ask -->
+                        <div class="bg-red-50 border-2 border-red-100 rounded-2xl p-6 hover:shadow-md transition-shadow relative">
+                            <div class="absolute top-0 right-0 bg-red-100 px-3 py-1 rounded-bl-xl rounded-tr-xl text-xs font-bold text-red-700">PHASE 1</div>
+                            <h4 class="font-bold text-red-800 flex items-center gap-2 mb-4">
+                                <i class="fa-solid fa-flag"></i> Urgent Capital
+                            </h4>
+                            <div class="text-4xl font-display font-bold text-red-700 mb-4">$15,000</div>
+                            <ul class="space-y-2 text-sm text-red-900/80">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-red-500"></i> Execute PoC for Arab Health 2026</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-red-500"></i> Cover initial Dubai setup & logistics</li>
+                            </ul>
+                        </div>
+
+                        <!-- Seed Scale -->
+                        <div class="bg-blue-50 border-2 border-blue-100 rounded-2xl p-6 hover:shadow-md transition-shadow relative">
+                            <div class="absolute top-0 right-0 bg-blue-100 px-3 py-1 rounded-bl-xl rounded-tr-xl text-xs font-bold text-blue-700">PHASE 2</div>
+                            <h4 class="font-bold text-blue-800 flex items-center gap-2 mb-4">
+                                <i class="fa-solid fa-rocket"></i> Seed Scale
+                            </h4>
+                            <div class="text-4xl font-display font-bold text-blue-700 mb-4">$1.5M</div>
+                            <ul class="space-y-2 text-sm text-blue-900/80">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-500"></i> Full UAE product adaptation</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-500"></i> Scale team & acquire SCIN datasets</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Projections -->
+                    <div class="bg-slate-50 rounded-xl p-6 flex items-center justify-around border border-slate-100">
+                        <div class="text-center">
+                            <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Projected ARR (18 Mo)</p>
+                            <p class="text-2xl font-bold text-slate-800">$2.1 Million</p>
+                        </div>
+                        <div class="w-px h-10 bg-slate-200"></div>
+                        <div class="text-center">
+                            <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Early Investor Potential</p>
+                            <p class="text-2xl font-bold text-[var(--hf-accent-main)]">5x ROI</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Contact -->
+                <div class="w-1/3 bg-[var(--hf-accent-sec-soft)] rounded-2xl border border-blue-100 p-8 flex flex-col items-center justify-center text-center shadow-inner">
+                    <h4 class="font-bold text-[var(--hf-accent-sec-dark)] text-xl mb-6">Get In Touch</h4>
+                    
+                    <div class="bg-white p-2 rounded-xl shadow-sm border border-blue-100 mb-6">
+                        <img src="https://placehold.co/180x180/ffffff/0f172a?text=SCAN+QR&font=inter" alt="QR Code" class="rounded-lg">
+                    </div>
+
+                    <a href="mailto:invest@hawkfranklin.com" class="bg-[var(--hf-accent-sec)] hover:bg-[var(--hf-accent-sec-dark)] text-white font-semibold py-3 px-6 rounded-lg w-full transition-colors mb-3 shadow-lg shadow-blue-900/20">
+                        <i class="fa-solid fa-envelope mr-2"></i> Email Us
+                    </a>
+                    <p class="text-[var(--hf-accent-sec-dark)] font-medium text-sm">invest@hawkfranklin.com</p>
+                    
+                    <div class="mt-auto pt-6 border-t border-blue-200 w-full">
+                        <p class="text-xs text-slate-500 leading-tight">
+                            HawkFranklin Research is a deep-tech company specializing in clinical AI solutions.
+                        </p>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 4: THE TEAM (NEW) -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-4">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Leadership</h1>
+                        <h2 class="text-lg font-medium text-slate-600">The PelliScope Team</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://placehold.co/220x60/ffffff/1e3a8a?text=HawkFranklin+Research&font=lexend" alt="HawkFranklin Logo" class="h-12 object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-slate-50">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-8">04 | Core Team</h3>
+                
+                <div class="grid grid-cols-3 gap-8 h-full pb-12">
+                    <!-- Team Member 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="https://placehold.co/128x128/e2e8f0/475569?text=VP" alt="Vatsal Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Vatsal Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Founder & Research Engineer</p>
+                        <p class="text-sm text-slate-500">M.Sc Artificial Intelligence (IU Berlin)</p>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="https://placehold.co/128x128/e2e8f0/475569?text=AP" alt="Ananya Pal" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Ananya Pal</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Managing Director</p>
+                        <p class="text-sm text-slate-500">B.S Economics</p>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="https://placehold.co/128x128/e2e8f0/475569?text=SR" alt="Saurav Roy" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Saurav Roy</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Operations Head</p>
+                        <p class="text-sm text-slate-500">M.Tech Biotechnology</p>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="https://placehold.co/128x128/e2e8f0/475569?text=Dr.AP" alt="Dr. Abhijeet Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Dr. Abhijeet Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Clinical Research Physician</p>
+                        <p class="text-sm text-slate-500">Bachelor of Medicine & Surgery</p>
+                    </div>
+
+                    <!-- Team Member 5 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="https://placehold.co/128x128/e2e8f0/475569?text=Dr.YP" alt="Dr. Yash Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Dr. Yash Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Clinical Research Physician</p>
+                        <p class="text-sm text-slate-500">Bachelor of Medicine & Surgery</p>
+                    </div>
+
+                    <!-- Team Member 6 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="https://placehold.co/128x128/e2e8f0/475569?text=N" alt="Nishi" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Nishi</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Clinical Associate</p>
+                        <p class="text-sm text-slate-500">Clinical Operations</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 5: VISION & PORTFOLIO (NEW) -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-5">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Vision & Portfolio</h1>
+                        <h2 class="text-lg font-medium text-slate-600">About HawkFranklin Research</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://placehold.co/220x60/ffffff/1e3a8a?text=HawkFranklin+Research&font=lexend" alt="HawkFranklin Logo" class="h-12 object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-white flex flex-col">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-6">05 | Philosophy & R&D</h3>
+
+                <!-- Top Half: Philosophy & Model -->
+                <div class="grid grid-cols-2 gap-12 mb-12">
+                    <!-- Philosophy -->
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Our Philosophy</h3>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            HawkFranklin Research was founded by a passionate, bootstrapped group of researchers. We believe the greatest barrier to innovation isn't a lack of ideas, but the R&D inequality between large corporations and everyone else.
+                        </p>
+                        <blockquote class="border-l-4 border-[var(--hf-accent-main)] pl-6 py-3 bg-[var(--hf-accent-soft)] rounded-r-lg">
+                            <p class="text-lg font-medium text-[var(--hf-accent-main-dark)] italic">
+                                "We are a resilient, self-funded team. We will succeed with or without external funding—this is an opportunity to join a team that is already moving forward."
+                            </p>
+                        </blockquote>
+                    </div>
+
+                    <!-- Operational Model -->
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Operational Model</h3>
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4 hover:border-[var(--hf-accent-sec)] transition-colors">
+                                <div class="bg-blue-100 p-3 rounded-lg text-[var(--hf-accent-sec)]"><i class="fa-solid fa-handshake text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-[var(--hf-accent-sec-dark)]">Path A: Partner-Initiated R&D</h4>
+                                    <p class="text-sm text-slate-600 mt-1">You bring a defined challenge. We build the dedicated AI solution, acting as your external deep-tech R&D team.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4 hover:border-[var(--hf-accent-sec)] transition-colors">
+                                <div class="bg-blue-100 p-3 rounded-lg text-[var(--hf-accent-sec)]"><i class="fa-solid fa-lightbulb text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-[var(--hf-accent-sec-dark)]">Path B: HFR-Initiated Products</h4>
+                                    <p class="text-sm text-slate-600 mt-1">We identify a market gap, build a validated product (like PelliScope), and then seek commercial partners to scale it.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Half: Portfolio -->
+                <div class="mt-auto bg-slate-50 rounded-2xl p-8 border border-slate-100">
+                    <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest text-center mb-6">Broader Biomedical Portfolio</h4>
+                    <div class="grid grid-cols-4 gap-6">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-microscope text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">PathoLens</h5>
+                            <p class="text-xs text-slate-500 mt-1">AI agents for digital pathology analysis</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-ribbon text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">C-Risq</h5>
+                            <p class="text-xs text-slate-500 mt-1">Multi-omics for cancer risk stratification</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-flask-vial text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">MedDiscover</h5>
+                            <p class="text-xs text-slate-500 mt-1">RAG copilot for biomedical Q&A</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-brain text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">Clinical FM</h5>
+                            <p class="text-xs text-slate-500 mt-1">Foundation models for tabular EHR data</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SHARED FOOTER & NAV -->
+        <!-- ========================== -->
+        <footer class="mt-auto bg-[var(--hf-dark-900)] text-slate-300 px-12 h-[50px] flex justify-between items-center text-xs flex-shrink-0 z-10">
+            <div class="flex space-x-6">
+                <span><i class="fa-solid fa-file-alt text-teal-400 mr-1"></i> PelliScope MIL</span>
+                <span><i class="fa-solid fa-lock text-teal-400 mr-1"></i> Confidential Briefing</span>
+            </div>
+            <div class="text-slate-500">© 2025 HawkFranklin Research</div>
+        </footer>
+
+        <!-- Slide Indicators -->
+        <div class="slide-indicator">
+            <div class="dot active" id="dot-1"></div>
+            <div class="dot" id="dot-2"></div>
+            <div class="dot" id="dot-3"></div>
+            <div class="dot" id="dot-4"></div>
+            <div class="dot" id="dot-5"></div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>
+                <i class="fa-solid fa-chevron-left"></i> Prev
+            </button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+                Next <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+
+            if (newSlide >= 1 && newSlide <= totalSlides) {
+                // Remove active class from current
+                document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+                document.getElementById(`dot-${currentSlide}`).classList.remove('active');
+
+                // Add active class to new
+                document.getElementById(`slide-${newSlide}`).classList.add('active');
+                document.getElementById(`dot-${newSlide}`).classList.add('active');
+
+                currentSlide = newSlide;
+                updateButtons();
+            }
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentSlide === 1;
+            nextBtn.disabled = currentSlide === totalSlides;
+            
+            // Optional: Change text on last slide
+            if(currentSlide === totalSlides) {
+                nextBtn.innerHTML = 'Finish <i class="fa-solid fa-check"></i>';
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right"></i>';
+            }
+        }
+    </script>
+</body>
+</html>
