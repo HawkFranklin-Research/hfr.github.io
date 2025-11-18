@@ -138,6 +138,14 @@
             cursor: not-allowed;
         }
 
+        .nav-btn.contact-mode {
+            background: var(--hf-accent-sec);
+        }
+
+        .nav-btn.contact-mode:hover {
+            background: var(--hf-accent-sec-dark);
+        }
+
         .slide-indicator {
             position: absolute;
             bottom: 80px;
@@ -242,7 +250,7 @@
                         <h2 class="font-display text-3xl font-bold text-slate-800 mb-6 leading-tight">Clinically-Validated AI <br><span class="text-[var(--hf-accent-main)]">For Any Workflow</span></h2>
                         
                         <div class="bg-slate-50 rounded-xl p-6 border border-slate-100 shadow-sm">
-                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wide mb-4">Deployment Strategies</h4>
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wide mb-4">Ready to Deploy For</h4>
                             <ul class="space-y-5">
                                 <li class="flex items-center gap-4">
                                     <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-[var(--hf-accent-main)]">
@@ -258,8 +266,8 @@
                                         <i class="fa-solid fa-video text-lg"></i>
                                     </div>
                                     <div>
-                                        <h5 class="font-bold text-slate-800">Tele-Medicine Integration</h5>
-                                        <p class="text-xs text-slate-500">Real-time analysis during remote consults</p>
+                                        <h5 class="font-bold text-slate-800">Tele-Medicine Consultation</h5>
+                                        <p class="text-xs text-slate-500">Cost-effective remote patient consultation</p>
                                     </div>
                                 </li>
                                 <li class="flex items-center gap-4">
@@ -267,8 +275,8 @@
                                         <i class="fa-solid fa-calendar-check text-lg"></i>
                                     </div>
                                     <div>
-                                        <h5 class="font-bold text-slate-800">Appointment Scheduling</h5>
-                                        <p class="text-xs text-slate-500">Prioritize urgency based on visual risk</p>
+                                        <h5 class="font-bold text-slate-800">In-Patient Appointment Schedule</h5>
+                                        <p class="text-xs text-slate-500">Prioritize urgency while sharing interim home care guidance</p>
                                     </div>
                                 </li>
                             </ul>
@@ -311,30 +319,35 @@
                                 <div class="w-full bg-slate-100 rounded-full h-1.5"><div class="progress-bar h-1.5 rounded-full" style="width: 59%"></div></div>
                             </div>
                         </div>
-                        <div class="mt-6 w-full flex justify-end">
-                            <button type="button" onclick="toggleDemoModal(true)" class="inline-flex items-center justify-center gap-2 bg-[var(--hf-accent-sec)] hover:bg-[var(--hf-accent-sec-dark)] text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition min-w-[220px]">
-                                <i class="fa-solid fa-circle-play"></i>
-                                Watch Application Demo
-                            </button>
-                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-between gap-4 flex-wrap">
+                    <button type="button" onclick="toggleDemoModal(true)" class="inline-flex items-center justify-center gap-2 bg-[var(--hf-accent-sec)] hover:bg-[var(--hf-accent-sec-dark)] text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition min-w-[220px]">
+                        <i class="fa-solid fa-circle-play"></i>
+                        Watch Application Demo
+                    </button>
+                    <div class="inline-flex items-center gap-2 bg-[var(--hf-accent-soft)] text-[var(--hf-accent-main-dark)] border border-[var(--hf-accent-main)] px-6 py-3 rounded-xl font-semibold shadow-md">
+                        <i class="fa-solid fa-shield-heart"></i>
+                        80.2% Accuracy on Clinical Validation
                     </div>
                 </div>
 
                 <!-- Bottom: Capabilities Grid -->
                 <div class="mt-4 pt-4 border-t border-slate-100">
-                    <h4 class="text-base font-bold text-slate-800 mb-4">Current Core Capabilities</h4>
+                    <h4 class="text-base font-bold text-slate-800 mb-4">Core Capabilities</h4>
                     <div class="grid grid-cols-3 gap-8">
                         <div class="flex gap-3">
                             <i class="fa-solid fa-shield-virus text-3xl text-rose-500 pt-1"></i>
                             <div>
-                                <h5 class="font-bold text-slate-800 text-lg">Preliminary Triage</h5>
+                                <h5 class="font-bold text-slate-800 text-lg">Instant Clinical Support</h5>
                                 <p class="text-base text-slate-500 leading-relaxed mt-1">Instantly distinguishes between <strong class="text-slate-700">infectious vs. non-infectious</strong> lesions to protect staff.</p>
                             </div>
                         </div>
                         <div class="flex gap-3">
                             <i class="fa-solid fa-microscope text-3xl text-amber-500 pt-1"></i>
                             <div>
-                                <h5 class="font-bold text-slate-800 text-lg">Differential Assessment</h5>
+                                <h5 class="font-bold text-slate-800 text-lg">Diagnostic Assessment</h5>
                                 <p class="text-base text-slate-500 leading-relaxed mt-1">Probability scoring for <strong class="text-slate-700">10 common conditions</strong> (Eczema, Psoriasis, Tinea, etc.).</p>
                             </div>
                         </div>
@@ -342,7 +355,7 @@
                             <i class="fa-solid fa-server text-3xl text-[var(--hf-accent-main)] pt-1"></i>
                             <div>
                                 <h5 class="font-bold text-slate-800 text-lg">CPU-Optimized</h5>
-                                <p class="text-base text-slate-500 leading-relaxed mt-1">Resource optimized for any hardware. Zero GPU dependency.</p>
+                                <p class="text-base text-slate-500 leading-relaxed mt-1">Resource optimized for any hardware. On-premises deployable—data never leaves your control.</p>
                             </div>
                         </div>
                     </div>
@@ -370,7 +383,7 @@
                 </div>
             </header>
 
-            <main class="flex-grow p-12 bg-slate-50 flex flex-col">
+            <main class="flex-grow p-12 pb-6 bg-slate-50 flex flex-col">
                 <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4">02 | Strategic Roadmap</h3>
 
                 <!-- The Navy Partnership Box -->
@@ -408,40 +421,49 @@
                 </div>
 
                 <!-- Market Statistics Row -->
-                <div class="grid grid-cols-3 gap-6 flex-grow">
+                <div class="grid grid-cols-3 gap-5 flex-grow">
                     <!-- Stat 1 -->
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-3">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="bg-teal-50 p-2 rounded text-[var(--hf-accent-main-dark)]"><i class="fa-solid fa-chart-pie"></i></div>
                             <h6 class="font-semibold text-slate-700">Total Addressable Market</h6>
                         </div>
                         <div>
-                            <p class="text-3xl font-display font-bold text-slate-800">$1.9 Billion</p>
+                            <p class="text-3xl font-display font-bold text-slate-800 mt-1">$1.9 Billion</p>
                             <p class="text-xs text-slate-500 mt-1">2024 Global AI Dermatology Valuation</p>
+                            <p class="text-xs text-slate-500 mt-1">Projected <strong>$6–8B</strong> market by 2035</p>
+                            <p class="text-xs text-slate-500 mt-1">Current focus: GCC + US hospital systems</p>
                         </div>
                     </div>
 
                     <!-- Stat 2 -->
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-3">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="bg-teal-50 p-2 rounded text-[var(--hf-accent-main-dark)]"><i class="fa-solid fa-arrow-trend-up"></i></div>
                             <h6 class="font-semibold text-slate-700">Growth Rate</h6>
                         </div>
                         <div>
-                            <p class="text-3xl font-display font-bold text-slate-800">33% CAGR</p>
+                            <p class="text-3xl font-display font-bold text-slate-800 mt-1">33% CAGR</p>
                             <p class="text-xs text-slate-500 mt-1">Projected growth 2025–2035</p>
+                            <p class="text-xs text-slate-500 mt-1">Demand driven by tele-derm adoption + onsite triage</p>
+                            <p class="text-xs text-slate-500 mt-1">Arab Health 2026 showcase anchors GCC entry</p>
                         </div>
                     </div>
 
                     <!-- Stat 3 -->
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-3">
                         <div class="flex items-center gap-3 mb-3">
                             <div class="bg-blue-50 p-2 rounded text-[var(--hf-accent-sec)]"><i class="fa-solid fa-file-contract"></i></div>
                             <h6 class="font-semibold text-slate-700">Revenue Model</h6>
                         </div>
                         <div>
-                            <p class="text-2xl font-display font-bold text-slate-800">$15k/mo</p>
-                            <p class="text-xs text-slate-500 mt-1">Per licensing deal + $0.50 SaaS fee per inquiry</p>
+                            <p class="text-2xl font-display font-bold text-slate-800 mt-1">$15k/mo</p>
+                            <p class="text-xs text-slate-500 mt-1">Per-user licensing + $0.50 SaaS inquiry fee</p>
+                            <ul class="text-xs text-slate-500 mt-2 space-y-1">
+                                <li>• Licensing: hospital deployments ($15k/user/month)</li>
+                                <li>• SaaS: $0.50 per self-screening inquiry at scale</li>
+                                <li>• White-label: private dermatology networks</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -469,7 +491,7 @@
                 </div>
             </header>
 
-            <main class="flex-grow p-12 bg-white flex gap-12">
+            <main class="flex-grow p-12 pb-6 bg-white flex gap-12">
                 
                 <!-- Left Column: The Ask -->
                 <div class="w-2/3 flex flex-col">
@@ -517,6 +539,28 @@
                         <div class="text-center">
                             <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Early Investor Potential</p>
                             <p class="text-2xl font-bold text-[var(--hf-accent-main)]">5x ROI</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-6 text-sm text-slate-600">
+                        <div class="bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+                            <h5 class="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-seedling text-[var(--hf-accent-main)]"></i> Future Directions
+                            </h5>
+                            <ul class="space-y-2">
+                                <li>• Extend differential AI to rare skin diseases, including melanoma</li>
+                                <li>• Pair with longitudinal EHR data for chronic patient monitoring</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
+                            <h5 class="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-calendar text-[var(--hf-accent-main)]"></i> Current Rollout Plan
+                            </h5>
+                            <ul class="space-y-2">
+                                <li>• Clinical deployment in UAE by Aug 2026</li>
+                                <li>• Expansion into India by Sep 2026</li>
+                                <li>• GCC-wide rollout by March 2027</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -644,7 +688,7 @@
                 <div class="grid grid-cols-2 gap-10">
                     <!-- Operational Model -->
                     <div>
-                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Operational Model</h3>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Operational Revenue Model</h3>
                         <div class="space-y-4">
                             <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4 hover:border-[var(--hf-accent-sec)] transition-colors">
                                 <div class="bg-blue-100 p-3 rounded-lg text-[var(--hf-accent-sec)]"><i class="fa-solid fa-handshake text-xl"></i></div>
@@ -735,7 +779,7 @@
             <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>
                 <i class="fa-solid fa-chevron-left"></i> Prev
             </button>
-            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">
+            <button class="nav-btn" id="nextBtn" onclick="handleNext()">
                 Next <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
@@ -760,6 +804,8 @@
         const totalSlides = 5;
         const demoModal = document.getElementById('demoModal');
         const demoVideo = document.getElementById('demoVideo');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
         function changeSlide(direction) {
             const newSlide = currentSlide + direction;
@@ -779,18 +825,29 @@
         }
 
         function updateButtons() {
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-
-            prevBtn.disabled = currentSlide === 1;
-            nextBtn.disabled = currentSlide === totalSlides;
-            
-            // Optional: Change text on last slide
-            if(currentSlide === totalSlides) {
-                nextBtn.innerHTML = 'Contact Us <i class="fa-solid fa-envelope"></i>';
-            } else {
-                nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right"></i>';
+            if (prevBtn) {
+                prevBtn.disabled = currentSlide === 1;
             }
+
+            if (nextBtn) {
+                const isLast = currentSlide === totalSlides;
+                nextBtn.disabled = false;
+                if (isLast) {
+                    nextBtn.innerHTML = 'Contact Us <i class="fa-solid fa-envelope"></i>';
+                    nextBtn.classList.add('contact-mode');
+                } else {
+                    nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right"></i>';
+                    nextBtn.classList.remove('contact-mode');
+                }
+            }
+        }
+
+        function handleNext() {
+            if (currentSlide === totalSlides) {
+                window.location.href = 'mailto:invest@hawkfranklin.in';
+                return;
+            }
+            changeSlide(1);
         }
 
         function toggleDemoModal(open) {
