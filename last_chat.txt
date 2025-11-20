@@ -247,7 +247,7 @@ cla
     191   +          <ul class="space-y-2 text-sm text-dark-300">
     192   +            <li><a href="mailto:consult@hawk-franklin-research.com" class="hover:text-white">consult@hawk-fr
            anklin-research.com</a></li>
-    193                <li>India • Thane, Maharashtra</li>
+    193                <li>India (Dot) Kalyani, West Bengal</li>
     196          </div>
     190   -      <div class="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs 
            text-slate-500">
