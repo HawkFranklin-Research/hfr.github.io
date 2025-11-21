@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProbX News - AI Powered Fact Checking</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        
+        /* Custom Ticker Animation from your codebase */
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-ticker {
+            animation: ticker 40s linear infinite;
+        }
+        
+        /* Loader Animations */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 3s linear infinite;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased overflow-x-hidden">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // --- Components ---
+
+        const Logo = () => (
+            <div className="flex items-center gap-2">
+                <div className="bg-blue-600 p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 className="text-xl font-bold tracking-tight text-slate-900">ProbX News</h1>
+                    <p className="text-[10px] text-slate-500 font-bold tracking-wider uppercase">TruthGuard Agent</p>
+                </div>
+            </div>
+        );
+
+        const Navbar = () => (
+            <nav className="fixed top-0 w-full z-50 glass-effect border-b border-slate-200">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between h-20 items-center">
+                        <Logo />
+                        <div className="hidden md:flex items-center space-x-8">
+                            <a href="#how-it-works" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">How it Works</a>
+                            <a href="#features" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">Features</a>
+                            <a href="#technology" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">The Agent</a>
+                            <button className="bg-slate-900 hover:bg-slate-800 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-lg">
+                                Launch App
+                            </button>
+                        </div>
+                        <div className="md:hidden">
+                             {/* Mobile menu button would go here */}
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-slate-700">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        );
+
+        const Hero = () => (
+            <section className="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="space-y-8 z-10">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-bold tracking-wide">
+                                <span className="relative flex h-2 w-2">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                </span>
+                                GEMINI 3.0 PRO POWERED
+                            </div>
+                            <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight">
+                                Truth is your <br/>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">greatest asset.</span>
+                            </h1>
+                            <p className="text-xl text-slate-500 max-w-lg leading-relaxed">
+                                ProbX News isn't just a fact-checker. It's an AI Agent that investigates the web, analyzes images, and audits social feeds to separate reality from fabrication.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg shadow-xl shadow-blue-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                    </svg>
+                                    Identifiy Fake
+                                </button>
+                                <button className="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 border-2 border-slate-200 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2">
+                                    View Live Demo
+                                </button>
+                            </div>
+                            <div className="pt-4 flex items-center gap-4 text-sm text-slate-400 font-medium">
+                                <div className="flex -space-x-2">
+                                    <div className="w-8 h-8 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-[10px]">CNN</div>
+                                    <div className="w-8 h-8 rounded-full bg-slate-300 border-2 border-white flex items-center justify-center text-[10px]">BBC</div>
+                                    <div className="w-8 h-8 rounded-full bg-slate-400 border-2 border-white flex items-center justify-center text-[10px]">FOX</div>
+                                </div>
+                                <p>Sources cross-referenced instantly.</p>
+                            </div>
+                        </div>
+
+                        {/* Hero Visual - Abstract App Representation */}
+                        <div className="relative lg:h-[600px] flex items-center justify-center">
+                            {/* Background blobs */}
+                            <div className="absolute top-0 right-0 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+                            <div className="absolute -bottom-8 left-20 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+                            
+                            {/* The Card */}
+                            <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-100 p-6 transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+                                {/* Mock Input */}
+                                <div className="bg-slate-50 rounded-xl p-4 mb-6 border border-slate-200">
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <span className="w-3 h-3 rounded-full bg-red-400"></span>
+                                        <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
+                                        <span className="w-3 h-3 rounded-full bg-green-400"></span>
+                                    </div>
+                                    <div className="h-2 bg-slate-200 rounded w-3/4 mb-2"></div>
+                                    <div className="h-2 bg-slate-200 rounded w-1/2"></div>
+                                </div>
+                                
+                                {/* Mock Result */}
+                                <div className="bg-red-50 border-2 border-red-100 rounded-2xl p-6 text-center mb-4">
+                                    <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4 shadow-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8 text-red-600">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-3xl font-black text-red-600 uppercase tracking-widest mb-1">FAKE</h3>
+                                    <p className="text-xs font-bold text-red-400">CONFIDENCE: 98.5%</p>
+                                </div>
+
+                                {/* Mock Ticker Inside */}
+                                <div className="bg-slate-900 rounded-lg p-3 overflow-hidden flex items-center gap-2">
+                                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                     <div className="text-[10px] text-slate-300 font-mono whitespace-nowrap">
+                                        Agent checking X (Twitter) feeds...
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const ProcessStep = ({ number, title, desc, icon }) => (
+            <div className="relative group">
+                <div className="absolute -inset-px bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative h-full bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                    <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-black text-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        {number}
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
+                    <p className="text-slate-500 leading-relaxed">{desc}</p>
+                    <div className="absolute top-8 right-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                        {icon}
+                    </div>
+                </div>
+            </div>
+        );
+
+        const HowItWorks = () => (
+            <section id="how-it-works" className="py-24 bg-slate-50 relative">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center max-w-3xl mx-auto mb-20">
+                        <h2 className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-3">The Workflow</h2>
+                        <h3 className="text-4xl font-black text-slate-900 mb-6">Inside the Agent's Mind.</h3>
+                        <p className="text-lg text-slate-500">ProbX doesn't just "guess." It builds a dynamic, fact-based Excel sheet in real-time using multi-source validation.</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <ProcessStep 
+                            number="01" 
+                            title="Input Analysis" 
+                            desc="You submit a link or image. The agent parses the content, extracting core claims and visual metadata."
+                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>}
+                        />
+                        <ProcessStep 
+                            number="02" 
+                            title="Web & X-Ray" 
+                            desc="We scour the open web and deep-dive into Twitter/X feeds to find origin timestamps and crowd-sourced context."
+                             icon={<svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>}
+                        />
+                        <ProcessStep 
+                            number="03" 
+                            title="Fact Matrix" 
+                            desc="The agent compiles a 'Mental Excel Sheet'—a row-by-row audit of facts, creating a unique fingerprint for the story."
+                             icon={<svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>}
+                        />
+                        <ProcessStep 
+                            number="04" 
+                            title="The Verdict" 
+                            desc="A definitive Real/Fake/Satire judgment is delivered, complete with the evidence list and confidence score."
+                             icon={<svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+                        />
+                    </div>
+                </div>
+            </section>
+        );
+
+        const AgentVisual = () => (
+            <section id="technology" className="py-24 bg-slate-900 text-white overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16">
+                    <div className="flex-1 space-y-8">
+                         <h2 className="text-4xl lg:text-5xl font-black tracking-tight">
+                            See the Agent <br/>
+                            <span className="text-blue-500">Work in Real-Time.</span>
+                        </h2>
+                        <p className="text-slate-400 text-lg leading-relaxed">
+                            Most AI boxes are black boxes. ProbX News is transparent. Watch the "Mental Excel Sheet" build itself as our agent visits websites, checks image metadata, and cross-references user credibility on social platforms.
+                        </p>
+                        <ul className="space-y-4">
+                            {[
+                                "Real-time Research Logs",
+                                "Image Reverse Search Logic",
+                                "Twitter/X User Credibility Scoring",
+                                "Color-coded Evidence Tables"
+                            ].map((item, i) => (
+                                <li key={i} className="flex items-center gap-3">
+                                    <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                    </div>
+                                    <span className="font-medium text-slate-200">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    
+                    {/* The Visual Representation of the Loader/Agent */}
+                    <div className="flex-1 flex justify-center relative">
+                        {/* Pulse Effects */}
+                        <div className="absolute inset-0 bg-blue-500 rounded-full filter blur-[100px] opacity-20 animate-pulse"></div>
+                        
+                        <div className="relative w-80 h-80">
+                            {/* Outer Static Ring */}
+                            <div className="absolute inset-0 border-4 border-slate-700 rounded-full"></div>
+                            {/* Inner Spinning Ring */}
+                            <div className="absolute inset-0 border-4 border-blue-500 rounded-full border-t-transparent animate-spin-slow"></div>
+                            {/* Inner Content */}
+                            <div className="absolute inset-4 bg-slate-800 rounded-full flex flex-col items-center justify-center border border-slate-700 z-10">
+                                <div className="text-6xl mb-4 animate-bounce">🤖</div>
+                                <div className="px-4 py-1 bg-blue-500/20 border border-blue-500/50 rounded-full text-blue-400 text-xs font-mono mb-2">
+                                    GEMINI-3-PRO
+                                </div>
+                                <div className="text-slate-400 text-sm font-mono">Processing...</div>
+                            </div>
+                            
+                            {/* Floating "Tasks" */}
+                            <div className="absolute -right-12 top-10 bg-slate-800 border border-slate-700 p-3 rounded-lg shadow-xl animate-bounce" style={{animationDelay: '0.2s'}}>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                                    <span className="text-xs font-mono">Validating Image Metadata</span>
+                                </div>
+                            </div>
+                             <div className="absolute -left-12 bottom-20 bg-slate-800 border border-slate-700 p-3 rounded-lg shadow-xl animate-bounce" style={{animationDelay: '0.5s'}}>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                    <span className="text-xs font-mono">Scraping X Feeds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Ticker = () => (
+            <div className="fixed bottom-0 left-0 right-0 h-10 bg-slate-900 border-t border-slate-700 text-white overflow-hidden z-40 flex items-center">
+                <div className="bg-red-600 text-white font-bold px-4 h-full flex items-center z-50 shadow-lg text-sm uppercase tracking-wider">
+                    Live Updates
+                </div>
+                <div className="relative flex overflow-x-hidden w-full">
+                    <div className="animate-ticker whitespace-nowrap py-2 flex gap-12">
+                        <span className="text-sm text-slate-300"><strong className="text-yellow-400">AD:</strong> Secure your digital life with CyberShield VPN. 50% off today.</span>
+                        <span className="text-sm text-slate-300"><strong className="text-blue-400">INFO:</strong> TruthGuard Agent now analyzing 500+ sources per second.</span>
+                        <span className="text-sm text-slate-300"><strong className="text-yellow-400">SPONSORED:</strong> Learn to spot Deepfakes with our free masterclass.</span>
+                        <span className="text-sm text-slate-300"><strong className="text-green-400">SYSTEM:</strong> Gemini 3.0 Pro Model Active - Thinking Mode Enabled.</span>
+                         <span className="text-sm text-slate-300"><strong className="text-blue-400">INFO:</strong> ProbX News v1.0 Launching Globally.</span>
+                        {/* Duplicate for loop */}
+                        <span className="text-sm text-slate-300"><strong className="text-yellow-400">AD:</strong> Secure your digital life with CyberShield VPN. 50% off today.</span>
+                        <span className="text-sm text-slate-300"><strong className="text-blue-400">INFO:</strong> TruthGuard Agent now analyzing 500+ sources per second.</span>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const CTA = () => (
+             <section className="py-24 bg-white relative overflow-hidden">
+                <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
+                    <h2 className="text-4xl font-black text-slate-900 mb-6">Stop Guessing. Start Verifying.</h2>
+                    <p className="text-xl text-slate-500 mb-10">Join thousands of users who trust ProbX News to navigate the information age securely.</p>
+                    
+                    <div className="flex flex-col md:flex-row justify-center gap-4">
+                        <button className="w-full md:w-auto px-8 py-4 bg-blue-600 text-white rounded-xl font-bold text-lg shadow-xl hover:bg-blue-700 transition-all">
+                            Download for Android
+                        </button>
+                         <button className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg shadow-xl hover:bg-slate-800 transition-all">
+                            Use Web App
+                        </button>
+                    </div>
+                </div>
+                
+                {/* Background decorative elements */}
+                <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
+                    <div className="absolute top-0 -left-10 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl"></div>
+                    <div className="absolute bottom-0 -right-10 w-96 h-96 bg-red-100 rounded-full mix-blend-multiply filter blur-3xl"></div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="bg-slate-50 border-t border-slate-200 pt-16 pb-24">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-4 gap-12 mb-12">
+                        <div className="col-span-1 md:col-span-2">
+                            <Logo />
+                            <p className="mt-4 text-slate-500 max-w-sm">
+                                ProbX News is an initiative by HawkFranklin Research. We leverage advanced AI to democratize fact-checking and combat misinformation.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-slate-900 mb-4">Product</h4>
+                            <ul className="space-y-2 text-slate-500">
+                                <li><a href="#" className="hover:text-blue-600">Web Application</a></li>
+                                <li><a href="#" className="hover:text-blue-600">Android App</a></li>
+                                <li><a href="#" className="hover:text-blue-600">API Access</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-slate-900 mb-4">Company</h4>
+                            <ul className="space-y-2 text-slate-500">
+                                <li><a href="#" className="hover:text-blue-600">About HawkFranklin</a></li>
+                                <li><a href="#" className="hover:text-blue-600">Research Paper</a></li>
+                                <li><a href="#" className="hover:text-blue-600">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p className="text-slate-400 text-sm">© 2024 HawkFranklin Research. All rights reserved.</p>
+                        <div className="flex gap-6">
+                            <a href="#" className="text-slate-400 hover:text-slate-600"><i data-lucide="twitter" className="w-5 h-5"></i></a>
+                            <a href="#" className="text-slate-400 hover:text-slate-600"><i data-lucide="github" className="w-5 h-5"></i></a>
+                            <a href="#" className="text-slate-400 hover:text-slate-600"><i data-lucide="linkedin" className="w-5 h-5"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        // --- Main App ---
+
+        const App = () => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, []);
+
+            return (
+                <div>
+                    <Navbar />
+                    <Hero />
+                    <HowItWorks />
+                    <AgentVisual />
+                    <CTA />
+                    <Footer />
+                    <Ticker />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
