@@ -456,8 +456,7 @@
                   class="w-full btn-primary text-white py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition">
                   Submit Partnership Application
                 </button>
-                <p class="text-center text-sm text-dark-400 mt-4">We review applications on a rolling basis and respond
-                  within 24 hours.</p>
+                <p class="text-center text-sm text-dark-400 mt-4">Opens your email client for submission. We review applications on a rolling basis and respond within 24 hours.</p>
               </form>
             </div>
 
@@ -574,24 +573,28 @@
     const year = document.getElementById('year');
     if (year) year.textContent = new Date().getFullYear();
 
-    // Form handling
-    document.getElementById('partnerForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+    // Form handling (mailto for GitHub Pages)
+    (function () {
+      const form = document.getElementById('partnerForm');
+      if (!form) return;
 
-      const formData = new FormData(e.target);
-      const data = {
-        company: formData.get('company'),
-        contact: formData.get('contact'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        product: formData.get('product'),
-        interests: Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value),
-        message: formData.get('message')
-      };
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-      // Construct email body
-      const subject = `Partnership Application: ${data.company}`;
-      const body = `
+        const formData = new FormData(e.target);
+        const data = {
+          company: formData.get('company') || '',
+          contact: formData.get('contact') || '',
+          email: formData.get('email') || '',
+          phone: formData.get('phone') || '',
+          product: formData.get('product') || '',
+          interests: Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value),
+          message: formData.get('message') || ''
+        };
+
+        const subject = `Partnership Application: ${data.company || 'PelliScope'}`;
+        const interestsBlock = data.interests.length ? data.interests.map(i => '- ' + i).join('\n') : '- (not specified)';
+        const body = `
 New Partnership Application
 
 Company: ${data.company}
@@ -601,18 +604,16 @@ Phone: ${data.phone}
 Product Category: ${data.product}
 
 Interests:
-${data.interests.map(i => '- ' + i).join('\n')}
+${interestsBlock}
 
 Message:
 ${data.message}
-      `.trim();
+        `.trim();
 
-      // Open mail client
-      window.location.href = `mailto:partnerships@hawk-franklin-research.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      // Optional: Show feedback
-      // alert("Opening your email client to send the application...");
-    });
+        const mailto = `mailto:contact@hawk-franklin-research.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+      });
+    })();
   </script>
 </body>
 
