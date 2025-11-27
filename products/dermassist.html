@@ -114,6 +114,10 @@
                                 <i class="fas fa-chart-line text-base"></i>
                                 Investor Slide Deck
                             </a>
+                            <button id="contactQrBtn" class="inline-flex items-center justify-center gap-2 border-2 border-blue-100 text-blue-800 bg-white hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold shadow-sm transition">
+                                <i class="fas fa-qrcode text-base"></i>
+                                Contact Us
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -449,6 +453,25 @@
       </div>
     </footer>
 
+    <!-- Contact QR Modal -->
+    <div id="contactQrModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+      <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full relative">
+        <button id="closeQrModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="../assets/img/investor-email-qr.png" alt="Contact QR code" class="w-48 h-48 object-contain rounded-lg border border-gray-200">
+          <div>
+            <p class="font-semibold text-gray-900">Contact Us</p>
+            <p class="text-sm text-gray-600">Scan the QR code to email invest@hawkfranklin.in</p>
+          </div>
+          <a href="mailto:invest@hawkfranklin.in" class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold transition">
+            <i class="fas fa-envelope"></i> Email Us
+          </a>
+        </div>
+      </div>
+    </div>
+
     <script>
       (function () {
         const card = document.getElementById('analysisCard');
@@ -489,6 +512,26 @@
         video.addEventListener('ended', showCard);
 
         setTimeout(showVideo, 2000);
+      })();
+    </script>
+    <script>
+      (function () {
+        const openBtn = document.getElementById('contactQrBtn');
+        const modal = document.getElementById('contactQrModal');
+        const closeBtn = document.getElementById('closeQrModal');
+        if (!openBtn || !modal || !closeBtn) return;
+
+        const openModal = () => modal.classList.remove('hidden');
+        const closeModal = () => modal.classList.add('hidden');
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        });
       })();
     </script>
     <script src="../assets/js/site.js"></script>

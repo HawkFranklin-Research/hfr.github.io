@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelliScope - Confidential Investor Briefing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* PALETTE: Navy & Teal (Print-Safe) */
+            --hf-dark-900: #0f172a; /* slate-900 */
+            --hf-dark-800: #1e293b; /* slate-800 */
+            --hf-dark-700: #334155; /* slate-700 */
+            
+            /* Main accent is Teal (for PelliScope icon) */
+            --hf-accent-main: #0d9488; /* teal-600 */
+            --hf-accent-main-dark: #0f766e; /* teal-700 */
+            --hf-accent-soft: rgba(20, 184, 166, 0.08); /* teal-50-ish */
+
+            /* Secondary accent is Navy Blue (replaces Slate) */
+            --hf-accent-sec: #1e40af; /* blue-800 */
+            --hf-accent-sec-dark: #1e3a8a; /* blue-900 */
+            --hf-accent-sec-soft: #eff6ff; /* blue-50 */
+        }
+        body {
+            background-color: #e2e8f0; /* slate-200 */
+            font-family: 'Inter', sans-serif;
+        }
+        .font-display {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Canvas mimics the A4-style page (landscape) */
+        .infographic-canvas {
+            width: 1240px; /* Fixed width like the sample */
+            height: auto;
+            min-height: 877px; /* A4 Landscape-ish ratio */
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hf-hero {
+            position: relative;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        .hf-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hf-hero__logo {
+            position: absolute;
+            top: 50%;
+            right: 24px;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hf-hero__logo img {
+            width: 220px;
+            height: auto;
+            object-fit: contain;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        .hf-title-icon {
+            width: 78px;
+            height: 78px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hf-accent-main);
+            font-size: 2.6rem;
+        }
+
+        .analysis-card {
+            background: linear-gradient(135deg, white, #f0f9ff);
+            border: 1px solid #e0f2fe;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #ccfbf1, var(--hf-accent-main));
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--hf-accent-main-dark); /* Teal border */
+        }
+        .contact-card {
+            background: var(--hf-accent-sec-soft);
+            border: 1px solid var(--hf-accent-sec);
+        }
+
+        /* Print-Optimization Styles */
+        @media print {
+            body {
+                background-color: #ffffff;
+                margin: 0;
+                padding: 0;
+            }
+            .infographic-canvas {
+                box-shadow: none;
+                width: 100%;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+                border: none;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            @page {
+                size: auto;
+                margin: 0;
+            }
+        }
+
+    </style>
+</head>
+<body class="min-h-screen w-full flex items-center justify-center p-4 sm:p-8">
+
+    <!-- Infographic "Page" -->
+    <div id="page" class="infographic-canvas rounded-2xl overflow-hidden">
+        
+        <!-- ======================================== -->
+        <!-- HEADER -->
+        <!-- ======================================== -->
+        <header class="hf-hero pl-12 pr-56 text-slate-900 h-[100px] flex-shrink-0">
+            <!-- Logo from HawkFranklin -->
+            <div class="hf-hero__logo">
+                <img src="https://placehold.co/300x75/ffffff/1e3a8a?text=HawkFranklin+Research&font=lexend" alt="HawkFranklin Research logo" onerror="this.src='../../../assets/img/HawkFranklin_Aug23.transparent.png'">
+            </div>
+            <!-- Title -->
+            <div class="flex items-center gap-4 h-full">
+                <span class="hf-title-icon">
+                    <i class="fa-solid fa-allergies"></i>
+                </span>
+                <div class="flex flex-col justify-center">
+                    <h1 class="font-display text-4xl font-bold text-slate-800">PelliScope</h1>
+                    <!-- REVISED TITLE -->
+                    <h2 class="text-xl font-medium text-slate-600 mt-1">AI-Powered Dermatological Decision Support</h2>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="flex flex-col flex-grow">
+
+            <!-- ======================================== -->
+            <!-- SECTION 1: THE PRODUCT & VALIDATION (RE-LAYERED) -->
+            <!-- ======================================== -->
+            <section class="px-12 py-8 bg-white">
+                <!-- REVISED SECTION TITLE -->
+                <h3 class="text-sm font-semibold tracking-widest text-slate-500 uppercase">The Product: A Multi-Purpose Technology</h3>
+                
+                <!-- Top Row: Use Cases + Analysis Card -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
+                    <!-- Left Column: Multi-Purpose Platform (MOVED UP) -->
+                    <div>
+                         <!-- PARAGRAPH REMOVED -->
+                         
+                         <!-- REVISED to be heading-only -->
+                         <h4 class="text-xl font-semibold text-slate-800 mb-4">Multi-Purpose Platform</h4>
+                         <ul class="space-y-4">
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-[var(--hf-accent-main)] mt-1.5"></i><h5 class="font-semibold text-slate-800 text-lg">Pre-Medical Inquiry</h5></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-[var(--hf-accent-main)] mt-1.5"></i><h5 class="font-semibold text-slate-800 text-lg">Tele-Medicine Integration</h5></li>
+                            <li class="flex items-start gap-3"><i class="fas fa-check-circle text-[var(--hf-accent-main)] mt-1.5"></i><h5 class="font-semibold text-slate-800 text-lg">Appointment Scheduling</h5></li>
+                        </ul>
+                    </div>
+                    <!-- Right Column: Validation & Mockup -->
+                    <div class="flex flex-col justify-start">
+                        <div class="analysis-card rounded-2xl p-7 w-full max-w-lg">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-semibold text-gray-800 text-lg">Skin Lesion Analysis</h3>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded font-semibold tracking-wide">AI ASSESSMENT</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-3 mb-5">
+                                <div class="text-center">
+                                    <img src="https://placehold.co/150x128/e0f2fe/0c4a6e?text=Close-Up" alt="Clinical close-up view" class="w-full h-32 object-cover rounded-lg border border-blue-100 shadow-sm" onerror="this.src='../../../assets/img/gab2/close_up.jpeg'">
+                                    <p class="text-xs text-slate-500 mt-2 uppercase tracking-wide">Close-up</p>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://placehold.co/150x128/e0f2fe/0c4a6e?text=Context" alt="Clinical context view" class="w-full h-32 object-cover rounded-lg border border-blue-100 shadow-sm" onerror="this.src='../../../assets/img/gab2/context.jpeg'">
+                                    <p class="text-xs text-slate-500 mt-2 uppercase tracking-wide">Context</p>
+                                </div>
+                                <div class="text-center">
+                                    <img src="https://placehold.co/150x128/e0f2fe/0c4a6e?text=Angled" alt="Clinical angled view" class="w-full h-32 object-cover rounded-lg border border-blue-100 shadow-sm" onerror="this.src='../../../assets/img/gab2/angled.jpeg'">
+                                    <p class="text-xs text-slate-500 mt-2 uppercase tracking-wide">Angled</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <!-- Validation Stat -->
+                                <div class="bg-[var(--hf-accent-soft)] border border-teal-200 rounded-xl p-4 text-center">
+                                    <h4 class="font-display font-bold text-4xl text-[var(--hf-accent-main-dark)]">80.2%</h4>
+                                    <p class="text-base font-semibold text-[var(--hf-accent-main-dark)]">Mean Accuracy</p>
+                                    <p class="text-xs text-[var(--hf-accent-main)] tracking-wide uppercase">Clinically validated on 10-condition US-based SCIN dataset</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NEW Current Capabilities Section (MOVED HERE) -->
+                 <div class="mt-8">
+                    <h4 class="text-xl font-semibold text-slate-800 mb-4">Current Capabilities</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-shield-virus text-3xl text-red-600 w-8 pt-1"></i> <!-- RED -->
+                            <div class="ml-2">
+                                <h5 class="font-semibold text-slate-800">Preliminary Triage</h5>
+                                <p class="text-sm text-slate-600">Rapidly flags lesions to distinguish between <strong class="text-slate-700">infectious vs. non-infectious</strong> presentations.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-microscope text-3xl text-orange-600 w-8 pt-1"></i> <!-- ORANGE -->
+                            <div class="ml-2">
+                                <h5 class="font-semibold text-slate-800">Differential Assessment</h5>
+                                <p class="text-sm text-slate-600">Provides probability assessments for <strong class="text-slate-700">10 common conditions</strong> (e.g., Eczema, Psoriasis, Tinea).</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-server text-3xl text-[var(--hf-accent-main)] w-8 pt-1"></i> <!-- TEAL -->
+                            <div class="ml-2">
+                                <h5 class="font-semibold text-slate-800">Resource-Optimized</h5>
+                                <p class="text-sm text-slate-600">Runs efficiently on standard CPU hardware (no GPU dependency) for low-resource settings.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Separator -->
+            <div class="border-t border-slate-200 mx-12"></div>
+
+            <!-- ======================================== -->
+            <!-- SECTION 2: KEY STRATEGIC PARTNERSHIP (REVISED) -->
+            <!-- ======================================== -->
+            <section class="px-12 py-8 bg-slate-50">
+                <!-- NEW DISCREET TITLE -->
+                <h3 class="text-sm font-semibold tracking-widest text-slate-500 uppercase">Upcoming Technology Showcase & GCC Opportunity</h3>
+                <div class="mt-4 bg-[var(--hf-accent-sec-dark)] text-white rounded-xl p-8 shadow-2xl">
+                    <!-- REVISED TEXT -->
+                    <p class="text-lg text-blue-100 mb-6">PelliScope has been shortlisted for a proof-of-concept demonstration by a major health care providor in the UAE and will be co-presenting at an upcoming health conference, providing a critical, large-scale entry point into the GCC market.</p>
+                    <div class="bg-black/20 rounded-lg p-6 space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-calendar-days text-4xl text-cyan-300 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <!-- REVISED TITLE -->
+                                <h5 class="font-bold text-xl text-white">Technology Showcase at Arab Health 2026</h5>
+                                <p class="text-blue-200 mt-1">HawkFranklin Research has been invited to present the PelliScope proof-of-concept under our partner's official booth, a high-visibility opportunity to engage regional stakeholders.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fa-solid fa-handshake text-4xl text-cyan-300 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <h5 class="font-bold text-xl text-white">Co-Development & Commercialization</h5>
+                                <p class="text-blue-200 mt-1">This engagement is the foundation for a long-term co-development plan to build a localized, robust dermatological AI for the UAE market, positioning PelliScope as the standard for pre-medical triage.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Separator -->
+            <div class="border-t border-slate-200 mx-12"></div>
+
+            <!-- ======================================== -->
+            <!-- SECTION 3: MARKET & REVENUE MODEL -->
+            <!-- ======================================== -->
+            <section class="px-12 py-8 bg-white">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-500 uppercase">Market Opportunity & Deployment Model</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
+                    
+                    <!-- Column 1: Market Stats -->
+                    <div class="stat-card rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fa-solid fa-globe w-5 h-5 text-[var(--hf-accent-main-dark)] mr-2"></i>
+                            Global AI Dermatology Market
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-[var(--hf-accent-soft)] p-2 rounded-lg mr-4">
+                                    <i class="fa-solid fa-dollar-sign w-5 h-5 text-[var(--hf-accent-main-dark)]"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-slate-800">$1.5–1.9B</p>
+                                    <p class="text-sm text-gray-600">2024 Valuation</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-[var(--hf-accent-soft)] p-2 rounded-lg mr-4">
+                                    <i class="fa-solid fa-arrow-trend-up w-5 h-5 text-[var(--hf-accent-main-dark)]"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-slate-800">15–33% CAGR</p>
+                                    <p class="text-sm text-gray-600">2025–2035 Projection</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-[var(--hf-accent-soft)] p-2 rounded-lg mr-4">
+                                    <i class="fa-solid fa-chart-pie w-5 h-5 text-[var(--hf-accent-main-dark)]"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-slate-800">$6–8B</p>
+                                    <p class="text-sm text-gray-600">2035 Global Market Potential</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Revenue Model -->
+                    <div class="stat-card rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <i class="fa-solid fa-briefcase w-5 h-5 text-[var(--hf-accent-main-dark)] mr-2"></i>
+                            Deployment & Revenue Model
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-[var(--hf-accent-sec-soft)] p-2 rounded-lg mr-4">
+                                    <i class="fa-solid fa-file-contract w-5 h-5 text-[var(--hf-accent-sec)]"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-slate-800">Licensing</p>
+                                    <p class="text-sm text-gray-600">$15k/month for healthcare systems</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-[var(--hf-accent-sec-soft)] p-2 rounded-lg mr-4">
+                                    <i class="fa-solid fa-cloud w-5 h-5 text-[var(--hf-accent-sec)]"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-slate-800">SaaS</p>
+                                    <p class="text-sm text-gray-600">$0.50 per inquiry at scale</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-[var(--hf-accent-sec-soft)] p-2 rounded-lg mr-4">
+                                    <i class="fa-solid fa-box w-5 h-5 text-[var(--hf-accent-sec)]"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-slate-800">White-label</p>
+                                    <p class="text-sm text-gray-600">Custom solutions for partners</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Separator -->
+            <div class="border-t border-slate-200 mx-12"></div>
+
+            <!-- ======================================== -->
+            <!-- SECTION 4: INVESTMENT & CONTACT (REVISED) -->
+            <!-- ======================================== -->
+            <section class="px-12 py-8 bg-slate-50 flex-grow">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-500 uppercase">Investment Opportunity</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
+                    
+                    <!-- Column 1 & 2: The Ask (REVISED) -->
+                    <div class="lg:col-span-2 bg-white p-8 rounded-xl border border-slate-200 shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-4 text-slate-800">Scaling PelliScope AI</h3>
+                        <p class="text-gray-600 mb-6">HawkFranklin Research is bootstrapped and ready to scale. We are launching a new Dubai-based entity to service GCC partnerships and are seeking capital for two distinct goals:</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Urgent Ask -->
+                            <div class="bg-red-50 border-2 border-red-200 rounded-lg p-5">
+                                <h4 class="font-semibold mb-2 flex items-center text-red-800">
+                                    <i class="fa-solid fa-flag w-5 h-5 text-red-600 mr-2"></i>
+                                    1. Urgent Capital
+                                </h4>
+                                <p class="font-display font-bold text-3xl text-red-700">$15,000 USD</p>
+                                <ul class="mt-2 text-sm text-red-900 list-disc list-outside pl-5">
+                                    <li>Execute on-premise PoC for the <strong class="font-semibold">Arab Health 2026</strong> showcase.</li>
+                                    <li>Cover initial setup & logistics in Dubai.</li>
+                                </ul>
+                            </div>
+                            <!-- REVISED "Seed Scale" Round Ask -->
+                            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-5">
+                                <h4 class="font-semibold mb-2 flex items-center text-blue-800">
+                                    <i class="fa-solid fa-rocket w-5 h-5 text-blue-600 mr-2"></i>
+                                    <!-- RENAMED -->
+                                    2. Seed Scale
+                                </h4>
+                                <p class="font-display font-bold text-3xl text-blue-700">$1.5M USD</p>
+                                <ul class="mt-2 text-sm text-blue-900 list-disc list-outside pl-5">
+                                    <li>Full-scale UAE product adaptation and data acquisition.</li>
+                                    <li>Scale team and expand model to new pre-diagnostic conditions.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-slate-200">
+                            <h4 class="font-semibold mb-2 flex items-center text-[var(--hf-accent-main-dark)]">
+                                <i class="fa-solid fa-chart-line w-5 h-5 text-[var(--hf-accent-main)] mr-2"></i>
+                                Projections
+                            </h4>
+                            <div class="pl-7 flex gap-6">
+                                <div>
+                                    <p class="font-display text-2xl font-bold text-slate-800">$2.1M ARR</p>
+                                    <p class="text-sm text-slate-600">Within 18 months</p>
+                                </div>
+                                <div>
+                                    <p class="font-display text-2xl font-bold text-slate-800">5x ROI</p>
+                                    <p class="text-sm text-slate-600">Potential for early investors</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Contact + QR Code (REVISED) -->
+                    <div class="contact-card p-8 rounded-xl flex flex-col justify-center items-center">
+                        <!-- TEXT REMOVED -->
+                        
+                        <!-- QR Code Added Here -->
+                        <div class->
+                            <img src="https://placehold.co/160x160/ffffff/0f172a?text=Contact+QR&font=inter" alt="Contact QR Code" class="rounded-lg shadow-md border-4 border-white">
+                        </div>
+                        
+                        <div class="pt-4 mt-4 border-t border-blue-300 w-full">
+                            <p class="text-xs text-[var(--hf-accent-sec-dark)] text-center">HawkFranklin Research is a deep-tech company specializing in clinical AI solutions, headquartered in India with global deployment capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- ======================================== -->
+        <!-- FOOTER -->
+        <!-- ======================================== -->
+        <footer class="mt-auto bg-[var(--hf-dark-900)] text-slate-300 px-12 py-3 flex justify-between items-center text-sm flex-shrink-0 h-[50px]">
+            <div class="flex items-center space-x-6 text-xs">
+                <!-- Footer accents are teal -->
+                <!-- REVISED FOOTER TEXT -->
+                <span><i class="fa-solid fa-file-alt text-teal-400"></i> Technology: PelliScope MIL (DermAssist)</span>
+                <span><i class="fa-solid fa-lock text-teal-400"></i> Confidential Briefing Document</span>
+            </div>
+            <div class="text-slate-400 text-xs">
+                © 2025 HawkFranklin Research. All rights reserved. Confidential.
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
