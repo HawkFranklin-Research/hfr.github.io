@@ -382,82 +382,9 @@
 
           <div class="grid lg:grid-cols-3 gap-8 items-start">
             <div class="lg:col-span-2">
-              <form id="partnerForm" class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label for="company" class="block text-sm font-medium text-dark-700 mb-1">Company Name *</label>
-                    <input type="text" id="company" name="company" required
-                      class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
-                  </div>
-                  <div>
-                    <label for="contact" class="block text-sm font-medium text-dark-700 mb-1">Contact Name *</label>
-                    <input type="text" id="contact" name="contact" required
-                      class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
-                  </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label for="email" class="block text-sm font-medium text-dark-700 mb-1">Email *</label>
-                    <input type="email" id="email" name="email" required
-                      class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
-                  </div>
-                  <div>
-                    <label for="phone" class="block text-sm font-medium text-dark-700 mb-1">Phone</label>
-                    <input type="tel" id="phone" name="phone"
-                      class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
-                  </div>
-                </div>
-                <div>
-                  <label for="product" class="block text-sm font-medium text-dark-700 mb-1">Product Category *</label>
-                  <select id="product" name="product" required
-                    class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border bg-white">
-                    <option value="">Select your product category</option>
-                    <option value="serums">Serums & Essences</option>
-                    <option value="moisturizers">Moisturizers & Creams</option>
-                    <option value="treatments">Treatments & Masks</option>
-                    <option value="cleansers">Cleansers & Toners</option>
-                    <option value="supplements">Supplements & Vitamins</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-dark-700 mb-3">Partnership Interest *</label>
-                  <div class="space-y-3">
-                    <label class="flex items-center gap-3">
-                      <input type="checkbox" name="interest" value="booth"
-                        class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
-                      <span class="text-dark-700">Booth Co-Presence at Arab Health 2026</span>
-                    </label>
-                    <label class="flex items-center gap-3">
-                      <input type="checkbox" name="interest" value="cobranding"
-                        class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
-                      <span class="text-dark-700">Co-Branded Marketing Materials</span>
-                    </label>
-                    <label class="flex items-center gap-3">
-                      <input type="checkbox" name="interest" value="distribution"
-                        class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
-                      <span class="text-dark-700">Distribution Network Access</span>
-                    </label>
-                    <label class="flex items-center gap-3">
-                      <input type="checkbox" name="interest" value="revenue"
-                        class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
-                      <span class="text-dark-700">Revenue Share Model</span>
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <label for="message" class="block text-sm font-medium text-dark-700 mb-1">Tell us about your brand
-                    (optional)</label>
-                  <textarea id="message" name="message" rows="4"
-                    placeholder="Brief overview of your skincare brand and market presence..."
-                    class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border"></textarea>
-                </div>
-                <button type="submit"
-                  class="w-full btn-primary text-white py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition">
-                  Submit Partnership Application
-                </button>
-                <p class="text-center text-sm text-dark-400 mt-4">Opens your email client for submission. We review applications on a rolling basis and respond within 24 hours.</p>
-              </form>
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLScO1Avt7M32uoWBo-FjXvKrzjJBnJNj0_gxTZcaj1n27ArXpA/viewform?embedded=true"
+                width="100%" height="1450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             </div>
 
             <aside class="bg-dark-900 text-white rounded-2xl p-6 border border-dark-700 shadow-lg">
@@ -573,47 +500,7 @@
     const year = document.getElementById('year');
     if (year) year.textContent = new Date().getFullYear();
 
-    // Form handling (mailto for GitHub Pages)
-    (function () {
-      const form = document.getElementById('partnerForm');
-      if (!form) return;
 
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        const data = {
-          company: formData.get('company') || '',
-          contact: formData.get('contact') || '',
-          email: formData.get('email') || '',
-          phone: formData.get('phone') || '',
-          product: formData.get('product') || '',
-          interests: Array.from(document.querySelectorAll('input[name="interest"]:checked')).map(cb => cb.value),
-          message: formData.get('message') || ''
-        };
-
-        const subject = `Partnership Application: ${data.company || 'PelliScope'}`;
-        const interestsBlock = data.interests.length ? data.interests.map(i => '- ' + i).join('\n') : '- (not specified)';
-        const body = `
-New Partnership Application
-
-Company: ${data.company}
-Contact Name: ${data.contact}
-Email: ${data.email}
-Phone: ${data.phone}
-Product Category: ${data.product}
-
-Interests:
-${interestsBlock}
-
-Message:
-${data.message}
-        `.trim();
-
-        const mailto = `mailto:contact@hawk-franklin-research.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailto;
-      });
-    })();
   </script>
 </body>
 
