@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — HawkFranklin Research</title>
+    <meta name="description" content="Privacy Policy for HawkFranklin Research." />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" href="assets/img/Hawk_only_logo_may_circle.drawio.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Lexend', 'Inter', 'system-ui']
+                    },
+                    colors: {
+                        primary: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                        },
+                        dark: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                            600: '#475569',
+                            500: '#64748b',
+                            400: '#94a3b8',
+                            300: '#cbd5e1',
+                            200: '#e2e8f0',
+                            100: '#f1f5f9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0ea5e9;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-white text-dark-800 antialiased flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+                <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-[76px] w-auto" />
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#products" class="nav-link">Products</a>
+                <a href="index.html#research" class="nav-link">Research</a>
+                <a href="aclis.html" class="nav-link">ACLIS</a>
+                <a href="partnership.html" class="nav-link">Partnership</a>
+                <a href="publications.html" class="nav-link">Publications</a>
+                <a href="about.html" class="nav-link">About</a>
+            </nav>
+            <div class="hidden md:block">
+                <a href="contact.html"
+                    class="btn-primary inline-flex items-center gap-2 rounded-lg text-white px-5 py-2.5 text-sm font-medium">
+                    Request Demo
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+            <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+                <a href="index.html#home" class="py-2 font-medium">Home</a>
+                <a href="index.html#products" class="py-2">Products</a>
+                <a href="index.html#research" class="py-2">Research</a>
+                <a href="aclis.html" class="py-2">ACLIS</a>
+                <a href="partnership.html" class="py-2">Partnership</a>
+                <a href="publications.html" class="py-2">Publications</a>
+                <a href="about.html" class="py-2">About</a>
+                <a href="contact.html" class="btn-primary text-center mt-2">Request Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-16 pb-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="font-display text-4xl sm:text-5xl font-bold mb-8 text-dark-900">Privacy Policy</h1>
+
+            <div class="space-y-8 text-lg text-dark-600 leading-relaxed">
+                <p class="text-sm text-dark-400">Last updated: November 27, 2025</p>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-dark-900 mb-4">1. Introduction</h2>
+                    <p>
+                        HawkFranklin Research ("we," "our," or "us") respects your privacy and is committed to
+                        protecting your personal data.
+                        This privacy policy will inform you as to how we look after your personal data when you visit
+                        our website
+                        (regardless of where you visit it from) and tell you about your privacy rights and how the law
+                        protects you.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-dark-900 mb-4">2. Information We Collect</h2>
+                    <p class="mb-4">
+                        We may collect, use, store and transfer different kinds of personal data about you which we have
+                        grouped together follows:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Identity Data</strong> includes first name, last name, username or similar
+                            identifier.</li>
+                        <li><strong>Contact Data</strong> includes email address and telephone numbers.</li>
+                        <li><strong>Technical Data</strong> includes internet protocol (IP) address, your login data,
+                            browser type and version, time zone setting and location, browser plug-in types and
+                            versions, operating system and platform and other technology on the devices you use to
+                            access this website.</li>
+                        <li><strong>Usage Data</strong> includes information about how you use our website, products and
+                            services.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-dark-900 mb-4">3. How We Use Your Personal Data</h2>
+                    <p>
+                        We will only use your personal data when the law allows us to. Most commonly, we will use your
+                        personal data in the following circumstances:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 mt-4">
+                        <li>Where we need to perform the contract we are about to enter into or have entered into with
+                            you.</li>
+                        <li>Where it is necessary for our legitimate interests (or those of a third party) and your
+                            interests and fundamental rights do not override those interests.</li>
+                        <li>Where we need to comply with a legal or regulatory obligation.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-dark-900 mb-4">4. Data Security</h2>
+                    <p>
+                        We have put in place appropriate security measures to prevent your personal data from being
+                        accidentally lost, used or accessed in an unauthorized way, altered or disclosed. In addition,
+                        we limit access to your personal data to those employees, agents, contractors and other third
+                        parties who have a business need to know.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-dark-900 mb-4">5. Contact Us</h2>
+                    <p>
+                        If you have any questions about this privacy policy or our privacy practices, please contact us
+                        at:
+                        <a href="mailto:contact@hawk-franklin-research.com"
+                            class="text-primary-600 hover:text-primary-700 font-medium">contact@hawk-franklin-research.com</a>.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 text-white mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid gap-12 md:grid-cols-4">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-[62px] w-auto" />
+                    </div>
+                    <p class="text-dark-300 text-sm">
+                        Advancing science through deep-tech AI research and clinical-grade product engineering.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.linkedin.com/company/hawk-franklin-research"
+                            class="text-dark-300 hover:text-white">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                        <a href="https://github.com/HawkFranklin-Research" class="text-dark-300 hover:text-white">
+                            <i class="fab fa-github text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Products</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
+                        <li><a href="aclis.html" class="hover:text-white">ACLIS</a></li>
+                        <li><a href="products/dermassist.html" class="hover:text-white">DermAssist</a></li>
+                        <li><a href="products/ml_copilot_agent.html" class="hover:text-white">ML Copilot</a></li>
+                        <li><a href="products/omics_copilot.html" class="hover:text-white">Omics Copilot</a></li>
+                        <li><a href="products/graph_attention_multiomics.html" class="hover:text-white">GNN
+                                Multiomics</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Research</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
+                        <li><a href="research.html" class="hover:text-white">Programs</a></li>
+                        <li><a href="publications.html" class="hover:text-white">Publications</a></li>
+                        <li><a href="graph_research.html" class="hover:text-white">GNNs in Cancer</a></li>
+                        <li><a href="tabFM_research.html" class="hover:text-white">Tabular FMs</a></li>
+                        <li><a href="survival_research.html" class="hover:text-white">Survival FMs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
+                        <li><a href="about.html" class="hover:text-white">About</a></li>
+                        <li><a href="careers.html" class="hover:text-white">Careers</a></li>
+                        <li><a href="vision.html" class="hover:text-white">Vision & Ethics</a></li>
+                        <li><a href="partnership.html" class="hover:text-white">Partnership</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="privacy.html" class="text-sm text-white font-medium">Privacy</a>
+                    <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+                    <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
+        // Current year
+        const year = document.getElementById('year');
+        if (year) year.textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
