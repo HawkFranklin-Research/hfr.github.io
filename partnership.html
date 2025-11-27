@@ -380,83 +380,104 @@
           <h2 class="font-display text-3xl font-bold text-dark-900 mb-2 text-center">Apply for Partnership</h2>
           <p class="text-dark-500 text-center mb-10">Submit your details—we respond within 24 hours.</p>
 
-          <form id="partnerForm" class="space-y-6">
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <label for="company" class="block text-sm font-medium text-dark-700 mb-1">Company Name *</label>
-                <input type="text" id="company" name="company" required
-                  class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
-              </div>
-              <div>
-                <label for="contact" class="block text-sm font-medium text-dark-700 mb-1">Contact Name *</label>
-                <input type="text" id="contact" name="contact" required
-                  class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
-              </div>
+          <div class="grid lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-2">
+              <form id="partnerForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="company" class="block text-sm font-medium text-dark-700 mb-1">Company Name *</label>
+                    <input type="text" id="company" name="company" required
+                      class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
+                  </div>
+                  <div>
+                    <label for="contact" class="block text-sm font-medium text-dark-700 mb-1">Contact Name *</label>
+                    <input type="text" id="contact" name="contact" required
+                      class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
+                  </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-dark-700 mb-1">Email *</label>
+                    <input type="email" id="email" name="email" required
+                      class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
+                  </div>
+                  <div>
+                    <label for="phone" class="block text-sm font-medium text-dark-700 mb-1">Phone</label>
+                    <input type="tel" id="phone" name="phone"
+                      class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
+                  </div>
+                </div>
+                <div>
+                  <label for="product" class="block text-sm font-medium text-dark-700 mb-1">Product Category *</label>
+                  <select id="product" name="product" required
+                    class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border bg-white">
+                    <option value="">Select your product category</option>
+                    <option value="serums">Serums & Essences</option>
+                    <option value="moisturizers">Moisturizers & Creams</option>
+                    <option value="treatments">Treatments & Masks</option>
+                    <option value="cleansers">Cleansers & Toners</option>
+                    <option value="supplements">Supplements & Vitamins</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-dark-700 mb-3">Partnership Interest *</label>
+                  <div class="space-y-3">
+                    <label class="flex items-center gap-3">
+                      <input type="checkbox" name="interest" value="booth"
+                        class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
+                      <span class="text-dark-700">Booth Co-Presence at Arab Health 2026</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                      <input type="checkbox" name="interest" value="cobranding"
+                        class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
+                      <span class="text-dark-700">Co-Branded Marketing Materials</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                      <input type="checkbox" name="interest" value="distribution"
+                        class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
+                      <span class="text-dark-700">Distribution Network Access</span>
+                    </label>
+                    <label class="flex items-center gap-3">
+                      <input type="checkbox" name="interest" value="revenue"
+                        class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
+                      <span class="text-dark-700">Revenue Share Model</span>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label for="message" class="block text-sm font-medium text-dark-700 mb-1">Tell us about your brand
+                    (optional)</label>
+                  <textarea id="message" name="message" rows="4"
+                    placeholder="Brief overview of your skincare brand and market presence..."
+                    class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border"></textarea>
+                </div>
+                <button type="submit"
+                  class="w-full btn-primary text-white py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition">
+                  Submit Partnership Application
+                </button>
+                <p class="text-center text-sm text-dark-400 mt-4">We review applications on a rolling basis and respond
+                  within 24 hours.</p>
+              </form>
             </div>
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <label for="email" class="block text-sm font-medium text-dark-700 mb-1">Email *</label>
-                <input type="email" id="email" name="email" required
-                  class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
+
+            <aside class="bg-dark-900 text-white rounded-2xl p-6 border border-dark-700 shadow-lg">
+              <div class="flex items-center gap-2 justify-center mb-2">
+                <i class="fa-solid fa-qrcode text-lg"></i>
+                <h3 class="text-lg font-semibold">Scan to Contact</h3>
               </div>
-              <div>
-                <label for="phone" class="block text-sm font-medium text-dark-700 mb-1">Phone</label>
-                <input type="tel" id="phone" name="phone"
-                  class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border">
+              <p class="text-sm text-dark-300 text-center mb-4">contact@hawk-franklin-research.com</p>
+              <div class="flex justify-center mb-4">
+                <img src="assets/img/partnership-contact-qr.png" alt="Contact QR code"
+                  class="w-48 h-48 object-contain bg-white p-3 rounded-xl border border-white/20 shadow-inner">
               </div>
-            </div>
-            <div>
-              <label for="product" class="block text-sm font-medium text-dark-700 mb-1">Product Category *</label>
-              <select id="product" name="product" required
-                class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border bg-white">
-                <option value="">Select your product category</option>
-                <option value="serums">Serums & Essences</option>
-                <option value="moisturizers">Moisturizers & Creams</option>
-                <option value="treatments">Treatments & Masks</option>
-                <option value="cleansers">Cleansers & Toners</option>
-                <option value="supplements">Supplements & Vitamins</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-dark-700 mb-3">Partnership Interest *</label>
-              <div class="space-y-3">
-                <label class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="booth"
-                    class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
-                  <span class="text-dark-700">Booth Co-Presence at Arab Health 2026</span>
-                </label>
-                <label class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="cobranding"
-                    class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
-                  <span class="text-dark-700">Co-Branded Marketing Materials</span>
-                </label>
-                <label class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="distribution"
-                    class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
-                  <span class="text-dark-700">Distribution Network Access</span>
-                </label>
-                <label class="flex items-center gap-3">
-                  <input type="checkbox" name="interest" value="revenue"
-                    class="w-4 h-4 text-primary-600 border-slate-300 rounded focus:ring-primary-500">
-                  <span class="text-dark-700">Revenue Share Model</span>
-                </label>
-              </div>
-            </div>
-            <div>
-              <label for="message" class="block text-sm font-medium text-dark-700 mb-1">Tell us about your brand
-                (optional)</label>
-              <textarea id="message" name="message" rows="4"
-                placeholder="Brief overview of your skincare brand and market presence..."
-                class="w-full rounded-lg border-slate-300 focus:border-primary-500 focus:ring-primary-500 p-3 border"></textarea>
-            </div>
-            <button type="submit"
-              class="w-full btn-primary text-white py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition">
-              Submit Partnership Application
-            </button>
-            <p class="text-center text-sm text-dark-400 mt-4">We review applications on a rolling basis and respond
-              within 24 hours.</p>
-          </form>
+              <p class="text-sm text-dark-300 text-center">Point your camera to open your email client.</p>
+              <a href="mailto:contact@hawk-franklin-research.com"
+                class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 transition">
+                <i class="fa-solid fa-envelope"></i> Email Us
+              </a>
+            </aside>
+          </div>
         </div>
       </div>
     </section>
