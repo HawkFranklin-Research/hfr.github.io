@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OncoGemma - Precision Pathology Co-Pilot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="../assets/css/theme.css" rel="stylesheet" />
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #ddd6fe 100%);
+        }
+        .gemma-accent {
+            background: linear-gradient(90deg, #6b21a8, #0ea5e9, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.15);
+            border-left-color: #8b5cf6;
+        }
+        .infographic-item {
+            position: relative;
+        }
+        .infographic-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238b5cf6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 5l7 7-7 7M5 5l7 7-7 7' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        @media (max-width: 768px) {
+            .infographic-item:not(:last-child):after {
+                display: none;
+            }
+        }
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        /* Custom scrollbar for chat preview */
+        .chat-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chat-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: #c4b5fd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- HFR Header -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" />
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#products" class="nav-link">Products</a>
+                <a href="../research.html" class="nav-link">Research</a>
+                <a href="../aclis.html" class="nav-link">ACLIS</a>
+                <a href="../publications.html" class="nav-link">Publications</a>
+                <a href="../about.html" class="nav-link">About</a>
+            </nav>
+            <div class="hidden md:block">
+                <a href="#contact" class="btn-primary" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">Request Access</a>
+            </div>
+            <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+            <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+                <a href="../index.html" class="py-2 font-medium">Home</a>
+                <a href="../index.html#products" class="py-2">Products</a>
+                <a href="../research.html" class="py-2">Research</a>
+                <a href="../aclis.html" class="py-2">ACLIS</a>
+                <a href="../publications.html" class="py-2">Publications</a>
+                <a href="../about.html" class="py-2">About</a>
+                <a href="#contact" class="btn-primary text-center mt-2" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">Request Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-inner border border-violet-100">
+                            <img src="../assets/img/oncogemma/oncogemma_logo_only.png" alt="OncoGemma logo" class="w-12 h-12 object-contain" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <h2 class="text-4xl md:text-5xl font-bold text-violet-900">
+                                Onco<span class="gemma-accent">Gemma</span>
+                            </h2>
+                            <img src="../assets/img/oncogemma/oncogemma_text_only.png" alt="OncoGemma logotype" class="w-56 md:w-64" />
+                            <p class="text-lg font-medium text-slate-600">Precision Pathology Co-Pilot & Workflow</p>
+                        </div>
+                    </div>
+                    <p class="text-xl text-gray-700 mb-8">
+                        OncoGemma integrates high-resolution Whole Slide Imaging (WSI) with a fine-tuned clinical agent. 
+                        From instant molecular subtyping to chemotoxicity prediction, it empowers pathologists with precision oncology insights.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full text-sm font-semibold border border-violet-200">
+                            <i class="fas fa-brain mr-1"></i> OncoGemma Agent
+                        </span>
+                        <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full text-sm font-semibold border border-violet-200">
+                            <i class="fas fa-dna mr-1"></i> Subtype Prediction
+                        </span>
+                        <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full text-sm font-semibold border border-violet-200">
+                            <i class="fas fa-shield-virus mr-1"></i> Toxicity Risk
+                        </span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#demo" class="inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
+                            <i class="fas fa-play-circle text-lg"></i>
+                            Watch Workflow
+                        </a>
+                        <a href="#features" class="inline-flex items-center justify-center gap-2 border-2 border-violet-200 text-violet-700 hover:bg-violet-50 px-6 py-3 rounded-lg font-semibold transition">
+                            <i class="fas fa-list-ul text-base"></i>
+                            Key Features
+                        </a>
+                    </div>
+                    <p class="mt-6 text-sm text-gray-500 italic">
+                        <i class="fas fa-calendar-alt mr-2"></i> Launching at India AI Impact Summit, Delhi (Feb 2026)
+                    </p>
+                </div>
+                
+                <!-- Hero Visual / Video Placeholder -->
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-xl">
+                        <div class="absolute -top-6 -left-6 w-64 h-64 bg-violet-200 rounded-2xl opacity-50"></div>
+                        <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-fuchsia-200 rounded-2xl opacity-50"></div>
+                        
+                        <div class="relative bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-800" style="min-height: 360px;">
+                            <!-- Hero Video -->
+                            <video id="oncogemmaHeroVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90">
+                                <source src="../assets/video/oncogemma-demo1.mp4" type="video/mp4">
+                                <!-- Fallback if video missing -->
+                                <div class="flex items-center justify-center h-full text-white">
+                                    <div class="text-center p-8">
+                                        <i class="fas fa-play-circle text-5xl text-violet-500 mb-4"></i>
+                                        <p class="font-semibold">OncoGemma Workstation Demo</p>
+                                    </div>
+                                </div>
+                            </video>
+                            
+                            <!-- Overlay UI Mockup (OncoGemma Chat) -->
+                            <div class="absolute bottom-4 right-4 w-64 bg-white/95 backdrop-blur rounded-xl shadow-lg border border-violet-100 overflow-hidden">
+                                <div class="bg-violet-600 px-3 py-2 flex items-center gap-2">
+                                    <i class="fas fa-robot text-white text-sm"></i>
+                                    <span class="text-xs font-bold text-white">OncoGemma Assistant</span>
+                                </div>
+                                <div class="p-3 space-y-2 text-xs chat-scroll" style="max-height: 120px; overflow-y: auto;">
+                                    <div class="bg-gray-100 p-2 rounded-lg rounded-tl-none text-gray-700">
+                                        Analyzing slide... High tumor burden (68.5%) detected.
+                                    </div>
+                                    <div class="bg-violet-50 p-2 rounded-lg rounded-tl-none text-violet-800 border border-violet-100">
+                                        <strong>Risk Alert:</strong> Graph Attention model predicts high risk of chemotoxicity. Consider immunotherapy alternatives.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-violet-900 mb-12">End-to-End Precision Oncology</h2>
+            
+            <div class="bg-violet-50 rounded-2xl p-8 mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+                    <!-- Step 1 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-violet-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-file-medical-alt text-3xl text-violet-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">WSI Ingestion</h3>
+                        <p class="text-gray-600 text-sm">High-res H&E and IHC slide upload with instant quality control</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-violet-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-network-wired text-3xl text-violet-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Multi-Modal AI</h3>
+                        <p class="text-gray-600 text-sm">Proprietary Graph Attention Autoencoders analyze morphology & risk</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-violet-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-robot text-3xl text-violet-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">OncoGemma Co-Pilot</h3>
+                        <p class="text-gray-600 text-sm">Agentic AI contextualizes findings with latest clinical research</p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-violet-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-clipboard-check text-3xl text-violet-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Clinical Report</h3>
+                        <p class="text-gray-600 text-sm">Automated generation of subtyping, toxicity, and treatment plans</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Modules Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-violet-900 mb-12">Core Diagnostic Modules</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Module 1 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="tech-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Molecular Subtyping</h3>
+                    <p class="text-gray-600 text-sm">
+                        Instantly predicts molecular subtypes from H&E slides. Identifies overexpression of key genes and mutation status (e.g., TP53, PD-L1) without waiting for wet-lab results.
+                    </p>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="tech-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Risk & Prognosis</h3>
+                    <p class="text-gray-600 text-sm">
+                        Powered by our <strong>Graph Attention Autoencoder</strong>, this module stratifies patients by risk level, predicting disease progression and survival outcomes.
+                    </p>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="tech-icon">
+                        <i class="fas fa-biohazard"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Chemotoxicity Prediction</h3>
+                    <p class="text-gray-600 text-sm">
+                        Predicts patient-specific risk for chemotherapy and immunotherapy toxicity, enabling oncologists to optimize dosage and regimen safety.
+                    </p>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="tech-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">OncoGemma Agent</h3>
+                    <p class="text-gray-600 text-sm">
+                        A fine-tuned version of MedGemma on proprietary histopathology datasets. It acts as an active assistant, taking notes, answering queries, and retrieving reference studies.
+                    </p>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="tech-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Real-Time Collaboration</h3>
+                    <p class="text-gray-600 text-sm">
+                        Integrated clinical chat allows pathologists and oncologists to discuss cases directly on the slide, with AI-summarized context and decision support.
+                    </p>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <div class="tech-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Tumor Burden</h3>
+                    <p class="text-gray-600 text-sm">
+                        Automated quantification of tumor burden percentage and location, streamlining the reporting process for neoadjuvant therapy evaluation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo / Call to Action Section -->
+    <section id="demo" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="bg-violet-900 rounded-3xl overflow-hidden shadow-2xl">
+                <div class="grid lg:grid-cols-2">
+                    <div class="p-12 flex flex-col justify-center text-white">
+                        <h2 class="text-3xl font-bold mb-6">Built for Impact. <br/>Ready for India.</h2>
+                        <p class="text-violet-200 text-lg mb-8">
+                            We are fine-tuning OncoGemma to address the specific healthcare challenges of the Global South. 
+                            We are actively seeking partners to validate our models on diverse Indian datasets.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="mailto:collaborate@hawkfranklin.in" class="bg-white text-violet-900 hover:bg-violet-50 px-8 py-3 rounded-lg font-bold transition flex items-center justify-center">
+                                <i class="fas fa-handshake mr-2"></i> Partner with Us
+                            </a>
+                            <a href="../contact.html" class="border-2 border-violet-400 text-violet-100 hover:bg-violet-800/50 px-8 py-3 rounded-lg font-bold transition flex items-center justify-center">
+                                <i class="fas fa-envelope mr-2"></i> Contact Team
+                            </a>
+                        </div>
+                        <p class="mt-8 text-sm text-violet-300">
+                            * Proprietary models including Graph Attention Autoencoder & OncoGemma are currently in closed beta.
+                        </p>
+                    </div>
+                    <div class="relative h-64 lg:h-auto bg-violet-800">
+                        <!-- Abstract representation of AI analysis -->
+                        <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(#a78bfa 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-network-wired text-9xl text-violet-500/20"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <footer class="bg-dark-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid gap-12 md:grid-cols-4">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="../assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
+                    </div>
+                    <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and clinical‑grade product engineering.</p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://www.linkedin.com/company/hawk-franklin-research" class="text-dark-300 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+                        <a href="https://github.com/HawkFranklin-Research" class="text-dark-300 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Explore</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
+                        <li><a href="../aclis.html" class="hover:text-white">ACLIS</a></li>
+                        <li><a href="../research.html" class="hover:text-white">Research</a></li>
+                        <li><a href="../publications.html" class="hover:text-white">Publications</a></li>
+                        <li><a href="../vision.html" class="hover:text-white">Vision & Ethics</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
+                        <li><a href="../about.html" class="hover:text-white">About</a></li>
+                        <li><a href="../careers.html" class="hover:text-white">Careers</a></li>
+                        <li><a href="../contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-dark-300">
+                        <li><a href="mailto:contact@hawk-franklin-research.com" class="hover:text-white">contact@hawk-franklin-research.com</a></li>
+                        <li>India (Dot) Kalyani, West Bengal</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+                    <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+                    <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js"></script>
+    <script>
+        // Nudge hero video to autoplay on load; keeps muted for UX
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('oncogemmaHeroVideo');
+            if (!video) return;
+            video.muted = true;
+            const tryPlay = () => video.play().catch(() => {});
+            tryPlay();
+            video.addEventListener('canplay', tryPlay, { once: true });
+        });
+    </script>
+</body>
+</html>
