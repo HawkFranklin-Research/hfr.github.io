@@ -241,14 +241,15 @@
     <!-- Mobile Demo Modal -->
     <div id="mobileDemoModal"
       class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center px-4 z-50 hidden">
-      <div class="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full overflow-hidden">
+      <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-[560px] overflow-hidden">
         <button id="closeMobileDemo"
           class="absolute top-3 right-3 bg-white/90 text-dark-800 hover:bg-slate-100 border border-slate-200 rounded-full p-2 shadow">
           <i class="fa-solid fa-xmark"></i>
           <span class="sr-only">Close</span>
         </button>
-        <div class="aspect-video bg-black">
-          <video id="mobileDemoVideo" class="w-full h-full object-cover" controls playsinline>
+        <div class="bg-black flex items-center justify-center p-3 sm:p-4">
+          <video id="mobileDemoVideo"
+            class="w-auto max-w-full h-[70vh] max-h-[82vh] object-contain rounded-xl shadow-lg" controls playsinline>
             <source src="assets/video/pelliscope-mobile-ad1.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
