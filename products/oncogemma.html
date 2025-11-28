@@ -57,6 +57,11 @@
             font-size: 28px;
             margin-bottom: 12px;
         }
+        .gemma-accent {
+            background: linear-gradient(90deg, #6b21a8 0%, #4c1d95 30%, #0ea5e9 55%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         /* Custom scrollbar for chat preview */
         .chat-scroll::-webkit-scrollbar {
             width: 4px;
@@ -86,7 +91,7 @@
                 <a href="../about.html" class="nav-link">About</a>
             </nav>
             <div class="hidden md:block">
-                <a href="#contact" class="btn-primary" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">Request Access</a>
+                <a href="mailto:collaborate@hawkfranklin.in" class="btn-primary" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">Request Access</a>
             </div>
             <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -100,7 +105,7 @@
                 <a href="../aclis.html" class="py-2">ACLIS</a>
                 <a href="../publications.html" class="py-2">Publications</a>
                 <a href="../about.html" class="py-2">About</a>
-                <a href="#contact" class="btn-primary text-center mt-2" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">Request Access</a>
+                <a href="mailto:collaborate@hawkfranklin.in" class="btn-primary text-center mt-2" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">Request Access</a>
             </nav>
         </div>
     </header>
@@ -128,13 +133,13 @@
                     
                     <div class="flex flex-wrap gap-3 mb-8">
                         <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full text-sm font-semibold border border-violet-200">
-                            <i class="fas fa-brain mr-1"></i> OncoGemma Agent
+                            <i class="fas fa-stethoscope mr-1"></i> Diagnosis • Subtype Prediction
                         </span>
                         <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full text-sm font-semibold border border-violet-200">
-                            <i class="fas fa-dna mr-1"></i> Subtype Prediction
+                            <i class="fas fa-chart-line mr-1"></i> Prognosis • Markers
                         </span>
                         <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full text-sm font-semibold border border-violet-200">
-                            <i class="fas fa-shield-virus mr-1"></i> Toxicity Risk
+                            <i class="fas fa-prescription-bottle-medical mr-1"></i> Treatment Plan • Toxicity Probability
                         </span>
                     </div>
 
