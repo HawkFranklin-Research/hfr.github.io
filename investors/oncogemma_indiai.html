@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OncoGemma - Investor Slide Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* PALETTE: Dark Purple & Sky Blue */
+            --hf-dark-900: #1e1b4b; /* Deep Indigo/Purple background */
+            --hf-dark-800: #312e81;
+            --hf-dark-700: #4338ca;
+            
+            /* Main accent is Dark Purple/Violet */
+            --hf-accent-main: #7c3aed; /* Violet 600 */
+            --hf-accent-main-dark: #6d28d9; /* Violet 700 */
+            --hf-accent-soft: rgba(124, 58, 237, 0.08);
+
+            /* Secondary accent is Sky Blue */
+            --hf-accent-sec: #0ea5e9; /* Sky 500 */
+            --hf-accent-sec-dark: #0284c7; /* Sky 600 */
+            --hf-accent-sec-soft: #f0f9ff;
+        }
+
+        body {
+            background-color: #e0e7ff; /* Light indigo tint for body bg */
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .font-display {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* The Slide Container */
+        .deck-container {
+            width: 1240px;
+            height: 877px; /* Approximate A4 Landscape / 4:3 ratio */
+            background: #ffffff;
+            box-shadow: 0 30px 60px -12px rgba(49, 46, 129, 0.25);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Individual Slide Styling */
+        .slide {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Header Consistency */
+        .hf-hero {
+            background: #ffffff;
+            border-bottom: 1px solid #e0e7ff;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .hf-title-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(49, 46, 129, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hf-accent-main);
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #fff 0%, #f5f3ff 100%);
+        }
+
+        .hf-logo {
+            height: 72px;
+        }
+
+        /* Analysis Card Visuals */
+        .analysis-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%);
+            border: 1px solid #ddd6fe;
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.1);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #c4b5fd, var(--hf-accent-main));
+        }
+
+        .font-mono {
+            font-family: 'Courier Prime', monospace;
+        }
+
+        /* Chart Animations */
+        @keyframes growWidth {
+            from { width: 0; }
+            to { width: var(--target-width); }
+        }
+        
+        .bar-animate {
+            animation: growWidth 1.5s ease-out forwards;
+        }
+
+        /* Pipeline Connector Lines */
+        .pipeline-arrow {
+            flex-grow: 1;
+            height: 2px;
+            background: #cbd5e1;
+            position: relative;
+        }
+        .pipeline-arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 0; 
+            height: 0; 
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid #cbd5e1;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: absolute;
+            bottom: 40px;
+            right: 32px;
+            display: flex;
+            gap: 12px;
+            z-index: 50;
+        }
+
+        .nav-btn {
+            background: var(--hf-dark-900);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: var(--hf-accent-main);
+        }
+
+        .nav-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.contact-mode {
+            background: var(--hf-accent-sec);
+        }
+
+        .nav-btn.contact-mode:hover {
+            background: var(--hf-accent-sec-dark);
+        }
+
+        .slide-indicator {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--hf-accent-main);
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        /* Custom Gradients for Slide 2 */
+        .bg-gradient-workflow {
+            background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+        }
+        .roi-card {
+            background: var(--hf-dark-900);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .roi-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: var(--hf-accent-main);
+            opacity: 0.15;
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        /* Mock Histopathology Image Placeholder */
+        .histo-placeholder {
+            background-color: #fce7f3;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23db2777' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            position: relative;
+            overflow: hidden;
+        }
+        .histo-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(219, 39, 119, 0.4), transparent 60%);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="deck-container">
+        
+        <!-- ========================== -->
+        <!-- SLIDE 1: PRODUCT & TECH -->
+        <!-- ========================== -->
+        <div class="slide active" id="slide-1">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/img/oncogemma/oncogemma_logo_only.png" alt="OncoGemma logo" class="h-14 w-14 object-contain" onerror="this.style.display='none'; document.getElementById('logo-ph-1').style.display='block'">
+                    <div>
+                        <h1 class="font-display text-3xl font-bold text-slate-800">OncoGemma</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Precision Pathology Co-Pilot</h2>
+                    </div>
+                    <div id="logo-ph-1" style="display:none" class="text-2xl font-bold text-violet-800 font-display">OncoGemma</div>
+                </div>
+                <!-- HawkFranklin Logo -->
+                <div class="flex flex-col items-end">
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain mb-1">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest">Powered by HawkFranklin</span>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="flex-grow p-12 flex flex-col justify-between bg-white">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-2">01 | The Product</h3>
+                
+                <div class="grid grid-cols-12 gap-12 h-full">
+                    
+                    <!-- Left: Context & Features -->
+                    <div class="col-span-5 flex flex-col justify-center">
+                        <h2 class="font-display text-3xl font-bold text-slate-800 mb-6 leading-tight">Multimodal AI for <br><span class="text-[var(--hf-accent-main)]">End-to-End Oncology</span></h2>
+                        
+                        <div class="bg-violet-50 rounded-xl p-6 border border-violet-100 shadow-sm">
+                            <h4 class="text-sm font-bold text-violet-800 uppercase tracking-wide mb-4">Core Pillars</h4>
+                            <ul class="space-y-6">
+                                <li class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-[var(--hf-accent-main)] shadow-sm border border-violet-100">
+                                        <i class="fa-solid fa-microscope text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Diagnosis</h5>
+                                        <p class="text-xs text-slate-500">Molecular Subtype Prediction (Breast, Lung, Oral)</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-[var(--hf-accent-sec)] shadow-sm border border-sky-100">
+                                        <i class="fa-solid fa-chart-line text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Prognosis</h5>
+                                        <p class="text-xs text-slate-500">Mutational Biomarker Risk &amp; Survival Analysis</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-pink-500 shadow-sm border border-pink-100">
+                                        <i class="fa-solid fa-prescription-bottle-medical text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Treatment Plan</h5>
+                                        <p class="text-xs text-slate-500">Chemotoxicity Probability &amp; Safety Assessment</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Analysis Card -->
+                    <div class="col-span-7 flex flex-col items-center justify-center">
+                        <div class="analysis-card rounded-2xl p-6 w-full shadow-lg transform scale-95 hover:scale-100 transition-transform duration-500 relative">
+                            <!-- Mock Header -->
+                            <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-violet-600 text-white flex items-center justify-center text-xs font-bold">PT</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 text-sm">Patient #TCGA-BR-8829</h3>
+                                        <p class="text-[10px] text-gray-400">Invasive Ductal Carcinoma</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs bg-violet-100 text-violet-800 px-3 py-1 rounded-full font-bold tracking-wide flex items-center gap-2">
+                                    <i class="fa-solid fa-robot"></i> AI ANALYSIS READY
+                                </span>
+                            </div>
+
+                            <!-- Image & Heatmap -->
+                            <div class="flex gap-4 mb-5">
+                                <div class="w-2/3 h-48 rounded-lg border-2 border-white shadow-md relative overflow-hidden">
+                                    <img src="pathology_slide_snapshot.png" alt="H&amp;E slide snapshot" class="w-full h-full object-cover">
+                                    <div class="absolute bottom-2 left-2 bg-black/60 text-white text-[10px] px-2 py-1 rounded backdrop-blur-sm">H&amp;E Slide</div>
+                                </div>
+                                <div class="w-1/3 flex flex-col gap-2">
+                                    <div class="bg-red-50 border border-red-100 p-3 rounded-lg flex-1 flex flex-col justify-center">
+                                        <p class="text-[10px] text-red-500 font-bold uppercase mb-1">Survival Risk Score</p>
+                                        <p class="text-3xl font-display font-bold text-red-600">High</p>
+                                        <p class="text-[10px] text-red-400">0.87 (P-Val &lt; 0.001)</p>
+                                    </div>
+                                    <div class="bg-sky-50 border border-sky-100 p-3 rounded-lg flex-1 flex flex-col justify-center">
+                                        <p class="text-[10px] text-sky-500 font-bold uppercase mb-1">Key Mutation</p>
+                                        <p class="text-xl font-display font-bold text-sky-700">TP53+</p>
+                                        <p class="text-[10px] text-sky-500">Confidence: 94%</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Predictions -->
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="font-medium text-slate-700">Subtype: Luminal B</span>
+                                        <span class="font-bold text-violet-600">92%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                                        <div class="bg-violet-500 h-full w-[92%]"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="font-medium text-slate-700">Chemotoxicity Risk (Anthracycline)</span>
+                                        <span class="font-bold text-orange-500">Moderate</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                                        <div class="bg-orange-400 h-full w-[45%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: Core Capabilities -->
+                <div class="mt-6 pt-4 border-t border-slate-100">
+                    <h4 class="text-base font-bold text-slate-800 mb-4">Core Capabilities</h4>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-database text-3xl text-[var(--hf-accent-main)] pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-lg">Massive Scale Training</h5>
+                                <p class="text-base text-slate-500 leading-relaxed mt-1">Trained on <strong class="text-slate-700">TCGA (2.5PB)</strong> &amp; validated on CPTAC.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-ribbon text-3xl text-[var(--hf-accent-sec)] pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-lg">3 Major Cancer Types</h5>
+                                <p class="text-base text-slate-500 leading-relaxed mt-1">Specialized for <strong class="text-slate-700">Breast, Lung, and Oral</strong> cancers.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-flask-vial text-3xl text-pink-500 pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-lg">WSI &amp; Molecular Insights</h5>
+                                <p class="text-base text-slate-500 leading-relaxed mt-1">Predicts subtypes &amp; mutations from standard H&amp;E slides.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 2: OPERATIONAL IMPACT -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-2">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/img/oncogemma/oncogemma_logo_only.png" alt="OncoGemma logo" class="h-14 w-14 object-contain" onerror="this.style.display='none'; document.getElementById('logo-ph-2').style.display='block'">
+                    <div>
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Operational Impact</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Bypassing the NGS Bottleneck</h2>
+                    </div>
+                    <div id="logo-ph-2" style="display:none" class="text-2xl font-bold text-violet-800 font-display">OncoGemma</div>
+                </div>
+                <div class="flex flex-col items-end">
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain mb-1">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest">Powered by HawkFranklin</span>
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-white flex gap-10">
+                
+                <!-- LEFT COLUMN: Efficiency -->
+                <div class="w-7/12 flex flex-col gap-6">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase">02 | Resource Optimization</h3>
+
+                    <!-- Workflow Comparison Card -->
+                    <div class="bg-gradient-workflow rounded-2xl p-6 border border-slate-200 shadow-sm flex-grow">
+                        <div class="flex items-center justify-between mb-8">
+                            <h4 class="font-bold text-slate-800 text-lg flex items-center gap-2">
+                                <i class="fa-solid fa-arrows-rotate text-slate-400"></i> Workflow Acceleration
+                            </h4>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold uppercase tracking-wide">
+                                Save 2-3 Days / Patient
+                            </span>
+                        </div>
+
+                        <!-- Traditional NGS -->
+                        <div class="mb-8">
+                            <div class="flex justify-between text-xs text-slate-500 mb-2 uppercase tracking-wide font-semibold">
+                                <span>Standard NGS Workflow</span>
+                                <span>3-7 Days</span>
+                            </div>
+                            <div class="w-full h-10 bg-slate-200 rounded-lg relative overflow-hidden flex">
+                                <div class="h-full bg-slate-300 flex items-center justify-center text-slate-600 text-xs font-bold border-r border-slate-100" style="width: 20%">Biopsy</div>
+                                <div class="h-full bg-slate-400 flex items-center justify-center text-white text-xs font-bold border-r border-slate-300" style="width: 30%">Transport</div>
+                                <div class="h-full bg-slate-500 flex items-center justify-center text-white text-xs font-bold" style="width: 50%">Sequencing &amp; Analysis</div>
+                            </div>
+                            <div class="mt-2 text-right">
+                                <span class="text-sm font-bold text-red-500">Cost: $500 - $3000+</span>
+                            </div>
+                        </div>
+
+                        <!-- OncoGemma -->
+                        <div>
+                            <div class="flex justify-between text-xs text-[var(--hf-accent-main-dark)] mb-2 uppercase tracking-wide font-semibold">
+                                <span>With OncoGemma (H&amp;E Only)</span>
+                                <span>&lt; 10 Minutes</span>
+                            </div>
+                            <div class="w-full h-10 bg-violet-50 rounded-lg relative overflow-hidden flex gap-1 border border-violet-100">
+                                <div class="h-full bg-slate-300 flex items-center justify-center text-slate-600 text-[10px] font-bold" style="width: 20%">Biopsy</div>
+                                <div class="h-full bg-[var(--hf-accent-main)] flex items-center justify-center text-white text-[12px] font-bold leading-tight text-center relative overflow-hidden" style="width: 80%">
+                                    <span class="relative z-10">AI Prediction &amp; Report</span>
+                                    <div class="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
+                                </div>
+                            </div>
+                            <div class="mt-2 flex justify-between items-center">
+                                <p class="text-xs text-slate-500">Predicts biomarkers directly from standard tissue slides.</p>
+                                <span class="text-lg font-bold text-emerald-600">Savings: $100 - $1000 per case</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Unit Economics -->
+                <div class="w-5/12 flex flex-col h-full">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4 text-right">Infrastructure Costs</h3>
+                    
+                    <div class="roi-card rounded-2xl p-8 flex flex-col h-full shadow-2xl border-t-4 border-[var(--hf-accent-main)]">
+                        
+                        <!-- Top: Compute Cost -->
+                        <div class="border-b border-slate-700 pb-6 mb-6">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 text-slate-400 mb-1">
+                                        <i class="fa-solid fa-server"></i>
+                                        <span class="text-xs uppercase tracking-widest font-bold">Operational Cost</span>
+                                    </div>
+                                    <div class="flex items-baseline gap-2">
+                                        <h2 class="text-4xl font-display font-bold text-white">$10<span class="text-lg text-slate-400">/hr</span></h2>
+                                        <span class="text-xs bg-[var(--hf-accent-sec-dark)] px-2 py-0.5 rounded text-white">GPU</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-2">High-Speed Inference</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-display font-bold text-slate-300">$5<span class="text-sm text-slate-500">/hr</span></div>
+                                    <div class="text-xs text-slate-500">CPU-Only Mode</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Throughput -->
+                        <div class="bg-white/10 rounded-xl p-5 text-white shadow-lg mb-6 backdrop-blur-sm border border-white/5">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2 text-[var(--hf-accent-sec)]">
+                                    <i class="fa-solid fa-bolt"></i>
+                                    <span class="text-[10px] uppercase tracking-widest font-bold">Throughput</span>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center py-2">
+                                <h2 class="text-5xl font-display font-bold text-white">30s</h2>
+                                <p class="text-sm text-slate-300 mt-1">Per Whole Slide Image (16GB GPU)</p>
+                            </div>
+                        </div>
+
+                        <!-- Bottom: Value Prop -->
+                        <div class="mt-auto">
+                            <p class="text-xs text-slate-400 leading-relaxed text-center italic">
+                                "Democratizing precision oncology by removing the barrier of expensive genomic sequencing infrastructure."
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+
+        <!-- ========================== -->
+        <!-- SLIDE 3: STRATEGIC IMPLEMENTATION -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-3">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/img/oncogemma/oncogemma_logo_only.png" alt="OncoGemma logo" class="h-14 w-14 object-contain" onerror="this.style.display='none'; document.getElementById('logo-ph-3').style.display='block'">
+                    <div>
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Deployment Readiness</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Seeking Clinical Validation Partners</h2>
+                    </div>
+                    <div id="logo-ph-3" style="display:none" class="text-2xl font-bold text-violet-800 font-display">OncoGemma</div>
+                </div>
+                <div class="flex flex-col items-end">
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain mb-1">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest">Powered by HawkFranklin</span>
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 pb-6 bg-slate-50 flex flex-col">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4">03 | Implementation Roadmap</h3>
+
+                <!-- Status Box -->
+                <div class="bg-gradient-to-r from-violet-900 to-indigo-900 rounded-2xl p-8 text-white shadow-xl relative overflow-hidden mb-8 flex-shrink-0 border-l-8 border-[var(--hf-accent-sec)]">
+                    <i class="fa-solid fa-rocket absolute -right-6 -bottom-6 text-[12rem] text-white opacity-5"></i>
+                    
+                    <div class="relative z-10 flex justify-between items-start gap-10">
+                        <div class="max-w-2xl">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="bg-[var(--hf-accent-sec)] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Current Status: Prototype</span>
+                                <span class="text-indigo-200 text-xs"><i class="fa-solid fa-code-branch"></i> TCGA/CPTAC Validated</span>
+                            </div>
+                            <h2 class="font-display text-3xl text-white font-bold mb-4">Call for Clinical Partners</h2>
+                            <p class="text-indigo-100 text-lg leading-relaxed mb-6">
+                                We are actively seeking discussions with Pathology Organizations and Research Hospitals to perform <strong>clinical validation</strong> on diverse patient cohorts.
+                            </p>
+
+                            <div class="flex gap-6">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-[var(--hf-accent-sec)]">
+                                        <i class="fa-solid fa-calendar-check"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs text-indigo-300 block">Launch Target</span>
+                                        <span class="text-sm font-bold">IndiaAI Impact Summit (Feb 2026)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline / Roadmap -->
+                <div class="grid grid-cols-3 gap-5 flex-grow">
+                    
+                    <!-- Phase 1 -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-violet-50 p-2 rounded text-violet-700 font-bold text-xl">01</div>
+                            <h6 class="font-bold text-slate-700">Internal Validation</h6>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-600 mb-4">
+                            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Trained on TCGA Data</li>
+                            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Validated on CPTAC</li>
+                            <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> 3 Cancer Types (Breast, Lung, Oral)</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <span class="text-xs font-bold bg-emerald-100 text-emerald-700 px-2 py-1 rounded">Completed</span>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="bg-white p-6 rounded-xl border-2 border-[var(--hf-accent-sec)] shadow-md flex flex-col transform scale-105 relative z-10">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[var(--hf-accent-sec)] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Current Focus</div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-sky-50 p-2 rounded text-[var(--hf-accent-sec-dark)] font-bold text-xl">02</div>
+                            <h6 class="font-bold text-slate-800">Clinical Pilot</h6>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                            Deploying prototypes to local institutions to fine-tune models on Indian/SEA datasets. Focus on robust engineering for low-resource settings.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <span class="text-xs font-bold bg-sky-100 text-sky-700 px-2 py-1 rounded">In Discussion</span>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col opacity-75">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="bg-slate-50 p-2 rounded text-slate-500 font-bold text-xl">03</div>
+                            <h6 class="font-bold text-slate-700">Market Launch</h6>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                            Full web-app launch at New Delhi. Scale to 10+ cancer types and integrate real-time collaboration tools.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <span class="text-xs font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">Feb 2026</span>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+
+
+        <!-- ========================== -->
+        <!-- SLIDE 4: THE ENGINE (Technical) -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-4">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/img/oncogemma/oncogemma_logo_only.png" alt="OncoGemma logo" class="h-14 w-14 object-contain" onerror="this.style.display='none'; document.getElementById('logo-ph-4').style.display='block'">
+                    <div>
+                        <h1 class="font-display text-3xl font-bold text-slate-800">The Engine</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Graph Attention Architecture</h2>
+                    </div>
+                    <div id="logo-ph-4" style="display:none" class="text-2xl font-bold text-violet-800 font-display">OncoGemma</div>
+                </div>
+                <div class="flex flex-col items-end">
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain mb-1">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest">Powered by HawkFranklin</span>
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-white flex flex-col gap-8">
+                <div class="flex justify-between items-end">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase">04 | Proprietary Technology</h3>
+                    <div class="flex gap-2">
+                        <span class="bg-violet-50 text-violet-700 text-xs px-2 py-1 rounded border border-violet-100 font-medium">Graph Neural Networks</span>
+                        <span class="bg-sky-50 text-sky-700 text-xs px-2 py-1 rounded border border-sky-100 font-medium">Attention Mechanism</span>
+                    </div>
+                </div>
+
+                <!-- TOP SECTION: Pipeline Diagram -->
+                <div class="bg-slate-50 rounded-2xl border border-slate-200 p-8 relative overflow-hidden min-h-[280px]">
+                    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#6d28d9 1px, transparent 1px); background-size: 24px 24px;"></div>
+                    
+                    <div class="relative z-10 flex items-center justify-between gap-4">
+                        <!-- 1. Input -->
+                        <div class="w-1/5 flex flex-col items-center text-center">
+                            <div class="bg-white p-3 rounded-xl border border-slate-300 shadow-sm mb-3">
+                                <i class="fa-solid fa-file-medical text-3xl text-slate-400"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-sm">WSI Input</h4>
+                            <p class="text-xs text-slate-500 mt-1">High-Res Slide<br>Gigapixel Image</p>
+                        </div>
+
+                        <div class="pipeline-arrow"></div>
+
+                        <!-- 2. Processing (Patching) -->
+                        <div class="w-1/5 flex flex-col items-center text-center">
+                            <div class="bg-white p-3 rounded-xl border border-slate-300 shadow-sm mb-3">
+                                <i class="fa-solid fa-table-cells text-3xl text-violet-400"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-sm">Patch Encoding</h4>
+                            <p class="text-xs text-slate-500 mt-1">Tiling &amp; Feature Extraction</p>
+                        </div>
+
+                        <div class="pipeline-arrow"></div>
+
+                        <!-- 3. The IP (GAT) -->
+                        <div class="w-1/4 bg-violet-50 rounded-xl border-2 border-[var(--hf-accent-main)] p-4 flex flex-col items-center text-center relative shadow-lg">
+                            <div class="absolute -top-3 bg-[var(--hf-accent-main)] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                CORE IP
+                            </div>
+                            <i class="fa-solid fa-circle-nodes text-3xl text-[var(--hf-accent-main)] mb-2"></i>
+                            <h4 class="font-bold text-violet-900 text-sm">Graph Attention Autoencoder</h4>
+                            <p class="text-xs text-violet-700 mt-1">Learns spatial relationships between cells &amp; morphology</p>
+                        </div>
+
+                        <div class="pipeline-arrow"></div>
+
+                        <!-- 4. Output -->
+                        <div class="w-1/5 flex flex-col items-center text-center">
+                            <div class="bg-white border border-slate-200 rounded-lg p-3 w-full shadow-sm mb-2">
+                                <div class="flex justify-between items-center text-xs mb-1">
+                                    <span class="font-bold text-slate-700">AUC</span>
+                                    <span class="font-bold text-[var(--hf-accent-sec)]">~0.91</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-[var(--hf-accent-sec)] h-full w-[91%]"></div>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-sm">Multi-Output</h4>
+                            <p class="text-xs text-slate-500 mt-1">Subtype, Risk, Mutation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOTTOM SECTION: Data & Privacy -->
+                <div class="grid grid-cols-2 gap-8 h-full">
+                    
+                    <!-- Left: Methodology -->
+                    <div class="flex flex-col gap-6">
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-lg mb-2">Data Foundation</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Our models are rigorously trained on the gold-standard <strong class="text-violet-700">TCGA (The Cancer Genome Atlas)</strong> dataset and validated against <strong class="text-violet-700">CPTAC (Clinical Proteomic Tumor Analysis Consortium)</strong> to ensure generalizability across diverse cohorts.
+                            </p>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <div class="mt-1 w-6 h-6 rounded-full bg-sky-50 flex items-center justify-center text-[var(--hf-accent-sec)] flex-shrink-0">
+                                        <i class="fa-solid fa-server text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-700">Privacy-First Architecture</span>
+                                        <span class="text-xs text-slate-500">Deployable on-premise. Patient data never leaves the hospital firewall.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="mt-1 w-6 h-6 rounded-full bg-violet-50 flex items-center justify-center text-[var(--hf-accent-main)] flex-shrink-0">
+                                        <i class="fa-solid fa-layer-group text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-700">Multimodal Fusion</span>
+                                        <span class="text-xs text-slate-500">Integrating histology with clinical notes via OncoLLM agent.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Performance Metrics -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-center items-center text-center">
+                        <div class="w-32 h-32 relative flex items-center justify-center mb-4">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="64" cy="64" r="56" stroke="#f1f5f9" stroke-width="12" fill="none" />
+                                <circle cx="64" cy="64" r="56" stroke="var(--hf-accent-main)" stroke-width="12" fill="none" stroke-dasharray="351" stroke-dashoffset="35" stroke-linecap="round" />
+                            </svg>
+                            <div class="absolute flex flex-col items-center">
+                                <span class="text-3xl font-display font-bold text-slate-800">0.91</span>
+                                <span class="text-[10px] text-slate-400 uppercase">AUC Score</span>
+                            </div>
+                        </div>
+                        <h4 class="font-semibold text-slate-800 text-sm">Hypothetical Performance</h4>
+                        <p class="text-[11px] text-slate-500 mt-1 max-w-[80%] leading-tight">High accuracy in identifying aggressive subtypes across Breast and Lung cohorts.</p>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 5: LEADERSHIP -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-5">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/img/oncogemma/oncogemma_logo_only.png" alt="OncoGemma logo" class="h-14 w-14 object-contain" onerror="this.style.display='none'; document.getElementById('logo-ph-5').style.display='block'">
+                    <div>
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Leadership</h1>
+                        <h2 class="text-lg font-medium text-slate-600">The OncoGemma Team</h2>
+                    </div>
+                    <div id="logo-ph-5" style="display:none" class="text-2xl font-bold text-violet-800 font-display">OncoGemma</div>
+                </div>
+                <div class="flex flex-col items-end">
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain mb-1">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest">Powered by HawkFranklin</span>
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-slate-50">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-8">05 | OncoGemma Team</h3>
+                
+                <div class="grid grid-cols-3 gap-8 h-full pb-12">
+                    <!-- Team Member 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="../Vatsal_Patel.jpg" alt="Vatsal Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Vatsal Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Founder &amp; Research Engineer</p>
+                        <p class="text-sm text-slate-500">M.Sc Artificial Intelligence (IU Berlin)</p>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="../Abhijeet%20Patel.jpg" alt="Dr. Abhijeet Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Dr. Abhijeet Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Clinical Research Physician</p>
+                        <p class="text-sm text-slate-500">Bachelor of Medicine &amp; Surgery</p>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="../members/dr.yash_crop.png" alt="Dr. Yash Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Dr. Yash Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Clinical Research Physician</p>
+                        <p class="text-sm text-slate-500">Bachelor of Medicine &amp; Surgery</p>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="../members/dr.nishi_crop.png" alt="Dr. Nishi Seth" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Dr. Nishi Seth</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Consultant Dermatologist</p>
+                        <p class="text-sm text-slate-500">M.D Dermatology</p>
+                    </div>
+
+                    <!-- Team Member 5 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="../Saurav_Roy.jpeg" alt="Saurav Roy" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Saurav Roy</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Operations Head</p>
+                        <p class="text-sm text-slate-500">M.Tech Biotechnology</p>
+                    </div>
+
+                    <!-- Team Member 6 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="../Ananya_Pal.jpg" alt="Ananya Pal" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Ananya Pal</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Finance &amp; Accounting Head</p>
+                        <p class="text-sm text-slate-500">B.S Economics</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 6: VISION & PORTFOLIO -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-6">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-4">
+                    <img src="../assets/img/oncogemma/oncogemma_logo_only.png" alt="OncoGemma logo" class="h-14 w-14 object-contain" onerror="this.style.display='none'; document.getElementById('logo-ph-6').style.display='block'">
+                    <div>
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Vision &amp; Portfolio</h1>
+                        <h2 class="text-lg font-medium text-slate-600">How HawkFranklin Operates</h2>
+                    </div>
+                    <div id="logo-ph-6" style="display:none" class="text-2xl font-bold text-violet-800 font-display">OncoGemma</div>
+                </div>
+                <div class="flex flex-col items-end">
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain mb-1">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest">Powered by HawkFranklin</span>
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-white flex flex-col gap-10">
+                <!-- Top Half -->
+                <div class="grid grid-cols-2 gap-10">
+                    <!-- Operational Model -->
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Operational Revenue Model</h3>
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4 hover:border-[var(--hf-accent-sec)] transition-colors">
+                                <div class="bg-sky-100 p-3 rounded-lg text-[var(--hf-accent-sec)]"><i class="fa-solid fa-handshake text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-[var(--hf-accent-sec-dark)]">Path A: HFR-Initiated Products</h4>
+                                    <p class="text-sm text-slate-600 mt-1">We identify a market gap, build a validated product (like OncoGemma), and then seek commercial partners to scale it.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4 hover:border-[var(--hf-accent-sec)] transition-colors">
+                                <div class="bg-sky-100 p-3 rounded-lg text-[var(--hf-accent-sec)]"><i class="fa-solid fa-lightbulb text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-[var(--hf-accent-sec-dark)]">Path B: Partner-Initiated R&amp;D</h4>
+                                    <p class="text-sm text-slate-600 mt-1">You bring a defined challenge. We build the dedicated AI solution, acting as your external deep-tech R&amp;D team.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Philosophy -->
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Our Philosophy</h3>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            HawkFranklin’s long-term vision is to innovate science with commercial rigor. Our team spans physicists, chemists, biologists, and AI engineers who are building breakthroughs across quantum computing, finance, and healthcare.
+                        </p>
+                        <blockquote class="border-l-4 border-[var(--hf-accent-main)] pl-6 py-3 bg-[var(--hf-accent-soft)] rounded-r-lg">
+                            <p class="text-lg font-medium text-[var(--hf-accent-main-dark)] italic">
+                                "We are a resilient, self-funded team. We will succeed with or without external funding—this is an opportunity to join a team that is already moving forward."
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Bottom Half: Portfolio -->
+                <div class="mt-auto bg-slate-50 rounded-2xl p-8 border border-slate-100">
+                    <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest text-center mb-6">Broader Biomedical Portfolio</h4>
+                    <div class="grid grid-cols-4 gap-6">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-microscope text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">OncoGemma</h5>
+                            <p class="text-xs text-slate-500 mt-1">AI agents for digital pathology analysis</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-ribbon text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">C-Risq</h5>
+                            <p class="text-xs text-slate-500 mt-1">Multi-omics for cancer risk stratification</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-flask-vial text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">MedDiscover</h5>
+                            <p class="text-xs text-slate-500 mt-1">RAG copilot for biomedical Q&amp;A</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-brain text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">Clinical FM</h5>
+                            <p class="text-xs text-slate-500 mt-1">Foundation models for tabular EHR data</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-slate-500 mt-6 max-w-3xl mx-auto">
+                        Beyond OncoGemma, we maintain specialist pods across these domains to spin up commercialization-ready products wherever the science demands it.
+                    </p>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SHARED FOOTER & NAV -->
+        <!-- ========================== -->
+        <footer class="mt-auto bg-[var(--hf-dark-900)] text-slate-300 px-12 h-[50px] flex justify-between items-center text-xs flex-shrink-0 z-10">
+            <div class="flex space-x-6">
+                <span><i class="fa-solid fa-file-alt text-[var(--hf-accent-sec)] mr-1"></i> Research Manuscript Available on Request</span>
+                <span><i class="fa-solid fa-lock text-[var(--hf-accent-sec)] mr-1"></i> Provisional Patent Filed</span>
+            </div>
+            <div class="text-slate-400">© 2025 HawkFranklin Research</div>
+        </footer>
+
+        <!-- Slide Indicators -->
+        <div class="slide-indicator">
+            <div class="dot active" id="dot-1"></div>
+            <div class="dot" id="dot-2"></div>
+            <div class="dot" id="dot-3"></div>
+            <div class="dot" id="dot-4"></div>
+            <div class="dot" id="dot-5"></div>
+            <div class="dot" id="dot-6"></div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>
+                <i class="fa-solid fa-chevron-left"></i> Prev
+            </button>
+            <button class="nav-btn" id="nextBtn" onclick="handleNext()">
+                Next <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 6;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+
+            if (newSlide >= 1 && newSlide <= totalSlides) {
+                // Remove active class from current
+                document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+                document.getElementById(`dot-${currentSlide}`).classList.remove('active');
+
+                // Add active class to new
+                document.getElementById(`slide-${newSlide}`).classList.add('active');
+                document.getElementById(`dot-${newSlide}`).classList.add('active');
+
+                currentSlide = newSlide;
+                updateButtons();
+            }
+        }
+
+        function updateButtons() {
+            if (prevBtn) {
+                prevBtn.disabled = currentSlide === 1;
+            }
+
+            if (nextBtn) {
+                const isLast = currentSlide === totalSlides;
+                nextBtn.disabled = false;
+                if (isLast) {
+                    nextBtn.innerHTML = 'Finish <i class="fa-solid fa-check"></i>';
+                    nextBtn.classList.add('contact-mode');
+                } else {
+                    nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right"></i>';
+                    nextBtn.classList.remove('contact-mode');
+                }
+            }
+        }
+
+        function handleNext() {
+            if (currentSlide === totalSlides) {
+                return;
+            }
+            changeSlide(1);
+        }
+    </script>
+</body>
+</html>

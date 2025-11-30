@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OncoGemma - Investor Slide Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* PALETTE: Dark Purple & Sky Blue */
+            --hf-dark-900: #0f172a;
+            --hf-dark-800: #1e293b;
+            --hf-dark-700: #334155;
+            
+            /* Main accent is Dark Purple */
+            --hf-accent-main: #7c3aed; /* Violet-600 */
+            --hf-accent-main-dark: #6d28d9; /* Violet-700 */
+            --hf-accent-soft: rgba(124, 58, 237, 0.08);
+
+            /* Secondary accent is Sky Blue */
+            --hf-accent-sec: #0ea5e9; /* Sky-500 */
+            --hf-accent-sec-dark: #0284c7; /* Sky-600 */
+            --hf-accent-sec-soft: #e0f2fe;
+        }
+
+        body {
+            background-color: #cbd5e1;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .font-display {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* The Slide Container */
+        .deck-container {
+            width: 1240px;
+            height: 877px; /* Approximate A4 Landscape / 4:3 ratio */
+            background: #ffffff;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Individual Slide Styling */
+        .slide {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Header Consistency */
+        .hf-hero {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .hf-title-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hf-accent-main);
+            font-size: 2.2rem;
+        }
+
+        .hf-logo {
+            height: 72px;
+        }
+
+        /* Analysis Card Visuals */
+        .analysis-card {
+            background: linear-gradient(135deg, white, #f5f3ff);
+            border: 1px solid #ede9fe;
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.15);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #ddd6fe, var(--hf-accent-main));
+        }
+
+        .font-mono {
+            font-family: 'Courier Prime', monospace;
+        }
+
+        /* Chart Animations */
+        @keyframes growWidth {
+            from { width: 0; }
+            to { width: var(--target-width); }
+        }
+        
+        .bar-animate {
+            animation: growWidth 1.5s ease-out forwards;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: absolute;
+            bottom: 40px;
+            right: 32px;
+            display: flex;
+            gap: 12px;
+            z-index: 50;
+        }
+
+        .nav-btn {
+            background: var(--hf-dark-900);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            background: var(--hf-accent-main);
+        }
+
+        .nav-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .slide-indicator {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--hf-accent-main);
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        /* Custom Gradients for Slide 2 */
+        .bg-gradient-workflow {
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        /* Mockup Styles */
+        .mockup-window {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .mockup-header {
+            background: #0f172a;
+            padding: 10px 16px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .mockup-body {
+            background: #000;
+            position: relative;
+            height: 300px;
+        }
+        .mockup-sidebar {
+            width: 200px;
+            background: #fff;
+            border-left: 1px solid #e2e8f0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="deck-container">
+        
+        <!-- ========================== -->
+        <!-- SLIDE 1: PRODUCT & TECH -->
+        <!-- ========================== -->
+        <div class="slide active" id="slide-1">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-dna"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">OncoGemma</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Precision Pathology Co-Pilot</h2>
+                    </div>
+                </div>
+                <!-- Logo -->
+                <div>
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain">
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="flex-grow p-12 flex flex-col justify-between bg-white">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-2">01 | The Product</h3>
+                
+                <div class="grid grid-cols-12 gap-12 h-full">
+                    
+                    <!-- Left: Context & Deployment -->
+                    <div class="col-span-5 flex flex-col justify-center">
+                        <h2 class="font-display text-3xl font-bold text-slate-800 mb-6 leading-tight">
+                            Multi-Modal AI for <br>
+                            <span class="text-[var(--hf-accent-main)]">Precision Oncology</span>
+                        </h2>
+                        
+                        <div class="bg-slate-50 rounded-xl p-6 border border-slate-100 shadow-sm">
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wide mb-4">Core Capabilities</h4>
+                            <ul class="space-y-5">
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center text-[var(--hf-accent-main)]">
+                                        <i class="fa-solid fa-database text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Massive Scale Training</h5>
+                                        <p class="text-xs text-slate-500">Trained on TCGA (2.5PB) & Validated on CPTAC</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center text-[var(--hf-accent-sec)]">
+                                        <i class="fa-solid fa-ribbon text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">3 Major Cancer Types</h5>
+                                        <p class="text-xs text-slate-500">Specialized for Breast, Lung, and Oral Cancers</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center text-[var(--hf-accent-main)]">
+                                        <i class="fa-solid fa-microscope text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">WSI & Molecular Insights</h5>
+                                        <p class="text-xs text-slate-500">Predicts subtypes & mutations from H&E slides</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Analysis Card -->
+                    <div class="col-span-7 flex flex-col items-center justify-center">
+                        <div class="analysis-card rounded-2xl p-6 w-full shadow-lg transform scale-95 hover:scale-100 transition-transform duration-500">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-semibold text-gray-800">Case: TCGA-BR-001</h3>
+                                <span class="text-xs bg-violet-100 text-violet-800 px-3 py-1 rounded-full font-bold tracking-wide flex items-center gap-2">
+                                    <i class="fa-solid fa-robot"></i> AGENT ACTIVE
+                                </span>
+                            </div>
+                            
+                            <!-- Mockup Window -->
+                            <div class="mockup-window mb-4">
+                                <div class="mockup-header">
+                                    <div class="mockup-dot bg-red-500"></div>
+                                    <div class="mockup-dot bg-yellow-500"></div>
+                                    <div class="mockup-dot bg-green-500"></div>
+                                </div>
+                                <div class="mockup-body flex">
+                                    <!-- Slide View (Gradient) -->
+                                    <div class="flex-1 bg-gradient-to-br from-pink-200 via-rose-300 to-purple-200 relative overflow-hidden">
+                                        <!-- Heatmap Overlay -->
+                                        <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle at 30% 40%, yellow 0%, transparent 20%), radial-gradient(circle at 70% 60%, red 0%, transparent 25%);"></div>
+                                        
+                                        <div class="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded text-xs backdrop-blur-sm">
+                                            <i class="fa-solid fa-magnifying-glass"></i> 40x Zoom
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Sidebar -->
+                                    <div class="mockup-sidebar flex flex-col gap-3">
+                                        <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                                            <p class="text-[10px] text-slate-400 uppercase">Subtype</p>
+                                            <p class="text-sm font-bold text-violet-700">Luminal B</p>
+                                        </div>
+                                        <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                                            <p class="text-[10px] text-slate-400 uppercase">Tumor Burden</p>
+                                            <p class="text-sm font-bold text-red-600">68.5%</p>
+                                        </div>
+                                        <div class="p-2 bg-slate-50 rounded border border-slate-100">
+                                            <p class="text-[10px] text-slate-400 uppercase">Risk Score</p>
+                                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-1">
+                                                <div class="bg-red-500 h-1.5 rounded-full" style="width: 85%"></div>
+                                            </div>
+                                            <p class="text-xs font-bold text-slate-700 mt-0.5">High Risk</p>
+                                        </div>
+                                        <div class="mt-auto p-2 bg-violet-50 rounded border border-violet-100">
+                                            <p class="text-[10px] text-violet-600 font-medium">
+                                                <i class="fa-solid fa-comment-medical"></i> Agent Note:
+                                            </p>
+                                            <p class="text-[9px] text-slate-600 mt-1">
+                                                High TP53 mutation probability. Recommend adjuvant chemo.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stats -->
+                            <div class="flex justify-between items-center px-2">
+                                <div class="text-left">
+                                    <p class="text-xs text-slate-500 uppercase">Primary Prediction</p>
+                                    <p class="text-lg font-bold text-slate-800">Invasive Ductal Carcinoma</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-3xl font-display font-bold text-[var(--hf-accent-main)]">94.2%</p>
+                                    <p class="text-xs text-slate-500">Confidence</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-between gap-4 flex-wrap">
+                    <div class="inline-flex items-center justify-center gap-2 bg-[var(--hf-accent-main)] text-white px-6 py-3 rounded-xl font-semibold shadow-lg min-w-[220px]">
+                        <i class="fa-solid fa-rocket"></i>
+                        Ready for Implementation
+                    </div>
+                    <div class="inline-flex items-center justify-center gap-2 border-2 border-[var(--hf-accent-sec)] text-[var(--hf-accent-sec-dark)] px-6 py-3 rounded-xl font-semibold min-w-[200px]">
+                        <i class="fa-solid fa-flask"></i>
+                        Prototypes Available
+                    </div>
+                    <div class="inline-flex items-center gap-2 bg-[var(--hf-accent-soft)] text-[var(--hf-accent-main-dark)] border border-[var(--hf-accent-main)] px-6 py-3 rounded-xl font-semibold shadow-md">
+                        <i class="fa-solid fa-check-double"></i>
+                        Validated on CPTAC Data
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 2: OPERATIONAL IMPACT -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-2">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Clinical Impact</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Accelerating Diagnosis & Discovery</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-white flex gap-10">
+                
+                <!-- LEFT COLUMN: Workflow -->
+                <div class="w-7/12 flex flex-col gap-6">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase">02 | Workflow Optimization</h3>
+
+                    <!-- Workflow Comparison Card -->
+                    <div class="bg-gradient-workflow rounded-2xl p-6 border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-6">
+                            <h4 class="font-bold text-slate-800 text-lg flex items-center gap-2">
+                                <i class="fa-solid fa-arrows-rotate text-slate-400"></i> From Days to Hours
+                            </h4>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold uppercase tracking-wide">
+                                Instant Molecular Insights
+                            </span>
+                        </div>
+
+                        <!-- Traditional -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs text-slate-500 mb-2 uppercase tracking-wide font-semibold">
+                                <span>Standard Pathology (H&E Only)</span>
+                                <span>Subjective & Limited</span>
+                            </div>
+                            <div class="w-full h-10 bg-slate-200 rounded-lg relative overflow-hidden flex items-center px-4">
+                                <span class="text-xs font-bold text-slate-600">Visual Inspection</span>
+                                <i class="fa-solid fa-arrow-right text-slate-400 mx-2"></i>
+                                <span class="text-xs font-bold text-slate-600">IHC Orders (Days)</span>
+                                <i class="fa-solid fa-arrow-right text-slate-400 mx-2"></i>
+                                <span class="text-xs font-bold text-slate-600">Diagnosis</span>
+                            </div>
+                        </div>
+
+                        <!-- OncoGemma -->
+                        <div>
+                            <div class="flex justify-between text-xs text-[var(--hf-accent-main-dark)] mb-2 uppercase tracking-wide font-semibold">
+                                <span>With OncoGemma Co-Pilot</span>
+                                <span>Comprehensive & Fast</span>
+                            </div>
+                            <div class="w-full h-10 bg-violet-50 border border-violet-200 rounded-lg relative overflow-hidden flex items-center px-4">
+                                <span class="text-xs font-bold text-violet-700">WSI Scan</span>
+                                <i class="fa-solid fa-arrow-right text-violet-400 mx-2"></i>
+                                <span class="text-xs font-bold text-violet-700">AI Analysis (Mins)</span>
+                                <i class="fa-solid fa-arrow-right text-violet-400 mx-2"></i>
+                                <span class="text-xs font-bold text-violet-700">Precision Report</span>
+                            </div>
+                            <div class="mt-3 flex gap-4">
+                                <div class="flex items-center gap-2 text-xs text-slate-600">
+                                    <i class="fa-solid fa-check text-green-500"></i> Subtyping
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-slate-600">
+                                    <i class="fa-solid fa-check text-green-500"></i> Mutation Prediction
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-slate-600">
+                                    <i class="fa-solid fa-check text-green-500"></i> Chemotoxicity
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Performance Chart -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex-grow flex flex-col w-5/12">
+                    <h4 class="font-bold text-slate-800 text-lg mb-1">Model Performance (AUC)</h4>
+                    <p class="text-xs text-slate-500 mb-6">Subtype Classification on TCGA Test Set</p>
+                    
+                    <div class="space-y-5 flex-grow justify-center flex flex-col">
+                        <!-- Bar 1 -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold text-slate-500 w-24 text-right">Pathologist</span>
+                            <div class="flex-grow h-5 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-slate-400 bar-animate" style="--target-width: 75%"></div>
+                            </div>
+                            <span class="text-xs font-bold text-slate-600 w-8">0.75</span>
+                        </div>
+                        <!-- Bar 2 -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold text-slate-500 w-24 text-right">ResNet-50</span>
+                            <div class="flex-grow h-5 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-sky-400 bar-animate" style="--target-width: 82%"></div>
+                            </div>
+                            <span class="text-xs font-bold text-slate-600 w-8">0.82</span>
+                        </div>
+                         <!-- Bar 3 -->
+                         <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold text-slate-500 w-24 text-right">ViT-B/16</span>
+                            <div class="flex-grow h-5 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-indigo-400 bar-animate" style="--target-width: 86%"></div>
+                            </div>
+                            <span class="text-xs font-bold text-slate-600 w-8">0.86</span>
+                        </div>
+                        <!-- Bar 4 (OncoGemma) -->
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold text-[var(--hf-accent-main-dark)] w-24 text-right">OncoGemma</span>
+                            <div class="flex-grow h-8 bg-violet-50 rounded-full overflow-hidden border border-[var(--hf-accent-main)]">
+                                <div class="h-full bg-[var(--hf-accent-main)] bar-animate" style="--target-width: 94%"></div>
+                            </div>
+                            <span class="text-sm font-bold text-[var(--hf-accent-main-dark)] w-8">0.94</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-[10px] text-slate-400 mt-4 italic text-center">
+                        * Internal validation on held-out TCGA-BRCA, LUAD, & HNSC cohorts.
+                    </p>
+                </div>
+
+            </main>
+        </div>
+
+        <!-- Navigation & Indicators -->
+        <div class="slide-indicator">
+            <div class="dot active" id="dot-1"></div>
+            <div class="dot" id="dot-2"></div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" disabled>
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button class="nav-btn" id="nextBtn">
+                Next <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+
+        function updateSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === slides.length - 1;
+            
+            if (index === slides.length - 1) {
+                nextBtn.innerHTML = 'Finish <i class="fa-solid fa-check"></i>';
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fa-solid fa-arrow-right"></i>';
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlide(currentSlide);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide(currentSlide);
+            }
+        });
+    </script>
+</body>
+</html>
