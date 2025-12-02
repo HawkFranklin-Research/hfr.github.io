@@ -105,6 +105,37 @@
             background: linear-gradient(90deg, #ccfbf1, var(--hf-accent-main));
         }
 
+        /* Operational impact visuals */
+        .bg-gradient-workflow {
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        .roi-card {
+            background: #0f172a;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .roi-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: var(--hf-accent-main);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        @keyframes growWidth {
+            from { width: 0; }
+            to { width: var(--target-width); }
+        }
+        .bar-animate {
+            animation: growWidth 1.5s ease-out forwards;
+        }
+
         /* Navigation Controls */
         .nav-controls {
             position: absolute;
@@ -127,15 +158,19 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            opacity: 0.2;
         }
 
-        .nav-btn:hover {
+        .nav-btn:hover,
+        .nav-btn:focus-visible {
             background: var(--hf-accent-main);
+            opacity: 1;
         }
 
         .nav-btn:disabled {
             background: #94a3b8;
             cursor: not-allowed;
+            opacity: 0.35;
         }
 
         .nav-btn.contact-mode {
@@ -161,12 +196,18 @@
             border-radius: 50%;
             background: #cbd5e1;
             transition: all 0.3s;
+            opacity: 0.35;
         }
 
         .dot.active {
             background: var(--hf-accent-main);
             width: 30px;
             border-radius: 10px;
+            opacity: 0.8;
+        }
+
+        .dot:hover {
+            opacity: 1;
         }
 
         .demo-overlay {
@@ -186,12 +227,21 @@
 
         .demo-modal {
             position: relative;
-            width: min(1200px, 100%);
-            aspect-ratio: 16 / 9;
             background: #000;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .demo-modal.pc {
+            width: min(1200px, 100%);
+            aspect-ratio: 16 / 9;
+        }
+
+        .demo-modal.mobile {
+            width: min(420px, 90%);
+            max-height: 90vh;
+            aspect-ratio: 9 / 16;
         }
 
         .demo-close {
@@ -323,13 +373,19 @@
                 </div>
 
                 <div class="mt-6 flex items-center justify-between gap-4 flex-wrap">
-                    <button type="button" onclick="toggleDemoModal(true)" class="inline-flex items-center justify-center gap-2 bg-[var(--hf-accent-sec)] hover:bg-[var(--hf-accent-sec-dark)] text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition min-w-[220px]">
-                        <i class="fa-solid fa-circle-play"></i>
-                        Watch Application Demo
-                    </button>
+                    <div class="flex flex-wrap gap-3">
+                        <button type="button" onclick="toggleDemoModal('pc')" class="inline-flex items-center justify-center gap-2 bg-[var(--hf-accent-sec)] hover:bg-[var(--hf-accent-sec-dark)] text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition min-w-[180px]">
+                            <i class="fa-solid fa-display"></i>
+                            PC Demo
+                        </button>
+                        <button type="button" onclick="toggleDemoModal('mobile')" class="inline-flex items-center justify-center gap-2 bg-[var(--hf-accent-main)] hover:bg-[var(--hf-accent-main-dark)] text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition min-w-[180px]">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            Phone Demo
+                        </button>
+                    </div>
                     <div class="inline-flex items-center gap-2 bg-[var(--hf-accent-soft)] text-[var(--hf-accent-main-dark)] border border-[var(--hf-accent-main)] px-6 py-3 rounded-xl font-semibold shadow-md">
                         <i class="fa-solid fa-shield-heart"></i>
-                        80.2% Accuracy on Clinical Validation
+                        80.2% Accuracy on Technical Validation
                     </div>
                 </div>
 
@@ -364,9 +420,257 @@
         </div>
 
         <!-- ========================== -->
-        <!-- SLIDE 2: PARTNERSHIP & MARKET -->
+        <!-- SLIDE 2: OPERATIONAL IMPACT (COPIED) -->
         <!-- ========================== -->
         <div class="slide" id="slide-2">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-stopwatch-20"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Operational Impact</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Workflow Efficiency & Unit Economics</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow px-12 pt-4 pb-8 bg-white flex gap-10">
+                
+                <!-- LEFT COLUMN: Workflow & Tech -->
+                <div class="w-7/12 flex flex-col gap-6">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase">02 | Pre-Consultation Efficiency for Tele-Medicine</h3>
+
+                    <!-- Workflow Comparison Card -->
+                    <div class="bg-gradient-workflow rounded-2xl p-6 border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-6">
+                            <h4 class="font-bold text-slate-800 text-lg flex items-center gap-2">
+                                <i class="fa-solid fa-arrows-rotate text-slate-400"></i> Workflow Comparison
+                            </h4>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold uppercase tracking-wide">
+                                +10 Patients / 5hr Shift
+                            </span>
+                        </div>
+
+                        <!-- Traditional -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs text-slate-500 mb-2 uppercase tracking-wide font-semibold">
+                                <span>Traditional (No AI)</span>
+                                <span>10 Min / Patient</span>
+                            </div>
+                            <div class="w-full h-8 bg-slate-200 rounded-lg relative overflow-hidden flex">
+                                <div class="h-full bg-slate-400 flex items-center justify-center text-white text-xs font-bold" style="width: 100%">
+                                    Consultation (10m)
+                                </div>
+                            </div>
+                            <div class="mt-2 text-right">
+                                <span class="text-sm font-bold text-slate-600">6 Patients / Hour</span>
+                            </div>
+                        </div>
+
+                        <!-- PelliScope -->
+                        <div>
+                            <div class="flex justify-between text-xs text-[var(--hf-accent-main-dark)] mb-2 uppercase tracking-wide font-semibold">
+                                <span>With PelliScope</span>
+                                <span>~10 Min Total (Parallelized)</span>
+                            </div>
+                            <div class="w-full h-8 bg-slate-100 rounded-lg relative overflow-hidden flex gap-1">
+                                <div class="h-full bg-[var(--hf-accent-main)] flex items-center justify-center text-white text-[10px] font-bold leading-tight text-center px-1" style="width: 30%">
+                                    Preliminary<br>Diagnosis (3m)
+                                </div>
+                                <div class="h-full bg-[var(--hf-accent-sec)] flex items-center justify-center text-white text-[10px] font-bold leading-tight text-center px-1" style="width: 70%">
+                                    Focused<br>Consult (7m)
+                                </div>
+                            </div>
+                            <div class="mt-2 flex justify-between items-center">
+                                <p class="text-xs text-slate-400">AI triage saves 3 mins of discovery time per patient</p>
+                                <span class="text-lg font-bold text-[var(--hf-accent-main)]">8 Patients / Hour</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Triage + Coverage (commented out for now)
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="bg-[var(--hf-accent-soft)] text-[var(--hf-accent-main-dark)] px-3 py-1 rounded-full border border-[var(--hf-accent-main)] font-semibold text-[11px]">Balanced accuracy: 80.2%</span>
+                            <span class="bg-blue-50 text-[var(--hf-accent-sec-dark)] px-3 py-1 rounded-full border border-[var(--hf-accent-sec-soft)] font-semibold text-[11px]">Micro AUC: 0.86</span>
+                            <span class="bg-teal-50 text-[var(--hf-accent-main-dark)] px-3 py-1 rounded-full border border-teal-100 font-semibold text-[11px]">Macro AUC: 0.82</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-shield-virus text-[var(--hf-accent-main)] mt-0.5"></i>
+                            <div>
+                                <p class="font-semibold text-slate-700 text-sm mb-1">Dual-view triage</p>
+                                <p class="text-xs text-slate-600 leading-relaxed">Detects 10 dermatology conditions and flags <strong>Infectious vs Non-infectious</strong> to protect staff and patients.</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-slate-700 text-sm mb-2">10-condition panel</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Eczema</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Allergic Contact Dermatitis</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Insect Bite</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Urticaria</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Psoriasis</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Folliculitis</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Irritant Contact Dermatitis</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Tinea</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Herpes Zoster</span>
+                                <span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">Drug Rash</span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+
+                    <!-- Tech Performance (Bar Chart) -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex-grow flex flex-col">
+                        <h4 class="font-bold text-slate-800 text-lg mb-1">Model Performance (AUC)</h4>
+                        <p class="text-xs text-slate-500 mb-6">Zero-shot comparison on dermatology benchmarks</p>
+                        
+                        <div class="space-y-4 flex-grow justify-center flex flex-col">
+                            <!-- Bar 1 -->
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-slate-500 w-20 text-right">Grok-4</span>
+                                <div class="flex-grow h-4 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-slate-400 bar-animate" style="--target-width: 70%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-slate-600 w-8">0.70</span>
+                            </div>
+                            <!-- Bar 2 -->
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-slate-500 w-20 text-right">GPT-5</span>
+                                <div class="flex-grow h-4 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-400 bar-animate" style="--target-width: 81%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-slate-600 w-8">0.81</span>
+                            </div>
+                             <!-- Bar 3 -->
+                             <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-slate-500 w-20 text-right">Gemini 2.5</span>
+                                <div class="flex-grow h-4 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-indigo-400 bar-animate" style="--target-width: 82%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-slate-600 w-8">0.82</span>
+                            </div>
+                            <!-- Bar 4 (Pelliscope) -->
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-[var(--hf-accent-main-dark)] w-20 text-right">PelliScope</span>
+                                <div class="flex-grow h-6 bg-teal-50 rounded-full overflow-hidden border border-[var(--hf-accent-main)]">
+                                    <div class="h-full bg-[var(--hf-accent-main)] bar-animate" style="--target-width: 86%"></div>
+                                </div>
+                                <span class="text-sm font-bold text-[var(--hf-accent-main-dark)] w-8">0.86</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 border-t border-slate-100 pt-3 space-y-3 text-xs text-slate-600">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="bg-[var(--hf-accent-soft)] text-[var(--hf-accent-main-dark)] px-3 py-1 rounded-full border border-[var(--hf-accent-main)] font-semibold text-[11px]">Technical Accuracy: 80.2%</span>
+                                <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200 font-semibold text-[11px]">Infectious vs Non-infectious flag</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-shield-virus text-[var(--hf-accent-main)] mt-0.5"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-sm mb-1">10-condition panel</p>
+                                    <p class="text-xs leading-relaxed">Eczema, Allergic Contact Dermatitis, Insect Bite, Urticaria, Psoriasis, Folliculitis, Irritant Contact Dermatitis, Tinea, Herpes Zoster, Drug Rash.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Financials -->
+                <div class="w-5/12 flex flex-col h-full">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4 text-right">Unit Economics (Daily)</h3>
+                    
+                    <div class="roi-card rounded-2xl px-8 pt-4 pb-6 flex flex-col shadow-2xl border-t-4 border-[var(--hf-accent-main)]">
+                        
+                        <!-- Top: The Cost -->
+                        <div class="border-b border-slate-700 pb-3 mb-3">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 text-slate-400 mb-1">
+                                        <i class="fa-solid fa-server"></i>
+                                        <span class="text-xs uppercase tracking-widest font-bold">Infrastructure Cost</span>
+                                    </div>
+                                    <h2 class="text-4xl font-display font-bold text-white">$2.50</h2>
+                                    <p class="text-xs text-slate-500 mt-2">Daily Compute Spend (6 Hours)</p>
+                                </div>
+                                <div class="text-right bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+                                    <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Machine Specs</div>
+                                    <div class="text-xs text-slate-300 font-mono">8 Core CPU</div>
+                                    <div class="text-xs text-slate-300 font-mono">16 GB RAM</div>
+                                    <div class="text-[10px] text-teal-400 mt-1">CPU Edge Inference</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                                <p class="text-xs text-slate-400 italic">"A single machine costing less than a cup of coffee per day drives this entire workflow."</p>
+                            </div>
+                        </div>
+
+                        <!-- Middle: Clinical Revenue -->
+                        <div class="bg-white rounded-xl p-4 text-slate-900 shadow-lg mb-4 flex flex-col gap-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2 text-[var(--hf-accent-main-dark)]">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                    <span class="text-[10px] uppercase tracking-widest font-bold">Clinical Revenue Gain</span>
+                                </div>
+                                <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded border border-slate-200 font-semibold">US & UAE Ready</span>
+                            </div>
+                            
+                            <div class="flex items-end justify-between">
+                                <div>
+                                    <h2 class="text-4xl font-display font-bold text-slate-800">$800<span class="text-xl text-slate-400 font-medium">+</span></h2>
+                                    <p class="text-[10px] text-slate-500 mt-1">Daily Additional Revenue</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="bg-teal-100 text-teal-800 px-3 py-1 rounded-lg text-sm font-bold mb-1 inline-block">10+ Add. Patients</div>
+                                    <p class="text-xs text-slate-500 font-medium">@ $80 avg. consult fee</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom: PelliScope Revenue Model -->
+                        <div class="pt-3 border-t border-slate-700/50 mt-1">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-300 uppercase tracking-wide">Commercial Models</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-700 flex flex-col gap-2">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="text-sm font-bold text-white leading-tight">API call's based liscengin</h4>
+                                        <span class="text-xl font-display font-bold text-teal-300">$4k</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 leading-snug">Liscince 4k dollars per instance, including $0.5 per Query.</p>
+                                    <p class="text-xs text-slate-200 font-semibold leading-snug">Self-screening inquiries at scale</p>
+                                </div>
+                                <div class="bg-slate-800/60 p-4 rounded-xl border border-slate-700 flex flex-col gap-2">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="text-sm font-bold text-white leading-tight">On-prem deployment</h4>
+                                        <span class="text-xl font-display font-bold text-indigo-200">$15k</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 leading-snug">Includes telemedicine UI; $15k per instance (per-query cost separate).</p>
+                                    <ul class="mt-1 space-y-1 text-xs text-slate-200 leading-snug">
+                                        <li class="flex items-start gap-2"><span class="text-teal-400">•</span> Hospital Deployments ($15k/user)</li>
+                                        <li class="flex items-start gap-2"><span class="text-teal-400">•</span> Self-screening inquiries at scale</li>
+                                        <li class="flex items-start gap-2"><span class="text-teal-400">•</span> White-label for private networks</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 3: PARTNERSHIP & MARKET -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-3">
             <!-- Header -->
             <header class="hf-hero px-12 flex items-center justify-between relative">
                 <div class="flex items-center gap-5">
@@ -374,8 +678,8 @@
                         <i class="fa-solid fa-handshake"></i>
                     </span>
                     <div class="flex flex-col justify-center">
-                        <h1 class="font-display text-3xl font-bold text-slate-800">The Opportunity</h1>
-                        <h2 class="text-lg font-medium text-slate-600">Strategic Entry & Market Potential</h2>
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Investment Opportunity</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Strategic Market Entry</h2>
                     </div>
                 </div>
                 <div>
@@ -384,39 +688,41 @@
             </header>
 
             <main class="flex-grow p-12 pb-6 bg-slate-50 flex flex-col">
-                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4">02 | Strategic Roadmap</h3>
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4">03 | Technology Showcase & GCC Partner</h3>
 
-                <!-- The Navy Partnership Box -->
-                <div class="bg-[var(--hf-accent-sec-dark)] rounded-2xl p-8 text-white shadow-2xl relative overflow-hidden mb-8 flex-shrink-0">
-                    <!-- Decorative background element -->
-                    <i class="fa-solid fa-globe-americas absolute -right-10 -bottom-10 text-[10rem] text-white opacity-5"></i>
-                    
-                    <div class="relative z-10">
-                        <h2 class="font-display text-2xl text-cyan-300 font-bold mb-4">Upcoming Technology Showcase & GCC Opportunity</h2>
-                        <p class="text-blue-100 text-lg max-w-4xl leading-relaxed">
-                            PelliScope has been shortlisted for a <strong class="text-white">proof-of-concept demonstration</strong> by a major healthcare provider in the UAE. We will be co-presenting at an upcoming health conference, creating a critical entry point into the GCC market.
-                        </p>
-
-                        <div class="grid grid-cols-2 gap-8 mt-8">
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 flex items-start gap-4">
-                                <div class="bg-cyan-500/20 p-3 rounded-lg text-cyan-300">
-                                    <i class="fa-solid fa-calendar-days text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-lg text-white">Arab Health 2026</h5>
-                                    <p class="text-sm text-blue-200 mt-1">Official technology showcase under our partner's booth. High visibility.</p>
-                                </div>
+                <!-- Federal Partnership Card -->
+                <div class="bg-[var(--hf-dark-900)] rounded-2xl p-8 text-white shadow-2xl relative overflow-hidden mb-8 flex-shrink-0 border-l-8 border-[var(--hf-accent-main)]">
+                    <i class="fa-solid fa-handshake-simple absolute -right-8 -bottom-10 text-[12rem] text-white opacity-5"></i>
+                    <div class="relative z-10 flex justify-between items-start gap-10">
+                        <div class="max-w-3xl space-y-4">
+                            <div class="flex items-center gap-3">
+                                <span class="bg-[var(--hf-accent-main)] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Status: Active Engagement</span>
+                                <span class="text-slate-400 text-xs"><i class="fa-solid fa-location-dot"></i> Dubai, UAE</span>
                             </div>
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 flex items-start gap-4">
-                                <div class="bg-cyan-500/20 p-3 rounded-lg text-cyan-300">
-                                    <i class="fa-solid fa-code-branch text-2xl"></i>
+                            <h2 class="font-display text-3xl font-bold text-white">Federal Healthcare Integration</h2>
+                            <p class="text-blue-100 text-lg leading-relaxed">
+                                We are in advanced discussions with the <strong class="text-white">Emirates Health Services (EHS)</strong> to integrate PelliScope into the federal clinical pipeline. The solution is shortlisted for a PoC to validate efficacy across EHS facilities.
+                            </p>
+                            <div class="flex gap-4">
+                                <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-semibold">
+                                    <i class="fa-solid fa-check text-[var(--hf-accent-main)]"></i>
+                                    Shortlisted for PoC
                                 </div>
-                                <div>
-                                    <h5 class="font-bold text-lg text-white">Co-Development</h5>
-                                    <p class="text-sm text-blue-200 mt-1">Foundation for a localized, robust dermatological AI model standard for the UAE.</p>
+                                <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-semibold">
+                                    <i class="fa-solid fa-microphone-lines text-[var(--hf-accent-main)]"></i>
+                                    Invited to WHX & Arab Health 2026
                                 </div>
                             </div>
                         </div>
+
+                        <a href="EHS_acknoledgment_letter.pdf" class="bg-white text-slate-900 hover:bg-slate-100 px-5 py-4 rounded-xl shadow-lg transition-all border border-slate-200 w-64 flex flex-col gap-2">
+                            <div class="flex items-center justify-between text-xs text-slate-500 font-bold uppercase">
+                                <span><i class="fa-regular fa-file-pdf text-red-500 mr-2"></i>Document</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-slate-400"></i>
+                            </div>
+                            <div class="font-bold text-sm text-slate-900 leading-tight">Official Letter of<br>Acknowledgement</div>
+                            <div class="text-[11px] text-slate-500">From Emirates Health Services</div>
+                        </a>
                     </div>
                 </div>
 
@@ -450,21 +756,44 @@
                         </div>
                     </div>
 
-                    <!-- Stat 3 -->
-                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-3">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="bg-blue-50 p-2 rounded text-[var(--hf-accent-sec)]"><i class="fa-solid fa-file-contract"></i></div>
-                            <h6 class="font-semibold text-slate-700">Revenue Model</h6>
+                    <!-- Stat 3: Deployment Roadmap -->
+                    <div class="bg-[var(--hf-accent-sec-soft)] p-5 rounded-xl border border-blue-200 shadow-sm flex flex-col gap-3 relative overflow-hidden">
+                        <i class="fa-solid fa-route absolute -right-4 -bottom-4 text-8xl text-blue-200 opacity-20"></i>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="bg-white p-2 rounded text-[var(--hf-accent-sec)] border border-blue-100"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <h6 class="font-semibold text-[var(--hf-accent-sec-dark)]">Deployment Roadmap</h6>
                         </div>
-                        <div>
-                            <p class="text-2xl font-display font-bold text-slate-800 mt-1">$15k/mo</p>
-                            <p class="text-xs text-slate-500 mt-1">Per-user licensing + $0.50 SaaS inquiry fee</p>
-                            <ul class="text-xs text-slate-500 mt-2 space-y-1">
-                                <li>• Licensing: hospital deployments ($15k/user/month)</li>
-                                <li>• SaaS: $0.50 per self-screening inquiry at scale</li>
-                                <li>• White-label: private dermatology networks</li>
-                            </ul>
-                        </div>
+                        <ul class="space-y-3 text-xs text-slate-600">
+                            <li class="flex gap-3 items-start">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-2 h-2 rounded-full bg-[var(--hf-accent-main)]"></div>
+                                    <div class="w-0.5 h-5 bg-blue-200"></div>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-700 text-sm">Proof of Concept (Current)</p>
+                                    <p>Shortlisted by EHS Evaluation Committee</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-2 h-2 rounded-full bg-[var(--hf-accent-sec)]"></div>
+                                    <div class="w-0.5 h-5 bg-blue-200"></div>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-700 text-sm">WHX & Arab Health 2026</p>
+                                    <p>Official Tech Showcase at EHS Booth</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-2 h-2 rounded-full bg-slate-400"></div>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-700 text-sm">Full Integration</p>
+                                    <p>Clinical Pipeline Deployment</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </main>
@@ -472,9 +801,9 @@
 
 
         <!-- ========================== -->
-        <!-- SLIDE 3: INVESTMENT ASK -->
+        <!-- SLIDE 4: INVESTMENT ASK -->
         <!-- ========================== -->
-        <div class="slide" id="slide-3">
+        <div class="slide" id="slide-4">
             <!-- Header -->
             <header class="hf-hero px-12 flex items-center justify-between relative">
                 <div class="flex items-center gap-5">
@@ -482,8 +811,8 @@
                         <i class="fa-solid fa-chart-line"></i>
                     </span>
                     <div class="flex flex-col justify-center">
-                        <h1 class="font-display text-3xl font-bold text-slate-800">Investment</h1>
-                        <h2 class="text-lg font-medium text-slate-600">Scaling PelliScope AI</h2>
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Investment Opportunity</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Strategic Market Entry</h2>
                     </div>
                 </div>
                 <div>
@@ -491,40 +820,43 @@
                 </div>
             </header>
 
-            <main class="flex-grow p-12 pb-6 bg-white flex gap-12">
+            <main class="flex-grow px-12 pt-8 pb-8 bg-white flex gap-12">
                 
                 <!-- Left Column: The Ask -->
                 <div class="w-2/3 flex flex-col">
-                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4">03 | Funding Requirements</h3>
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4">04 | Funding Agenda</h3>
                     
                     <p class="text-lg text-slate-600 mb-8 leading-relaxed">
                         HawkFranklin Research is bootstrapped and ready to scale. We are launching a new Dubai-based entity to service GCC partnerships and are seeking capital for two distinct goals:
                     </p>
 
                     <div class="grid grid-cols-2 gap-6 mb-8">
-                        <!-- Urgent Ask -->
+                        <!-- Ticket 1 -->
                         <div class="bg-red-50 border-2 border-red-100 rounded-2xl p-6 hover:shadow-md transition-shadow relative">
-                            <div class="absolute top-0 right-0 bg-red-100 px-3 py-1 rounded-bl-xl rounded-tr-xl text-xs font-bold text-red-700">PHASE 1</div>
+                            <div class="absolute top-0 right-0 bg-red-100 px-3 py-1 rounded-bl-xl rounded-tr-xl text-xs font-bold text-red-700">Seed 1</div>
                             <h4 class="font-bold text-red-800 flex items-center gap-2 mb-4">
-                                <i class="fa-solid fa-flag"></i> Urgent Capital
+                                <i class="fa-solid fa-flag"></i> Networking & Marketing Campaign
                             </h4>
                             <div class="text-4xl font-display font-bold text-red-700 mb-4">$15,000</div>
                             <ul class="space-y-2 text-sm text-red-900/80">
-                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-red-500"></i> Execute PoC for Arab Health 2026</li>
-                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-red-500"></i> Cover initial Dubai setup & logistics</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-red-500"></i> Establish hospital and clinic networks across US & GCC</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-red-500"></i> Cover logistics support for conferences</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-red-500"></i> <strong>Available as Convertible Note</strong></li>
                             </ul>
                         </div>
 
-                        <!-- Seed Scale -->
+                        <!-- Multiple Disease + Geographic Scale -->
                         <div class="bg-blue-50 border-2 border-blue-100 rounded-2xl p-6 hover:shadow-md transition-shadow relative">
-                            <div class="absolute top-0 right-0 bg-blue-100 px-3 py-1 rounded-bl-xl rounded-tr-xl text-xs font-bold text-blue-700">PHASE 2</div>
+                            <div class="absolute top-0 right-0 bg-blue-100 px-3 py-1 rounded-bl-xl rounded-tr-xl text-xs font-bold text-blue-700">Scale 2</div>
                             <h4 class="font-bold text-blue-800 flex items-center gap-2 mb-4">
-                                <i class="fa-solid fa-rocket"></i> Seed Scale
+                                <i class="fa-solid fa-rocket"></i> Multi-disease & Geo Scale
                             </h4>
-                            <div class="text-4xl font-display font-bold text-blue-700 mb-4">$1.5M</div>
+                            <div class="text-4xl font-display font-bold text-blue-700 mb-4">$250k</div>
                             <ul class="space-y-2 text-sm text-blue-900/80">
-                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-500"></i> Full UAE product adaptation</li>
-                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-500"></i> Scale team & validate on new diseases</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-500"></i> Pre-cancerous skin lesion pathways</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-500"></i> Proprietary dataset expansion: SE Asia & Europe</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-500"></i> International data collection teams</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-500"></i> Team scale & new-condition validation</li>
                             </ul>
                         </div>
                     </div>
@@ -533,12 +865,12 @@
                     <div class="bg-slate-50 rounded-xl p-6 flex items-center justify-around border border-slate-100">
                         <div class="text-center">
                             <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Projected ARR (18 Mo)</p>
-                            <p class="text-2xl font-bold text-slate-800">$2.1 Million</p>
+                            <p class="text-2xl font-bold text-slate-800">$1.2 Million</p>
                         </div>
                         <div class="w-px h-10 bg-slate-200"></div>
                         <div class="text-center">
                             <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Early Investor Potential</p>
-                            <p class="text-2xl font-bold text-[var(--hf-accent-main)]">5x ROI</p>
+                            <p class="text-2xl font-bold text-[var(--hf-accent-main)]">4x ROI</p>
                         </div>
                     </div>
 
@@ -548,8 +880,9 @@
                                 <i class="fa-solid fa-seedling text-[var(--hf-accent-main)]"></i> Future Directions
                             </h5>
                             <ul class="space-y-2">
-                                <li>• Extend differential AI to rare skin diseases, including melanoma</li>
-                                <li>• Pair with longitudinal EHR data for chronic patient monitoring</li>
+                                <li>• Expand to rare and pre-cancerous lesions with dermoscopy</li>
+                                <li>• Pair longitudinal EHR + imaging for chronic monitoring</li>
+                                <li>• Add clinician-in-the-loop labeling to speed new markets</li>
                             </ul>
                         </div>
                         <div class="bg-white border border-slate-100 rounded-xl p-5 shadow-sm">
@@ -557,8 +890,9 @@
                                 <i class="fa-solid fa-calendar text-[var(--hf-accent-main)]"></i> Current Rollout Plan
                             </h5>
                             <ul class="space-y-2">
-                                <li>• Clinical deployment in UAE by Aug 2026</li>
-                                <li>• Expansion into India by Sep 2026</li>
+                                <li>• Clinical deployment in UAE by Oct 2025</li>
+                                <li>• Expansion into India & SE Asia by Sep 2026</li>
+                                <li>• EU data partnership & rollout prep by Dec 2026</li>
                                 <li>• GCC-wide rollout by March 2027</li>
                             </ul>
                         </div>
@@ -589,9 +923,9 @@
         </div>
 
         <!-- ========================== -->
-        <!-- SLIDE 4: THE TEAM (NEW) -->
+        <!-- SLIDE 5: THE TEAM (NEW) -->
         <!-- ========================== -->
-        <div class="slide" id="slide-4">
+        <div class="slide" id="slide-5">
             <!-- Header -->
             <header class="hf-hero px-12 flex items-center justify-between relative">
                 <div class="flex items-center gap-5">
@@ -609,7 +943,7 @@
             </header>
 
             <main class="flex-grow p-12 bg-slate-50">
-                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-8">04 | PelliScope Team</h3>
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-8">05 | PelliScope Team</h3>
                 
                 <div class="grid grid-cols-3 gap-8 h-full pb-12">
                     <!-- Team Member 1 -->
@@ -664,9 +998,9 @@
         </div>
 
         <!-- ========================== -->
-        <!-- SLIDE 5: VISION & PORTFOLIO (NEW) -->
+        <!-- SLIDE 6: VISION & PORTFOLIO (NEW) -->
         <!-- ========================== -->
-        <div class="slide" id="slide-5">
+        <div class="slide" id="slide-6">
             <!-- Header -->
             <header class="hf-hero px-12 flex items-center justify-between relative">
                 <div class="flex items-center gap-5">
@@ -772,6 +1106,7 @@
             <div class="dot" id="dot-3"></div>
             <div class="dot" id="dot-4"></div>
             <div class="dot" id="dot-5"></div>
+            <div class="dot" id="dot-6"></div>
         </div>
 
         <!-- Navigation Buttons -->
@@ -788,7 +1123,7 @@
 
     <!-- Demo Overlay -->
     <div id="demoModal" class="demo-overlay" aria-hidden="true">
-        <div class="demo-modal">
+        <div class="demo-modal pc">
             <button class="demo-close" type="button" aria-label="Close demo" onclick="toggleDemoModal(false)">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -801,9 +1136,11 @@
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 5;
+        const totalSlides = 6;
         const demoModal = document.getElementById('demoModal');
         const demoVideo = document.getElementById('demoVideo');
+        const pcDemoSrc = '../assets/video/pelliscope_preview.mp4';
+        const mobileDemoSrc = '../assets/video/pelliscope-mobile-ad1.mp4';
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
 
@@ -850,9 +1187,27 @@
             changeSlide(1);
         }
 
-        function toggleDemoModal(open) {
+        function toggleDemoModal(modeOrOpen) {
             if (!demoModal) return;
+            const isString = typeof modeOrOpen === 'string';
+            const open = modeOrOpen === true || isString;
             if (open) {
+                const mode = isString ? modeOrOpen : 'pc';
+
+                // Adjust modal dimensions per device type
+                const modalInner = demoModal.querySelector('.demo-modal');
+                if (modalInner) {
+                    modalInner.classList.remove('pc', 'mobile');
+                    modalInner.classList.add(mode === 'mobile' ? 'mobile' : 'pc');
+                }
+
+                if (demoVideo) {
+                    const src = mode === 'mobile' ? mobileDemoSrc : pcDemoSrc;
+                    if (demoVideo.src !== src) {
+                        demoVideo.src = src;
+                    }
+                    demoVideo.load();
+                }
                 demoModal.classList.add('active');
                 demoModal.setAttribute('aria-hidden', 'false');
                 if (demoVideo) {

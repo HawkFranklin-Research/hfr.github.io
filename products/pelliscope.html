@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelliScope - AI for Pre-Medical Dermatology Inquiry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="../assets/css/theme.css" rel="stylesheet" />
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+        }
+        .disease-card {
+            transition: all 0.3s ease;
+        }
+        .disease-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .infographic-item {
+            position: relative;
+        }
+        .infographic-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233b82f6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 5l7 7-7 7M5 5l7 7-7 7' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        @media (max-width: 768px) {
+            .infographic-item:not(:last-child):after {
+                display: none;
+            }
+        }
+    </style>
+    </head>
+<body class="font-sans antialiased text-gray-800">
+  <!-- HFR Header -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-dark-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+        <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="logo-header" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-base lg:text-lg font-medium">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#products" class="nav-link">Products</a>
+        <a href="../research.html" class="nav-link">Research</a>
+        <a href="../aclis.html" class="nav-link">ACLIS</a>
+        <a href="../publications.html" class="nav-link">Publications</a>
+        <a href="../about.html" class="nav-link">About</a>
+      </nav>
+      <div class="hidden md:block">
+        <a href="../schedule.html" class="btn-primary">Schedule Demo</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-dark-100" aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-dark-200 bg-white">
+      <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="../index.html" class="py-2 font-medium">Home</a>
+        <a href="../index.html#products" class="py-2">Products</a>
+        <a href="../research.html" class="py-2">Research</a>
+        <a href="../aclis.html" class="py-2">ACLIS</a>
+        <a href="../publications.html" class="py-2">Publications</a>
+        <a href="../about.html" class="py-2">About</a>
+        <a href="../schedule.html" class="btn-primary text-center mt-2">Schedule Demo</a>
+      </nav>
+    </div>
+  </header>
+    <!-- Hero Section -->
+    <section class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-allergies text-3xl text-emerald-600"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-blue-900">PelliScope</h2>
+                            <p class="text-lg font-medium text-slate-600">AI for Pre-Medical Dermatology Inquiry</p>
+                        </div>
+                    </div>
+                    <p class="text-xl text-gray-700 mb-8">PelliScope is a clinical vision AI that supports lesion triage and dermatological diagnosis, providing clinicians with intelligent assistance for skin condition assessment.</p>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Key Capabilities</h3>
+                        <ul class="space-y-3 text-lg text-gray-700">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                                <span>Free skin lesion check-up to detect infectious versus non-infectious presentations.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                                <span>Paid differential diagnosis pathway for complex skin conditions.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                                <span>Resource-optimized AI executable on CPU-grade hardware—no GPUs required.</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                            <a href="#demo" class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
+                                <i class="fas fa-play-circle text-lg"></i>
+                                Watch Demo
+                            </a>
+                            <a href="../investors/pelliscope-investror-deck.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition">
+                                <i class="fas fa-chart-line text-base"></i>
+                                Investor Slide Deck
+                            </a>
+                            <a href="../investors/gab2.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border-2 border-blue-100 text-blue-800 hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold transition">
+                                <i class="fas fa-diagram-project text-base"></i>
+                                Technical Infographic
+                            </a>
+                            <button id="contactQrBtn" class="inline-flex items-center justify-center gap-2 border-2 border-blue-100 text-blue-800 bg-white hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold shadow-sm transition">
+                                <i class="fas fa-qrcode text-base"></i>
+                                Contact Us
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-xl" id="dermassistPreview">
+                        <div class="absolute -top-6 -left-6 w-64 h-64 bg-blue-200 rounded-2xl opacity-50"></div>
+                        <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-blue-300 rounded-2xl opacity-50"></div>
+                        <div id="analysisCard" class="relative bg-white p-4 rounded-2xl shadow-xl transition-opacity duration-700 ease-in-out" style="min-height: 360px;">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-semibold text-gray-800">Skin Lesion Analysis</h3>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">AI Assessment</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-3 mb-4">
+                                <div class="text-center">
+                                    <img src="close_up.jpeg" alt="Clinical close-up" class="w-full h-36 object-cover rounded-lg border border-blue-100 shadow-sm">
+                                    <p class="text-xs text-gray-500 mt-2 uppercase tracking-wide">Close-up</p>
+                                </div>
+                                <div class="text-center">
+                                    <img src="context.jpeg" alt="Clinical context view" class="w-full h-36 object-cover rounded-lg border border-blue-100 shadow-sm">
+                                    <p class="text-xs text-gray-500 mt-2 uppercase tracking-wide">Context</p>
+                                </div>
+                                <div class="text-center">
+                                    <img src="angled.jpeg" alt="Clinical angled view" class="w-full h-36 object-cover rounded-lg border border-blue-100 shadow-sm">
+                                    <p class="text-xs text-gray-500 mt-2 uppercase tracking-wide">Angled</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="font-medium">Eczema</span>
+                                        <span>78%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-600 h-2 rounded-full" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="font-medium">Psoriasis</span>
+                                        <span>65%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-400 h-2 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="font-medium">Contact Dermatitis</span>
+                                        <span>42%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-300 h-2 rounded-full" style="width: 42%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="analysisVideo" class="relative rounded-2xl shadow-xl overflow-hidden bg-black hidden opacity-0 transition-opacity duration-700 ease-in-out" style="min-height: 360px;">
+                            <video id="dermassistHeroVideo" class="w-full h-full object-cover" muted playsinline controls preload="metadata" poster="../assets/video/pelliscope_top_preview.jpg">
+                                <source src="../assets/video/pelliscope_top_preview.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infographic Section (Extract this for slides) -->
+    <section id="technology" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">How PelliScope Works</h2>
+            
+            <div class="bg-blue-50 rounded-2xl p-8 mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+                    <!-- Infographic Item 1 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-camera text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Image Upload</h3>
+                        <p class="text-gray-600">Clinicians upload skin lesion images through an intuitive interface</p>
+                    </div>
+                    
+                    <!-- Infographic Item 2 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-brain text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">AI Processing</h3>
+                        <p class="text-gray-600">CNN/Transformer pipelines analyze the image using dermatology datasets</p>
+                    </div>
+                    
+                    <!-- Infographic Item 3 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-bar text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Probability Assessment</h3>
+                        <p class="text-gray-600">System calculates likelihood scores for various conditions</p>
+                    </div>
+                    
+                    <!-- Infographic Item 4 -->
+                    <div class="infographic-item flex flex-col items-center text-center px-4 md:w-1/4">
+                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-user-md text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Clinical Decision Support</h3>
+                        <p class="text-gray-600">Presents findings to assist (not replace) clinician diagnosis</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-xl text-blue-800 mb-4">Key Features</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Multi-label predictions for complex dermatological conditions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Pluggable classifier backend (LogReg, MLP, etc.)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Top-K probability visualization for differential diagnosis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>API integration for seamless workflow incorporation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Sample image library for testing and demonstration</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-xl text-blue-800 mb-4">Technical Specifications</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-microchip text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Model Architecture:</strong> Hybrid CNN/Transformer pipelines</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-database text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Training Data:</strong> ISIC, dermoscopy images, and proprietary datasets</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-code text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Framework:</strong> PyTorch/TensorFlow with scikit-learn classifiers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-laptop-code text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Interface:</strong> Gradio UI with FastAPI backend</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
+                            <span><strong>Compliance:</strong> Tele-medicine, pre-medical inquiry, and research use cases</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conditions Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-900 mb-12">Supported Conditions</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <!-- Condition Card 1 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-allergies text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Eczema</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Chronic condition causing inflamed, itchy, cracked, and rough skin</p>
+                </div>
+                
+                <!-- Condition Card 2 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-bug text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Psoriasis</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Autoimmune disease that causes raised, red, scaly patches</p>
+                </div>
+                
+                <!-- Condition Card 3 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-radiation-alt text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Tinea</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Fungal skin infection causing ring-shaped rashes</p>
+                </div>
+                
+                <!-- Condition Card 4 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-burn text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Contact Dermatitis</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Skin irritation from contact with allergens or irritants</p>
+                </div>
+                
+                <!-- Condition Card 5 -->
+                <div class="disease-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg border-l-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-virus text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Herpes Zoster</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">Viral infection causing painful skin rash with blisters</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section (video + schedule) -->
+    <section id="demo" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-start gap-12">
+                <div class="w-full lg:w-5/12 lg:pr-8">
+                    <a href="../assets/video/pelliscope_preview.mp4" class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 uppercase tracking-widest">
+                        PelliScope Preview <i class="fas fa-external-link-alt text-xs"></i>
+                    </a>
+                    <h2 class="text-3xl font-bold text-blue-900 mt-2 mb-4">See the workflow in action</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Walk through a 30-second capture of the PelliScope console — from multi-angle intake to confidence-ranked triage guidance.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="../assets/video/pelliscope_preview.mp4" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
+                            <i class="fas fa-play-circle text-lg"></i>
+                            Watch Demo
+                        </a>
+                        <a href="../schedule.html" class="inline-flex items-center gap-2 border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition">
+                            <i class="fas fa-calendar-check text-base"></i>
+                            Schedule Live Session
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full lg:flex-1">
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 shadow-lg" style="min-height: 34rem;">
+                        <video autoplay loop muted playsinline controls class="w-full h-full rounded-xl bg-black object-cover" poster="../assets/video/dermassist_preview.jpg">
+                            <source src="../assets/video/pelliscope_preview.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA (Shared) -->
+    <section class="py-16 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #4338ca 0%, #2563eb 50%, #0891b2 100%);">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(1000px 400px at 10% 20%, #ffffff 0, transparent 60%), radial-gradient(800px 300px at 90% 80%, #ffffff 0, transparent 60%)"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold mb-6">Let’s Build Clinical‑Grade AI Together</h2>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8">Partner with HFR on pilots, research collaborations, or enterprise integrations across healthcare and biosciences.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="../schedule.html" class="bg-white hover:bg-slate-100 text-indigo-700 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+                    <i class="fas fa-calendar-check mr-2"></i> Schedule Demo
+                </a>
+                <a href="../index.html#products" class="border-2 border-white text-white hover:bg-white/10 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+                    <i class="fas fa-boxes-stacked mr-2"></i> Explore Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <!-- HFR Footer (unified) -->
+    <footer class="bg-dark-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid gap-12 md:grid-cols-4">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <img src="../assets/img/HFR name logo 2.png" alt="HFR" class="logo-footer-wide" />
+            </div>
+            <p class="text-dark-300 text-sm">Advancing science through deep‑tech AI research and clinical‑grade product engineering.</p>
+            <div class="flex space-x-4 mt-6">
+              <a href="https://www.linkedin.com/company/hawk-franklin-research" class="text-dark-300 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+              <a href="https://github.com/HawkFranklin-Research" class="text-dark-300 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg mb-4">Explore</h4>
+            <ul class="space-y-2 text-sm text-dark-300">
+              <li><a href="../aclis.html" class="hover:text-white">ACLIS</a></li>
+              <li><a href="../research.html" class="hover:text-white">Research</a></li>
+              <li><a href="../publications.html" class="hover:text-white">Publications</a></li>
+              <li><a href="../vision.html" class="hover:text-white">Vision & Ethics</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg mb-4">Company</h4>
+            <ul class="space-y-2 text-sm text-dark-300">
+              <li><a href="../about.html" class="hover:text-white">About</a></li>
+              <li><a href="../careers.html" class="hover:text-white">Careers</a></li>
+              <li><a href="../contact.html" class="hover:text-white">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg mb-4">Contact</h4>
+            <ul class="space-y-2 text-sm text-dark-300">
+              <li><a href="mailto:contact@hawk-franklin-research.com" class="hover:text-white">contact@hawk-franklin-research.com</a></li>
+              <li>India (Dot) Kalyani, West Bengal</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-dark-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p class="text-sm text-dark-400">© <span id="year"></span> HawkFranklin Research. All rights reserved.</p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" class="text-sm text-dark-400 hover:text-white">Privacy</a>
+            <a href="#" class="text-sm text-dark-400 hover:text-white">Terms</a>
+            <a href="#" class="text-sm text-dark-400 hover:text-white">Security</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Contact QR Modal -->
+    <div id="contactQrModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+      <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full relative">
+        <button id="closeQrModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+        <div class="flex flex-col items-center gap-4 text-center">
+          <img src="../assets/img/investor-email-qr.png" alt="Contact QR code" class="w-48 h-48 object-contain rounded-lg border border-gray-200">
+          <div>
+            <p class="font-semibold text-gray-900">Contact Us</p>
+            <p class="text-sm text-gray-600">Scan the QR code to email invest@hawkfranklin.in</p>
+          </div>
+          <a href="mailto:invest@hawkfranklin.in" class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold transition">
+            <i class="fas fa-envelope"></i> Email Us
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const card = document.getElementById('analysisCard');
+        const videoWrap = document.getElementById('analysisVideo');
+        const video = document.getElementById('dermassistHeroVideo');
+        if (!card || !videoWrap || !video) return;
+
+        const CARD_DISPLAY_MS = 5000;
+        const TRANSITION_MS = 800;
+        let cardTimeoutId;
+
+        const showCard = () => {
+          videoWrap.classList.add('opacity-0');
+          setTimeout(() => {
+            video.pause();
+            video.currentTime = 0;
+            videoWrap.classList.add('hidden');
+            card.classList.remove('hidden');
+            requestAnimationFrame(() => card.classList.remove('opacity-0'));
+            cardTimeoutId = setTimeout(showVideo, CARD_DISPLAY_MS);
+          }, TRANSITION_MS);
+        };
+
+        const showVideo = () => {
+          if (cardTimeoutId) {
+            clearTimeout(cardTimeoutId);
+            cardTimeoutId = null;
+          }
+          card.classList.add('opacity-0');
+          setTimeout(() => {
+            card.classList.add('hidden');
+            videoWrap.classList.remove('hidden');
+            requestAnimationFrame(() => videoWrap.classList.remove('opacity-0'));
+            video.play().catch(() => {});
+          }, TRANSITION_MS);
+        };
+
+        video.addEventListener('ended', showCard);
+
+        setTimeout(showVideo, 2000);
+      })();
+    </script>
+    <script>
+      (function () {
+        const openBtn = document.getElementById('contactQrBtn');
+        const modal = document.getElementById('contactQrModal');
+        const closeBtn = document.getElementById('closeQrModal');
+        if (!openBtn || !modal || !closeBtn) return;
+
+        const openModal = () => modal.classList.remove('hidden');
+        const closeModal = () => modal.classList.add('hidden');
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        });
+      })();
+    </script>
+    <script src="../assets/js/site.js"></script>
+
+</body>
+</html>
