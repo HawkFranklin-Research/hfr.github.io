@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HawkFranklin Developer Header</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Lexend:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold-500: #eab308;
+      --gold-700: #a16207;
+      --sky-500: #0ea5e9;
+      --ink-900: #0f172a;
+      --cream-50: #fffdf4;
+      --cream-100: #fff8e6;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      width: 4096px;
+      height: 2304px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--cream-50) 0%, var(--cream-100) 45%, #ffffff 100%);
+      font-family: 'Inter', sans-serif;
+      color: var(--ink-900);
+    }
+    .canvas {
+      width: 4096px;
+      height: 2304px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+    .glow {
+      position: absolute;
+      width: 2000px;
+      height: 2000px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(234,179,8,0.18) 0%, rgba(234,179,8,0.08) 40%, rgba(234,179,8,0) 70%);
+      top: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+    .content {
+      max-width: 3000px;
+      padding: 0 220px;
+      z-index: 1;
+    }
+    .eyebrow {
+      font-size: 64px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gold-700);
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-family: 'Lexend', sans-serif;
+      font-size: 240px;
+      line-height: 1.03;
+      margin: 0;
+      font-weight: 800;
+    }
+    .gradient {
+      background: linear-gradient(90deg, var(--sky-500), var(--gold-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="glow"></div>
+    <div class="content">
+      <div class="eyebrow">Your R&amp;D Partner in DeepTech</div>
+      <h1>Integrating AI for<br><span class="gradient">Scientific Discovery</span></h1>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,3 +1,12 @@
 presentation/aclis_slide_deck/
 assets/video/pelliscope_top_preview-60fps.mp4
 assets/video/pelliscope_top_preview0001-60fps.mp4
+fdroid/keystore.p12
+fdroid/tmp/
+fdroid/srclibs/
+fdroid/config.yml
+# APKs are hosted on GitHub Releases; keep them out of this repo.
+# GitHub blocks files >100MB if they appear in history.
+downloads/aura/*.apk
+fdroid/repo/*.apk
+conference/arab_health_26/20260210_104956.mp4

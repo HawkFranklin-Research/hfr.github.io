@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{example}[definition]{Example}
+
+\title{A finite-dimensional geometric framework for multimodal molecular consistency}
+\author{[Author name(s)]}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Multimodal molecular assays observe the same biological entity through multiple measurement channels, yet current integrative methods usually operationalize alignment through algorithm-specific latent spaces rather than an explicit mathematical notion of cross-modal consistency. We introduce a finite-dimensional two-layer framework that separates a static scaffold from dynamic modality-specific observations and defines a cross-modal consistency set, the \emph{Rosalind hyper-locus}, as an affine constraint locus in the product of modality spaces. In the finite-dimensional linear setting we prove that this locus is a closed affine hyperplane whenever the induced functional is nontrivial, and that every multimodal observation admits a unique orthogonal projection onto it. This yields a mathematically well-posed residual for inconsistency scoring and a natural geometric interpretation of reconciliation and missing-modality completion. The present paper is intentionally introductory: it develops the finite-dimensional core needed for a first biological manuscript and leaves broader categorical generalizations to later work.
+\end{abstract}
+
+\section{Introduction}
+
+The past decade has witnessed an explosion of high-dimensional molecular measurements in biology, ranging from genomics, transcriptomics, proteomics, and metabolomics to spatial transcriptomics and single-cell multimodal assays. In response, the multi-omics literature has produced a rich collection of computational integration methods, including latent-factor models such as MOFA+, deep generative models such as totalVI and MultiVI, cell-specific weighting procedures such as weighted nearest-neighbor analysis, graph-linked embeddings such as GLUE, supervised latent-component methods such as DIABLO, and manifold-alignment approaches such as Pamona \cite{Argelaguet2020,Gayoso2021,Ashuach2023,Hao2021,Cao2022,Singh2019,CaoHong2022}.
+
+These methods are powerful and successful, but they are mostly framed as algorithms for integration, denoising, prediction, or alignment. What remains less explicit is a compact, reusable mathematical notion of \emph{cross-modal consistency}: if several assays observe the same cell, tissue voxel, biopsy, or organismal state, what does it mean, in geometric terms, for those measurements to agree as views of one underlying biological state?
+
+The present paper studies the finite-dimensional introductory slice of a broader program we refer to as Rosalind Field Theory. The goal of this first paper is deliberately narrow. We do not attempt to formalize all possible modalities or all future generalizations. Instead, we introduce three pieces that can plausibly anchor a first mathematical-biology manuscript:
+\begin{itemize}[leftmargin=*]
+    \item a two-layer description separating a \emph{static scaffold} from \emph{dynamic measurements};
+    \item a finite-dimensional \emph{Rosalind functional} whose zero set defines a cross-modal consistency locus;
+    \item a first geometric result showing that, in the linear setting, this locus is an affine hyperplane admitting a unique orthogonal projection.
+\end{itemize}
+
+This finite formulation is motivated by a simple biological intuition. When multiple assays are applied to the same biological carrier, they are not producing unrelated datasets: they are generating different measurement shadows of the same object. The contribution of this paper is to turn that intuition into a mathematically tractable geometric statement.
+
+\section{A finite two-layer formulation}
+
+We work throughout with a finite active set of modalities $\mathcal{M}=\{1,\dots,M\}$. A \emph{carrier} is the biological entity under study, such as a cell, a spatial voxel, or a biopsy specimen. A \emph{parameter value} is an indexing condition such as time, treatment, developmental state, or patient context.
+
+\begin{definition}[Static scaffold]
+A \textbf{static scaffold} records parameter-invariant structural information associated with a carrier. Depending on the application, this may represent genomic sequence, spatial support, cell identity labels, or other stable contextual descriptors that specify the stage on which measurements are made.
+\end{definition}
+
+\begin{definition}[Dynamic measurements]
+For each modality $m\in\mathcal{M}$, let $V_m$ be a finite-dimensional real Hilbert space of modality-$m$ observations. A \textbf{dynamic state} at fixed carrier and parameter value is a tuple
+\[
+(x_m)_{m\in\mathcal{M}} \in \prod_{m\in\mathcal{M}} V_m,
+\]
+where $x_m$ denotes the modality-$m$ observation.
+\end{definition}
+
+\begin{remark}
+The static scaffold and the dynamic state play different conceptual roles. The scaffold identifies \emph{what} and \emph{where} is being observed; the dynamic state records \emph{how much} is currently measured in each modality.
+\end{remark}
+
+\begin{definition}[Rosalind functional]
+Let $L$ be a finite-dimensional real Hilbert space, let $\psi_m:V_m\to L$ be linear maps, let $\alpha_m\in\mathbb{R}$ be modality weights, let $w\in L$, and let $b\in\mathbb{R}$. The \textbf{Rosalind functional} is
+\[
+F\bigl((x_m)_{m\in\mathcal{M}}\bigr)
+:=
+\left\langle w, \sum_{m\in\mathcal{M}} \alpha_m\psi_m(x_m)\right\rangle_L - b.
+\]
+\end{definition}
+
+\begin{definition}[Rosalind hyper-locus]
+The \textbf{Rosalind hyper-locus} is the zero set
+\[
+H:=\left\{(x_m)_{m\in\mathcal{M}}\in\prod_{m\in\mathcal{M}}V_m\;\middle|\; F\bigl((x_m)_{m\in\mathcal{M}}\bigr)=0\right\}.
+\]
+It is the proposed consistency set for multimodal measurements of the same biological entity.
+\end{definition}
+
+\begin{remark}
+The present paper restricts to a finite number of modalities and finite-dimensional observation spaces. This is the mathematically cleanest setting in which to introduce the geometry and prove the first results.
+\end{remark}
+
+\section{First geometric results}
+
+The main point of the introductory paper is that the hyper-locus has a concrete affine geometry in the finite-dimensional linear setting.
+
+\begin{proposition}[Affine hyperplane structure]\label{prop:affine-hyperplane}
+Let $V:=\prod_{m\in\mathcal{M}}V_m$ with the product Hilbert structure. For each $m\in\mathcal{M}$ define
+\[
+u_m := \alpha_m\psi_m^*(w)\in V_m,
+\]
+where $\psi_m^*:L\to V_m$ denotes the Hilbert adjoint. Set $u:=(u_m)_{m\in\mathcal{M}}\in V$.
+If $u\neq 0$, then
+\[
+F\bigl((x_m)_m\bigr)=\sum_{m\in\mathcal{M}}\langle u_m,x_m\rangle_{V_m}-b,
+\]
+and the hyper-locus can be written as
+\[
+H=\left\{x\in V\mid \langle u,x\rangle_V=b\right\}.
+\]
+Consequently, $H$ is a closed affine hyperplane in $V$.
+\end{proposition}
+
+\begin{proof}
+By definition of the adjoint,
+\[
+\langle w,\psi_m(x_m)\rangle_L = \langle \psi_m^*(w),x_m\rangle_{V_m}.
+\]
+Therefore
+\[
+F\bigl((x_m)_m\bigr)
+=
+\sum_{m\in\mathcal{M}}\alpha_m\langle \psi_m^*(w),x_m\rangle_{V_m}-b
+=
+\sum_{m\in\mathcal{M}}\langle u_m,x_m\rangle_{V_m}-b
+=
+\langle u,x\rangle_V-b.
+\]
+Thus $H=\{x\in V\mid \langle u,x\rangle_V=b\}$. Since $u\neq 0$, this is the inverse image of the singleton $\{b\}$ under a nonzero continuous linear functional on a finite-dimensional Hilbert space, hence a closed affine hyperplane.
+\end{proof}
+
+\begin{proposition}[Projection and residual]\label{prop:projection}
+Under the assumptions of Proposition~\ref{prop:affine-hyperplane}, every $x\in V$ has a unique orthogonal projection onto $H$, given by
+\[
+P_H(x)=x-\frac{F(x)}{\|u\|_V^2}\,u.
+\]
+Moreover,
+\[
+d(x,H)=\frac{|F(x)|}{\|u\|_V}.
+\]
+\end{proposition}
+
+\begin{proof}
+Set
+\[
+y:=x-\frac{F(x)}{\|u\|_V^2}u.
+\]
+Then
+\[
+\langle u,y\rangle_V
+=
+\langle u,x\rangle_V-\frac{F(x)}{\|u\|_V^2}\langle u,u\rangle_V
+=
+\langle u,x\rangle_V-F(x)
+=
+b,
+\]
+so $y\in H$. Also,
+\[
+x-y=\frac{F(x)}{\|u\|_V^2}u,
+\]
+which is parallel to the normal vector $u$ and therefore orthogonal to the affine hyperplane $H$. Hence $y$ is the unique orthogonal projection of $x$ onto $H$. Taking norms gives
+\[
+\|x-P_H(x)\|_V = \left|\frac{F(x)}{\|u\|_V^2}\right|\,\|u\|_V = \frac{|F(x)|}{\|u\|_V},
+\]
+which equals the distance from $x$ to $H$.
+\end{proof}
+
+\begin{corollary}[Geometric interpretation]\label{cor:interpretation}
+In the finite-dimensional linear setting, the scalar quantity $|F(x)|/\|u\|_V$ defines a well-posed \emph{inconsistency score} for a multimodal observation $x$, and the point $P_H(x)$ is its uniquely defined \emph{reconciled state} on the hyper-locus.
+\end{corollary}
+
+\begin{corollary}[One-modality completion]\label{cor:completion}
+Fix a modality $k\in\mathcal{M}$ with $u_k\neq 0$ and suppose that $(x_m)_{m\neq k}$ are observed. Then the admissible completions of the missing modality $x_k$ are exactly the points of the affine hyperplane
+\[
+C_k=\left\{x_k\in V_k\;\middle|\;\langle u_k,x_k\rangle_{V_k}=b-\sum_{m\neq k}\langle u_m,x_m\rangle_{V_m}\right\}.
+\]
+Among these completions, the minimum-norm completion is unique and given by
+\[
+x_k^{\star}=\frac{r_k}{\|u_k\|_{V_k}^2}u_k,
+\qquad
+r_k:=b-\sum_{m\neq k}\langle u_m,x_m\rangle_{V_m}.
+\]
+\end{corollary}
+
+\begin{proof}
+The characterization of $C_k$ is immediate from the defining equation of $H$. The minimum-norm problem is the projection of the origin in $V_k$ onto the affine hyperplane $C_k$, which yields the stated formula.
+\end{proof}
+
+\begin{example}[Three scalar modalities]\label{ex:three-scalar}
+Suppose $V_1=V_2=V_3=\mathbb{R}$ and write the three modalities as transcript abundance $x_R$, protein abundance $x_P$, and metabolite level $x_M$. If the induced normal vector is $u=(\gamma_R,\gamma_P,\gamma_M)$, then the hyper-locus is the plane
+\[
+\gamma_R x_R + \gamma_P x_P + \gamma_M x_M = b.
+\]
+A measured triple lying off this plane has inconsistency score
+\[
+\frac{|\gamma_R x_R + \gamma_P x_P + \gamma_M x_M - b|}{\sqrt{\gamma_R^2+\gamma_P^2+\gamma_M^2}},
+\]
+and its orthogonal projection onto the plane is the nearest state satisfying the cross-modal constraint.
+\end{example}
+
+\section{Relation to existing integration methods}
+
+The present framework is not proposed as a replacement for current multi-omics algorithms. Rather, it supplies a compact geometric language that can sit above several existing method families.
+
+First, latent-factor and generative models such as MOFA+, totalVI, and MultiVI learn low-dimensional representations that summarize information shared across assays \cite{Argelaguet2020,Gayoso2021,Ashuach2023}. DIABLO likewise seeks common information across datasets through latent components, but in a supervised setting oriented toward discrimination and biomarker discovery \cite{Singh2019}. These methods address integration operationally through estimation and optimization.
+
+Second, methods such as weighted nearest-neighbor analysis and GLUE emphasize how different modalities contribute unequally across cells or how regulatory priors can link otherwise distinct feature spaces \cite{Hao2021,Cao2022}. These approaches are especially valuable when different modalities have heterogeneous information content or incompatible feature vocabularies.
+
+Third, manifold-alignment methods such as Pamona address the nonlinear regime in which different assays reveal different geometric shadows of the same cellular population, possibly without one-to-one pairing between samples \cite{CaoHong2022}. Such methods are designed to align heterogeneous data distributions in a common low-dimensional space.
+
+What the present paper adds is not another integration algorithm but an explicit mathematical object: a consistency locus in product space, together with a residual measuring distance to that locus. In this sense, the hyper-locus is closer to a geometric criterion than to a pipeline. One can imagine estimating its ingredients from data by using latent-variable, graph-based, or alignment methods, while still evaluating biological coherence through the same geometric residual.
+
+\section{Discussion}
+
+The biological value of the finite-dimensional formulation lies in its interpretability. It separates the invariant context of measurement from the changing state of the system, and it translates cross-modal agreement into a concrete affine constraint. This makes several familiar data-analysis tasks geometrically transparent:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{quality control:} unusually large distance to the hyper-locus flags modality disagreement;
+    \item \textbf{reconciliation:} orthogonal projection gives the nearest state satisfying the cross-modal constraint;
+    \item \textbf{imputation:} fixing the observed modalities and solving the affine constraint yields admissible completions of a missing modality.
+\end{itemize}
+
+The present paper is intentionally limited. It does not claim that all multimodal biology is linear, nor that one affine constraint is sufficient for every application. It studies only the finite-dimensional linear setting because that is the smallest mathematically honest slice of the larger program that already yields a first theorem, a projection formula, and a biologically interpretable residual.
+
+A natural next step is a synthetic proof-of-principle study with three modalities. One may sample a latent state $z\in\mathbb{R}^d$, generate observations by linear maps $x_m=A_m z+\varepsilon_m$, fit the induced hyper-locus, and then examine how the residual responds to injected modality-specific perturbations. Such a simulation would connect the present geometric theory to anomaly detection, denoising, and missing-modality completion in a controlled setting.
+
+Beyond that, the broader Rosalind Field Theory program aims to relax the finite-dimensional assumptions and place the framework in a richer categorical language. Those extensions are deliberately postponed. For a first mathematical-biology paper, the core question is simpler: can one define a biologically interpretable, mathematically precise notion of multimodal consistency and prove something nontrivial about it? The answer in the present setting is yes.
+
+\section{Conclusion}
+
+We have introduced a finite-dimensional two-layer framework for multimodal molecular measurements and formalized cross-modal agreement as an affine consistency locus, the Rosalind hyper-locus. In the linear setting, this locus is a closed affine hyperplane with a unique orthogonal projection from every observed multimodal state. The associated residual defines a natural inconsistency score, while projection and one-modality completion provide geometric interpretations of reconciliation and imputation. This introductory formulation is intended as the first mathematically rigorous step in a broader program, but it already stands on its own as a compact geometric tool for reasoning about multimodal molecular data.
+
+\begin{thebibliography}{99}
+
+\bibitem{Argelaguet2020}
+Argelaguet, R., Arnol, D., Bredikhin, D., Deloro, V., Velten, B., Marioni, J. C., \& Stegle, O.
+MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data.
+\emph{Genome Biology} \textbf{21}, 111 (2020).
+
+\bibitem{Gayoso2021}
+Gayoso, A., Steier, Z., Lopez, R., \emph{et al.}
+Joint probabilistic modeling of single-cell multi-omic data with totalVI.
+\emph{Nature Methods} \textbf{18}, 272--282 (2021).
+
+\bibitem{Ashuach2023}
+Ashuach, T., Gabitto, M. I., Koodli, R. V., Saldi, G.-A., Jordan, M. I., \& Yosef, N.
+MultiVI: deep generative model for the integration of multimodal data.
+\emph{Nature Methods} \textbf{20}, 1222--1231 (2023).
+
+\bibitem{Hao2021}
+Hao, Y., Hao, S., Andersen-Nissen, E., \emph{et al.}
+Integrated analysis of multimodal single-cell data.
+\emph{Cell} \textbf{184}, 3573--3587 (2021).
+
+\bibitem{Cao2022}
+Cao, Z.-J. \& Gao, G.
+Multi-omics single-cell data integration and regulatory inference with graph-linked embedding.
+\emph{Nature Biotechnology} \textbf{40}, 1458--1466 (2022).
+
+\bibitem{Singh2019}
+Singh, A., Shannon, C. P., Gautier, B., Rohart, F., Vacher, M., Tebbutt, S. J., \& L\'ev\^eque, A.
+DIABLO: an integrative approach for identifying key molecular drivers from multi-omics assays.
+\emph{Bioinformatics} \textbf{35}, 3055--3062 (2019).
+
+\bibitem{CaoHong2022}
+Cao, K. \& Hong, Y.
+Manifold alignment for heterogeneous single-cell multi-omics data integration using Pamona.
+\emph{Bioinformatics} \textbf{38}, 211--219 (2022).
+
+\end{thebibliography}
+
+\end{document}

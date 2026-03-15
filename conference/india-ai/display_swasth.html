@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>स्वस्थ-Derma: Mobile AI Triage</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+        }
+        svg {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="1200" height="850" style="background-color: #ffffff; font-family: 'Inter', sans-serif;">
+        <defs>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+            </style>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#0ea5e9"/>
+            </marker>
+            <!-- Reuse generic clips for placeholders -->
+            <clipPath id="clip-clinical-closeup" clipPathUnits="objectBoundingBox">
+                <rect x="0" y="0" width="1" height="1" rx="0.083" ry="0.063"/>
+            </clipPath>
+            <clipPath id="clip-clinical-context" clipPathUnits="objectBoundingBox">
+                <rect x="0" y="0" width="1" height="1" rx="0.056" ry="0.063"/>
+            </clipPath>
+            <clipPath id="clip-clinical-angled" clipPathUnits="objectBoundingBox">
+                <rect x="0" y="0" width="1" height="1" rx="0.083" ry="0.063"/>
+            </clipPath>
+        </defs>
+
+        <!-- Header -->
+        <!-- Using same logo asset as requested -->
+        <image x="32" y="22" width="60" height="60" href="../../assets/img/pelliscope.png" preserveAspectRatio="xMidYMid meet" />
+        <text x="100" y="55" font-size="32" font-weight="700" text-anchor="start" fill="#0c4a6e">स्वस्थ-Derma: Mobile AI Triage</text>
+        <text x="100" y="82" font-size="16" text-anchor="start" fill="#475569">Pre-Medical Dermatology Inquiry & Infectious-vs-Non-Infectious Triage</text>
+        
+        <image x="960" y="-70" width="230" height="230" href="../../assets/img/HawkFranklin_Aug23.transparent.png" preserveAspectRatio="xMidYMid meet" />
+        <line x1="50" y1="100" x2="1150" y2="100" stroke="#e2e8f0" stroke-width="1.5"/>
+
+        <!-- Section 1: Background & Objective -->
+        <g id="background-objective">
+            <text x="70" y="135" font-size="18" font-weight="600" fill="#075985">Problem: The Triage Gap in Primary Care</text>
+            <rect x="70" y="160" width="540" height="170" rx="10" fill="#f0f9ff" />
+
+            <!-- Current State: Informal Advice -->
+            <g transform="translate(80, 180)">
+                <rect x="0" y="0" width="160" height="115" rx="8" fill="white" stroke="#bae6fd"/>
+                <!-- Icon representation for confusion/delay -->
+                <circle cx="80" cy="50" r="25" fill="#f1f5f9"/>
+                <text x="80" y="58" font-size="24" text-anchor="middle" fill="#94a3b8">?</text>
+                
+                <text x="80" y="95" font-size="12" font-weight="600" text-anchor="middle" fill="#0e7490">Informal Advice</text>
+                <text x="80" y="110" font-size="10" text-anchor="middle" fill="#64748b">Delays Care & Increases Spread</text>
+            </g>
+            
+            <!-- Gap Visual -->
+            <text x="290" y="240" font-size="20" font-weight="700" text-anchor="middle" fill="#fb923c">GAP</text>
+             <text x="290" y="260" font-size="11" text-anchor="middle" fill="#fb923c">Specialty Access</text>
+            <path d="M 270 270 l 40 0" stroke="#fb923c" stroke-width="2.5" stroke-linecap="round"/>
+            
+            <!-- Swasth-Derma Solution -->
+             <g transform="translate(350, 170)">
+                <rect x="0" y="0" width="240" height="135" rx="8" fill="white" stroke="#bae6fd"/>
+
+                <image x="15" y="15" width="60" height="80" href="../../assets/img/gab2/close_up.jpeg" clip-path="url(#clip-clinical-closeup)" preserveAspectRatio="xMidYMid slice"/>
+                <rect x="15" y="15" width="60" height="80" rx="5" ry="5" fill="none" stroke="#7dd3fc"/>
+                <image x="85" y="15" width="90" height="80" href="../../assets/img/gab2/context.jpeg" clip-path="url(#clip-clinical-context)" preserveAspectRatio="xMidYMid slice"/>
+                <rect x="85" y="15" width="90" height="80" rx="5" ry="5" fill="none" stroke="#7dd3fc"/>
+                <image x="190" y="15" width="60" height="80" href="../../assets/img/gab2/angled.jpeg" clip-path="url(#clip-clinical-angled)" preserveAspectRatio="xMidYMid slice"/>
+                <rect x="190" y="15" width="60" height="80" rx="5" ry="5" fill="none" stroke="#7dd3fc"/>
+                <text x="45" y="110" font-size="11" text-anchor="middle" fill="#64748b">close-up</text>
+                <text x="130" y="110" font-size="11" text-anchor="middle" fill="#64748b">context</text>
+                <text x="220" y="110" font-size="11" text-anchor="middle" fill="#64748b">angled</text>
+                <text x="120" y="125" font-size="12" font-weight="500" text-anchor="middle" fill="#0e7490">Multi-view Inputs</text>
+            </g>
+             <text x="470" y="325" font-size="12" text-anchor="middle" fill="#475569">Actionable Hygiene Prompts</text>
+
+            <!-- Objective Text -->
+            <text x="650" y="135" font-size="18" font-weight="600" fill="#075985">Objective: Binary Triage & Public Health</text>
+            <g transform="translate(650, 165)">
+                <circle cx="15" cy="15" r="8" fill="#ecfdf5"/>
+                <text x="35" y="20" font-size="14" fill="#334155"><tspan font-weight="600">Reframe</tspan> dermatology AI as pre-medical inquiry.</tspan></text>
+                
+                <circle cx="15" cy="45" r="8" fill="#ecfdf5"/>
+                <text x="35" y="50" font-size="14" fill="#334155"><tspan font-weight="600">Analyze</tspan> 1–3 photos to assess contagion risk.</tspan></text>
+
+                <circle cx="15" cy="75" r="8" fill="#ecfdf5"/>
+                <text x="35" y="80" font-size="14" fill="#334155"><tspan font-weight="600">Guide</tspan> users with hygiene prompts & care routing.</tspan></text>
+                
+                <rect x="0" y="100" width="480" height="60" rx="4" fill="#f1f5f9"/>
+                <text x="10" y="120" font-size="13" fill="#475569" font-weight="700">Target Conditions mapped to Binary Classes:</text>
+                <text x="10" y="140" font-size="12" fill="#334155">
+                    <tspan font-weight="600" fill="#b91c1c">Infectious:</tspan> Folliculitis, Impetigo, Tinea (Ringworm), Herpes Zoster.
+                </text>
+                <text x="10" y="155" font-size="12" fill="#334155">
+                    <tspan font-weight="600" fill="#15803d">Non-Infectious:</tspan> Eczema, Psoriasis, Urticaria, Insect Bite, Drug Rash.
+                </text>
+            </g>
+        </g>
+        <line x1="50" y1="330" x2="1150" y2="330" stroke="#e2e8f0" stroke-width="1.5"/>
+
+        <!-- Section 2: Methods & Pipeline -->
+        <g id="methods-pipeline">
+            <text x="70" y="365" font-size="18" font-weight="600" fill="#075985">Methods: Safe, On-Device System Design</text>
+            <!-- Box 1: Input -->
+            <rect x="70" y="390" width="220" height="100" rx="10" fill="white" stroke="#bae6fd"/>
+            <text x="180" y="415" font-size="14" text-anchor="middle" font-weight="600" fill="#082f49">Input: Multi-View</text>
+            <text x="180" y="440" font-size="13" text-anchor="middle" fill="#475569">1–3 Photos per Case</text>
+            <text x="180" y="460" font-size="13" text-anchor="middle" fill="#475569">(Context + Close-up)</text>
+
+            <line x1="300" y1="440" x2="325" y2="440" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- Box 2: Processing -->
+            <rect x="340" y="390" width="240" height="100" rx="10" fill="white" stroke="#bae6fd"/>
+            <text x="460" y="415" font-size="14" text-anchor="middle" font-weight="600" fill="#082f49">Core Processing</text>
+            <text x="460" y="440" font-size="13" text-anchor="middle" fill="#475569">On-device / Secure Inference</text>
+            <text x="460" y="460" font-size="13" text-anchor="middle" fill="#475569">Privacy-Preserving Design</text>
+            <text x="460" y="478" font-size="11" text-anchor="middle" fill="#64748b" font-style="italic">Binary Risk Assessment</text>
+            
+            <line x1="590" y1="440" x2="615" y2="440" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+            <!-- Box 3: Triage Logic -->
+            <rect x="630" y="390" width="240" height="100" rx="10" fill="white" stroke="#bae6fd"/>
+            <text x="750" y="415" font-size="14" text-anchor="middle" font-weight="600" fill="#082f49">Output Generation</text>
+            <text x="750" y="440" font-size="13" text-anchor="middle" fill="#475569">Calibrated Probabilities</text>
+            <text x="750" y="460" font-size="13" text-anchor="middle" fill="#475569">High Risk Thresholding</text>
+            
+            <line x1="880" y1="440" x2="905" y2="440" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+            <!-- Box 4: User Value -->
+            <rect x="920" y="390" width="220" height="100" rx="10" fill="white" stroke="#bae6fd"/>
+            <text x="1030" y="415" font-size="14" text-anchor="middle" font-weight="600" fill="#082f49">User Guidance</text>
+            <text x="1030" y="440" font-size="13" text-anchor="middle" fill="#059669">"Consider Clinic Visit"</text>
+            <text x="1030" y="455" font-size="10" text-anchor="middle" fill="#475569">OR</text>
+            <text x="1030" y="470" font-size="13" text-anchor="middle" fill="#0891b2">Hygiene Prompts</text>
+        </g>
+        <line x1="50" y1="515" x2="1150" y2="515" stroke="#e2e8f0" stroke-width="1.5"/>
+
+        <!-- Section 3: Results & Conclusion -->
+        <g id="results-conclusion">
+            <text x="70" y="550" font-size="18" font-weight="600" fill="#0f766e">Results: Real-World Triage Performance</text>
+             <!-- Chart Area -->
+            <g id="performance-chart">
+                <rect x="70" y="575" width="530" height="250" rx="10" fill="#f0fdfa"/>
+                <text x="335" y="605" font-size="16" font-weight="600" text-anchor="middle" fill="#475569">Binary Classification Accuracy (Infectious vs Non-Infectious)</text>
+                <text x="335" y="625" font-size="14" font-weight="500" text-anchor="middle" fill="#64748b">Tested on 468 Cases (1,019 Images)</text>
+                
+                <!-- Left Group: Non-Infectious List -->
+                 <g> 
+                    <rect x="90" y="650" width="120" height="140" fill="white" rx="5" stroke="#ccfbf1"/>
+                    <text x="150" y="670" font-size="14" font-weight="700" text-anchor="middle" fill="#0f766e">Non-Infectious</text>
+                    <text x="150" y="690" font-size="13" text-anchor="middle" fill="#475569">Eczema</text>
+                    <text x="150" y="705" font-size="13" text-anchor="middle" fill="#475569">Psoriasis</text>
+                    <text x="150" y="720" font-size="13" text-anchor="middle" fill="#475569">Urticaria</text>
+                    <text x="150" y="735" font-size="13" text-anchor="middle" fill="#475569">Insect Bite</text>
+                    <text x="150" y="750" font-size="13" text-anchor="middle" fill="#475569">Contact Derm.</text>
+                </g>
+
+                <!-- Arrows merging -->
+                <path d="M 220 720 L 260 720" stroke="#14b8a6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                <path d="M 450 720 L 410 720" stroke="#14b8a6" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+                <!-- Right Group: Infectious List -->
+                 <g> 
+                    <rect x="460" y="650" width="120" height="140" fill="white" rx="5" stroke="#ccfbf1"/>
+                    <text x="520" y="670" font-size="14" font-weight="700" text-anchor="middle" fill="#b91c1c">Infectious</text>
+                    <text x="520" y="690" font-size="13" text-anchor="middle" fill="#475569">Tinea (Ringworm)</text>
+                    <text x="520" y="705" font-size="13" text-anchor="middle" fill="#475569">Herpes Zoster</text>
+                    <text x="520" y="720" font-size="13" text-anchor="middle" fill="#475569">Impetigo</text>
+                    <text x="520" y="735" font-size="13" text-anchor="middle" fill="#475569">Folliculitis</text>
+                </g>
+                 
+                <!-- Central Stat -->
+                <g>
+                    <circle cx="335" cy="720" r="55" fill="#5eead4" stroke="#0f766e" stroke-width="2"/>
+                    <text x="335" y="715" font-size="28" font-weight="700" text-anchor="middle" fill="#134e4a">80.2%</text>
+                    <text x="335" y="735" font-size="12" font-weight="600" text-anchor="middle" fill="#134e4a">Case-Level</text>
+                    <text x="335" y="750" font-size="12" font-weight="600" text-anchor="middle" fill="#134e4a">Accuracy</text>
+                </g>
+            </g>
+
+            <!-- Conclusion Text -->
+            <text x="630" y="550" font-size="18" font-weight="600" fill="#0b5250">Conclusion: Culturally Adaptable Care</text>
+            <g transform="translate(630, 580)">
+                <path d="M 0 50 L 10 60 L 25 40" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <text x="40" y="55" font-size="14" fill="#334155"><tspan font-weight="600">Encourage Early Care:</tspan> Nudges clinic visits when risk is high.</tspan></text>
+
+                <path d="M 0 85 L 10 95 L 25 75" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <text x="40" y="90" font-size="14" fill="#334155"><tspan font-weight="600">Limit Spread:</tspan> Evidence-aligned hygiene prompts.</tspan></text>
+                <text x="50" y="115" font-size="13" font-style="italic" fill="#475569">e.g., "Avoid close skin contact," "Keep rashes covered."</text>
+
+                <path d="M 0 145 L 10 155 L 25 135" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <text x="40" y="150" font-size="14" fill="#334155"><tspan font-weight="600">Safety First:</tspan> Not a diagnosis, but a "front door" to care.</tspan></text>
+                 <text x="50" y="175" font-size="13" font-style="italic" fill="#475569">Designed for telehealth contexts in the Global South.</text>
+            </g>
+
+            <text x="1120" y="800" font-size="14" font-style="italic" text-anchor="end" fill="#0ea5e9">The solution is acknowledged by Emirates Health Services (UAE)</text>
+            <text x="1120" y="820" font-size="14" font-style="italic" text-anchor="end" fill="#0ea5e9">to be implemented in their workflow.</text>
+            <a href="EHS_acknoledgment_letter.pdf" target="_blank">
+                <text x="1120" y="840" font-size="14" font-style="italic" text-anchor="end" fill="#0284c7" text-decoration="underline">(Acknowledgement Letter)</text>
+            </a>
+        </g>
+    </svg>
+</body>
+</html>

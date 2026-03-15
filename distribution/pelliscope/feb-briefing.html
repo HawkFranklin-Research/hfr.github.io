@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PelliScope Briefing Links</title>
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #14b8a6;
+      --accent-dark: #0f766e;
+      --border: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at top right, #1f2937 0%, var(--bg) 45%);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+    .links {
+      display: grid;
+      gap: 10px;
+    }
+    a.link {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: var(--panel);
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+    a.link:hover {
+      border-color: var(--accent);
+      background: #0b1220;
+      transform: translateY(-1px);
+    }
+    .name {
+      font-weight: 600;
+    }
+    .path {
+      margin-top: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+    .note {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .note strong {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>PelliScope Brochure Links</h1>
+    <p>
+      Private distribution page. Keep this URL shared only with intended recipients.
+    </p>
+
+    <section class="links" aria-label="Brochure links">
+      <a class="link" href="../../derma-ai-brochure.html">
+        <div class="name">Brochure v1</div>
+        <div class="path">/derma-ai-brochure.html</div>
+      </a>
+      <a class="link" href="../../derma-ai-brochure_v2.html">
+        <div class="name">Brochure v2</div>
+        <div class="path">/derma-ai-brochure_v2.html</div>
+      </a>
+      <a class="link" href="../../derma-ai-brochure_v3.html">
+        <div class="name">Brochure v3</div>
+        <div class="path">/derma-ai-brochure_v3.html</div>
+      </a>
+    </section>
+
+    <div class="note">
+      <strong>Note:</strong> On GitHub Pages/static hosting, this is URL-obscurity only (not real authentication).
+    </div>
+  </main>
+</body>
+</html>

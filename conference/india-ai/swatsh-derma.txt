@@ -1,0 +1,28 @@
+स्वस्थ-Derma: AI-Powered Pre-Medical Dermatology Triage for Public Health Settings
+Problem Statement & Use Case
+
+Skin conditions are among the most common reasons for primary-care visits worldwide, yet access to dermatology specialists remains severely limited across much of the Global South. In many communities, individuals rely on informal advice, pharmacies, or delayed consultations, particularly for rashes and inflammatory skin conditions. This often leads to two critical gaps: delayed clinical care for potentially infectious conditions, and missed opportunities to reduce disease spread through simple hygiene measures.
+
+Existing non-AI solutions—such as static health leaflets or symptom checklists—are insufficient because they do not account for visual variability, multi-view context, or real-world presentation captured through mobile phones. Moreover, most dermatology AI systems focus on diagnostic classification of many diseases, which raises safety, regulatory, and deployment challenges in low-resource settings.
+
+Swasth-Derma addresses this gap by reframing dermatology AI as a pre-medical triage and public-health guidance tool, rather than a diagnostic system. Its intended use is to help patients and frontline health workers decide when to seek care and how to limit potential spread—especially for infectious skin conditions—using only 1–3 smartphone images per case.
+
+Data–Technology Approach & System Design
+
+Swasth-Derma operates on a simple, clinically aligned workflow. A patient or health worker captures 1–3 images per case (close-up, angled, and contextual views) using a mobile device. These images are processed securely using a deep-learning system that performs case-level risk assessment, classifying the presentation as Infectious or Non-Infectious.
+
+The system is trained and evaluated on real-world, multi-image dermatology cases representing common primary-care conditions. Infectious conditions include folliculitis, impetigo, tinea (ringworm), and herpes zoster, while non-infectious conditions include eczema, allergic contact dermatitis, urticaria, insect bites, psoriasis, and drug-related rashes. On a held-out test set of 468 cases (1,019 images), Swasth-Derma achieved 80.2% case-level accuracy for Infectious vs Non-Infectious triage.
+
+The AI outputs calibrated risk probabilities rather than definitive diagnoses. Based on configurable thresholds, users receive one of two actionable responses:
+
+“Likely Infectious – Consider Clinic Visit”, encouraging timely medical care.
+
+Hygiene and prevention prompts, such as keeping rashes covered, avoiding close skin contact, and not sharing towels or clothing, aligned with public-health guidance.
+
+The system is designed for on-device or secure inference, minimal data retention, and clear disclaimers (“not for diagnosis” and “not for emergencies”), supporting safe deployment in telehealth, community health, and primary-care workflows. Its modular architecture allows integration with existing digital health platforms and phased rollout across facilities or regions.
+
+Gaps, Challenges, and Enablers
+
+Key challenges include ensuring generalizability across diverse skin tones and populations, maintaining user trust through transparency, and navigating regulatory frameworks for non-diagnostic AI tools. Ethical considerations include privacy preservation, avoidance of over-reliance on AI, and clear communication of system limits.
+
+Policy support for pre-medical triage tools, recognition of binary risk assessment as decision support (not diagnosis), and integration into national digital health strategies can significantly enable responsible scale-up. With appropriate governance, Swasth-Derma demonstrates how lightweight, privacy-preserving AI can strengthen early care-seeking behavior and public-health outcomes across the Global South.

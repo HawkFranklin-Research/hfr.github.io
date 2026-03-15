@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robotic Prosthetics in Orthopedic Rehabilitation</title>
+    <style>
+        :root {
+            --bg: #eef3f0;
+            --panel: #f8fbf9;
+            --card: #ffffff;
+            --ink: #14211c;
+            --muted: #52615a;
+            --line: #d8e2dc;
+            --brand: #0f766e;
+            --brand-2: #0b4f49;
+            --accent: #f59e0b;
+            --accent-soft: #fff4d8;
+            --ok: #16a34a;
+            --warn: #dc2626;
+            --radius: 18px;
+            --shadow: 0 22px 44px -28px rgba(11, 79, 73, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            font-family: "Avenir Next", "Nunito Sans", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(1100px 520px at 8% 0%, #d7eee8 0%, transparent 60%),
+                radial-gradient(900px 500px at 92% 100%, #ffe8bb 0%, transparent 55%),
+                var(--bg);
+            background-attachment: fixed;
+        }
+
+        /* Scroll wrap */
+        .deck-scroll {
+            width: min(1320px, 100%);
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .slide {
+            background: linear-gradient(180deg, #fbfdfc 0%, #f4f8f6 100%);
+            border: 1px solid #cfddd6;
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-header {
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            background: linear-gradient(90deg, #fafdff 0%, #f5faf8 100%);
+        }
+
+        .title-wrap h1 {
+            margin: 0;
+            font-size: clamp(1.25rem, 1.8vw, 2rem);
+            letter-spacing: 0.2px;
+            font-weight: 780;
+        }
+
+        .title-wrap p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .badge {
+            border: 1px solid #b7cbc2;
+            background: #e9f6f2;
+            color: var(--brand-2);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+        }
+
+        .slide-body {
+            padding: 32px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 18px;
+        }
+
+        .grid-2-equal {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .stack {
+            display: grid;
+            gap: 18px;
+            align-content: start;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid #d6e2dc;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 10px 26px -24px rgba(13, 53, 45, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -20px rgba(13, 53, 45, 0.4);
+        }
+
+        .card h3,
+        .card h4 {
+            margin: 0 0 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--brand-2);
+        }
+
+        .card p {
+            margin: 0;
+            color: #35453f;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .hero {
+            background: linear-gradient(145deg, #0f766e 0%, #0b4f49 100%);
+            color: #effaf6;
+            border: 0;
+            padding: 26px;
+        }
+
+        .hero h2 {
+            margin: 0 0 14px;
+            font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+            font-weight: 780;
+            line-height: 1.25;
+            color: #fff;
+        }
+
+        .hero p {
+            color: #d6f2e9;
+            font-size: 1rem;
+        }
+
+        .hero h3,
+        .hero h4 {
+            color: #7deadd;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .chip {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            color: #f7fffd;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 650;
+        }
+
+        .mini-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.88rem;
+        }
+
+        .mini-table th,
+        .mini-table td {
+            border: 1px solid #d9e4de;
+            padding: 10px;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .mini-table th {
+            background: #f2f7f4;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #345148;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .stat {
+            background: #f6faf8;
+            border: 1px solid #d9e8e2;
+            border-radius: 14px;
+            padding: 12px;
+        }
+
+        .stat .k {
+            font-size: 0.82rem;
+            color: #486159;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .stat .v {
+            font-size: 1.25rem;
+            font-weight: 750;
+            color: #114c42;
+        }
+
+        .accent-box {
+            background: var(--accent-soft);
+            border: 1px solid #f7d88d;
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 14px;
+            color: #684e18;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .highlight-brand {
+            color: var(--brand);
+            font-weight: 700;
+        }
+
+        .highlight-warn {
+            color: var(--warn);
+            font-weight: 700;
+        }
+
+        .highlight-ok {
+            color: var(--ok);
+            font-weight: 700;
+        }
+
+        /* Intersection Observer revealing animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Fixed Navigation */
+        .anchor-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(200, 220, 210, 0.5);
+        }
+
+        .anchor-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #bccdc6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .anchor-dot:hover {
+            background: var(--brand);
+            transform: scale(1.2);
+        }
+
+        .anchor-dot.active {
+            background: var(--brand);
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        /* Tooltip */
+        .anchor-dot::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            background: var(--ink);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+
+        .anchor-dot:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        @media (max-width: 1080px) {
+
+            .grid-2,
+            .grid-2-equal,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .anchor-nav {
+                display: none;
+            }
+
+            .slide-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .deck-scroll {
+                padding: 0 10px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating Navigation -->
+    <nav class="anchor-nav">
+        <div class="anchor-dot active" data-label="1. Paradigm Shift" onclick="scrollToId('section-1')"></div>
+        <div class="anchor-dot" data-label="2. Pathology & Problem" onclick="scrollToId('section-2')"></div>
+        <div class="anchor-dot" data-label="3. Mechanics" onclick="scrollToId('section-3')"></div>
+        <div class="anchor-dot" data-label="4. Neural Intent" onclick="scrollToId('section-4')"></div>
+        <div class="anchor-dot" data-label="5. RL Brain" onclick="scrollToId('section-5')"></div>
+    </nav>
+
+    <div class="deck-scroll">
+
+        <!-- Slide 1: Introduction -->
+        <section class="slide" id="section-1">
+            <header class="slide-header reveal">
+                <div class="title-wrap">
+                    <h1>Reinforcement Learning & Robotic Prosthetics</h1>
+                    <p>A Paradigm Shift in Orthopedic Rehabilitative Medicine</p>
+                </div>
+                <div class="badge">Section 1 · The Shift</div>
+            </header>
+            <main class="slide-body">
+                <div class="grid-2">
+                    <div class="stack">
+                        <article class="card hero reveal" style="--d: 1;">
+                            <h2>From Rigid Casts to AI-Driven Neuro-mechanics</h2>
+                            <p>
+                                Orthopedic trauma management is fundamentally transitioning away from static
+                                immobilization towards personalized, active frameworks driven by Artificial
+                                Intelligence, deep simulation, and dynamic robotics.
+                            </p>
+                            <div class="chip-row">
+                                <span class="chip">Reinforcement Learning</span>
+                                <span class="chip">Robotic Exoskeletons</span>
+                                <span class="chip">Smart Implants</span>
+                                <span class="chip">Digital Twins</span>
+                            </div>
+                        </article>
+
+                        <article class="card reveal" style="--d: 2;">
+                            <h3>Discussion Premise</h3>
+                            <p>
+                                As severe trauma mortality drops, the challenge shifts toward restoring fluid
+                                biomechanical mobility. Severe orthopedic traumas disrupt "muscle memory"—established
+                                neural pathways—making rehab a neuromechanical challenge, not just a physical one.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="stack">
+                        <article class="card reveal" style="--d: 3;">
+                            <h3>The Global Drivers</h3>
+                            <p>The demographic landscape necessitates dynamic technological innovation.</p>
+                            <div class="stat-grid">
+                                <div class="stat">
+                                    <div class="k">Demographic Shift</div>
+                                    <div class="v">35% > Age 65</div>
+                                    <p style="font-size:0.75rem; color:#666; margin-top:4px;">by 2050 globally</p>
+                                </div>
+                                <div class="stat">
+                                    <div class="k">Osteoporosis</div>
+                                    <div class="v">↑ Fragility</div>
+                                    <p style="font-size:0.75rem; color:#666; margin-top:4px;">Fracture incidence rising
+                                    </p>
+                                </div>
+                                <div class="stat">
+                                    <div class="k">Survival Rate</div>
+                                    <div class="v">90% Survival</div>
+                                    <p style="font-size:0.75rem; color:#666; margin-top:4px;">Up from 70% historically
+                                    </p>
+                                </div>
+                                <div class="stat">
+                                    <div class="k">Mobility Needs</div>
+                                    <div class="v">Long-Term</div>
+                                    <p style="font-size:0.75rem; color:#666; margin-top:4px;">Cohort dependence on rehab
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="card reveal" style="--d: 4;">
+                            <h3>The Conceptual Leap</h3>
+                            <p>
+                                Rehabilitation is no longer merely mechanical. Traumas necessitate AI systems capable of
+                                interpreting degraded biological signals and commanding a robotic prosthetic to adapt
+                                optimally.
+                            </p>
+                            <div class="accent-box">
+                                <b>Core Insight:</b> Deep Reinforcement Learning (DRL) agents are trained in
+                                hyper-accurate simulation environments to deploy real-time control policies on actual
+                                robotic joints.
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- Slide 2: Pathology -->
+        <section class="slide" id="section-2">
+            <header class="slide-header reveal">
+                <div class="title-wrap">
+                    <h1>The Pathology of Elbow Trauma</h1>
+                    <p>Limitations of Traditional Immobilization Paradigms</p>
+                </div>
+                <div class="badge">Section 2 · The Problem</div>
+            </header>
+            <main class="slide-body">
+                <div class="grid-2-equal">
+                    <div class="stack">
+                        <article class="card reveal" style="--d: 1;">
+                            <h3>Epidemiology & Mechanics</h3>
+                            <p>
+                                The elbow is highly prone to injuries. The most devastating is the <span
+                                    class="highlight-warn">"terrible triad"</span>—radial head/neck fracture, coronoid
+                                fracture, and posterolateral dislocation—resulting in profound joint instability.
+                            </p>
+                            <div class="stat-grid">
+                                <div class="stat">
+                                    <div class="k">Children Incidence</div>
+                                    <div class="v">30 / 10k</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="k">Adult Incidence</div>
+                                    <div class="v">7.4 / 10k</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="card reveal" style="--d: 2;">
+                            <h3>Standard of Care: The Flaw</h3>
+                            <p>
+                                Historically: Open Reduction & Internal Fixation (ORIF) + Rigid Plaster of Paris Casts
+                                (Non-weight-bearing).
+                            </p>
+                            <p>
+                                While absolute immobilization protects healing, it induces <span
+                                    class="highlight-warn">joint contracture (stiffness)</span> and <span
+                                    class="highlight-warn">muscle atrophy</span>. Rigid plates also cause <b>stress
+                                    shielding</b>, leading to weakened bone unions.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="stack">
+                        <article class="card hero reveal" style="--d: 3;">
+                            <h2>The Need for Mechanical Stress</h2>
+                            <p>
+                                In a recent retrospective cohort study on proximal humeral fractures, researchers
+                                compared Early Active Activation (EAA) applied on Post-Op Day 1 to conventional
+                                immobilization.
+                            </p>
+                            <div class="stat-grid" style="margin-top: 20px;">
+                                <div class="stat"
+                                    style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">
+                                    <div class="k" style="color:#a8e5da;">Average Healing Time</div>
+                                    <div class="v" style="color:#fff;">10.2 Weeks</div>
+                                    <p style="font-size:0.75rem; color:#b5ecd1; margin-top:4px;">vs 12.5 wks
+                                        (Conventional)</p>
+                                </div>
+                                <div class="stat"
+                                    style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">
+                                    <div class="k" style="color:#a8e5da;">Constant-Murley Score</div>
+                                    <div class="v" style="color:#fff;">88.7</div>
+                                    <p style="font-size:0.75rem; color:#b5ecd1; margin-top:4px;">vs 75.3 (Conventional)
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="card reveal" style="--d: 4;">
+                            <h3>Wolff's Law</h3>
+                            <div class="accent-box">
+                                Bone adapts to the mechanical loads under which it is placed. Tissue requires structured
+                                mechanical stress to regenerate optimally. The future is <b>dynamic osteosynthesis</b>.
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- Slide 3: Internal & External Hardware -->
+        <section class="slide" id="section-3">
+            <header class="slide-header reveal">
+                <div class="title-wrap">
+                    <h1>Robotic Mechanics: Smart Implants & Exoskeletons</h1>
+                    <p>From internal microscopic actuators to minimal external mechanics</p>
+                </div>
+                <div class="badge">Section 3 · Hardware</div>
+            </header>
+            <main class="slide-body">
+                <div class="grid-2">
+                    <div class="stack">
+                        <article class="card reveal" style="--d: 1;">
+                            <h3>Internal: The Principle of Dynamization</h3>
+                            <p>
+                                <b>Dynamization:</b> The controlled axial micromotion between bone fragments. It
+                                dramatically promotes biological callus formation and bone tensile strength.
+                            </p>
+                            <p>
+                                The vanguard involves placing <span class="highlight-brand">"robotic microscopic
+                                    hinges"</span> inside the body via battery-free ultrasonic power. Using
+                                piezoelectrics, the implant directly actuates the targeted strain.
+                            </p>
+                        </article>
+
+                        <article class="card reveal" style="--d: 2;">
+                            <h3>Design Shift: Internal vs Traditional</h3>
+                            <table class="mini-table">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Traditional ORIF (Plaster/Rods)</th>
+                                        <th>Smart Implants & Dynamic Fixation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Mechanical Principle</b></td>
+                                        <td>Absolute rigidity; stress shielding</td>
+                                        <td>Controlled micromotion (Dynamization)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Data Acquisition</b></td>
+                                        <td>None; relying on delayed X-Rays</td>
+                                        <td>Real-time strain, force telemetry</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Rehabilitation Timing</b></td>
+                                        <td>Delayed, generalized protocols</td>
+                                        <td>Early, personalized, data-driven</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </article>
+                    </div>
+
+                    <div class="stack">
+                        <article class="card hero reveal" style="--d: 3;">
+                            <h2>External: Minimal Mechanics</h2>
+                            <p>
+                                Rigid robotic arms inherently introduce dangerous distal mass and shear forces, causing
+                                secondary fractures in trauma patients. Modern setups remove the motors from the joint
+                                entirely.
+                            </p>
+                        </article>
+
+                        <article class="card reveal" style="--d: 4;">
+                            <h3>Cable-Driven Parallel Exoskeletons</h3>
+                            <p>
+                                Primary motors are mounted in a backpack, transmitting force via flexible <b>Bowden
+                                    cables</b> to 3D-printed joint mounts.
+                            </p>
+                            <div class="stat-grid">
+                                <div class="stat">
+                                    <div class="k">Arm Weight Burden</div>
+                                    <div class="v">1.2 - 1.5 kg</div>
+                                    <p style="font-size:0.75rem; color:#666; margin-top:4px;">For full 7-DOF systems</p>
+                                </div>
+                                <div class="stat">
+                                    <div class="k">Muscle Strain Relief</div>
+                                    <div class="v">↓ 21.3%</div>
+                                    <p style="font-size:0.75rem; color:#666; margin-top:4px;">Agonist muscle activation
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="accent-box" style="margin-top:14px;">
+                                Advanced PID controls precisely determine joint torque by factoring cable tension versus
+                                anatomical moment arms.
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- Slide 4: Biological Input -->
+        <section class="slide" id="section-4">
+            <header class="slide-header reveal">
+                <div class="title-wrap">
+                    <h1>Decoding Neural Intent: EMG & BCI</h1>
+                    <p>Navigating the "Muscle Memory" degradation problem</p>
+                </div>
+                <div class="badge">Section 4 · Integration</div>
+            </header>
+            <main class="slide-body">
+                <div class="grid-2-equal">
+                    <div class="stack">
+                        <article class="card reveal" style="--d: 1;">
+                            <h3>Electromyography (EMG) Pipeline</h3>
+                            <p>Recording electrical action potentials as voluntary movement occurs.</p>
+                            <ul
+                                style="padding-left: 20px; font-size: 0.95rem; color: #35453f; line-height: 1.5; margin-bottom: 0;">
+                                <li style="margin-bottom:8px;"><b>1. Segmentation:</b> Discard erratic transients; focus
+                                    on steady-state overlapping windows.</li>
+                                <li style="margin-bottom:8px;"><b>2. Extraction:</b> Rapid temporal features like Root
+                                    Mean Square and Waveform Length.</li>
+                                <li><b>3. Classification:</b> Feed-forward Neural Networks (e.g., Levenberg-Marquardt
+                                    approach).</li>
+                            </ul>
+                        </article>
+
+                        <article class="card hero reveal" style="--d: 2;">
+                            <h2 style="font-size: 1.4rem;">Closed-Loop Vision Systems</h2>
+                            <p>
+                                Pairing EMG with computer vision (YOLOv2 on Darknet-19). The camera visually identifies
+                                the target grasp, and EMG simply triggers activation timing.
+                            </p>
+                            <div class="chip-row">
+                                <span class="chip" style="background:var(--ok); border:none;">90% Identification
+                                    Accuracy</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="stack">
+                        <article class="card reveal" style="--d: 3;">
+                            <h3>The Failure of Static Models</h3>
+                            <p>
+                                In chaotic daily life, human muscle signals degrade and shift (from pain, sweat,
+                                electrode slip, and cortical reorganization). <span class="highlight-warn">An AI trained
+                                    on Tuesday will fail on Thursday.</span>
+                            </p>
+                            <div class="accent-box">
+                                The solution requires a system built on <b>continuous, real-time Machine Learning (RL)
+                                    adaptation</b> rather than static pattern matching.
+                            </div>
+                        </article>
+
+                        <article class="card reveal" style="--d: 4;">
+                            <h3>Brain-Computer Interfaces (BCI)</h3>
+                            <p>
+                                For catastrophic paralysis, peripheral signals are lost. BCI captures cortical Motor
+                                Imagery (MI). Re-engaging movement via thought creates closed-loop somatosensory
+                                feedback up the spinal cord, inducing profound <b>neuroplasticity</b> and repairing
+                                damaged circuits.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- Slide 5: The Brain (RL) -->
+        <section class="slide" id="section-5">
+            <header class="slide-header reveal">
+                <div class="title-wrap">
+                    <h1>Digital Twins & Reinforcement Learning</h1>
+                    <p>Simulation platforms and Actor-Critic control architectures</p>
+                </div>
+                <div class="badge">Section 5 · Artificial Intelligence</div>
+            </header>
+            <main class="slide-body">
+                <div class="grid-2">
+                    <div class="stack">
+                        <article class="card reveal" style="--d: 1;">
+                            <h3>Musculoskeletal "Digital Twins"</h3>
+                            <p>
+                                We cannot safely train an RL agent via millions of trial-and-error physical trials on a
+                                patient (risking secondary fractures).
+                            </p>
+                            <p>
+                                Instead, environments like <b>OpenSim</b> and <b>MyoSuite</b> utilize the <b>Hill-Type
+                                    Muscle Model</b> (simulating Contractile, Passive Elastic, and Series Elastic
+                                elements) to render millions of frames per second.
+                            </p>
+                            <div class="chip-row">
+                                <span class="chip"
+                                    style="color:var(--brand-2); border-color:var(--brand); background:#e9f6f2;">Pearson
+                                    correlation: 0.970 relative to human data</span>
+                            </div>
+                        </article>
+
+                        <article class="card reveal" style="--d: 2;">
+                            <h3>Core Algorithms & Reward Functions</h3>
+                            <p>
+                                Continuous-action algorithms like <b>DDPG</b> (Deep Deterministic Policy Gradients) and
+                                <b>PPO</b> (Proximal Policy Optimization) rule here.
+                            </p>
+                            <p>
+                                The reward inherently penalizes jerk, tracking errors, and high actuator saturation,
+                                achieving <b>~0.12° to 0.91°</b> tracking error vs traditional PID controllers' 3.8°.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="stack">
+                        <article class="card hero reveal" style="--d: 3;">
+                            <h2>Human-In-The-Loop Co-adaptation</h2>
+                            <p>
+                                Using an <b>Actor-Critic framework</b>, the human simply provides subjective scalar
+                                rewards while the robot adjusts its kinematic variances inside a changing TD Error loop.
+                            </p>
+                            <div class="stat-grid" style="margin-top: 14px;">
+                                <div class="stat"
+                                    style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">
+                                    <div class="k" style="color:#a8e5da;">Iterations needed</div>
+                                    <div class="v" style="color:#fff;">300k timesteps</div>
+                                </div>
+                                <div class="stat"
+                                    style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">
+                                    <div class="k" style="color:#a8e5da;">Real-World Time</div>
+                                    <div class="v" style="color:#fff;">
+                                        < 10 Minutes</div>
+                                    </div>
+                                </div>
+                        </article>
+
+                        <article class="card reveal" style="--d: 4;">
+                            <h3>Bridging the Sim-to-Real Gap</h3>
+                            <p>
+                                Translating software logic to physical Bowden cables and human compliance requires
+                                <b>Domain Randomization</b>. By artificially injecting immense noise, variance in muscle
+                                strength, and limb mass shifts during simulation, the resulting AI becomes incredibly
+                                robust during physical deployment.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+    </div>
+
+    <script>
+        // Reveal Intersection Observer
+        document.addEventListener("DOMContentLoaded", () => {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+
+                    // Apply animation delay if set
+                    const delay = entry.target.style.getPropertyValue('--d');
+                    if (delay) {
+                        entry.target.style.transitionDelay = `${parseInt(delay) * 150}ms`;
+                    }
+
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+
+            // Anchor Navigation Logic
+            const sections = document.querySelectorAll('section.slide');
+            const dots = document.querySelectorAll('.anchor-dot');
+
+            const navOptions = {
+                threshold: 0.4
+            };
+
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+                        dots.forEach(dot => {
+                            dot.classList.remove('active');
+                            if (dot.getAttribute('onclick').includes(currentId)) {
+                                dot.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, navOptions);
+
+            sections.forEach(section => {
+                navObserver.observe(section);
+            });
+        });
+
+        // Smooth Scrolling Function
+        function scrollToId(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                window.scrollTo({
+                    top: element.offsetTop - 40,
+                    behavior: "smooth"
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

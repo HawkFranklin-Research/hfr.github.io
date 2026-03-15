@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HawkFranklin Research | AI & Robotic Prosthetics in Orthopedic Rehab</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        hf: {
+                            dark: '#030712', // grayish-black
+                            card: 'rgba(17, 24, 39, 0.7)',
+                            border: 'rgba(255, 255, 255, 0.1)',
+                            accent1: '#0ea5e9', // Sky blue (Medical)
+                            accent2: '#10b981', // Emerald (Robotics)
+                            accent3: '#8b5cf6', // Violet (AI/RL)
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030712;
+            color: #f3f4f6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(31, 41, 55, 0.6) 0%, rgba(17, 24, 39, 0.8) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Text Gradients */
+        .text-gradient-medical {
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-robotics {
+            background: linear-gradient(to right, #34d399, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-ai {
+            background: linear-gradient(to right, #c084fc, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Ambient Glows */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -1;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        /* Scroll Reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Info Chips */
+        .info-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Math/Equation Blocks */
+        .math-block {
+            font-family: 'Space Grotesk', monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid #8b5cf6;
+            color: #d8b4fe;
+            font-size: 0.9rem;
+        }
+
+        .nav-link.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body class="relative selection:bg-hf-accent3 selection:text-white">
+
+    <!-- Ambient Backgrounds -->
+    <div class="glow-orb w-[600px] h-[600px] bg-sky-600 top-[-10%] left-[-10%]"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-emerald-700 top-[40%] right-[-10%]"></div>
+    <div class="glow-orb w-[700px] h-[700px] bg-purple-800 bottom-[-10%] left-[20%]"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 w-full z-50 bg-hf-dark/80 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 rounded-lg bg-gradient-to-br from-gray-700 to-black border border-gray-600 flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-hawk text-white text-sm"></i>
+                </div>
+                <span class="font-display font-bold text-xl tracking-wide">HawkFranklin<span
+                        class="text-gray-500 font-light"> | Research</span></span>
+            </div>
+            <a href="index.html"
+                class="text-sm font-medium text-gray-400 hover:text-white transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Back to Main
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-[1600px] mx-auto min-h-screen flex flex-col xl:flex-row relative pt-20">
+
+        <!-- ========================================== -->
+        <!-- LEFT SIDEBAR: TOC & NAVIGATION             -->
+        <!-- ========================================== -->
+        <aside class="w-full xl:w-[25%] xl:h-[calc(100vh-80px)] xl:sticky top-20 p-6 xl:p-8 flex flex-col z-10">
+            <div class="glass-panel p-6 rounded-3xl h-full flex flex-col relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500 rounded-full blur-[80px] opacity-20"></div>
+
+                <h2 class="font-display text-sm uppercase tracking-widest text-gray-400 mb-8 font-bold">Literature
+                    Review Agenda</h2>
+
+                <nav class="space-y-2 flex-grow overflow-y-auto" id="toc">
+                    <a href="#intro"
+                        class="nav-link block px-4 py-3 rounded-xl border border-transparent text-gray-400 hover:bg-white/5 hover:text-white transition text-sm">
+                        <i class="fa-solid fa-book-medical w-6 text-sky-400"></i> 1. The Paradigm Shift
+                    </a>
+                    <a href="#problem"
+                        class="nav-link block px-4 py-3 rounded-xl border border-transparent text-gray-400 hover:bg-white/5 hover:text-white transition text-sm">
+                        <i class="fa-solid fa-bone w-6 text-sky-400"></i> 2. Pathophysiology & Trauma
+                    </a>
+                    <a href="#hardware"
+                        class="nav-link block px-4 py-3 rounded-xl border border-transparent text-gray-400 hover:bg-white/5 hover:text-white transition text-sm">
+                        <i class="fa-solid fa-microchip w-6 text-emerald-400"></i> 3. Smart Implants vs Exoskeletons
+                    </a>
+                    <a href="#neural"
+                        class="nav-link block px-4 py-3 rounded-xl border border-transparent text-gray-400 hover:bg-white/5 hover:text-white transition text-sm">
+                        <i class="fa-solid fa-brain w-6 text-purple-400"></i> 4. Decoding Neural Intent
+                    </a>
+                    <a href="#simulation"
+                        class="nav-link block px-4 py-3 rounded-xl border border-transparent text-gray-400 hover:bg-white/5 hover:text-white transition text-sm">
+                        <i class="fa-solid fa-vr-cardboard w-6 text-purple-400"></i> 5. Digital Twins (OpenSim/MyoSuite)
+                    </a>
+                    <a href="#rl"
+                        class="nav-link block px-4 py-3 rounded-xl border border-transparent text-gray-400 hover:bg-white/5 hover:text-white transition text-sm">
+                        <i class="fa-solid fa-network-wired w-6 text-fuchsia-400"></i> 6. Reinforcement Learning Control
+                    </a>
+                    <a href="#roadmap"
+                        class="nav-link block px-4 py-3 rounded-xl border border-transparent text-gray-400 hover:bg-white/5 hover:text-white transition text-sm">
+                        <i class="fa-solid fa-map-location-dot w-6 text-orange-400"></i> 7. Practical Roadmap & Future
+                    </a>
+                </nav>
+
+                <div class="mt-6 pt-6 border-t border-white/10">
+                    <p class="text-xs text-gray-500 mb-3 font-medium uppercase tracking-wider">Internal Reference
+                        Document</p>
+                    <button onclick="window.print()"
+                        class="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 py-2 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i> Export Report
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========================================== -->
+        <!-- RIGHT MAIN: SCROLLING CONTENT              -->
+        <!-- ========================================== -->
+        <main class="w-full xl:w-[75%] p-6 xl:p-10 pb-32 space-y-20">
+
+            <!-- SECTION 1: Intro -->
+            <section id="intro" class="scroll-mt-24">
+                <div class="reveal">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="info-chip text-sky-300 border-sky-500/30 bg-sky-500/10">Orthopedics</span>
+                        <span class="info-chip text-emerald-300 border-emerald-500/30 bg-emerald-500/10">Robotics</span>
+                        <span class="info-chip text-purple-300 border-purple-500/30 bg-purple-500/10">Artificial
+                            Intelligence</span>
+                    </div>
+                    <h1 class="font-display text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        Reinforcement Learning & Robotic Prosthetics in <br>
+                        <span class="text-gradient-medical">Orthopedic Rehabilitation</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 font-light max-w-4xl leading-relaxed mb-8">
+                        A comprehensive review exploring the paradigm shift from static Plaster of Paris immobilization
+                        to active, AI-driven neuromechanical rehabilitation for severe musculoskeletal trauma.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl reveal mt-8 border-l-4 border-l-sky-500">
+                    <h3 class="text-lg font-bold text-white mb-4">The Demographic Shift & Clinical Need</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Historically, the medical management of bone fractures—particularly highly articulated
+                        structures like the elbow—has relied heavily upon static immobilization and generalized physical
+                        therapy. However, by 2050, over 35% of the global population will exceed the age of 65, bringing
+                        a drastic increase in osteoporotic fragility fractures.
+                    </p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Concurrently, modern trauma care has reduced mortality rates, leaving an expanding cohort of
+                        survivors requiring long-term mobility assistance. Rehabilitation is no longer viewed merely as
+                        moving a stiff joint; it is a complex <strong>neuromechanical challenge</strong> requiring AI to
+                        interpret biological intent and dynamically command robotic assistance.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION 2: Pathophysiology -->
+            <section id="problem" class="scroll-mt-24 pt-10 border-t border-white/10">
+                <div class="reveal mb-8">
+                    <h2 class="font-display text-3xl font-bold mb-4">The Pathophysiology of Elbow Trauma</h2>
+                    <p class="text-gray-400 text-sm max-w-3xl">Understanding the medical baseline: Why traditional rigid
+                        casting fails complex joints.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="reveal-left">
+                        <h3 class="text-xl font-semibold text-sky-400 mb-4"><i class="fa-solid fa-x-ray mr-2"></i>
+                            Fracture Mechanics & The Terrible Triad</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            The human elbow is a complex hinge joint (humerus, radius, ulna). Fractures typically result
+                            from acute physical trauma. The most devastating of these is the <strong>"Terrible
+                                Triad"</strong> injury—characterized by a simultaneous radial head/neck fracture, a
+                            coronoid fracture, and a posterolateral humeroulnar dislocation resulting from profound
+                            valgus, axial, and rotary forces.
+                        </p>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            The current standard of care is <strong>Open Reduction and Internal Fixation
+                                (ORIF)</strong>, where a surgeon realigns bones and stabilizes them with static metallic
+                            hardware (titanium plates, screws).
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl reveal">
+                        <h3 class="text-lg font-bold text-red-400 mb-4"><i
+                                class="fa-solid fa-triangle-exclamation mr-2"></i> The Immobilization Bottleneck</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            Following ORIF, traditional protocols mandate strict immobilization (Plaster of Paris casts,
+                            static braces) to protect the surgical construct.
+                        </p>
+                        <div class="bg-red-500/10 border border-red-500/20 p-4 rounded-xl mb-4">
+                            <strong class="block text-red-300 text-sm mb-1">Stress Shielding & Contracture</strong>
+                            <span class="text-gray-400 text-xs">Absolute immobilization induces rapid joint contracture
+                                (stiffness) and localized muscle atrophy. Rigid metallic plates shield healing bone from
+                                necessary physiological loads, causing localized osteopenia (bone weakening) or
+                                nonunion.</span>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Clinical studies show that <strong>Early Active Activation (EAA)</strong> protocols yield
+                            vastly superior functional outcomes (Constant-Murley scores) and shorter healing times.
+                            Bones require controlled mechanical stress to heal optimally.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Hardware (Internal & External) -->
+            <section id="hardware" class="scroll-mt-24 pt-10 border-t border-white/10">
+                <div class="reveal mb-8">
+                    <h2 class="font-display text-3xl font-bold mb-4">Mechanics: Internal Implants vs External
+                        Exoskeletons</h2>
+                    <p class="text-gray-400 text-sm max-w-3xl">How engineering solves the "stress shielding" problem
+                        from the inside out.</p>
+                </div>
+
+                <!-- Internal -->
+                <div
+                    class="glass-panel p-8 rounded-3xl reveal mb-8 border-t-4 border-t-emerald-500 relative overflow-hidden">
+                    <i class="fa-solid fa-microchip absolute -right-10 -bottom-10 text-[150px] text-emerald-500/10"></i>
+                    <h3 class="text-2xl font-bold text-white mb-2">1. Smart Implants & Dynamization (Internal)</h3>
+                    <p class="text-gray-400 text-sm mb-6">Replacing static metal rods with intelligent, dynamic internal
+                        components.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                        <div>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                                Guided by <strong>Wolff’s Law</strong> (bone adapts to mechanical loads), researchers
+                                utilize <strong>Dynamization</strong>—the application of controlled axial micromotion.
+                                Historically done externally via Ilizarov pin-and-ring systems, this is transitioning to
+                                internal "smart implants".
+                            </p>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                These implants integrate micro-sensors to measure strain, force, and temperature,
+                                streaming telemetry to surgeons. The vanguard research proposes <strong>Active Internal
+                                    Actuation</strong>: battery-free, ultrasonically powered microscopic robotic hinges
+                                (piezoelectric/MEMS) that induce targeted strain across the fracture gap to accelerate
+                                callus formation.
+                            </p>
+                        </div>
+
+                        <!-- Comparison Table -->
+                        <div class="overflow-x-auto bg-black/40 rounded-xl border border-white/10">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-white/5 text-gray-400 uppercase tracking-wider">
+                                    <tr>
+                                        <th class="p-3 font-semibold">Feature</th>
+                                        <th class="p-3 font-semibold">Static ORIF (Plaster/Rods)</th>
+                                        <th class="p-3 font-semibold text-emerald-400">Smart Implants</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5 text-gray-300">
+                                    <tr>
+                                        <td class="p-3 font-medium">Mechanical Principle</td>
+                                        <td class="p-3 text-red-300">Absolute rigidity; stress shielding</td>
+                                        <td class="p-3 text-emerald-300">Controlled micromotion</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-medium">Biological Impact</td>
+                                        <td class="p-3">High risk of joint contracture</td>
+                                        <td class="p-3">Accelerated callus formation</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-medium">Actuation</td>
+                                        <td class="p-3">Passive structural support</td>
+                                        <td class="p-3 text-emerald-300">Piezoelectric micro-actuation</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- External -->
+                <div class="glass-panel p-8 rounded-3xl reveal border-t-4 border-t-sky-500 relative overflow-hidden">
+                    <i class="fa-solid fa-robot absolute -right-10 -bottom-10 text-[150px] text-sky-500/10"></i>
+                    <h3 class="text-2xl font-bold text-white mb-2">2. External Exoskeletons & Minimal Mechanics</h3>
+                    <p class="text-gray-400 text-sm mb-6">Providing kinematic assistance without dangerous distal mass.
+                    </p>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
+                        <div class="lg:col-span-2">
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                                Early rigid robotics placed heavy servo motors directly over joints. This distal mass
+                                alters center-of-gravity and imposes dangerous shear forces on healing bones (sometimes
+                                causing secondary fractures).
+                            </p>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                                The modern solution is <strong>Cable-Driven Parallel Exoskeletons</strong>. Actuators
+                                and power are housed in an isolated backpack, transmitting force via Bowden cables
+                                (steel wire in a polymeric sheath). This reduces arm-borne weight to ~1.2kg for a 7-DOF
+                                system, perfectly allowing the complex, shifting instantaneous center of rotation of the
+                                human elbow.
+                            </p>
+                        </div>
+                        <div class="bg-black/40 border border-white/10 p-4 rounded-xl flex flex-col justify-center">
+                            <h4 class="text-sky-400 text-xs font-bold uppercase mb-2">Kinematic Torque Equation</h4>
+                            <div class="math-block mb-3">
+                                τ_joint = Σ ( F_i × r_i )
+                            </div>
+                            <p class="text-[10px] text-gray-400">Where <strong>F_i</strong> is cable tension and
+                                <strong>r_i</strong> is the spatial moment arm. This PID/impedance control reduces
+                                agonist muscle activation by ~21.3%.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: Neural Decoding -->
+            <section id="neural" class="scroll-mt-24 pt-10 border-t border-white/10">
+                <div class="reveal mb-8">
+                    <h2 class="font-display text-3xl font-bold mb-4">Decoding Neural Intent & The "Muscle Memory"
+                        Problem</h2>
+                    <p class="text-gray-400 text-sm max-w-3xl">An exoskeleton is useless if it cannot seamlessly
+                        determine when and how the patient wishes to move.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- EMG -->
+                    <div class="glass-panel p-6 rounded-2xl reveal hover:-translate-y-2 transition-transform">
+                        <div
+                            class="w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-wave-square"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Electromyography (EMG)</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-3">
+                            Capturing action potentials from the skin surface. Raw sEMG is stochastic and noisy. It
+                            requires a rigid digital pipeline: Data Segmentation (steady-state extraction), Feature
+                            Extraction (RMS, MAV, Waveform Length), and Classification via ANNs or SVMs.
+                        </p>
+                        <span class="info-chip text-purple-300 border-purple-500/30 bg-purple-500/10 text-[10px]">Signal
+                            Processing</span>
+                    </div>
+
+                    <!-- BCI -->
+                    <div class="glass-panel p-6 rounded-2xl reveal hover:-translate-y-2 transition-transform"
+                        style="transition-delay: 100ms;">
+                        <div
+                            class="w-12 h-12 rounded-full bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-head-side-virus"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Brain-Computer Interfaces</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-3">
+                            For catastrophic trauma where EMG is impossible, non-invasive EEG decodes Motor Imagery
+                            directly from the cortex. When the robot moves the limb based on thought, closed-loop
+                            somatosensory feedback forces <strong>neuroplasticity</strong>, rewiring damaged circuits.
+                        </p>
+                        <span
+                            class="info-chip text-fuchsia-300 border-fuchsia-500/30 bg-fuchsia-500/10 text-[10px]">Cortical
+                            Decoding</span>
+                    </div>
+
+                    <!-- Muscle Memory -->
+                    <div class="glass-panel p-6 rounded-2xl reveal border-2 border-red-500/30 bg-red-950/20 hover:-translate-y-2 transition-transform"
+                        style="transition-delay: 200ms;">
+                        <div
+                            class="w-12 h-12 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-skull-crossbones"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-red-300 mb-2">The Degradation Problem</h3>
+                        <p class="text-red-200/70 text-xs leading-relaxed mb-3">
+                            Why do 95% accurate lab models fail in the real world? Trauma alters anatomy and causes
+                            cortical reorganization—the patient loses "muscle memory." EMG signals become highly
+                            variable (non-stationary) day-to-day. Static AI models fail.
+                        </p>
+                        <span class="info-chip text-red-300 border-red-500/30 bg-red-500/10 text-[10px]">The Primary
+                            Bottleneck</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: Digital Twins -->
+            <section id="simulation" class="scroll-mt-24 pt-10 border-t border-white/10">
+                <div class="reveal mb-8">
+                    <h2 class="font-display text-3xl font-bold mb-4">Digital Twins: Musculoskeletal Simulation</h2>
+                    <p class="text-gray-400 text-sm max-w-3xl">AI agents must perform millions of trial-and-error
+                        actions. Doing this on a live patient would cause catastrophic secondary fractures. We must
+                        train in simulation.</p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl reveal flex flex-col lg:flex-row gap-8 items-center">
+                    <div class="w-full lg:w-1/2">
+                        <h3 class="text-xl font-bold text-white mb-4">OpenSim & The Hill-Type Muscle Model</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            Biomechanical engineers use platforms like <strong>OpenSim</strong> to create mathematical
+                            models of human skeletal geometry and dynamic muscle pathways (e.g., the Arm26 model with 15
+                            DOFs and 50 muscles).
+                        </p>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Unlike robotic linear actuators, biological muscles are highly non-linear, visco-elastic
+                            structures modeled via Contractile Elements (CE), Passive Elastic Elements (PEE), and Series
+                            Elastic Elements (SEE).
+                        </p>
+
+                        <div class="bg-black/50 p-4 rounded-xl mt-4 border border-white/10">
+                            <h4 class="text-xs text-gray-500 uppercase font-bold mb-2">Hill Muscle Force Calculation
+                            </h4>
+                            <div class="math-block">
+                                F_m = ( F_CE + F_PEE ) × cos(α)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full lg:w-1/2">
+                        <div class="p-6 bg-blue-900/20 border border-blue-500/20 rounded-2xl relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 text-6xl text-blue-500/20"><i
+                                    class="fa-solid fa-vr-cardboard"></i></div>
+                            <h4 class="text-lg font-bold text-blue-300 mb-3">MyoSuite Integration</h4>
+                            <p class="text-blue-200/80 text-sm leading-relaxed mb-4">
+                                OpenSim has immense computational overhead. Researchers co-developed
+                                <strong>MyoSuite</strong>, porting these accurate models into optimized physics engines
+                                (MuJoCo).
+                            </p>
+                            <p class="text-blue-200/80 text-sm leading-relaxed">
+                                This allows AI agents to render millions of frames per second, artificially inducing
+                                biological phenomena like sarcopenia or fracture weakness. RL agents in MyoSuite often
+                                exhibit <em>superior</em> motor control compared to human baselines due to millisecond
+                                reaction times.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: Reinforcement Learning -->
+            <section id="rl" class="scroll-mt-24 pt-10 border-t border-white/10">
+                <div class="reveal mb-8">
+                    <h2 class="font-display text-3xl font-bold mb-4">Reinforcement Learning Control Architectures</h2>
+                    <p class="text-gray-400 text-sm max-w-3xl">Traditional PID relies on static equations. The
+                        human-robot physical interface is non-linear and unpredictable. Deep Reinforcement Learning
+                        (DRL) provides model-free, end-to-end control.</p>
+                </div>
+
+                <!-- Reward Function -->
+                <div class="glass-panel p-6 rounded-2xl reveal mb-8 border-l-4 border-l-fuchsia-500">
+                    <h3 class="text-lg font-bold text-white mb-2">Continuous Action Spaces & Mathematical Rewards</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Algorithms like <strong>DDPG</strong> and <strong>PPO</strong> are required because robotic
+                        actuators need continuous fluid commands, not binary choices. The AI learns strictly via a
+                        Reward Function that penalizes tracking errors, excessive jerk, and Center of Pressure (CoP)
+                        instability.
+                    </p>
+                    <div class="bg-black/40 p-3 rounded-lg border border-white/10 inline-block">
+                        <code
+                            class="text-fuchsia-400 text-sm">R = -Σ( w_i * |θ_target - θ_current| ) - penalty(jerk)</code>
+                    </div>
+                </div>
+
+                <!-- Actor-Critic -->
+                <div
+                    class="glass-panel p-8 rounded-3xl reveal mb-8 relative overflow-hidden bg-gradient-to-br from-gray-900 to-fuchsia-950/20">
+                    <div
+                        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold text-fuchsia-300 mb-4">Actor-Critic & Human-in-the-Loop
+                            Co-adaptation</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            This solves the "Muscle Memory Degradation" problem. Instead of forcing the patient to match
+                            the machine, the machine adapts to the patient in real-time. The human provides a 1D scalar
+                            reward (approval/disapproval).
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-black/50 p-5 rounded-xl border border-white/10">
+                                <h4 class="font-bold text-white mb-2 text-sm"><i
+                                        class="fa-solid fa-eye text-fuchsia-400 mr-2"></i> The Critic Network</h4>
+                                <p class="text-gray-400 text-xs">Evaluates the current state and estimates the total
+                                    future value of expected rewards. Computes Temporal-Difference (TD) error based on
+                                    patient feedback.</p>
+                            </div>
+                            <div class="bg-black/50 p-5 rounded-xl border border-white/10">
+                                <h4 class="font-bold text-white mb-2 text-sm"><i
+                                        class="fa-solid fa-hand-sparkles text-fuchsia-400 mr-2"></i> The Actor Network
+                                </h4>
+                                <p class="text-gray-400 text-xs">Determines physical action (mean and variance). If
+                                    human withholds reward (negative TD error), variance increases, forcing the arm to
+                                    "explore" new trajectories until the patient approves.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sim to Real -->
+                <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-3">Bridging the Sim-to-Real Gap</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            A policy flawless in simulation often fails physically due to unmodeled cable
+                            micro-friction, motor backlash, or soft tissue compliance. Engineers employ <strong>Domain
+                                Randomization</strong>—relentlessly randomizing limb mass, linkage stiffness, and
+                            injecting artificial noise into EMG sensors during simulation.
+                        </p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl text-center border border-white/10">
+                        <i class="fa-solid fa-shuffle text-4xl text-gray-500 mb-4"></i>
+                        <p class="text-xs text-gray-400">By forcing the neural net to succeed across a massive
+                            distribution of potential realities, the chaotic physical world simply appears as an
+                            expected variation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: Roadmap -->
+            <section id="roadmap" class="scroll-mt-24 pt-10 border-t border-white/10">
+                <div class="reveal mb-8">
+                    <h2 class="font-display text-3xl font-bold mb-4 text-orange-400">The Practical Roadmap: What to
+                        Build Next?</h2>
+                    <p class="text-gray-400 text-sm max-w-3xl">Synthesizing the theoretical research into a pragmatic,
+                        deployable medical device.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel p-6 rounded-2xl reveal border-t-4 border-t-orange-500">
+                        <h3 class="text-lg font-bold text-white mb-3">1. Define the Minimal Target</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Avoid "replacing the cast". Build a <strong>powered hinged elbow orthosis (1 DOF)</strong>
+                            for early protected ROM and assist-as-needed exercises post-ORIF. Focus on stiffness
+                            prevention within safe functional arcs (30°-130° flexion).
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl reveal border-t-4 border-t-orange-500"
+                        style="transition-delay: 100ms;">
+                        <h3 class="text-lg font-bold text-white mb-3">2. Hybrid Control Architecture</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Do not use unconstrained online RL on live patients. Implement classic low-level impedance
+                            control for strict safety envelopes (ROM/velocity limits). Use RL as a high-level policy to
+                            adapt assistance gains based on sEMG intent.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl reveal border-t-4 border-t-orange-500"
+                        style="transition-delay: 200ms;">
+                        <h3 class="text-lg font-bold text-white mb-3">3. Offline RL & Regulatory Safety</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Orthopedic rehab has hard constraints (e.g., "no weight bearing"). Train offline on logged
+                            patient sessions rather than exploring physically. Align development with <strong>ISO
+                                14971</strong> (Risk Management) and <strong>IEC 62304</strong> (Medical Software).
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-12 p-8 bg-gradient-to-r from-orange-900/30 to-black rounded-3xl border border-orange-500/20 reveal flex flex-col items-center text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">The Convergence</h3>
+                    <p class="text-gray-300 text-sm max-w-3xl leading-relaxed mb-6">
+                        The future of orthopedic trauma care will be characterized by fully personalized ecosystems. A
+                        patient sustaining a severe fracture will receive internal diagnostic implants that monitor
+                        osteogenesis, while utilizing RL-driven external soft exoskeletons that decode cortical intent
+                        and instantly co-adapt to their neurological recovery.
+                    </p>
+                    <button
+                        class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
+                        Start Development Program
+                    </button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ScrollSpy & Interactive Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll Reveal Logic
+            const reveals = document.querySelectorAll('.reveal, .reveal-left');
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: observer.unobserve(entry.target); if you only want it to happen once
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+
+            // ScrollSpy for Sidebar Navigation
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Adjust offset for fixed header and padding
+                    if (pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current) && current !== '') {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PelliScope - Investor Slide Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* PALETTE: Navy & Teal */
+            --hf-dark-900: #0f172a;
+            --hf-dark-800: #1e293b;
+            --hf-dark-700: #334155;
+            
+            /* Main accent is Teal */
+            --hf-accent-main: #0d9488;
+            --hf-accent-main-dark: #0f766e;
+            --hf-accent-soft: rgba(20, 184, 166, 0.08);
+
+            /* Secondary accent is Navy Blue */
+            --hf-accent-sec: #1e40af;
+            --hf-accent-sec-dark: #1e3a8a;
+            --hf-accent-sec-soft: #eff6ff;
+        }
+
+        body {
+            background-color: #cbd5e1;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 24px 12px;
+            overflow: auto; /* Allow the page itself to scroll on smaller screens */
+        }
+
+        .font-display {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* The Slide Container */
+        .deck-container {
+            width: min(1240px, 100%);
+            height: 877px; /* Approximate A4 Landscape / 4:3 ratio */
+            background: #ffffff;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Individual Slide Styling */
+        .slide {
+            display: none; /* Hidden by default */
+            height: 100%;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Animation Fragments */
+        .fragment {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .fragment.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Consistency */
+        .hf-hero {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .hf-title-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hf-accent-main);
+            font-size: 2.2rem;
+        }
+
+        .hf-logo {
+            height: 72px;
+        }
+
+        /* Analysis Card Visuals */
+        .analysis-card {
+            background: linear-gradient(135deg, white, #f0f9ff);
+            border: 1px solid #e0f2fe;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #ccfbf1, var(--hf-accent-main));
+        }
+
+        /* Operational impact visuals */
+        .bg-gradient-workflow {
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        .roi-card {
+            background: #0f172a;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .roi-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: var(--hf-accent-main);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        @keyframes growWidth {
+            from { width: 0; }
+            to { width: var(--target-width); }
+        }
+        .bar-animate {
+            animation: growWidth 1.5s ease-out forwards;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: absolute;
+            bottom: 40px;
+            right: 32px;
+            display: flex;
+            gap: 12px;
+            z-index: 50;
+        }
+
+        .nav-btn {
+            background: var(--hf-dark-900);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.2;
+        }
+
+        .nav-btn:hover,
+        .nav-btn:focus-visible {
+            background: var(--hf-accent-main);
+            opacity: 1;
+        }
+
+        .nav-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            opacity: 0.35;
+        }
+
+        .nav-btn.contact-mode {
+            background: var(--hf-accent-sec);
+        }
+
+        .nav-btn.contact-mode:hover {
+            background: var(--hf-accent-sec-dark);
+        }
+
+        .slide-indicator {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: all 0.3s;
+            opacity: 0.35;
+        }
+
+        .dot.active {
+            background: var(--hf-accent-main);
+            width: 30px;
+            border-radius: 10px;
+            opacity: 0.8;
+        }
+
+        .dot:hover {
+            opacity: 1;
+        }
+
+        .demo-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 32px;
+        }
+
+        .demo-overlay.active {
+            display: flex;
+        }
+
+        .demo-modal {
+            position: relative;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .demo-modal.pc {
+            width: min(1200px, 100%);
+            aspect-ratio: 16 / 9;
+        }
+
+        .demo-modal.mobile {
+            width: min(420px, 90%);
+            max-height: 90vh;
+            aspect-ratio: 9 / 16;
+        }
+
+        .demo-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="deck-container">
+        
+        <!-- ========================== -->
+        <!-- SLIDE 1: PRODUCT & TECH -->
+        <!-- ========================== -->
+        <div class="slide active" id="slide-1">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-allergies"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">PelliScope</h1>
+                        <h2 class="text-lg font-medium text-slate-600">AI-Powered Dermatological Decision Support</h2>
+                    </div>
+                </div>
+                <!-- Logo -->
+                <div>
+                     <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain">
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="flex-grow p-12 flex flex-col justify-between bg-white">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-2">01 | The Product</h3>
+                
+                <!-- Top Row: Deployment vs Visual -->
+                <div class="grid grid-cols-12 gap-12 h-full">
+                    
+                    <!-- Left: Context & Deployment (Static / Step 0) -->
+                    <div class="col-span-5 flex flex-col justify-center">
+                        <h2 class="font-display text-3xl font-bold text-slate-800 mb-6 leading-tight">Clinically-Validated AI <br><span class="text-[var(--hf-accent-main)]">For Any Workflow</span></h2>
+                        
+                        <div class="bg-slate-50 rounded-xl p-6 border border-slate-100 shadow-sm">
+                            <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wide mb-4">Ready to Deploy For</h4>
+                            <ul class="space-y-5">
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-[var(--hf-accent-main)]">
+                                        <i class="fa-solid fa-clipboard-check text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Pre-Medical Inquiry</h5>
+                                        <p class="text-xs text-slate-500">Triage before the patient sees a doctor</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-[var(--hf-accent-main)]">
+                                        <i class="fa-solid fa-video text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">Tele-Medicine Consultation</h5>
+                                        <p class="text-xs text-slate-500">Cost-effective remote patient consultation</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-[var(--hf-accent-main)]">
+                                        <i class="fa-solid fa-calendar-check text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-slate-800">In-Patient Appointment Schedule</h5>
+                                        <p class="text-xs text-slate-500">Prioritize urgency while sharing interim home care guidance</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Analysis Card (Fragment 1) -->
+                    <div class="col-span-7 flex flex-col items-center justify-center fragment">
+                        <div class="analysis-card rounded-2xl p-6 w-full shadow-lg transform scale-95 hover:scale-100 transition-transform duration-500">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-semibold text-gray-800">Patient Scan: #8829-A</h3>
+                                <span class="text-xs bg-teal-100 text-teal-800 px-3 py-1 rounded-full font-bold tracking-wide flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check"></i> ANALYSIS COMPLETE
+                                </span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-3 mb-5">
+                                <div class="text-center">
+                                    <img src="products/close_up.jpeg" alt="Clinical close-up view" class="w-full h-28 object-cover rounded-lg border border-slate-200">
+                                </div>
+                                <div class="text-center">
+                                    <img src="products/context.jpeg" alt="Clinical context view" class="w-full h-28 object-cover rounded-lg border border-slate-200">
+                                </div>
+                                <div class="text-center">
+                                    <img src="products/angled.jpeg" alt="Clinical angled view" class="w-full h-28 object-cover rounded-lg border border-slate-200">
+                                </div>
+                            </div>
+                            <!-- Stats -->
+                            <div class="bg-white border border-slate-100 rounded-xl p-4 shadow-sm flex justify-between items-center">
+                                <div class="text-left">
+                                    <p class="text-xs text-slate-500 uppercase">Primary Detection</p>
+                                    <p class="text-lg font-bold text-slate-800">Herpes Zoster</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-3xl font-display font-bold text-[var(--hf-accent-main)]">74%</p>
+                                    <p class="text-xs text-slate-500">Confidence</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 px-1">
+                                <div class="flex justify-between text-xs mb-1"><span class="font-medium text-slate-600">Allergic Dermatitis</span><span>59%</span></div>
+                                <div class="w-full bg-slate-100 rounded-full h-1.5"><div class="progress-bar h-1.5 rounded-full" style="width: 59%"></div></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-between gap-4 flex-wrap w-full fragment">
+                    <div class="flex flex-wrap gap-3">
+                        <button type="button" onclick="toggleDemoModal('pc')" class="inline-flex items-center justify-center gap-2 bg-[var(--hf-accent-sec)] hover:bg-[var(--hf-accent-sec-dark)] text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition min-w-[180px]">
+                            <i class="fa-solid fa-display"></i>
+                            PC Demo
+                        </button>
+                        <button type="button" onclick="toggleDemoModal('mobile')" class="inline-flex items-center justify-center gap-2 bg-[var(--hf-accent-main)] hover:bg-[var(--hf-accent-main-dark)] text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition min-w-[180px]">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            Phone Demo
+                        </button>
+                    </div>
+                    <div class="inline-flex items-center gap-2 bg-[var(--hf-accent-soft)] text-[var(--hf-accent-main-dark)] border border-[var(--hf-accent-main)] px-6 py-3 rounded-xl font-semibold shadow-md">
+                        <i class="fa-solid fa-shield-heart"></i>
+                        80.2% Accuracy on Technical Validation
+                    </div>
+                </div>
+
+                <!-- Bottom: Capabilities Grid (Fragment 2) -->
+                <div class="mt-4 pt-4 border-t border-slate-100 fragment">
+                    <h4 class="text-base font-bold text-slate-800 mb-4">Core Capabilities</h4>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-shield-virus text-3xl text-rose-500 pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-lg">Instant Clinical Support</h5>
+                                <p class="text-base text-slate-500 leading-relaxed mt-1">Instantly distinguishes between <strong class="text-slate-700">infectious vs. non-infectious</strong> lesions to protect staff.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-microscope text-3xl text-amber-500 pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-lg">Diagnostic Assessment</h5>
+                                <p class="text-base text-slate-500 leading-relaxed mt-1">Probability scoring for <strong class="text-slate-700">10 common conditions</strong> (Eczema, Psoriasis, Tinea, etc.).</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fa-solid fa-server text-3xl text-[var(--hf-accent-main)] pt-1"></i>
+                            <div>
+                                <h5 class="font-bold text-slate-800 text-lg">CPU-Optimized</h5>
+                                <p class="text-base text-slate-500 leading-relaxed mt-1">Resource optimized for any hardware. On-premises deployable—data never leaves your control.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 2: OPERATIONAL IMPACT -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-2">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-stopwatch-20"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Operational Impact</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Workflow Efficiency & Unit Economics</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow px-12 pt-4 pb-8 bg-white flex gap-10">
+                
+                <!-- LEFT COLUMN: Workflow & Tech -->
+                <div class="w-7/12 flex flex-col gap-6">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase">02 | Pre-Consultation Efficiency for Tele-Medicine</h3>
+
+                    <!-- Workflow Comparison Card (Static / Step 0) -->
+                    <div class="bg-gradient-workflow rounded-2xl p-6 border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-6">
+                            <h4 class="font-bold text-slate-800 text-lg flex items-center gap-2">
+                                <i class="fa-solid fa-arrows-rotate text-slate-400"></i> Workflow Comparison
+                            </h4>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold uppercase tracking-wide">
+                                +10 Patients / 5hr Shift
+                            </span>
+                        </div>
+
+                        <!-- Traditional -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs text-slate-500 mb-2 uppercase tracking-wide font-semibold">
+                                <span>Traditional (No AI)</span>
+                                <span>10 Min / Patient</span>
+                            </div>
+                            <div class="w-full h-8 bg-slate-200 rounded-lg relative overflow-hidden flex">
+                                <div class="h-full bg-slate-400 flex items-center justify-center text-white text-xs font-bold" style="width: 100%">
+                                    Consultation (10m)
+                                </div>
+                            </div>
+                            <div class="mt-2 text-right">
+                                <span class="text-sm font-bold text-slate-600">6 Patients / Hour</span>
+                            </div>
+                        </div>
+
+                        <!-- PelliScope -->
+                        <div class="fragment">
+                            <div class="flex justify-between text-xs text-[var(--hf-accent-main-dark)] mb-2 uppercase tracking-wide font-semibold">
+                                <span>With PelliScope</span>
+                                <span>~10 Min Total (Parallelized)</span>
+                            </div>
+                            <div class="w-full h-8 bg-slate-100 rounded-lg relative overflow-hidden flex gap-1">
+                                <div class="h-full bg-[var(--hf-accent-main)] flex items-center justify-center text-white text-[10px] font-bold leading-tight text-center px-1" style="width: 30%">
+                                    Preliminary<br>Diagnosis (3m)
+                                </div>
+                                <div class="h-full bg-[var(--hf-accent-sec)] flex items-center justify-center text-white text-[10px] font-bold leading-tight text-center px-1" style="width: 70%">
+                                    Focused<br>Consult (7m)
+                                </div>
+                            </div>
+                            <div class="mt-2 flex justify-between items-center">
+                                <p class="text-xs text-slate-400">AI triage saves 3 mins of discovery time per patient</p>
+                                <span class="text-lg font-bold text-[var(--hf-accent-main)]">8 Patients / Hour</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Performance (Bar Chart) (Fragment 1) -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex-grow flex flex-col fragment">
+                        <h4 class="font-bold text-slate-800 text-lg mb-1">Model Performance (AUC)</h4>
+                        <p class="text-xs text-slate-500 mb-6">Zero-shot comparison on dermatology benchmarks</p>
+                        
+                        <div class="space-y-4 flex-grow justify-center flex flex-col">
+                            <!-- Bar 1 -->
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-slate-500 w-20 text-right">Grok-4</span>
+                                <div class="flex-grow h-4 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-slate-400 bar-animate" style="--target-width: 70%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-slate-600 w-8">0.70</span>
+                            </div>
+                            <!-- Bar 2 -->
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-slate-500 w-20 text-right">GPT-5</span>
+                                <div class="flex-grow h-4 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-400 bar-animate" style="--target-width: 81%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-slate-600 w-8">0.81</span>
+                            </div>
+                             <!-- Bar 3 -->
+                             <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-slate-500 w-20 text-right">Gemini 2.5</span>
+                                <div class="flex-grow h-4 bg-slate-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-indigo-400 bar-animate" style="--target-width: 82%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-slate-600 w-8">0.82</span>
+                            </div>
+                            <!-- Bar 4 (Pelliscope) -->
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-[var(--hf-accent-main-dark)] w-20 text-right">PelliScope</span>
+                                <div class="flex-grow h-6 bg-teal-50 rounded-full overflow-hidden border border-[var(--hf-accent-main)]">
+                                    <div class="h-full bg-[var(--hf-accent-main)] bar-animate" style="--target-width: 86%"></div>
+                                </div>
+                                <span class="text-sm font-bold text-[var(--hf-accent-main-dark)] w-8">0.86</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 border-t border-slate-100 pt-3 space-y-3 text-xs text-slate-600">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="bg-[var(--hf-accent-soft)] text-[var(--hf-accent-main-dark)] px-3 py-1 rounded-full border border-[var(--hf-accent-main)] font-semibold text-[11px]">Technical Accuracy: 80.2%</span>
+                                <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full border border-slate-200 font-semibold text-[11px]">Infectious vs Non-infectious flag</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-shield-virus text-[var(--hf-accent-main)] mt-0.5"></i>
+                                <div>
+                                    <p class="font-semibold text-slate-700 text-sm mb-1">10-condition panel</p>
+                                    <p class="text-xs leading-relaxed">Eczema, Allergic Contact Dermatitis, Insect Bite, Urticaria, Psoriasis, Folliculitis, Irritant Contact Dermatitis, Tinea, Herpes Zoster, Drug Rash.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Financials (Fragment 2) -->
+                <div class="w-5/12 flex flex-col h-full fragment">
+                    <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-4 text-right">Unit Economics (Daily)</h3>
+                    
+                    <div class="roi-card rounded-2xl px-8 pt-4 pb-6 flex flex-col shadow-2xl border-t-4 border-[var(--hf-accent-main)]">
+                        
+                        <!-- Top: The Cost -->
+                        <div class="border-b border-slate-700 pb-3 mb-3">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 text-slate-400 mb-1">
+                                        <i class="fa-solid fa-server"></i>
+                                        <span class="text-xs uppercase tracking-widest font-bold">Infrastructure Cost</span>
+                                    </div>
+                                    <h2 class="text-4xl font-display font-bold text-white">$2.50</h2>
+                                    <p class="text-xs text-slate-500 mt-2">Daily Compute Spend (6 Hours)</p>
+                                </div>
+                                <div class="text-right bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+                                    <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Machine Specs</div>
+                                    <div class="text-xs text-slate-300 font-mono">8 Core CPU</div>
+                                    <div class="text-xs text-slate-300 font-mono">16 GB RAM</div>
+                                    <div class="text-[10px] text-teal-400 mt-1">CPU Edge Inference</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-700/50">
+                                <p class="text-xs text-slate-400 italic">"A single machine costing less than a cup of coffee per day drives this entire workflow."</p>
+                            </div>
+                        </div>
+
+                        <!-- Middle: Clinical Revenue -->
+                        <div class="bg-white rounded-xl p-4 text-slate-900 shadow-lg mb-4 flex flex-col gap-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2 text-[var(--hf-accent-main-dark)]">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                    <span class="text-[10px] uppercase tracking-widest font-bold">Clinical Revenue Gain</span>
+                                </div>
+                                <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded border border-slate-200 font-semibold">US & UAE Ready</span>
+                            </div>
+                            
+                            <div class="flex items-end justify-between">
+                                <div>
+                                    <h2 class="text-4xl font-display font-bold text-slate-800">$800<span class="text-xl text-slate-400 font-medium">+</span></h2>
+                                    <p class="text-[10px] text-slate-500 mt-1">Daily Additional Revenue</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="bg-teal-100 text-teal-800 px-3 py-1 rounded-lg text-sm font-bold mb-1 inline-block">10+ Add. Patients</div>
+                                    <p class="text-xs text-slate-500 font-medium">@ $80 avg. consult fee</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700 mt-auto">
+                            <div class="flex items-center gap-2 text-teal-400 mb-3">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span class="text-xs uppercase tracking-widest font-bold">Two-Level Screening</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-3">
+                                    <span class="bg-rose-500/20 text-rose-300 w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold border border-rose-500/30">1</span>
+                                    <div>
+                                        <p class="text-sm font-bold text-white">Infectious vs Non-Infectious</p>
+                                        <p class="text-xs text-slate-400">Immediate triage for Patient/User safety.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="bg-indigo-500/20 text-indigo-300 w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold border border-indigo-500/30">2</span>
+                                    <div>
+                                        <p class="text-sm font-bold text-white">Differential Diagnosis</p>
+                                        <p class="text-xs text-slate-400">Top 10 most frequent skin conditions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 3: Commercial & Pricing (NEW) -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-3">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-earth-asia"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Commercial & Sovereign Economics</h1>
+                        <h2 class="text-lg font-medium text-slate-600">Pricing & Localization Strategy</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-slate-50">
+                <div class="grid grid-cols-2 gap-12 h-full">
+
+                    <!-- Sovereign Adaptation (Left) -->
+                    <div class="flex flex-col gap-6">
+                        <!-- Data Localization Card -->
+                        <div class="bg-white border hover:border-indigo-300 transition rounded-2xl p-8 shadow-sm relative overflow-hidden flex-grow flex flex-col justify-start pt-10 gap-2">
+                            <div class="absolute -top-10 -right-10 p-6 opacity-5 pointer-events-none">
+                                <i class="fa-solid fa-fingerprint text-9xl text-indigo-900"></i>
+                            </div>
+
+                            <div class="flex items-center gap-4 mb-5 mt-2">
+                                <span class="w-16 h-16 rounded-xl bg-indigo-50 flex items-center justify-center border border-indigo-100 text-indigo-600 text-3xl"><i class="fa-solid fa-map-location-dot"></i></span>
+                                <div>
+                                    <h3 class="font-bold text-2xl text-slate-800 leading-tight">Sovereign Data Adaptation</h3>
+                                    <span class="text-xs text-slate-400 uppercase tracking-widest font-bold">Targeting Any Demographics</span>
+                                </div>
+                            </div>
+
+                            <p class="text-base text-slate-600 mb-6 leading-relaxed relative z-10">
+                                Skin Foundation model will need to be caliberated, With an estimate dataset of atleast 500 images per disease class (so for 10 disease conditions = <strong class="text-indigo-600">5000 images</strong>)
+                            </p>
+
+                            <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 relative z-10 mt-auto">
+                                <div class="flex items-start justify-between border-b border-slate-200 pb-3 mb-4">
+                                    <div>
+                                        <h5 class="text-xs uppercase tracking-widest font-bold text-slate-400 mb-1">Research & Development Fee</h5>
+                                        <span class="text-4xl font-display font-extrabold text-indigo-600 block leading-none">~$25k</span>
+                                    </div>
+                                    <span class="text-[10px] font-bold tracking-widest text-slate-500 bg-white px-3 py-1 text-center rounded-lg shadow-sm border border-slate-100 uppercase mt-2">One-Time Setup</span>
+                                </div>
+                                <ul class="space-y-3 text-sm text-slate-600 font-medium pt-1">
+                                    <li class="flex gap-3"><i class="fa-solid fa-server text-indigo-400 mt-0.5 w-4 text-center"></i> Research Data Collection via Mobile App</li>
+                                    <li class="flex gap-3"><i class="fa-solid fa-chart-line text-indigo-400 mt-0.5 w-4 text-center"></i> AI Model Training & Validation</li>
+                                    <li class="flex gap-3"><i class="fa-solid fa-check-double text-indigo-400 mt-0.5 w-4 text-center"></i> Tele Consultation Platform</li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- Standard Economics (Right) -->
+                    <div class="flex flex-col h-full">
+                        <div class="roi-card rounded-2xl p-6 h-full flex flex-col justify-center">
+                            <div class="relative z-10 w-full h-full flex flex-col">
+                                <div class="flex items-center justify-between border-b border-slate-700/80 pb-4 mb-4 flex-shrink-0">
+                                    <h3 class="font-display font-bold text-xl tracking-wide">Open Data Model</h3>
+                                    <span class="bg-slate-800 text-[10px] px-3 py-1 rounded border border-slate-700 text-slate-300 font-mono tracking-widest">PELLISCOPE</span>
+                                </div>
+
+                                <div class="space-y-3 w-full flex-grow overflow-y-auto">
+                                    <!-- Box 1: Technical Report -->
+                                    <div class="bg-black/20 p-4 rounded-xl border border-slate-800">
+                                        <h4 class="text-slate-400 text-xs uppercase tracking-widest font-bold mb-1 flex justify-between">
+                                            <span>Technical Report</span>
+                                            <i class="fa-solid fa-file-lines text-teal-400"></i>
+                                        </h4>
+                                        <div class="flex items-baseline gap-3 mb-1">
+                                            <span class="font-display text-3xl font-extrabold text-white tracking-tight">$2.5k</span>
+                                        </div>
+                                        <p class="text-xs text-slate-300 font-medium leading-snug">Details on datasets used, training & testing methodologies on open source datasets, a complete route to Production model.</p>
+                                    </div>
+
+                                    <!-- Box 2: Tele-Medicine -->
+                                    <div class="bg-black/20 p-4 rounded-xl border border-slate-800">
+                                        <h4 class="text-slate-400 text-xs uppercase tracking-widest font-bold mb-1 flex justify-between">
+                                            <span>Tele-Medicine Platform Trial</span>
+                                            <i class="fa-solid fa-cloud text-indigo-400"></i>
+                                        </h4>
+                                        <div class="flex items-baseline gap-3 mb-1">
+                                            <span class="font-display text-3xl font-extrabold text-teal-300 tracking-tight">$4k</span>
+                                            <span class="text-[10px] text-slate-400 font-medium">License for 6 months</span>
+                                        </div>
+                                        <p class="text-xs text-slate-300 font-medium leading-snug">Exclusive $0.50 per AI model query (Infectious Screen & Diagnostic Screen).</p>
+                                    </div>
+
+                                    <!-- Box 3: On-Premise -->
+                                    <div class="bg-black/20 p-4 rounded-xl border border-slate-800">
+                                        <h4 class="text-slate-400 text-xs uppercase tracking-widest font-bold mb-1 flex justify-between">
+                                            <span>On-Premise Hospital Core</span>
+                                            <i class="fa-solid fa-lock text-teal-400"></i>
+                                        </h4>
+                                        <div class="flex items-baseline gap-3 mb-1">
+                                            <span class="font-display text-3xl font-extrabold text-white tracking-tight">$15k</span>
+                                            <span class="text-[10px] text-slate-400 font-medium">/ instance</span>
+                                        </div>
+                                        <p class="text-xs text-slate-300 font-medium leading-snug">Enterprise privacy; diagnostic models live within internal networks.</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 bg-blue-900/30 p-3 rounded-xl border border-blue-800 flex items-center justify-between flex-shrink-0">
+                                    <span class="text-[10px] text-blue-200 uppercase tracking-widest font-bold">Hardware Resource Cost (6H Day)</span>
+                                    <span class="font-display text-lg text-blue-100">~$2.50</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 4: THE TEAM (Renumbered) -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-4">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Leadership</h1>
+                        <h2 class="text-lg font-medium text-slate-600">The PelliScope Team</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-slate-50">
+                <h3 class="text-sm font-semibold tracking-widest text-slate-400 uppercase mb-8">04 | PelliScope Team</h3>
+                
+                <div class="grid grid-cols-3 gap-8 h-full pb-12">
+                    <!-- Team Member 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="Vatsal_Patel.jpg" alt="Vatsal Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Vatsal Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Founder & Research Engineer</p>
+                        <p class="text-sm text-slate-500">M.Sc Artificial Intelligence (IU Berlin)</p>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="Abhijeet%20Patel.jpg" alt="Dr. Abhijeet Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Dr. Abhijeet Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Clinical Research Physician</p>
+                        <p class="text-sm text-slate-500">Bachelor of Medicine & Surgery</p>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="members/dr.yash_crop.png" alt="Dr. Yash Patel" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Dr. Yash Patel</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Clinical Research Physician</p>
+                        <p class="text-sm text-slate-500">Bachelor of Medicine & Surgery</p>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="members/dr.nishi_crop.png" alt="Dr. Nishi Seth" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Dr. Nishi Seth</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Consultant Dermatologist</p>
+                        <p class="text-sm text-slate-500">M.D Dermatology</p>
+                    </div>
+
+                    <!-- Team Member 5 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="Saurav_Roy.jpeg" alt="Saurav Roy" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Saurav Roy</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Operations Head</p>
+                        <p class="text-sm text-slate-500">M.Tech Biotechnology</p>
+                    </div>
+
+                    <!-- Team Member 6 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">
+                        <img src="Ananya_Pal.jpg" alt="Ananya Pal" class="w-32 h-32 rounded-full mb-4 border-4 border-[var(--hf-accent-sec-soft)] object-cover shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800">Ananya Pal</h4>
+                        <p class="text-[var(--hf-accent-sec)] font-semibold mb-2">Finance & Accounting Head</p>
+                        <p class="text-sm text-slate-500">B.S Economics</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- SLIDE 5: VISION & PORTFOLIO (Renumbered) -->
+        <!-- ========================== -->
+        <div class="slide" id="slide-5">
+            <!-- Header -->
+            <header class="hf-hero px-12 flex items-center justify-between relative">
+                <div class="flex items-center gap-5">
+                    <span class="hf-title-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </span>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="font-display text-3xl font-bold text-slate-800">Vision & Portfolio</h1>
+                        <h2 class="text-lg font-medium text-slate-600">How HawkFranklin Operates</h2>
+                    </div>
+                </div>
+                <div>
+                    <img src="assets/img/HawkFranklin_Aug23.transparent.png" alt="HawkFranklin Research logo" class="hf-logo object-contain">
+                </div>
+            </header>
+
+            <main class="flex-grow p-12 bg-white flex flex-col gap-10">
+                <!-- Top Half -->
+                <div class="grid grid-cols-2 gap-10">
+                    <!-- Operational Model -->
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Operational Revenue Model</h3>
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4 hover:border-[var(--hf-accent-sec)] transition-colors">
+                                <div class="bg-blue-100 p-3 rounded-lg text-[var(--hf-accent-sec)]"><i class="fa-solid fa-handshake text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-[var(--hf-accent-sec-dark)]">Path A: HFR-Initiated Products</h4>
+                                    <p class="text-sm text-slate-600 mt-1">We identify a market gap, build a validated product (like PelliScope), and then seek commercial partners to scale it.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex items-start gap-4 hover:border-[var(--hf-accent-sec)] transition-colors">
+                                <div class="bg-blue-100 p-3 rounded-lg text-[var(--hf-accent-sec)]"><i class="fa-solid fa-lightbulb text-xl"></i></div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-[var(--hf-accent-sec-dark)]">Path B: Partner-Initiated R&D</h4>
+                                    <p class="text-sm text-slate-600 mt-1">You bring a defined challenge. We build the dedicated AI solution, acting as your external deep-tech R&D team.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Philosophy -->
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-slate-800 mb-4">Our Philosophy</h3>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            HawkFranklin’s long-term vision is to innovate science with commercial rigor. Our team spans physicists, chemists, biologists, and AI engineers who are building breakthroughs across quantum computing, finance, and healthcare.
+                        </p>
+                        <blockquote class="border-l-4 border-[var(--hf-accent-main)] pl-6 py-3 bg-[var(--hf-accent-soft)] rounded-r-lg">
+                            <p class="text-lg font-medium text-[var(--hf-accent-main-dark)] italic">
+                                "We are a resilient, self-funded team. We are not an IT/AI company; we work towards converting cutting-edge research into valued products that can be integrated into society."
+                            </p>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Bottom Half: Portfolio -->
+                <div class="mt-auto bg-slate-50 rounded-2xl p-8 border border-slate-100">
+                    <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest text-center mb-6">Broader Biomedical Portfolio</h4>
+                    <div class="grid grid-cols-4 gap-6">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-microscope text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">OncoGemma</h5>
+                            <p class="text-xs text-slate-500 mt-1">AI agents for digital pathology analysis</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-ribbon text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">C-Risq</h5>
+                            <p class="text-xs text-slate-500 mt-1">Multi-omics for cancer risk stratification</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-flask-vial text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">MedDiscover</h5>
+                            <p class="text-xs text-slate-500 mt-1">RAG copilot for biomedical Q&A</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 text-center hover:shadow-md transition-shadow">
+                            <i class="fa-solid fa-brain text-3xl text-[var(--hf-accent-main)] mb-3"></i>
+                            <h5 class="font-bold text-slate-800">Clinical FM</h5>
+                            <p class="text-xs text-slate-500 mt-1">Foundation models for tabular EHR data</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-slate-500 mt-6 max-w-3xl mx-auto">
+                        Beyond PelliScope, we maintain specialist pods across these domains to spin up commercialization-ready products wherever the science demands it.
+                    </p>
+                </div>
+            </main>
+        </div>
+
+        <!-- ========================== -->
+        <!-- ========================== -->
+        <!-- SHARED FOOTER & NAV -->
+        <!-- ========================== -->
+        <footer class="mt-auto bg-[var(--hf-dark-900)] text-slate-300 px-12 h-[50px] flex justify-between items-center text-xs flex-shrink-0 z-10">
+            <div class="flex space-x-6">
+                <span><i class="fa-solid fa-file-alt text-teal-400 mr-1"></i> Research Manuscript Available on Request</span>
+                <span><i class="fa-solid fa-lock text-teal-400 mr-1"></i> Provisional Patent Filed</span>
+            </div>
+            <div class="text-slate-500">© 2025 HawkFranklin Research</div>
+        </footer>
+
+        <!-- Slide Indicators -->
+        <div class="slide-indicator">
+            <div class="dot active" id="dot-1"></div>
+            <div class="dot" id="dot-2"></div>
+            <div class="dot" id="dot-3"></div>
+            <div class="dot" id="dot-4"></div>
+            <div class="dot" id="dot-5"></div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="currentSlide = 1; document.querySelectorAll('.slide').forEach(s => s.classList.remove('active')); document.getElementById('slide-1').classList.add('active'); updateButtons(); slideSteps = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }; document.querySelectorAll('.fragment').forEach(f => f.classList.remove('visible'));" style="text-align:center;">
+                <i class="fa-solid fa-house"></i> Home
+            </button>
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>
+                <i class="fa-solid fa-chevron-left"></i> Prev
+            </button>
+            <button class="nav-btn" id="nextBtn" onclick="handleNext()">
+                Next <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Demo Overlay -->
+    <div id="demoModal" class="demo-overlay" aria-hidden="true">
+        <div class="demo-modal pc">
+            <button class="demo-close" type="button" aria-label="Close demo" onclick="toggleDemoModal(false)">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <video id="demoVideo" controls playsinline class="w-full h-full object-cover">
+                <source src="assets/video/pelliscope_preview.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+        // Map slides to their current fragment index (how many shown)
+        let slideSteps = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }; 
+        
+        const demoModal = document.getElementById('demoModal');
+        const demoVideo = document.getElementById('demoVideo');
+        const pcDemoSrc = 'assets/video/pelliscope_preview.mp4';
+        const mobileDemoSrc = 'assets/video/pelliscope-mobile-ad1.mp4';
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+
+            if (newSlide >= 1 && newSlide <= totalSlides) {
+                // Remove active class from current
+                document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+                document.getElementById(`dot-${currentSlide}`).classList.remove('active');
+
+                // Add active class to new
+                document.getElementById(`slide-${newSlide}`).classList.add('active');
+                document.getElementById(`dot-${newSlide}`).classList.add('active');
+
+                currentSlide = newSlide;
+                
+                // Reset fragments on the new slide when entering
+                // If moving forward, we likely want to start from step 0
+                // If moving backward, logic could vary, but for simplicity we reset to 0
+                slideSteps[newSlide] = 0;
+                const frags = document.getElementById(`slide-${newSlide}`).querySelectorAll('.fragment');
+                frags.forEach(f => f.classList.remove('visible'));
+
+                updateButtons();
+            }
+        }
+
+        function handleNext() {
+            // Get current slide element
+            const slide = document.getElementById(`slide-${currentSlide}`);
+            // Find all fragments in this slide
+            const fragments = slide.querySelectorAll('.fragment');
+            
+            // Check if we have more fragments to show
+            if (slideSteps[currentSlide] < fragments.length) {
+                // Show next fragment
+                fragments[slideSteps[currentSlide]].classList.add('visible');
+                slideSteps[currentSlide]++;
+            } else {
+                // No more fragments, go to next slide
+                if (currentSlide < totalSlides) {
+                    changeSlide(1);
+                } else {
+                    window.location.href = 'mailto:invest@hawkfranklin.in';
+                }
+            }
+        }
+
+        function updateButtons() {
+            if (prevBtn) {
+                prevBtn.disabled = currentSlide === 1;
+            }
+
+            if (nextBtn) {
+                const isLast = currentSlide === totalSlides;
+                
+                // If we are on a slide with hidden fragments, the button should just say "Next"
+                // The contact mode only appears if we are on the very last slide AND have shown all fragments (if any)
+                // But for simplicity, we just check totalSlides
+                
+                if (isLast) {
+                    // Check if fragments remaining?
+                    const slide = document.getElementById(`slide-${currentSlide}`);
+                    const fragments = slide.querySelectorAll('.fragment');
+                    const done = slideSteps[currentSlide] >= fragments.length;
+                    
+                    if (done) {
+                        nextBtn.innerHTML = 'Contact Us <i class="fa-solid fa-envelope"></i>';
+                        nextBtn.classList.add('contact-mode');
+                    } else {
+                         nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right"></i>';
+                         nextBtn.classList.remove('contact-mode');
+                    }
+                } else {
+                    nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right"></i>';
+                    nextBtn.classList.remove('contact-mode');
+                }
+            }
+        }
+        
+        // Listen for button clicks to update button state (edge case for last slide fragments)
+        if (nextBtn) {
+             nextBtn.addEventListener('click', () => {
+                 // Defer to allow handleNext to update state
+                 setTimeout(updateButtons, 50);
+             });
+        }
+
+        function toggleDemoModal(modeOrOpen) {
+            if (!demoModal) return;
+            const isString = typeof modeOrOpen === 'string';
+            const open = modeOrOpen === true || isString;
+            if (open) {
+                const mode = isString ? modeOrOpen : 'pc';
+
+                // Adjust modal dimensions per device type
+                const modalInner = demoModal.querySelector('.demo-modal');
+                if (modalInner) {
+                    modalInner.classList.remove('pc', 'mobile');
+                    modalInner.classList.add(mode === 'mobile' ? 'mobile' : 'pc');
+                }
+
+                if (demoVideo) {
+                    const src = mode === 'mobile' ? mobileDemoSrc : pcDemoSrc;
+                    if (demoVideo.src !== src) {
+                        demoVideo.src = src;
+                    }
+                    demoVideo.load();
+                }
+                demoModal.classList.add('active');
+                demoModal.setAttribute('aria-hidden', 'false');
+                if (demoVideo) {
+                    demoVideo.currentTime = 0;
+                    const playPromise = demoVideo.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(() => {});
+                    }
+                }
+            } else {
+                demoModal.classList.remove('active');
+                demoModal.setAttribute('aria-hidden', 'true');
+                if (demoVideo) {
+                    demoVideo.pause();
+                }
+            }
+        }
+
+        if (demoModal) {
+            demoModal.addEventListener('click', (event) => {
+                if (event.target === demoModal) {
+                    toggleDemoModal(false);
+                }
+            });
+            // Allow closing with Escape for reliability
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    toggleDemoModal(false);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

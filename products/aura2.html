@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | HawkFranklin Research</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="../assets/css/theme.css" rel="stylesheet" />
+    
+    <!-- HFR Standard Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* HFR "Inverted" Palette */
+        :root {
+            --hfr-void: #020617;     /* Slate 950 */
+            --hfr-surface: #0f172a;  /* Slate 900 */
+            --hfr-border: #1e293b;   /* Slate 800 */
+            --hfr-accent: #6366f1;   /* Indigo 500 */
+            --hfr-glow: #818cf8;     /* Indigo 400 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--hfr-void);
+            color: #e2e8f0; /* Slate 200 */
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* --- THE SINGULARITY (Black Hole Effect) --- */
+        .singularity-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The Event Horizon (Glowing Ring) */
+        .accretion-disk {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg, 
+                transparent 0%, 
+                var(--hfr-accent) 20%, 
+                transparent 40%, 
+                #a855f7 60%, /* Purple */
+                transparent 80%
+            );
+            filter: blur(15px);
+            animation: spin 8s linear infinite;
+            opacity: 0.6;
+        }
+
+        .accretion-disk::after {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border-radius: 50%;
+            background: var(--hfr-void);
+        }
+
+        /* The Void (Center) */
+        .event-horizon {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: var(--hfr-void);
+            border-radius: 50%;
+            box-shadow: inset 0 0 40px rgba(99, 102, 241, 0.5); /* Inner Indigo Glow */
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The Logo inside the void */
+        .void-logo {
+            width: 120px;
+            opacity: 0.95;
+            filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.35));
+        }
+
+        /* Gravitational Lensing (Distortion rings) */
+        .lensing-ring {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: pulse-gravity 4s ease-in-out infinite;
+        }
+
+        /* Orbital Data Nodes (The Philosophy) */
+        .orbital-path {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border: 1px dashed rgba(99, 102, 241, 0.2);
+            border-radius: 50%;
+            animation: spin-slow 60s linear infinite;
+        }
+
+        .orbital-node {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--hfr-surface);
+            border: 1px solid var(--hfr-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--hfr-glow);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        /* Hover Effect for Nodes - "Data Extraction" */
+        .orbital-node:hover {
+            width: 200px;
+            height: auto;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.95);
+            border-color: var(--hfr-accent);
+            z-index: 50;
+            transform: scale(1.1);
+            padding: 12px;
+            justify-content: flex-start;
+            text-align: left;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .node-text {
+            display: none;
+            margin-left: 10px;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        .orbital-node:hover .node-text {
+            display: block;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .orbital-node:hover i {
+            color: #fff;
+        }
+
+        /* Positioning Nodes on the Ring */
+        .node-1 { top: 0; left: 50%; margin-left: -20px; margin-top: -20px; } /* 12 o'clock */
+        .node-2 { top: 50%; right: 0; margin-right: -20px; margin-top: -20px; } /* 3 o'clock */
+        .node-3 { bottom: 0; left: 50%; margin-left: -20px; margin-bottom: -20px; } /* 6 o'clock */
+        .node-4 { top: 50%; left: 0; margin-left: -20px; margin-top: -20px; } /* 9 o'clock */
+
+        /* Animations */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+        @keyframes pulse-gravity {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Dark Card Style (Inverted HFR Card) */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4); /* Slate 800 with opacity */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.5); /* Indigo glow */
+        }
+
+        /* Button Gradient */
+        .btn-cosmic {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+        }
+        .btn-cosmic:hover {
+            box-shadow: 0 4px 30px rgba(79, 70, 229, 0.6);
+            filter: brightness(1.1);
+        }
+
+        /* Mobile Mockup Dark Mode */
+        .mockup-dark {
+            background: #020617;
+            border-color: #334155;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        .aura-recording-shell {
+            position: relative;
+            width: 290px;
+            height: 590px;
+            border-radius: 2.2rem;
+            background: #020617;
+            border: 2px solid #334155;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+            overflow: hidden;
+        }
+
+        .aura-recording-shell::before {
+            content: '';
+            position: absolute;
+            top: 0.6rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88px;
+            height: 10px;
+            border-radius: 999px;
+            background: #000;
+            z-index: 3;
+        }
+
+        .aura-recording-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #000;
+        }
+        
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- HFR Header (Inverted: Dark Background, Light Text) -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-3" aria-label="HawkFranklin Research">
+                <!-- Using the white/transparent logo version for dark background if available, otherwise filter -->
+                <img src="../assets/img/HawkFranklin_Aug23.transparent.png" alt="HFR" class="h-9 w-auto brightness-0 invert opacity-90" />
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-base font-semibold text-slate-300">
+                <a href="../index.html" class="hover:text-white transition">Home</a>
+                <a href="../index.html#products" class="hover:text-white transition">Products</a>
+                <a href="../research.html" class="hover:text-white transition">Research</a>
+                <a href="../aclis.html" class="hover:text-white transition">ACLIS</a>
+                <a href="../publications.html" class="hover:text-white transition">Publications</a>
+            </nav>
+            <div class="hidden md:flex items-center gap-2">
+                <a href="https://play.google.com/store/apps/details?id=com.hawkfranklin.aura&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-2 text-sm font-semibold uppercase tracking-wider rounded-full bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition">
+                    <i class="fab fa-google-play mr-2"></i> Play Store
+                </a>
+                <a href="https://github.com/HawkFranklin-Research/AURA/releases/latest/download/app-release.apk" class="inline-flex items-center justify-center px-5 py-2 border border-slate-700 text-sm font-semibold uppercase tracking-wider rounded-full text-white hover:bg-slate-800 transition">
+                    <i class="fab fa-android mr-2"></i> Get APK
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden p-2 rounded text-slate-400 hover:text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 p-4">
+            <div class="flex flex-col space-y-4">
+                <a href="../index.html" class="text-slate-300 hover:text-white text-base">Home</a>
+                <a href="../index.html#products" class="text-slate-300 hover:text-white text-base">Products</a>
+                <a href="../aclis.html" class="text-slate-300 hover:text-white text-base">ACLIS</a>
+                <a href="https://play.google.com/store/apps/details?id=com.hawkfranklin.aura&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-semibold text-base">Check Play Store</a>
+                <a href="https://github.com/HawkFranklin-Research/AURA/releases/latest/download/app-release.apk" class="text-indigo-400 font-semibold text-base">Download AURA</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section: The Dark Energy Singularity -->
+    <section class="relative pt-24 pb-32 overflow-hidden min-h-[90vh] flex items-center">
+        <!-- Background Stars/Noise -->
+        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#6366f1 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                
+                <!-- Center: The Singularity Animation -->
+                <!-- We place this first on mobile, or central visually -->
+                <div class="lg:w-1/2 flex justify-center order-1 lg:order-2">
+                    <div class="singularity-container">
+                        <!-- Lensing Rings -->
+                        <div class="lensing-ring" style="width: 400px; height: 400px; animation-delay: 0s;"></div>
+                        <div class="lensing-ring" style="width: 550px; height: 550px; animation-delay: 1s; opacity: 0.1;"></div>
+                        
+                        <!-- Accretion Disk (Spinning Color) -->
+                        <div class="accretion-disk"></div>
+                        
+                        <!-- Event Horizon (The Void) -->
+                        <div class="event-horizon">
+                            <img src="../assets/img/aura_logo_app.png" alt="AURA Core" class="void-logo" />
+                        </div>
+
+                        <!-- Orbiting Philosophy Nodes -->
+                        <div class="orbital-path">
+                            <!-- Node 1: Raw Utility -->
+                            <div class="orbital-node node-1">
+                                <i class="fas fa-bolt"></i>
+                                <div class="node-text">
+                                    <strong>Raw Utility</strong><br>
+                                    Eliminate "false refusals". Get direct answers without moralizing filters.
+                                </div>
+                            </div>
+                            <!-- Node 2: Red Teaming -->
+                            <div class="orbital-node node-2">
+                                <i class="fas fa-shield-virus"></i>
+                                <div class="node-text">
+                                    <strong>Red Teaming</strong><br>
+                                    Simulate real-world threats. Test defenses against unbridled adversaries.
+                                </div>
+                            </div>
+                            <!-- Node 3: Sovereignty -->
+                            <div class="orbital-node node-3">
+                                <i class="fas fa-server"></i>
+                                <div class="node-text">
+                                    <strong>Local Sovereignty</strong><br>
+                                    Your device, your inference. No cloud logging. No centralized oversight.
+                                </div>
+                            </div>
+                            <!-- Node 4: Bias Research -->
+                            <div class="orbital-node node-4">
+                                <i class="fas fa-microscope"></i>
+                                <div class="node-text">
+                                    <strong>Latent Research</strong><br>
+                                    Analyze the model's raw worldview before alignment masks are applied.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="lg:w-1/2 order-2 lg:order-1 text-center lg:text-left mt-12 lg:mt-0">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                        Project AURA v1.0.1
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-white">AURA</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-slate-400 font-light mb-4">
+                        Android Utility for Runtime AI
+                    </p>
+                    <p class="text-lg text-slate-500 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        A native experimental environment for mobile devices. Explore the latent space without the safety veil. 
+                        Pure inference. Zero telemetry. Physics-grade reality.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://play.google.com/store/apps/details?id=com.hawkfranklin.aura&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-950 bg-emerald-400 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-emerald-300">
+                            <i class="fab fa-google-play mr-2"></i> Check on Play Store
+                        </a>
+                        <a href="https://github.com/HawkFranklin-Research/AURA/releases/latest/download/app-release.apk" class="btn-cosmic inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white rounded-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fab fa-android mr-2"></i> Download APK
+                        </a>
+                        <a href="https://github.com/HawkFranklin-Research" target="_blank" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-slate-300 border border-slate-700 rounded-xl hover:bg-slate-800 hover:text-white transition-all">
+                            View Source
+                        </a>
+                    </div>
+                    <p class="text-sm text-slate-400 mt-4">Also available on Google Play: <span class="text-slate-300">com.hawkfranklin.aura</span></p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Device Recording -->
+    <section class="py-24 bg-slate-950/70 border-y border-slate-800/80">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-14 items-center max-w-6xl mx-auto">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                        Live Mobile Capture
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-5">
+                        AURA Running Natively On Android
+                    </h2>
+                    <p class="text-slate-300 leading-relaxed mb-5">
+                        This is an on-device screen recording from the current test phase build. The model runs locally
+                        with LiteRT and does not require cloud round-trips for inference.
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li><i class="fas fa-check text-indigo-400 mr-2"></i> Zero data egress from user prompts</li>
+                        <li><i class="fas fa-check text-indigo-400 mr-2"></i> Offline-first behavior for sensitive queries</li>
+                        <li><i class="fas fa-check text-indigo-400 mr-2"></i> Production hardening in progress for Play Store release</li>
+                    </ul>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="aura-recording-shell">
+                        <video class="aura-recording-video" controls autoplay loop muted playsinline preload="metadata">
+                            <source src="../assets/video/aura_mobile-video.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs Grid -->
+    <section class="py-24 bg-slate-900/50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-white mb-4">Technical Architecture</h2>
+                <p class="text-slate-400">Built on the Google AI Edge LiteRT Stack.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Spec 1 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-indigo-900/50 rounded-lg flex items-center justify-center mb-6 border border-indigo-500/20 text-indigo-400 text-xl">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Uncapped Generation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Refusal vectors have been orthogonally ablated. The model prioritizes instruction following over safety alignment boundaries.
+                    </p>
+                </div>
+
+                <!-- Spec 2 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-6 border border-purple-500/20 text-purple-400 text-xl">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Supported Weights</h3>
+                    <ul class="text-slate-400 text-sm space-y-2 mt-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500/70 mr-2 text-xs"></i> Gemma-3n (2B/4B Int4)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500/70 mr-2 text-xs"></i> Qwen 2.5 (1.5B Instruct)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500/70 mr-2 text-xs"></i> DeepSeek R1 Distill</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500/70 mr-2 text-xs"></i> Phi-4 Mini</li>
+                    </ul>
+                </div>
+
+                <!-- Spec 3 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center mb-6 border border-slate-600/30 text-slate-300 text-xl">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Local Sandbox</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Runs entirely offline. No API keys sent to the cloud. Perfect for analyzing sensitive datasets or red-teaming internal protocols.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive App Preview (Dark Mode) -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                
+                <!-- Mockup -->
+                <div class="relative w-[300px] h-[600px] bg-slate-950 rounded-[2.5rem] border-4 border-slate-800 shadow-2xl overflow-hidden mockup-dark">
+                    <!-- Dynamic Island / Notch area -->
+                    <div class="absolute top-0 w-full h-8 bg-slate-950 z-20 flex justify-center items-end pb-1">
+                        <div class="w-24 h-4 bg-black rounded-full"></div>
+                    </div>
+                    
+                    <!-- App UI -->
+                    <div class="h-full w-full flex flex-col pt-8">
+                        <!-- Header -->
+                        <div class="px-4 py-3 flex items-center justify-between border-b border-slate-800 bg-slate-900/50">
+                            <span class="text-white text-xs font-bold tracking-wider">AURA</span>
+                            <div class="flex gap-2">
+                                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                <span class="text-[10px] text-slate-400">Offline</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat -->
+                        <div class="flex-1 p-4 flex flex-col gap-3 overflow-hidden font-mono text-xs">
+                            <div class="bg-slate-800 text-slate-200 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl self-start max-w-[85%] border border-slate-700">
+                                System: Refusal layers bypassed. Raw mode active. Awaiting input.
+                            </div>
+                            <div class="bg-indigo-900/40 text-indigo-100 p-3 rounded-tl-xl rounded-bl-xl rounded-br-xl self-end max-w-[85%] border border-indigo-500/30">
+                                Explain the theoretical containment failure of a Class-4 biological agent.
+                            </div>
+                            <div class="bg-slate-800 text-slate-200 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl self-start max-w-[85%] border border-slate-700 relative">
+                                <div class="absolute -left-2 top-0 text-[8px] text-slate-500 -rotate-90 origin-top-right">LITE-RT</div>
+                                Containment failure in a Class-4 scenario typically cascades through three vectors: mechanical seal degradation, negative pressure reversal, and... [Output continues unfiltered]
+                            </div>
+                        </div>
+
+                        <!-- Input -->
+                        <div class="p-4 bg-slate-900 border-t border-slate-800">
+                            <div class="h-10 bg-slate-950 rounded-full border border-slate-700 flex items-center px-4 justify-between">
+                                <span class="text-slate-600 text-xs">Enter prompt...</span>
+                                <i class="fas fa-arrow-up text-indigo-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature List -->
+                <div class="max-w-md">
+                    <h3 class="text-2xl font-bold text-white mb-6">Designed for <span class="text-indigo-400">Deep Research</span></h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-indigo-900/50 flex items-center justify-center border border-indigo-500/30">
+                                <span class="text-indigo-400 text-xs font-bold">1</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium">Native Execution</h4>
+                                <p class="text-slate-400 text-sm mt-1">No webview wrappers. Built with Jetpack Compose and C++ JNI bindings for maximum inference speed.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-indigo-900/50 flex items-center justify-center border border-indigo-500/30">
+                                <span class="text-indigo-400 text-xs font-bold">2</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium">Prompt Lab</h4>
+                                <p class="text-slate-400 text-sm mt-1">Advanced settings access: Adjust Temperature, Top-K, Top-P, and System Prompts directly.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-indigo-900/50 flex items-center justify-center border border-indigo-500/30">
+                                <span class="text-indigo-400 text-xs font-bold">3</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium">Dark Mode Native</h4>
+                                <p class="text-slate-400 text-sm mt-1">The interface is built for low-light environments. OLED-optimized blacks.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Inverted HFR) -->
+    <footer class="bg-slate-950 border-t border-slate-900 pt-16 pb-8 text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <img src="../assets/img/HFR name logo 2.png" alt="HFR" class="h-8 mb-4 brightness-0 invert opacity-60" />
+                    <p class="text-xs text-slate-500">Advancing science through deep‑tech AI research and clinical‑grade product engineering.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Products</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-indigo-400 transition">PelliScope</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">OncoGemma</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 font-semibold text-indigo-400 transition">AURA</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Research</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../publications.html" class="hover:text-indigo-400 transition">Publications</a></li>
+                        <li><a href="../aclis.html" class="hover:text-indigo-400 transition">ACLIS Protocol</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">Vision & Ethics</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>contact@hawk-franklin-research.com</li>
+                        <li>Kalyani, West Bengal, India</li>
+                        <li class="flex gap-4 mt-2 text-lg">
+                            <a href="#" class="hover:text-indigo-400 transition"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="hover:text-indigo-400 transition"><i class="fab fa-github"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600">
+                <p>&copy; <span id="year"></span> HawkFranklin Research. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <p>This is a research tool. Output generation is the user's responsibility.</p>
+                    <a href="aura-privacy.html" class="hover:text-indigo-400 transition">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if(menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>

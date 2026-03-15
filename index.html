@@ -85,6 +85,10 @@
       box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.1), 0 10px 10px -5px rgba(14, 165, 233, 0.04);
     }
 
+    .product-card-clickable {
+      cursor: pointer;
+    }
+
     .research-card {
       transition: all 0.3s ease;
       background: rgba(255, 255, 255, 0.05);
@@ -168,6 +172,51 @@
       font-size: 36px;
       margin-bottom: 20px;
     }
+
+    .whx-success-banner {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(56, 189, 248, 0.26);
+      background:
+        radial-gradient(120% 120% at 0% 0%, rgba(14, 165, 233, 0.24) 0%, rgba(14, 165, 233, 0.02) 45%, transparent 72%),
+        linear-gradient(120deg, #10243f 0%, #18263b 52%, #091423 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 22px 36px -24px rgba(14, 165, 233, 0.45);
+    }
+
+    .whx-showcase-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 23, 42, 0.82);
+      aspect-ratio: 4 / 3;
+    }
+
+    .whx-showcase-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.38s ease, transform 0.38s ease;
+    }
+
+    .whx-showcase-photo.whx-fade-out {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+
+    @media (max-width: 640px) {
+      .whx-showcase-card {
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .whx-showcase-photo {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -249,7 +298,7 @@
         <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
           <div class="flex items-center gap-2 text-primary-800">
             <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-            <span class="font-semibold">PelliScope to be presented at WHX 2026</span>
+            <span class="font-semibold">PelliScope successfully showcased at WHX Health 2026</span>
           </div>
           <a href="products/pelliscope.html"
             class="inline-flex items-center gap-2 text-primary-900 hover:text-primary-800">
@@ -290,28 +339,49 @@
     </section>
     -->
 
-    <!-- PelliScope at Arab Health -->
+    <!-- PelliScope at WHX Health -->
     <section id="aclis" class="py-16 bg-dark-900 text-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-r from-primary-600 to-primary-800 rounded-2xl p-8 sm:p-12 text-center">
-          <p class="font-bold text-primary-200 uppercase tracking-wider">Showcasing at Arab Health 2026</p>
-          <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold">PelliScope: AI for Differential Dermatology</h2>
-          <p class="mt-4 max-w-2xl mx-auto text-primary-100">
-            HawkFranklin Research will deliver a live demo of PelliScope—our clinical dermatology triage assistant—at
-            the WHX booth in 2026.
-          </p>
-          <p class="mt-4 max-w-2xl mx-auto text-primary-100">
-            AI for differential skin condition diagnosis, optimized for telemedicine deployments across the UAE.
-          </p>
-          <div class="mt-8 flex flex-wrap justify-center gap-4">
-            <a href="products/pelliscope.html"
-              class="bg-white hover:bg-gray-100 text-primary-700 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
-              <i class="fas fa-info-circle mr-2"></i> Learn More
-            </a>
-            <a href="contact.html"
-              class="border-2 border-white text-white hover:bg-white/10 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
-              <i class="fas fa-calendar mr-2"></i> Schedule Demo
-            </a>
+        <div class="whx-success-banner rounded-3xl p-8 sm:p-10 lg:p-12">
+          <div class="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+            <div>
+              <p class="inline-flex items-center rounded-full border border-sky-300/35 bg-sky-400/10 px-4 py-1.5 font-semibold text-sky-200 uppercase tracking-[0.12em] text-xs sm:text-sm">
+                HawkFranklin at WHX Health 2026
+              </p>
+              <h2 class="mt-4 font-display text-3xl sm:text-4xl font-bold">PelliScope: AI for Differential Dermatology</h2>
+              <p class="mt-4 text-sky-100 leading-relaxed">
+                At WHX Health Dubai (Feb 9-12, 2026), HawkFranklin Research represented PelliScope (Derma AI),
+                developed for Emirates Health Services (EHS) in partnership with Oracle Health.
+              </p>
+              <p class="mt-3 text-slate-200/90 leading-relaxed">
+                Live, unscripted booth previews demonstrated real-world readiness for patient triage and clinician-facing
+                differential support workflows.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2.5 text-xs sm:text-sm">
+                <span class="rounded-full border border-slate-300/30 bg-white/10 px-3 py-1.5 text-slate-100">WHX Health Dubai 2026</span>
+                <span class="rounded-full border border-slate-300/30 bg-white/10 px-3 py-1.5 text-slate-100">EHS UAE Deployment Partner</span>
+                <span class="rounded-full border border-slate-300/30 bg-white/10 px-3 py-1.5 text-slate-100">Oracle Health Collaboration</span>
+              </div>
+              <div class="mt-8 flex flex-wrap gap-4">
+                <a href="products/pelliscope.html"
+                  class="bg-white hover:bg-slate-100 text-sky-700 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+                  <i class="fas fa-info-circle mr-2"></i> Learn More
+                </a>
+                <a href="contact.html"
+                  class="border-2 border-sky-200/90 text-white hover:bg-sky-300/10 px-8 py-3.5 rounded-lg font-medium transition duration-300 flex items-center">
+                  <i class="fas fa-calendar mr-2"></i> Schedule Demo
+                </a>
+              </div>
+            </div>
+            <div>
+              <figure class="whx-showcase-card">
+                <img class="whx-showcase-photo" src="conference/arab_health_26/image1_expo.jpg"
+                  alt="HawkFranklin team showcasing PelliScope at WHX Health Dubai">
+              </figure>
+              <p class="mt-3 text-xs sm:text-sm text-slate-200/80 text-center">
+                Live floor moments from the WHX Health Dubai booth
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -329,6 +399,41 @@
         </div>
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <!-- AURA -->
+          <div class="product-card product-card-clickable rounded-xl overflow-hidden border border-dark-100" data-card-link="products/aura2.html" role="link" tabindex="0" aria-label="Open AURA product page">
+            <div class="h-48 bg-gradient-to-br from-sky-600 to-indigo-700 flex items-center justify-center">
+              <i class="fas fa-robot text-white text-6xl floating"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="bg-sky-100 text-sky-800 text-xs font-medium px-2.5 py-0.5 rounded mr-2">AI Assistant</span>
+                <h3 class="text-xl font-bold text-dark-900">AURA</h3>
+              </div>
+              <p class="text-dark-600 mb-4">
+                Abliterated Unfiltered RAW Artificial Intelligence. Private, on-device key storage with multimodal
+                support.
+              </p>
+              <div class="flex flex-col gap-2 text-sm font-medium">
+                <a href="https://www.hawkfranklin.in/downloads/aura/AURA.apk" class="btn-primary inline-flex items-center justify-center rounded-lg text-white px-4 py-2">
+                  Download APK
+                </a>
+                <a href="https://www.hawkfranklin.in/downloads/derma_ai.zip" download="derma_ai.zip" class="btn-outline inline-flex items-center justify-center rounded-lg text-primary-600 px-4 py-2">
+                  Download Derma AI ZIP
+                </a>
+                <a href="https://github.com/HawkFranklin-Research/AURA/releases/tag/v1.0.0" class="btn-outline inline-flex items-center justify-center rounded-lg text-primary-600 px-4 py-2">
+                  GitHub Release
+                </a>
+                <a href="https://www.hawkfranklin.in/fdroid/repo/" class="text-primary-600 text-center hover:underline">
+                  F-Droid Repo URL
+                </a>
+              </div>
+              <div class="mt-4 flex items-center text-primary-600 font-medium">
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+              </div>
+            </div>
+          </div>
+
           <!-- PelliScope -->
           <a href="products/pelliscope.html" class="product-card rounded-xl overflow-hidden">
             <div class="h-48 bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center">
@@ -708,7 +813,53 @@
         link.classList.add('nav-active');
       }
     });
+
+    document.querySelectorAll('[data-card-link]').forEach((card) => {
+      const navigate = () => {
+        const href = card.getAttribute('data-card-link');
+        if (href) window.location.href = href;
+      };
+
+      card.addEventListener('click', (event) => {
+        if (event.target.closest('a, button')) return;
+        navigate();
+      });
+
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          navigate();
+        }
+      });
+    });
+
+    // WHX showcase single-image fade carousel
+    const whxShowcaseSources = [
+      'conference/arab_health_26/image1_expo.jpg',
+      'conference/arab_health_26/image2_expo.jpg',
+      'conference/arab_health_26/image4_expo.jpg',
+      'conference/arab_health_26/image5_expo.jpg'
+    ];
+    const whxShowcasePhotos = Array.from(document.querySelectorAll('.whx-showcase-photo'));
+    let whxShowcaseOffset = 0;
+
+    if (whxShowcasePhotos.length === 1) {
+      setInterval(() => {
+        whxShowcasePhotos.forEach((img) => img.classList.add('whx-fade-out'));
+
+        setTimeout(() => {
+          whxShowcaseOffset = (whxShowcaseOffset + 1) % whxShowcaseSources.length;
+          whxShowcasePhotos.forEach((img, index) => {
+            img.src = whxShowcaseSources[(whxShowcaseOffset + index) % whxShowcaseSources.length];
+            img.classList.remove('whx-fade-out');
+          });
+        }, 380);
+      }, 3300);
+    }
   </script>
+  <!-- Hidden links for direct distribution -->
+  <a href="/products/aura2.html" style="display:none;">AURA v1.0.1</a>
+  <a href="/distribution/pelliscope/feb-briefing.html" style="display:none;">PelliScope Feb Briefing</a>
 </body>
 
 </html>
