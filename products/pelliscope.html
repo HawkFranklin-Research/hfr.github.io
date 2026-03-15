@@ -52,6 +52,28 @@
             object-fit: contain;
             background: #000;
         }
+        .hero-preview-shell {
+            width: min(100%, 42rem);
+        }
+        .hero-preview-video-frame {
+            min-height: 24rem;
+            height: clamp(24rem, 42vw, 31rem);
+        }
+        .hero-preview-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: radial-gradient(circle at top, #1e3a8a 0%, #020617 72%);
+        }
+        .hero-preview-video.is-mobile {
+            object-fit: contain;
+            padding: 1rem;
+        }
+        @media (max-width: 1024px) {
+            .hero-preview-video-frame {
+                height: clamp(21rem, 78vw, 29rem);
+            }
+        }
 	    </style>
 	    </head>
 <body class="font-sans antialiased text-gray-800">
@@ -136,11 +158,11 @@
                                 </button>
                             </div>
                             <div class="flex flex-col sm:flex-row gap-4">
-                                <a href="../derma-ai-brochure_v3.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition">
+                                <a href="../derma-ai-brochure_v3.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
                                     <i class="fas fa-file-lines text-base"></i>
                                     Product Brochure
                                 </a>
-                                <a href="../investors/gab2.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border-2 border-blue-100 text-blue-800 hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold transition">
+                                <a href="../investors/gab2.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
                                     <i class="fas fa-diagram-project text-base"></i>
                                     Technical Infographic
                                 </a>
@@ -153,7 +175,7 @@
                     </div>
                 </div>
                 <div class="lg:w-1/2 flex justify-center">
-                    <div class="relative w-full max-w-xl" id="dermassistPreview">
+                    <div class="relative hero-preview-shell" id="dermassistPreview">
                         <div class="absolute -top-6 -left-6 w-64 h-64 bg-blue-200 rounded-2xl opacity-50"></div>
                         <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-blue-300 rounded-2xl opacity-50"></div>
                         <div id="analysisCard" class="relative bg-white p-4 rounded-2xl shadow-xl transition-opacity duration-700 ease-in-out" style="min-height: 360px;">
@@ -205,13 +227,56 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="analysisVideo" class="relative rounded-2xl shadow-xl overflow-hidden bg-black hidden opacity-0 transition-opacity duration-700 ease-in-out" style="min-height: 360px;">
-                            <video id="dermassistHeroVideo" class="w-full h-full object-cover" muted playsinline controls preload="metadata" poster="../assets/video/pelliscope_top_preview.jpg">
+                        <div id="analysisVideo" class="hero-preview-video-frame relative rounded-2xl shadow-xl overflow-hidden bg-black hidden opacity-0 transition-opacity duration-700 ease-in-out">
+                            <video id="dermassistHeroVideo" class="hero-preview-video" muted playsinline controls preload="metadata" poster="../assets/video/pelliscope_top_preview.jpg">
                                 <source src="../assets/video/pelliscope_top_preview.mp4" type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-slate-950 text-white">
+        <div class="container mx-auto px-4">
+            <div class="rounded-3xl border border-sky-300/15 bg-gradient-to-br from-slate-950 via-sky-950 to-slate-900 p-8 sm:p-10 shadow-2xl">
+                <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center">
+                    <div>
+                        <p class="inline-flex items-center rounded-full border border-sky-300/35 bg-sky-400/10 px-4 py-1.5 font-semibold text-sky-200 uppercase tracking-[0.12em] text-xs sm:text-sm">
+                            HawkFranklin at WHX Health 2026
+                        </p>
+                        <h2 class="mt-4 text-3xl sm:text-4xl font-bold">PelliScope: AI for Differential Dermatology</h2>
+                        <p class="mt-4 text-sky-100 leading-relaxed text-lg">
+                            At WHX Health Dubai (Feb 9-12, 2026), HawkFranklin Research represented PelliScope (Derma AI),
+                            developed for Emirates Health Services (EHS) in partnership with Oracle Health.
+                        </p>
+                        <p class="mt-3 text-slate-200/90 leading-relaxed">
+                            Live, unscripted booth previews demonstrated real-world readiness for patient triage and
+                            clinician-facing differential support workflows.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2.5 text-xs sm:text-sm">
+                            <span class="rounded-full border border-slate-300/30 bg-white/10 px-3 py-1.5 text-slate-100">WHX Health Dubai 2026</span>
+                            <span class="rounded-full border border-slate-300/30 bg-white/10 px-3 py-1.5 text-slate-100">EHS UAE Deployment Partner</span>
+                            <span class="rounded-full border border-slate-300/30 bg-white/10 px-3 py-1.5 text-slate-100">Oracle Health Collaboration</span>
+                        </div>
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <a href="#technology" class="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-sky-700 px-8 py-3.5 rounded-lg font-medium transition duration-300">
+                                <i class="fas fa-info-circle"></i>
+                                Learn More
+                            </a>
+                            <a href="../schedule.html" class="inline-flex items-center gap-2 border-2 border-sky-200/90 text-white hover:bg-sky-300/10 px-8 py-3.5 rounded-lg font-medium transition duration-300">
+                                <i class="fas fa-calendar"></i>
+                                Schedule Demo
+                            </a>
+                        </div>
+                    </div>
+                    <figure class="overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/50 shadow-[0_30px_70px_-35px_rgba(14,165,233,0.45)]">
+                        <img src="../conference/arab_health_26/image1_expo.jpg"
+                            alt="HawkFranklin team showcasing PelliScope at WHX Health Dubai"
+                            class="h-full min-h-[18rem] w-full object-cover">
+                    </figure>
                 </div>
             </div>
         </div>
@@ -602,6 +667,7 @@
             video.setAttribute('src', src);
             video.load();
           }
+          video.classList.toggle('is-mobile', src.includes('mobile'));
           currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
         };
 
